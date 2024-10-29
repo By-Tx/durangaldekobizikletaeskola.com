@@ -4,7 +4,7 @@ import fecebook from '../media/RSS/facebook.svg'
 import instagram from '../media/RSS/instagram.svg'
 import twitter from '../media/RSS/twitter.svg'
 import Image from 'next/image'
-
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 // @todo resposive design 
 const NavBar = () => {
