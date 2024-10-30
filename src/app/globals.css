@@ -11,11 +11,12 @@
   :root {
     --background: #ffffff;
     --foreground: #ededed;
+
   }
 }
 
 body {
-  color: #171717;
+  color: black;
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
