@@ -1,9 +1,7 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
+
 
 import Slideshow from "./components/slider";
-import Sponsor from "./components/sponsors";
 import TextInfo from "./components/text";
 const images = [
   { url: 'https://photos.txuli.com/duranguesa/Duranguesa_3.jpg' },
@@ -22,7 +20,7 @@ export default function Home() {
         SecondText="Proiektu sendo bati ekiteko gogoarekin egindako eskola da, non sortzen dute hiru elkarteak izen askoko elkarte sendo eta historikoak diren. Honekin batera, guztiontzako zailak diren garaietan baliabideak minimizatzea zuten ere helburutzat. "
         ThirdText="Hiru elkarteak norabide berean joatea zen beste helburuetako bat eta zuten nahia eskualdean txirrindularitza sustatzea zen, lelo argi batekin, ELKARTASUNAK EGITEN DU INDARRA."
       />
-      <Sponsor />
+      
     </div>
   );
 }
