@@ -1,4 +1,3 @@
-import Sponsor from "../components/sponsors";
 
 export default function Page() {
 
@@ -13,7 +12,7 @@ export default function Page() {
                 </p>
                 <div className="mb-4">
                     <h3 className="font-bold">Dirección:</h3>
-                    <p>Murueta Torre auzunea 5D</p>
+                    <p>Murueta Torre Auzunea, 5D, 48200 Durango, Bizkaia</p>
                 </div>
                 <div className="mb-4">
                     <h3 className="font-bold">Email:</h3>
@@ -23,7 +22,7 @@ export default function Page() {
                 </div>
                 <div className="mb-4">
                     <h3 className="font-bold">Teléfono:</h3>
-                    <p className="text-blue-500">{`699 780 190`}</p>
+                    <p className="text-blue-500">{`699 780 190 ibon`}</p>
                 </div>
                 <div className="mt-6">
                     <h3 className="font-bold mb-2">Ubicación:</h3>
@@ -39,7 +38,7 @@ export default function Page() {
                 </div>
             </div>
             <div className="mt-24">
-            <Sponsor />
+           
             </div>
         </div>
     );

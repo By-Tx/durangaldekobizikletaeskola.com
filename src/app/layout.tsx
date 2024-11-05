@@ -17,7 +17,9 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "DURANGALDEKO BZK",
+  
   description: "Durangaldeko Bizikleta Eskola - Batu gure tropelera! Bizikletaren munduan murgiltzeko aukera ezin hobea, errepide, mendi, ziklokros edo pista diziplinetan!",
+ 
 };
 
 export default function RootLayout({
@@ -27,6 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+      <link rel="shortcut icon" href="/media/logo.png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

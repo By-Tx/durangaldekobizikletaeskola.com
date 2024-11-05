@@ -1,11 +1,41 @@
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
 import imageLogo from '../media/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const NavBar = () => {
-    return (
-        <>
+   
+    const [windowWidth, setWindowWidth] = useState<number | null>(null);
+
+    useEffect(() => {
+        
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        
+        window.addEventListener('resize', handleResize);
+
+        
+        handleResize();
+
+        
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    
+    if (windowWidth !== null && windowWidth < 1200) {
+        return (
+            <nav>
+                
+                
+            </nav>
+        );
+    } else {
+        return (
             <nav className='flex justify-between items-center w-full bg-gradient-to-r from-blue-400 to-blue-500 px-6 py-4 fixed top-0 z-20 shadow-md'>
                 {/* Logo y Menú de navegación */}
                 <div className='flex items-center'>
@@ -27,8 +57,8 @@ const NavBar = () => {
                     </div>
                 </div>
             </nav>
-        </>
-    );
+        );
+    }
 };
 
 export default NavBar;
