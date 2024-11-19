@@ -18,7 +18,7 @@ interface SlideshowProps {
 
 const Slideshow: React.FC<SlideshowProps> = ({ images=[] }) => {
   return (
-    <div className="slide-container w-9/12 mb-10 mx-auto mt-36">
+    <div className="slide-container w-9/12 mb-10 mx-auto xl:mt-36 sm:mt-10">
       <Slide>
         {images.map((slideImage, index) => (
           <div key={index}>

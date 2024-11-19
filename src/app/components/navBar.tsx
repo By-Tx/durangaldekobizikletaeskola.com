@@ -1,38 +1,49 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import imageLogo from '../media/logo.png';
+import logoMEnu from '../media/menu/logoMenu.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const NavBar = () => {
-   
-    const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
+    const [windowWidth, setWindowWidth] = useState<number | null>(null);
+    const [menuOpen, setMenuOpen] = useState<boolean>(false);
+    const menuFunction = () => {
+        setMenuOpen(!menuOpen);
+    }
     useEffect(() => {
-        
+
         const handleResize = () => {
             setWindowWidth(window.innerWidth);
         };
 
-        
+
         window.addEventListener('resize', handleResize);
 
-        
+
         handleResize();
 
-        
+
         return () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
 
-    
+
     if (windowWidth !== null && windowWidth < 1200) {
         return (
-            <nav>
-                
-                
-            </nav>
+            <div>
+                <nav className=''>
+                    <Image src={logoMEnu} alt="Logo" className='mx-auto hover:cursor-pointer' onClick={menuFunction} />
+
+                </nav>
+                <div className={`${menuOpen ? 'visible z-10': ' invisible '} absolute cursor-pointer transition-all `}>
+                    holaaa
+                </div>
+            </div>
+
+
         );
     } else {
         return (
