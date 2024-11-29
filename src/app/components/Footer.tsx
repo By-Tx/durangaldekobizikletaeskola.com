@@ -40,7 +40,7 @@ export default function Footer() {
 
                     </div>
 
-                    <div className="col-span-2 flex justify-end  mt-2">
+                    <div className="col-span-2 flex justify-end  mt-2 ">
                         <div className="pl-1">Designed by</div>
                         <a href="https://github.com/txuli" className="flex items-center pl-1 bg-blue-400 rounded-lg w-fit justify-center px-2 mx-2 group">
                             <Image src={logos} alt="Logo" width={20} height={20} className="group-hover:rotate-180 transition-all " />
@@ -48,7 +48,7 @@ export default function Footer() {
                         </a>
                     </div>
                 </div>
-                <div className="flex justify-center mt-2">
+                <div className="flex justify-center mt-2 pl-4">
                 ©2024, Durangaldeko Bizikleta Eskola
                 </div>
             </footer>
