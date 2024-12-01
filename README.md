@@ -69,7 +69,7 @@ This project is built using:
 - **Frontend**: React with **Next.js** for server-side rendering and static site generation, providing a dynamic and SEO-friendly user experience.
 - **TypeScript**: For type safety and improved developer experience.
 - **Backend**: Next.js API Routes for server-side functionality and API management.
-- **Database**: A database (e.g., PostgreSQL, MongoDB, or Firebase) to store user information, performance data, and photo uploads.
+- **Database**: A database MongoDB (still figuring) to store user information, performance data, and photo uploads.
 - **Authentication**: A secure authentication system for cyclists, parents, and admins.
 - **Styling**: TailwindCSS for responsive and modern UI design.
 
