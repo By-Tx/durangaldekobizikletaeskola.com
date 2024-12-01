@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pm2:start": "pm2 start \"npm run start\" --name durangobzk",
+    "pm2:rs": "pm2 restart durangobzk --update-env",
+    "pm2:stop": "pm2 delete durangobzk"
+
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
