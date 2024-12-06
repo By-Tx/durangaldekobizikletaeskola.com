@@ -6,19 +6,20 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [image, setImage] = useState<File | null>(null);
+ 
  
   const signUp = async () => {
-    const { data, error } = await authClient.signUp.email({ 
+     await authClient.signUp.email({ 
         email, 
         password, 
         name, 
+        callbackURL: '/sign-in'
        
      }, { 
-        onRequest: (ctx) => { 
+        onRequest: () => { 
          //show loading
         }, 
-        onSuccess: (ctx) => { 
+        onSuccess: () => { 
           alert('Sign Up Successful');
         }, 
         onError: (ctx) => { 

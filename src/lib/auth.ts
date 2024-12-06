@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { createPool } from "mysql2/promise";
-import { createAuthClient } from "better-auth/react"
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -17,6 +17,10 @@ export const auth = betterAuth({
     emailAndPassword: {    
         enabled: true
     },
+    session: {
+        expiresIn: 60 * 60 * 24 * 7, 
+        updateAge: 60 * 60 * 24 
+    }
     
    
 });

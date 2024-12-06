@@ -83,7 +83,7 @@ const NavBar = () => {
                 </div>
                 
                 <div className='flex items-center'>
-                    <div className='mt-4 h-8 w-24 rounded-lg bg-blue-600 flex text-center items-center justify-center text-white cursor-pointer transition duration-150 hover:bg-blue-700'><Link href='/login'>HASI SAIOA</Link></div>
+                    <div className='mt-4 h-8 w-24 rounded-lg bg-blue-600 flex text-center items-center justify-center text-white cursor-pointer transition duration-150 hover:bg-blue-700'><Link href='/sign-in'>HASI SAIOA</Link></div>
                     <div className='flex mt-4 pl-10 text-white font-semibold'>
                         <span className='cursor-pointer hover:text-blue-200 transition duration-150'><Image src={euskera} alt='bask logo' className='h-8 w-auto mr-1'/></span>
                         <span className='pl-1 cursor-pointer hover:text-blue-200 transition duration-150'><Image src={spanish} alt='spanish logo' className='h-8 w-auto'/></span>
