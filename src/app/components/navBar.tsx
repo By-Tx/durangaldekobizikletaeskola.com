@@ -4,6 +4,8 @@ import imageLogo from '../media/logo.png';
 import logoMEnu from '../media/menu/logoMenu.svg';
 import Image from 'next/image';
 import Link from 'next/link';
+import euskera from '../media/euskera.png';
+import spanish from '../media/spanish.png';
 
 const NavBar = () => {
 
@@ -79,12 +81,12 @@ const NavBar = () => {
                         <Link href='/contacto' className='mr-4 mt-4 h-8 w-50 text-white hover:bg-blue-600 rounded-lg px-3 py-1 transition duration-150'>KONTAKTUA</Link>
                     </div>
                 </div>
-                {/* Sección derecha: Botón y Selector de idioma */}
+                
                 <div className='flex items-center'>
-                    <div className='mt-4 h-8 w-24 rounded-lg bg-blue-600 flex text-center items-center justify-center text-white cursor-pointer transition duration-150 hover:bg-blue-700'>HASI SAIOA</div>
+                    <div className='mt-4 h-8 w-24 rounded-lg bg-blue-600 flex text-center items-center justify-center text-white cursor-pointer transition duration-150 hover:bg-blue-700'><Link href='/login'>HASI SAIOA</Link></div>
                     <div className='flex mt-4 pl-10 text-white font-semibold'>
-                        <span className='cursor-pointer hover:text-blue-200 transition duration-150'>eus</span>
-                        <span className='pl-1 cursor-pointer hover:text-blue-200 transition duration-150'>cast</span>
+                        <span className='cursor-pointer hover:text-blue-200 transition duration-150'><Image src={euskera} alt='bask logo' className='h-8 w-auto mr-1'/></span>
+                        <span className='pl-1 cursor-pointer hover:text-blue-200 transition duration-150'><Image src={spanish} alt='spanish logo' className='h-8 w-auto'/></span>
                     </div>
                 </div>
             </nav>
