@@ -1,5 +1,5 @@
 "use client"
-import { authClient } from "../../lib/auth-client"; //import the auth client
+import { authClient } from "@/lib/auth-client"; //import the auth client
 import { useState } from 'react';
  
 export default function SignUp() {
@@ -13,13 +13,13 @@ export default function SignUp() {
         email, 
         password, 
         name, 
-        
+       
      }, { 
         onRequest: (ctx) => { 
          //show loading
         }, 
         onSuccess: (ctx) => { 
-         alert('Sign Up Successful');
+          alert('Sign Up Successful');
         }, 
         onError: (ctx) => { 
           alert(ctx.error.message); 

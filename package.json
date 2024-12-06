@@ -20,13 +20,16 @@
     "better-auth": "^1.0.10",
     "cookie": "^1.0.1",
     "D": "^1.0.0",
+    "dotenv": "^16.4.7",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.11.5",
+    "net": "^1.0.2",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",
     "react-slideshow-image": "^4.3.2",
-    "sharp": "^0.33.5"
+    "sharp": "^0.33.5",
+    "tls": "^0.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",
