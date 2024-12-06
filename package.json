@@ -10,7 +10,6 @@
     "pm2:start": "pm2 start \"npm run start\" --name durangobzk",
     "pm2:rs": "pm2 restart durangobzk --update-env",
     "pm2:stop": "pm2 delete durangobzk"
-
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
@@ -18,9 +17,12 @@
     "@types/jsonwebtoken": "^9.0.7",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "better-auth": "^1.0.10",
     "cookie": "^1.0.1",
     "D": "^1.0.0",
+    "dotenv": "^16.4.7",
     "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.11.5",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",
