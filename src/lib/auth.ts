@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { createPool } from "mysql2/promise";
-
+import { admin } from "better-auth/plugins"
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -25,7 +25,9 @@ export const auth = betterAuth({
         expiresIn: 60 * 60 * 24 * 7, 
         updateAge: 60 * 60 * 24 
     },
-    
+    plugins: [
+        admin() 
+    ]
    
 });
 

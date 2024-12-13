@@ -1,0 +1,4 @@
+    /* Quitamos el color blanco en todas las tablas de boostrap */
+    .no-bg-table {
+        --bs-table-bg: transparent; /* O usa el color que prefieras */
+    }

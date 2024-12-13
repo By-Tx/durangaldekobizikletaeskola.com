@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+
+{% block title %}Resultados para el Evento: {{ evento.nombre }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Carrera: {{ evento.nombre }}</h2>
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addResultadoModal">
+        Añadir Resultado
+    </button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Deportista</th>
+                <th>Resultado</th>
+                <th>Objetivo</th>
+                <th>Valoración Corredor</th>
+                <th>Valoración Director</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultado in resultados %}
+            <tr>
+                <td>{{ resultado.deportista.nombre }}</td>
+                <td>{{ resultado.resultado }}</td>
+                <td>{{ resultado.objetivo }}</td>
+                <td>{{ resultado.valoracion_corredor }}</td>
+                <td>{{ resultado.valoracion_director }}</td>
+                <td>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editResultadoModal{{ resultado.id }}">
+                        Editar
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteResultadoModal{{ resultado.id }}">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+
+            <!-- Modal para Editar Resultado -->
+            <div class="modal fade" id="editResultadoModal{{ resultado.id }}" tabindex="-1" aria-labelledby="editResultadoModalLabel{{ resultado.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editResultadoModalLabel{{ resultado.id }}">Editar Resultado</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post" action="{% url 'editar_resultado' resultado.id %}">
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                {{ formularios_edicion|get_item:resultado.id|crispy }}  <!-- Usar crispy para renderizar el formulario -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para Eliminar Resultado -->
+            <div class="modal fade" id="deleteResultadoModal{{ resultado.id }}" tabindex="-1" aria-labelledby="deleteResultadoModalLabel{{ resultado.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteResultadoModalLabel{{ resultado.id }}">Eliminar Resultado</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post" action="{% url 'eliminar_resultado' resultado.id %}">
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                <p>¿Estás seguro de que deseas eliminar este resultado?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Modal para Añadir Resultado -->
+    <div class="modal fade" id="addResultadoModal" tabindex="-1" aria-labelledby="addResultadoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addResultadoModalLabel">Añadir Resultado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{% url 'crear_resultado' evento.id %}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        {{ form_nuevo|crispy }}  <!-- Usar crispy para renderizar el formulario nuevo -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+
+{% block title %}Lista de Deportistas{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Deportistas</h2>
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addDeportistaModal">
+        Añadir Deportista
+    </button>
+    <table class="table table-hover no-bg-table">
+        <thead>
+            <tr>
+                <th scope="col">
+                    <a href="?order_by=nombre&direction={% if order_by == 'nombre' and direction == 'asc' %}desc{% else %}asc{% endif %}">
+                        Nombre
+                        {% if order_by == 'nombre' %}
+                            {% if direction == 'asc' %}
+                                &#9650; <!-- Flecha arriba -->
+                            {% else %}
+                                &#9660; <!-- Flecha abajo -->
+                            {% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th scope="col">
+                    <a href="?order_by=apellidos&direction={% if order_by == 'apellidos' and direction == 'asc' %}desc{% else %}asc{% endif %}">
+                        Apellidos
+                        {% if order_by == 'apellidos' %}
+                            {% if direction == 'asc' %}
+                                &#9650;
+                            {% else %}
+                                &#9660;
+                            {% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th scope="col">
+                    <a href="?order_by=fecha_nacimiento&direction={% if order_by == 'fecha_nacimiento' and direction == 'asc' %}desc{% else %}asc{% endif %}">
+                        Edad
+                        {% if order_by == 'fecha_nacimiento' %}
+                            {% if direction == 'asc' %}
+                                &#9650;
+                            {% else %}
+                                &#9660;
+                            {% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th scope="col">DNI</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for deportista in deportistas %}
+            <tr class="custom-row">
+                <td>{{ deportista.nombre }}</td>
+                <td>{{ deportista.apellidos }}</td>
+                <td>{{ deportista.fecha_nacimiento }}</td>
+                <td>{{ deportista.dni }}</td>
+                <td>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editDeportistaModal{{ deportista.id }}">
+                        Editar
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteDeportistaModal{{ deportista.id }}">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+            <!-- Modal para Editar Deportista -->
+            <div class="modal fade" id="editDeportistaModal{{ deportista.id }}" tabindex="-1" aria-labelledby="editDeportistaModalLabel{{ deportista.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editDeportistaModalLabel{{ deportista.id }}">Editar Deportista</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post" action="{% url 'editar_deportista' deportista.id %}">
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                {{ formularios_edicion|get_item:deportista.id|crispy }}  <!-- Usar crispy para renderizar el formulario -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para Eliminar Deportista -->
+            <div class="modal fade" id="deleteDeportistaModal{{ deportista.id }}" tabindex="-1" aria-labelledby="deleteDeportistaModalLabel{{ deportista.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteDeportistaModalLabel{{ deportista.id }}">Eliminar Deportista</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post" action="{% url 'eliminar_deportista' deportista.id %}">
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                <p>¿Estás seguro de que deseas eliminar este deportista?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Modal para Añadir Deportista -->
+    <div class="modal fade" id="addDeportistaModal" tabindex="-1" aria-labelledby="addDeportistaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addDeportistaModalLabel">Añadir Deportista</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{% url 'crear_deportista' %}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        {{ form|crispy }}  <!-- Usar crispy para renderizar el formulario nuevo -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

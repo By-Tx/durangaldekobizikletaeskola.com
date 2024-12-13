@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+
+{% block title %}Lista de Eventos{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Próximos Eventos</h2>
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addEventoModal">
+        Añadir Evento
+    </button>
+    <table class="table table-hover no-bg-table">
+        <thead>
+            <tr>
+                <th scope="col">
+                    <a href="?order_by=nombre&direction={% if order_by == 'nombre' and direction == 'asc' %}desc{% else %}asc{% endif %}">
+                        Nombre
+                        {% if order_by == 'nombre' %}
+                            {% if direction == 'asc' %}
+                                &#9650; <!-- Flecha arriba -->
+                            {% else %}
+                                &#9660; <!-- Flecha abajo -->
+                            {% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th scope="col">
+                    <a href="?order_by=fecha&direction={% if order_by == 'fecha' and direction == 'asc' %}desc{% else %}asc{% endif %}">
+                        Fecha
+                        {% if order_by == 'fecha' %}
+                            {% if direction == 'asc' %}
+                                &#9650;
+                            {% else %}
+                                &#9660;
+                            {% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th scope="col">
+                    <a href="?order_by=lugar&direction={% if order_by == 'lugar' and direction == 'asc' %}desc{% else %}asc{% endif %}">
+                        Lugar
+                        {% if order_by == 'lugar' %}
+                            {% if direction == 'asc' %}
+                                &#9650;
+                            {% else %}
+                                &#9660;
+                            {% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Modalidad</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for evento in eventos %}
+            <tr class="custom-row" style="background-color: {{ evento.categoria.color }} !important; color: #fff;">
+                <td>{{ evento.nombre }}</td>
+                <td>{{ evento.fecha|date:"d-m-Y" }}</td>
+                <td>{{ evento.lugar }}</td>
+                <td>{{ evento.categoria }}</td>
+                <td>{{ evento.modalidad }}</td>
+                <td>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editEventoModal{{ evento.id }}">
+                        Editar
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteEventoModal{{ evento.id }}">
+                        Eliminar
+                    </button>
+                    <a href="{% url 'lista_resultados' evento.id %}" class="btn btn-primary btn-sm">
+                        Resultados
+                    </a>
+                </td>
+            </tr>
+            <!-- Modal para Editar Resultado -->
+            <div class="modal fade" id="editEventoModal{{ evento.id }}" tabindex="-1" aria-labelledby="editEventoLabel{{ evento.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editEventoModal{{ evento.id }}">Editar Evento</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post" action="{% url 'editar_evento' evento.id %}">
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                {{ formularios_edicion|get_item:evento.id|crispy }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal para Eliminar Evento -->
+            <div class="modal fade" id="deleteEventoModal{{ evento.id }}" tabindex="-1" aria-labelledby="deleteEventoModalLabel{{ evento.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteEventoModalLabel{{ evento.id }}">Eliminar Evento</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post" action="{% url 'eliminar_evento' evento.id %}">
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                <p>¿Estás seguro de que deseas eliminar este resultado?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Modal para Añadir Evento -->
+    <div class="modal fade" id="addEventoModal" tabindex="-1" aria-labelledby="addEventoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEventoModalLabel">Añadir Evento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{% url 'crear_evento' %}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        {{ form|crispy }}  <!-- Usar crispy para renderizar el formulario nuevo -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

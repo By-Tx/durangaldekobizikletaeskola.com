@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Editar Evento{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Editar Evento: {{ evento.nombre }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre del Evento</label>
+            {{ form.nombre|as_crispy_field }}
+        </div>
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha</label>
+            {{ form.fecha|as_crispy_field }}
+        </div>
+        <div class="mb-3">
+            <label for="lugar" class="form-label">Lugar</label>
+            {{ form.lugar|as_crispy_field }}
+        </div>
+        <div class="mb-3">
+            <label for="categoria" class="form-label">Categoría</label>
+            {{ form.categoria|as_crispy_field }}
+        </div>
+        <div class="mb-3">
+            <label for="modalidad" class="form-label">Modalidad</label>
+            {{ form.modalidad|as_crispy_field }}
+        </div>
+        <div class="mb-3">
+            <label for="deportistas" class="form-label">Adjuntar Deportistas</label>
+            {{ form.deportistas|as_crispy_field }}
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a href="{% url 'eventos' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
