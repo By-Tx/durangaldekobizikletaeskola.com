@@ -37,16 +37,24 @@ const NavBar = () => {
         return (
             <nav>
                 <div
-                    className={`${menuOpen ? 'opacity-100 z-10' : 'opacity-0 -z-10'} fixed cursor-pointer transition-all duration-500 ease-in-out bg-black/55 w-full h-full`}
+                    className={`${menuOpen ? 'opacity-100 z-10' : 'opacity-0 -z-10'} fixed cursor-pointer transition-all duration-500 ease-in-out bg-black/55 w-full h-full `}
                 >
-                    <div className='mt-14 w-full grid '>
-                        <Link href='/' className='text-white block p-2 '>HASIERA</Link>
-                        <Link href='/eskola' className='text-white block p-2 '>ESKOLA</Link>
-                        <Link href='/cafedromedario' className='text-white block p-2 '>CAFÉ DROMEDARIO-FLOTAMET TALDEA</Link>
-                        <Link href='/galeria' className='text-white block p-2 '>ARGAZKI GALERIA</Link>
-                        <Link href='/form' className='text-white block p-2 '>IZENA EMAN TALDEAN</Link>
-                        <Link href='/contacto' className='text-white block p-2 '>KONTAKTUA</Link>
+                    <div className='mt-14 w-full grid  '>
+                        <Link href='/' className='text-white block p-2  text-xl'>HASIERA</Link>
+                        <Link href='/eskola' className='text-white block p-2  text-xl'>ESKOLA</Link>
+                        <Link href='/cafedromedario' className='text-white block p-2  text-xl'>CAFÉ DROMEDARIO-FLOTAMET TALDEA</Link>
+                        <Link href='/galeria' className='text-white block p-2  text-xl'>ARGAZKI GALERIA</Link>
+                        <Link href='/form' className='text-white block p-2  text-xl'>IZENA EMAN TALDEAN</Link>
+                        <Link href='/contacto' className='text-white block p-2  text-xl'>KONTAKTUA</Link>
+
                     </div>
+                    <div className='flex h-1/2 justify-center items-end'>
+                        <div className='h-6'>
+                            <Link href='/contacto' className='text-white p-2 text-xl'>HASI SAIOA</Link>
+                        </div>
+                    </div>
+
+
                 </div>
                 <div className="fixed z-30">
                     <Image
@@ -55,11 +63,11 @@ const NavBar = () => {
                         className="mx-auto hover:cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110"
                         onClick={menuFunction}
                     />
-                    
+
                 </div>
                 <div >
                     <Link href='/'><Image src={imageLogo} alt="Logo" className='mx-auto h-16 w-auto ' /></Link>
-                   
+
                 </div>
 
 
@@ -81,12 +89,12 @@ const NavBar = () => {
                         <Link href='/contacto' className='mr-4 mt-4 h-8 w-50 text-white hover:bg-blue-600 rounded-lg px-3 py-1 transition duration-150'>KONTAKTUA</Link>
                     </div>
                 </div>
-                
+
                 <div className='flex items-center'>
-                    <div className='mt-4 h-8 w-24 rounded-lg bg-blue-600 flex text-center items-center justify-center text-white cursor-pointer transition duration-150 hover:bg-blue-700'><Link href='/sign-in'>HASI SAIOA</Link></div>
+                    <div className='mt-4 h-8 w-24 rounded-lg bg-blue-600 flex text-center items-center justify-center text-white cursor-pointer transition duration-150 hover:bg-blue-700'><Link href='/login'>HASI SAIOA</Link></div>
                     <div className='flex mt-4 pl-10 text-white font-semibold'>
-                        <span className='cursor-pointer hover:text-blue-200 transition duration-150'><Image src={euskera} alt='bask logo' className='h-8 w-auto mr-1'/></span>
-                        <span className='pl-1 cursor-pointer hover:text-blue-200 transition duration-150'><Image src={spanish} alt='spanish logo' className='h-8 w-auto'/></span>
+                        <span className='cursor-pointer hover:text-blue-200 transition duration-150'><Image src={euskera} alt='bask logo' className='h-8 w-auto mr-1' /></span>
+                        <span className='pl-1 cursor-pointer hover:text-blue-200 transition duration-150'><Image src={spanish} alt='spanish logo' className='h-8 w-auto' /></span>
                     </div>
                 </div>
             </nav>

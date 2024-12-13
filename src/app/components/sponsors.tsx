@@ -27,8 +27,8 @@ const SECONDARY_SPONSORS = [
 const HELPERS = [
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/durango.png', link: 'https://www.durango.eus/' },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/abadiño.png', link: 'https://www.xn--abadio-0wa.org/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/elorrio.png', link: 'https://www.elorrio.eus/eu-ES/Orriak/default.aspx' },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/iurreta.png', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/elorrio.png', link: 'https://www.elorrio.eus/eu-ES/Orriak/default.aspx' },
 ];
 
 const Sponsor = () => {
