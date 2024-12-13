@@ -29,12 +29,55 @@ export default function SignUp() {
   };
  
   return (
-    <div className="mt-52">
-      <input type="name" value={name} onChange={(e) => setName(e.target.value)} />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      
-      <button onClick={signUp}>Sign Up</button>
+    <div className="mt-20 max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+  <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
+  
+  <div className="space-y-4">
+    <div>
+      <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
+      <input 
+        id="name"
+        type="text" 
+        value={name} 
+        onChange={(e) => setName(e.target.value)} 
+        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+        placeholder="Enter your full name" 
+      />
     </div>
+
+    <div>
+      <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
+      <input 
+        id="email"
+        type="email" 
+        value={email} 
+        onChange={(e) => setEmail(e.target.value)} 
+        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+        placeholder="Enter your email" 
+      />
+    </div>
+
+    <div>
+      <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+      <input 
+        id="password"
+        type="password" 
+        value={password} 
+        onChange={(e) => setPassword(e.target.value)} 
+        className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+        placeholder="Enter your password" 
+      />
+    </div>
+
+    <div>
+      <button 
+        onClick={signUp} 
+        className="w-full py-3 mt-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        Sign Up
+      </button>
+    </div>
+  </div>
+</div>
+
   );
 }

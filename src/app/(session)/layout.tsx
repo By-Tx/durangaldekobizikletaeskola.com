@@ -1,3 +1,4 @@
+import "../globals.css";
 export default function dashboardLayout({
   children,
 }: Readonly<{
@@ -7,7 +8,9 @@ export default function dashboardLayout({
     <html lang="es">
      
       <body>
-        <div>adlskjhfalksd</div>
+        <div>layout desarrollo
+          
+        </div>
         {children}  {/* Este es el lugar donde se renderiza el contenido de las páginas */}
         
       </body>
