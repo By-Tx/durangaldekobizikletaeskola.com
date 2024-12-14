@@ -8,7 +8,7 @@ export default function Page() {
             <div className="bg-white shadow-md rounded-lg p-8 max-w-lg w-full">
                 <h2 className="text-2xl font-semibold mb-4">¡Estamos aquí para ayudarte!</h2>
                 <p className="mb-4">
-                    Puedes contactarnos a través de los siguientes medios:
+                    Puedessss contactarnos a través de los siguientes medios:
                 </p>
                 <div className="mb-4">
                     <h3 className="font-bold">Dirección:</h3>
