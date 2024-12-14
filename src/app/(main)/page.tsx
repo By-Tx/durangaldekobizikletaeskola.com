@@ -16,7 +16,7 @@ export default function Home() {
         images={images}
       />
       <TextInfo
-        Text="2014an sortutako txirrindularitza eskola da, Abadiño Muntsaratz Txirrindulari Kirol Klubak, Elorrioko Txirrindulari Elkarteak eta Duranguesa Txirrindulari Elkartearen artean sortutakoa. 10 urte egin dituen eskola hau Indarrak batzeko asmoarekin sortu zuten. "
+        Text="2014aan sortutako txirrindularitza eskola da, Abadiño Muntsaratz Txirrindulari Kirol Klubak, Elorrioko Txirrindulari Elkarteak eta Duranguesa Txirrindulari Elkartearen artean sortutakoa. 10 urte egin dituen eskola hau Indarrak batzeko asmoarekin sortu zuten. "
         SecondText="Proiektu sendo bati ekiteko gogoarekin egindako eskola da, non sortzen dute hiru elkarteak izen askoko elkarte sendo eta historikoak diren. Honekin batera, guztiontzako zailak diren garaietan baliabideak minimizatzea zuten ere helburutzat. "
         ThirdText="Hiru elkarteak norabide berean joatea zen beste helburuetako bat eta zuten nahia eskualdean txirrindularitza sustatzea zen, lelo argi batekin, ELKARTASUNAK EGITEN DU INDARRA."
       />
