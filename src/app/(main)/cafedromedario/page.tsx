@@ -2,6 +2,8 @@
 import TextInfo from "../../components/text";
 import Slideshow from "../../components/slider"
 import MainEvents from "../../components/mainEvents";
+import RunnerImages from "@/app/components/RunnerImges";
+import "./style.css"
 export default function cafeDromedario() {
     const images = [
         { url: 'https://photos.txuli.com/duranguesa/Duranguesa_3.jpg' },
@@ -11,6 +13,7 @@ export default function cafeDromedario() {
     ];
     return (
         <div className="">
+            
             <Slideshow images={images} />
             <h1 className="text-center text-4xl">CAFÉ DROMEDARIO TALDEA</h1>
             <TextInfo
@@ -18,7 +21,9 @@ export default function cafeDromedario() {
                 SecondText="Eskolatik Kadete mailara egiten dute salto eta gauzak serio jartzen hasten dira. Konpetizioa ikasketekin batera uztartu behar dituzte baita ere. Taldearekin konpromisu gehiago hartu beharra dago."
                 ThirdText=""
             />
-            <h2>Errepidea</h2>
+            
+            <h2>Junior</h2>
+            <RunnerImages />
 
             <MainEvents
                 label="Junior"
@@ -31,6 +36,8 @@ export default function cafeDromedario() {
                 div2="Kadete mailan, taldeko Unai Moran izan zen 2023. urteko Bizkaiko Kopako Txapelduna eta urte berean Kimetz junior mailan Bizkaiko txapeldun geratu zen erlojupekoan eta Unai Moran azpitxapeldun kadete mailan. Taldeka ere kadeteak Bizkaiko azpitxapeldun geratu ziren."
                 div3="2024. urtean, juniorrak Bizkaiko txapeldun geratu ziren taldekako txapelketan eta kadeteak berriz ere azpitxapeldunak. Lockiek Bizkaiko Itzuliko 2. etapa irabaztea lortu zuen"
             />
+
+           
         </div>
     )
 }

@@ -1,0 +1,18 @@
+.section {
+    display: flex;
+    width: 1000px;
+    height: 430px;
+}
+
+.image {
+    width: 0px;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: width 0.5s ease, opacity 0.5s ease; /* Transición aplicada */
+}
+
+.image:hover {
+    width: 245px; /* Cambiar el ancho al pasar el mouse */
+    opacity: 1;   /* Cambiar la opacidad */
+}
