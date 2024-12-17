@@ -1,9 +1,13 @@
 "use client";
-import TextInfo from "../../components/text";
-import Slideshow from "../../components/slider"
-import MainEvents from "../../components/mainEvents";
+import TextInfo from "@/app/components/text";
+import Slideshow from "@/app/components/main/slider"
+import MainEvents from "@/app/components/mainEvents";
 import RunnerImages from "@/app/components/RunnerImges";
+import Title from "@/app/components/Titles/Title";
 import "./style.css"
+import SubTitle from "@/app/components/Titles/SubTitle";
+import TechnicianImages from "@/app/components/TechnicianImages";
+import josu from "@/app/media/tecnicians/josu.jpg";
 export default function cafeDromedario() {
     const images = [
         { url: 'https://photos.txuli.com/duranguesa/Duranguesa_3.jpg' },
@@ -15,15 +19,19 @@ export default function cafeDromedario() {
         <div className="">
             
             <Slideshow images={images} />
-            <h1 className="text-center text-4xl">CAFÉ DROMEDARIO TALDEA</h1>
+            <Title title="CAFE DROMEDARIO-FLOTAMET TALDEA" />
             <TextInfo
                 Text="Eskolatik Kadete mailara egiten dute salto eta gauzak serio jartzen hasten dira. Konpetizioa ikasketekin batera uztartu behar dituzte baita ere. Taldearekin konpromisu gehiago hartu beharra dago."
                 SecondText="Eskolatik Kadete mailara egiten dute salto eta gauzak serio jartzen hasten dira. Konpetizioa ikasketekin batera uztartu behar dituzte baita ere. Taldearekin konpromisu gehiago hartu beharra dago."
                 ThirdText=""
             />
             
-            <h2>Junior</h2>
+            <SubTitle subTitle="JUNIOR TALDEKO TXIRRINDULARIAK" />
+        
             <RunnerImages />
+
+             <SubTitle subTitle="JUNIOR TALDEKO TEKNIKARIAK" />
+             <TechnicianImages image1={josu} image2={undefined} image3={josu}/>
 
             <MainEvents
                 label="Junior"

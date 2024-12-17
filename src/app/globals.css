@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-geist-sans: 'Oswald', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +21,10 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
-
+h1, h2, h3 {
+  font-family: var(--font-geist-sans);
+  font-weight: 700; 
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;

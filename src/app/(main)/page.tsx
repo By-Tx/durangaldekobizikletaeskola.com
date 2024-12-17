@@ -1,7 +1,7 @@
 "use client";
 
 
-import Slideshow from "../components/slider";
+import Slideshow from "../components/main/slider";
 import TextInfo from "../components/text";
 const images = [
   { url: 'https://photos.txuli.com/duranguesa/Duranguesa_3.jpg' },

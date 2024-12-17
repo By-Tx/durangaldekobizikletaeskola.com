@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
-import Logout from "@/app/components/logOut";
+import Logout from "@/app/components/auth/logOut";
 
 export default async function Dashboard() {
     

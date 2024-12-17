@@ -3,12 +3,12 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "../globals.css";
-import NavBar from "../components/navBar";
-import Sponsor from "../components/sponsors";
-import Footer from "../components/Footer";
+import NavBar from "../components/main/navBar";
+import Sponsor from "../components/sponsors/sponsors";
+import Footer from "../components/main/Footer";
 
-const geistSans = localFont({
-  src: "../fonts/GeistVF.woff",
+const Oswald = localFont({
+  src: "../fonts/Oswald-Light.ttf",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
@@ -35,7 +35,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/media/logo.png" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${Oswald.variable} ${geistMono.variable} antialiased`}
       >
         <NavBar />
         {children}  {/* Este es el lugar donde se renderiza el contenido de las páginas */}

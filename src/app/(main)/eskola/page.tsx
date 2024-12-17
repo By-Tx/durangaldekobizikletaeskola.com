@@ -1,5 +1,5 @@
 "use client";
-import Slideshow from "../../components/slider"
+import Slideshow from "../../components/main/slider"
 import TextInfo from "../../components/text";
 
 export default function Page() {

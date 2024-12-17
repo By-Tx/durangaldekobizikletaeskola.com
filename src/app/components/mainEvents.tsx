@@ -16,7 +16,7 @@ const MainEvents: FC<MainEventsProps> = ({ div1, div2, div3, title2, title3, tit
     const titles = [title, title2, title3];
     const labels = [label, label2, label3];
   return (
-    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-8">
+    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 pt-10">
       {[div1, div2, div3].map((content, index) => (
         <div
           key={index}
