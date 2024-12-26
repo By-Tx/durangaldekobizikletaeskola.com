@@ -1,105 +1,145 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import imageLogo from '@/app/media/logo.png';
-import logoMEnu from '@/app/media/menu/logoMenu.svg';
-import Image from 'next/image';
-import Link from 'next/link';
-import euskera from '@/app/media/euskera.png';
-import spanish from '@/app/media/spanish.png';
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import imageLogo from "@/app/media/logo.png";
+import logoMenu from "@/app/media/menu/logoMenu.svg";
+import euskera from "@/app/media/euskera.png";
+import spanish from "@/app/media/spanish.png";
 
 const NavBar = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-    const [windowWidth, setWindowWidth] = useState<number | null>(null);
-    const [menuOpen, setMenuOpen] = useState<boolean>(false);
-    const menuFunction = () => {
-        setMenuOpen(!menuOpen);
-    }
-    useEffect(() => {
+  const toggleMenu = () => {
+    setMenuOpen(prevState => !prevState);
+  };
 
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1250);
+    };
 
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
-        window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
+  return (
+    <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-blue-400 to-blue-500 shadow-md z-20">
+      <div className="flex items-center justify-between px-6 py-4">
+        {/* Logo */}
+        <Link href="/">
+          <Image src={imageLogo} alt="Logo" className="h-16 w-auto cursor-pointer" />
+        </Link>
 
-        handleResize();
+        {/* Mobile Menu Button */}
+        {isMobile && (
+          <button
+            onClick={toggleMenu}
+            className="focus:outline-none z-30"
+            aria-label="Toggle menu"
+          >
+            <Image src={logoMenu} alt="Menu" className="h-8 w-8 cursor-pointer" />
+          </button>
+        )}
 
+        {/* Desktop Links */}
+        {!isMobile && (
+          <div className="flex items-center space-x-6">
+            <Link href="/eskola" className="text-white hover:text-blue-200 transition duration-150">
+              ESKOLA
+            </Link>
+            <Link href="/cafedromedario" className="text-white hover:text-blue-200 transition duration-150">
+              CAFÉ DROMEDARIO-FLOTAMET TALDEA
+            </Link>
+            <Link href="/galeria" className="text-white hover:text-blue-200 transition duration-150">
+              ARGAZKI GALERIA
+            </Link>
+            <Link href="/form" className="text-white hover:text-blue-200 transition duration-150">
+              IZENA EMAN TALDEAN
+            </Link>
+            <Link href="/contacto" className="text-white hover:text-blue-200 transition duration-150">
+              KONTAKTUA
+            </Link>
+          </div>
+        )}
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+        {/* Language Switch and Login */}
+       {!isMobile && ( 
+        <div className="flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-2">
+            <Image src={euskera} alt="Euskera" className="h-8 w-auto cursor-pointer" />
+            <Image src={spanish} alt="Spanish" className="h-8 w-auto cursor-pointer" />
+          </div>
+          <Link
+            href="/login"
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-150"
+          >
+            HASI SAIOA
+          </Link>
+        </div>)}
+      </div>
 
-
-    if (windowWidth !== null && windowWidth < 1200) {
-        return (
-            <nav>
-                <div
-                    className={`${menuOpen ? 'opacity-100 z-10' : 'opacity-0 -z-10'} fixed cursor-pointer transition-all duration-500 ease-in-out bg-black/55 w-full h-full `}
-                >
-                    <div className='mt-14 w-full grid  '>
-                        <Link href='/' className='text-white block p-2  text-xl'>HASIERA</Link>
-                        <Link href='/eskola' className='text-white block p-2  text-xl'>ESKOLA</Link>
-                        <Link href='/cafedromedario' className='text-white block p-2  text-xl'>CAFÉ DROMEDARIO-FLOTAMET TALDEA</Link>
-                        <Link href='/galeria' className='text-white block p-2  text-xl'>ARGAZKI GALERIA</Link>
-                        <Link href='/form' className='text-white block p-2  text-xl'>IZENA EMAN TALDEAN</Link>
-                        <Link href='/contacto' className='text-white block p-2  text-xl'>KONTAKTUA</Link>
-
-                    </div>
-                    <div className='flex h-1/2 justify-center items-end'>
-                        <div className='h-6'>
-                            <Link href='/contacto' className='text-white p-2 text-xl'>HASI SAIOA</Link>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div className="fixed z-30">
-                    <Image
-                        src={logoMEnu}
-                        alt="Logo"
-                        className="mx-auto hover:cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110"
-                        onClick={menuFunction}
-                    />
-
-                </div>
-                <div >
-                    <Link href='/'><Image src={imageLogo} alt="Logo" className='mx-auto h-16 w-auto ' /></Link>
-
-                </div>
-
-
-            </nav>
-
-
-        );
-    } else {
-        return (
-            <nav className='flex justify-between items-center w-full bg-gradient-to-r from-blue-400 to-blue-500 px-6 py-4 fixed top-0 z-20 shadow-md'>
-                {/* Logo y Menú de navegación */}
-                <div className='flex items-center'>
-                    <Link href='/'><Image src={imageLogo} alt="Logo" className='h-24' /></Link>
-                    <div className='flex items-center space-x-8 ml-8'>
-                        <Link href='/eskola' className='mr-4 mt-4 h-8 w-50 text-white hover:bg-blue-600 rounded-lg px-3 py-1 transition duration-150'>ESKOLA</Link>
-                        <Link href='/cafedromedario' className='mr-4 mt-4 h-8 w-50 text-white hover:bg-blue-600 rounded-lg px-3 py-1 transition duration-150'>CAFÉ DROMEDARIO-FLOTAMET TALDEA</Link>
-                        <Link href='/galeria' className='mr-4 mt-4 h-8 w-50 text-white hover:bg-blue-600 rounded-lg px-3 py-1 transition duration-150'>ARGAZKI GALERIA</Link>
-                        <Link href='/form' className='mr-4 mt-4 h-8 w-50 text-white hover:bg-blue-600 rounded-lg px-3 py-1 transition duration-150'>IZENA EMAN TALDEAN</Link>
-                        <Link href='/contacto' className='mr-4 mt-4 h-8 w-50 text-white hover:bg-blue-600 rounded-lg px-3 py-1 transition duration-150'>KONTAKTUA</Link>
-                    </div>
-                </div>
-
-                <div className='flex items-center'>
-                    <div className='mt-4 h-8 w-24 rounded-lg bg-blue-600 flex text-center items-center justify-center text-white cursor-pointer transition duration-150 hover:bg-blue-700'><Link href='/login'>HASI SAIOA</Link></div>
-                    <div className='flex mt-4 pl-10 text-white font-semibold'>
-                        <span className='cursor-pointer hover:text-blue-200 transition duration-150'><Image src={euskera} alt='bask logo' className='h-8 w-auto mr-1' /></span>
-                        <span className='pl-1 cursor-pointer hover:text-blue-200 transition duration-150'><Image src={spanish} alt='spanish logo' className='h-8 w-auto' /></span>
-                    </div>
-                </div>
-            </nav>
-        );
-    }
+      {/* Mobile Menu */}
+      {isMobile && menuOpen && (
+        <div className="absolute top-0 left-0 w-full h-screen bg-black/70 flex flex-col items-center justify-center space-y-6 text-white z-20">
+          <Link
+            href="/"
+            className="text-xl hover:text-blue-300 transition duration-150"
+            onClick={toggleMenu}
+          >
+            HASIERA
+          </Link>
+          <Link
+            href="/eskola"
+            className="text-xl hover:text-blue-300 transition duration-150"
+            onClick={toggleMenu}
+          >
+            ESKOLA
+          </Link>
+          <Link
+            href="/cafedromedario"
+            className="text-xl hover:text-blue-300 transition duration-150"
+            onClick={toggleMenu}
+          >
+            CAFÉ DROMEDARIO-FLOTAMET TALDEA
+          </Link>
+          <Link
+            href="/galeria"
+            className="text-xl hover:text-blue-300 transition duration-150"
+            onClick={toggleMenu}
+          >
+            ARGAZKI GALERIA
+          </Link>
+          <Link
+            href="/form"
+            className="text-xl hover:text-blue-300 transition duration-150"
+            onClick={toggleMenu}
+          >
+            IZENA EMAN TALDEAN
+          </Link>
+          <Link
+            href="/contacto"
+            className="text-xl hover:text-blue-300 transition duration-150"
+            onClick={toggleMenu}
+          >
+            KONTAKTUA
+          </Link>
+          <Link
+            href="/login"
+            className="text-xl bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-150"
+            onClick={toggleMenu}
+          >
+            HASI SAIOA
+          </Link>
+        </div>
+      )}
+    </nav>
+  );
 };
 
 export default NavBar;

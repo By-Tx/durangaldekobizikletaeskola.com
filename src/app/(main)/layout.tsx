@@ -7,6 +7,7 @@ import NavBar from "../components/main/navBar";
 import Sponsor from "../components/sponsors/sponsors";
 import Footer from "../components/main/Footer";
 
+
 const Oswald = localFont({
   src: "../fonts/Oswald-Light.ttf",
   variable: "--font-geist-sans",
@@ -37,8 +38,10 @@ export default function RootLayout({
       <body
         className={`${Oswald.variable} ${geistMono.variable} antialiased`}
       >
-        <NavBar />
-        {children}  {/* Este es el lugar donde se renderiza el contenido de las páginas */}
+
+         <NavBar /> 
+       
+        {children} 
         <Sponsor />
         <Footer />
       </body>
