@@ -1,5 +1,4 @@
 "use client";
-
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 const Logout = () => {
@@ -18,7 +17,7 @@ const Logout = () => {
                     },
                 });
             
-        }} className='bg-blue-400'>Sign out</button>
+        }} >Sign out</button>
     );
 }
 export default Logout;

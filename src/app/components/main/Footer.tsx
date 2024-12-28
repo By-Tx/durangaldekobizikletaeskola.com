@@ -32,7 +32,6 @@ export default function Footer() {
                     <div className="col-span-2 flex items-center mt-2 ">
 
                         <div className=" flex space-x-2 ml-1 ">
-                            <a href="https://www.instagram.com/durangaldeko_bzkeskola/" target="_blank" rel="noopener noreferrer"><Image src={instagram} width={20} height={20} alt="Instagram logo" /></a>
                             <a href="https://www.facebook.com/profile.php?id=100014739280844" target="_blank" rel="noopener noreferrer"><Image src={facebook} width={20} height={20} alt="Instagram logo" /></a>
                             <a href="http://" target="_blank" rel="noopener noreferrer"><Image src={twitter} width={20} height={20} alt="Instagram logo" /></a>
                         </div>
@@ -43,7 +42,7 @@ export default function Footer() {
                     <div className="col-span-2 flex justify-end  mt-2 ">
                         <div className="pl-1">Designed by</div>
                         <a href="https://github.com/txuli" className="flex items-center pl-1 bg-blue-400 rounded-lg w-fit justify-center px-2 mx-2 group">
-                            <Image src={logos} alt="Logo" width={20} height={20} className="group-hover:rotate-180 transition-all " />
+                            <Image src={logos} alt="Logo" width={20} height={20} className="group-hover:rotate-180 transition-all grayscale invert " />
                             <span className="pl-1">Txuli</span>
                         </a>
                     </div>
