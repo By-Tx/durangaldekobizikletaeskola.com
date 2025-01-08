@@ -12,13 +12,13 @@
     "pm2:stop": "pm2 delete durangobzk"
   },
   "dependencies": {
-    "@better-auth/cli": "^1.0.19",
+    "@better-auth/cli": "^1.1.10",
     "@types/bcryptjs": "^2.4.6",
     "@types/cookie": "^0.6.0",
     "@types/jsonwebtoken": "^9.0.7",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
-    "better-auth": "^1.0.10",
+    "better-auth": "^1.1.10",
     "cookie": "^1.0.1",
     "D": "^1.0.0",
     "dotenv": "^16.4.7",
