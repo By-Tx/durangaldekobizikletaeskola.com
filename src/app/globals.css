@@ -18,14 +18,11 @@
 
 body {
   color: rgb(255, 255, 255);
-  background: var(--background);
+  background: #BCC3CA;
   font-family: Arial, Helvetica, sans-serif;
   
 }
-h1, h2, h3 {
-  font-family: var(--font-geist-sans);
-  font-weight: 700; 
-}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

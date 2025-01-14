@@ -4,11 +4,9 @@ import MainSponsor from './mainSponsor';
 import Secondsponsor from './secondSponsor';
 import Helpers from './helpers';
 import SponsorTitle from '../Titles/SponsorTitle';
+import SubTitle from '../Titles/SubTitle';
 
-const SPONSORS = [
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/CafeDromedario.webp', link: 'https://cafedromedario.com/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/flotamet.png', link: '' },
-];
+
 
 const SECONDARY_SPONSORS = [
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/vcg.png', link: 'https://www.vcg-decoletaje.com/' },
@@ -37,19 +35,22 @@ const Sponsor = () => {
 
     const renderMainSponsors = () => (
         <>
-           <SponsorTitle title="BABEZLEAK" />
-            <div className="grid w-10/12 mx-auto sm:grid-cols-1 lg:grid-cols-2">
-                {SPONSORS.map(({ img, link }, idx) => (
-                    <MainSponsor key={idx} img={img} Link={link} />
-                ))}
-            </div>
+            <SubTitle subTitle="BABEZLEAK" />
+
+            <MainSponsor 
+            img='https://photos.txuli.com/duranguesa/patrocinadores/CafeDromedario.webp' 
+            Link='https://cafedromedario.com/' 
+            img2='https://photos.txuli.com/duranguesa/patrocinadores/flotamet.png' 
+            Link2='https://cafedromedario.com/' />
+
+
         </>
     );
 
     const renderSecondarySponsors = () => (
         <>
-           
-            <div className="grid w-5/6 mx-auto sm:grid-cols-3 lg:grid-cols-4">
+
+            <div className="grid w-5/6  mx-auto sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 place-items-center gap-4 mb-16">
                 {SECONDARY_SPONSORS.map(({ img, link }, idx) => (
                     <Secondsponsor key={idx} img={img} Link={link} />
                 ))}
@@ -59,13 +60,15 @@ const Sponsor = () => {
 
     const renderHelpers = () => (
         <>
-            <SponsorTitle title="LAGUNTZAILEAK" />
-            
-            <div className='flex justify-center'>
+
+
+            <div className="w-10/12 mx-auto sm:grid sm:grid-cols-2 lg:flex lg:space-x-4 sm:gap-8 justify-center mb-20 place-items-center mt-16">
                 {HELPERS.map(({ img, link }, idx) => (
                     <Helpers key={idx} img={img} Link={link} />
                 ))}
             </div>
+
+
         </>
     );
 
@@ -74,15 +77,17 @@ const Sponsor = () => {
             {pathname === '/cafedromedario' && renderMainSponsors()}
             {pathname === '/eskola' && (
                 <>
-                    {renderSecondarySponsors()}
                     {renderHelpers()}
+                    {renderSecondarySponsors()}
+
                 </>
             )}
             {pathname !== '/cafedromedario' && pathname !== '/eskola' && (
                 <>
                     {renderMainSponsors()}
-                    {renderSecondarySponsors()}
                     {renderHelpers()}
+                    {renderSecondarySponsors()}
+
                 </>
             )}
         </div>

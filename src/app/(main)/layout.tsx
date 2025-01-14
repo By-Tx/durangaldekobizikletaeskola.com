@@ -6,7 +6,13 @@ import "../globals.css";
 import NavBar from "../components/main/navBar";
 import Sponsor from "../components/sponsors/sponsors";
 import Footer from "../components/main/Footer";
+import { Fredoka } from 'next/font/google';
 
+const fredoka = Fredoka({
+  subsets: ['latin'],
+  weight: ['300','400', '500', '700'], 
+  display: 'swap', 
+});
 
 const Oswald = localFont({
   src: "../fonts/Oswald-Light.ttf",

@@ -28,6 +28,7 @@ export default function cafeDromedario() {
             {/* junior road team */}
             <SubTitle subTitle="ERREPIDEKO JUNIOR TALDEKO TXIRRINDULARIAK" />
             <RunnerImages />
+            <RunnerImages />
             <SubTitle subTitle="MTB JUNIOR TALDEKO TXIRRINDULARIAK" />
             <RunnerImages />
             {/* junior road tecnicians */}

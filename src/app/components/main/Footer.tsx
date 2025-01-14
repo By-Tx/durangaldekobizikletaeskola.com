@@ -69,7 +69,7 @@ export default function Footer() {
                         <div className="flex items-center ">
                             <div className="pl-1">Designed by</div>
                             <a href="https://github.com/txuli" className="flex items-center pl-1 bg-blue-400 rounded-lg w-fit justify-center px-2 mx-2 group">
-                                <Image src={logos} alt="Logo" width={20} height={20} className="group-hover:rotate-180 transition-all " />
+                                <Image src={logos} alt="Logo" width={20} height={20} className="group-hover:rotate-180 transition-all grayscale invert " />
                                 <span className="pl-1">Txuli</span>
                             </a>
                             <span className="pl-1">for Durangaldeko Bizikleta Eskola </span>

@@ -5,7 +5,7 @@ export default function Page() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 mb-8">
             <h1 className="text-3xl font-bold mb-6">Contacto</h1>
-            <div className="bg-white shadow-md rounded-lg p-8 max-w-lg w-full">
+            <div className="bg-white shadow-md rounded-lg p-8 max-w-lg w-full text-black">
                 <h2 className="text-2xl font-semibold mb-4">¡Estamos aquí para ayudarte!</h2>
                 <p className="mb-4">
                     Puedes contactarnos a través de los siguientes medios:
