@@ -3,31 +3,31 @@ import { usePathname } from 'next/navigation';
 import MainSponsor from './mainSponsor';
 import Secondsponsor from './secondSponsor';
 import Helpers from './helpers';
-import SponsorTitle from '../Titles/SponsorTitle';
+
 import SubTitle from '../Titles/SubTitle';
 
 
 
 const SECONDARY_SPONSORS = [
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/vcg.png', link: 'https://www.vcg-decoletaje.com/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/betsaide.png', link: 'https://www.betsaide.com/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/tecoel.png', link: 'https://tecoel.es/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/maristak.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/malda.png', link: 'https://www.maldabikes.com/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ingenia.png', link: 'https://ingenia2014.com/' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/VCG.png', link: 'https://www.vcg-decoletaje.com/' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/BETSAIDE.png', link: 'https://www.betsaide.com/' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/TECOEL.png', link: 'https://tecoel.es/' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/MARISTAS.png', link: '' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/MALDABIKES.png', link: 'https://www.maldabikes.com/' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/INGENIA.png', link: 'https://ingenia2014.com/' },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/mugarra.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ruralkutxa.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/cubical.png', link: 'https://cubicaldenira.com/' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/RURALKUTXA.png', link: '' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/CUBICAL.png', link: 'https://cubicaldenira.com/' },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/marraz.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/esukadiLowCost.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/controlpack.png', link: 'https://www.controlpack.com/' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/EUSKADILOWCOST.png', link: '' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/CONTROLPACK.png', link: 'https://www.controlpack.com/' },
 ];
 
 const HELPERS = [
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/durango.png', link: 'https://www.durango.eus/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/abadiño.png', link: 'https://www.xn--abadio-0wa.org/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/iurreta.png', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/elorrio.png', link: 'https://www.elorrio.eus/eu-ES/Orriak/default.aspx' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/DURANGO.png', link: 'https://www.durango.eus/' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ABADIÑO.png', link: 'https://www.xn--abadio-0wa.org/' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/IURRETA.png', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ELORRIO.png', link: 'https://www.elorrio.eus/eu-ES/Orriak/default.aspx' },
 ];
 
 const Sponsor = () => {

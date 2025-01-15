@@ -20,6 +20,21 @@ const config: Config = {
       fontWeight: {
         semibold: '500', 
       },
+      height: {
+
+        100: '27rem',
+        105: '28rem',
+        112: '35rem',
+        110: '26.5rem',
+        130: '32.5rem',
+      },
+      width: {
+        100: '27rem',
+        105: '29rem',
+        112: '28rem',
+        110: '26.5rem',
+        130: '32.5rem', 
+      },
     },
   },
   plugins: [],
