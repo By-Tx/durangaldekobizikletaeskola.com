@@ -14,16 +14,7 @@ const fredoka = Fredoka({
   display: 'swap', 
 });
 
-const Oswald = localFont({
-  src: "../fonts/Oswald-Light.ttf",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "../fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
 
 export const metadata: Metadata = {
   title: "DURANGALDEKO BZK",
@@ -42,7 +33,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/media/logo.png" />
       </head>
       <body
-        className={`${Oswald.variable} ${geistMono.variable} antialiased`}
+       
       >
 
          <NavBar /> 

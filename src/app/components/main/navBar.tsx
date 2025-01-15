@@ -27,7 +27,7 @@ const NavBar = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-gradient-to-r bg-customblue shadow-md z-20">
+    <nav className="fixed top-0 left-0 w-full bg-gradient-to-r bg-customblue shadow-md z-20 font-fredoka">
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link href="/">
