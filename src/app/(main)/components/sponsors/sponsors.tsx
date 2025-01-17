@@ -71,6 +71,9 @@ const Sponsor = () => {
 
         </>
     );
+    if (pathname == '/bttTxapelduna' || pathname == '/irrisarriNotice' || pathname == '/espainakoTxapelketa') {
+        return null; 
+    }
 
     return (
         <div className='w-full'>
@@ -90,6 +93,7 @@ const Sponsor = () => {
 
                 </>
             )}
+            
         </div>
     );
 };

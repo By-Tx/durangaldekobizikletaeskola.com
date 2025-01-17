@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Title from "@/app/components/Titles/Title";
+import Title from "@/app/(main)/components/Titles/Title";
 
 export default function Page() {
     // Estado para los campos del formulario

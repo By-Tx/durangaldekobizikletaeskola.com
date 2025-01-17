@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import Logout from "@/app/components/auth/logOut";
+import Logout from "@/app/(main)/components/auth/logOut";
 import ImgMenu from '../media/home.svg'
 import { useEffect, useState } from 'react';
 export default function LoggedNav() {

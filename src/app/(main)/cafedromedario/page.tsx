@@ -1,12 +1,12 @@
 "use client";
-import TextInfo from "@/app/components/text";
-import Slideshow from "@/app/components/main/slider"
-import MainEvents from "@/app/components/mainEvents";
-import RunnerImages from "@/app/components/RunnerImges";
-import Title from "@/app/components/Titles/Title";
+import TextInfo from "@/app/(main)/components/text";
+import Slideshow from "@/app/(main)/components/main/slider"
+import MainEvents from "@/app/(main)/components/mainEvents";
+import RunnerImages from "@/app/(main)/components/RunnerImges";
+import Title from "@/app/(main)/components/Titles/Title";
 import "./style.css"
-import SubTitle from "@/app/components/Titles/SubTitle";
-import TechnicianImages from "@/app/components/TechnicianImages";
+import SubTitle from "@/app/(main)/components/Titles/SubTitle";
+import TechnicianImages from "@/app/(main)/components/TechnicianImages";
 import josu from "@/app/media/tecnicians/josu.jpg";
 export default function cafeDromedario() {
     // const images = [

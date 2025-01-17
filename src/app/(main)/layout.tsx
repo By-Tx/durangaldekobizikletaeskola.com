@@ -3,9 +3,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "../globals.css";
-import NavBar from "../components/main/navBar";
-import Sponsor from "../components/sponsors/sponsors";
-import Footer from "../components/main/Footer";
+import NavBar from "./components/main/navBar";
+import Sponsor from "./components/sponsors/sponsors";
+import Footer from "./components/main/Footer";
 import { Fredoka } from 'next/font/google';
 
 const fredoka = Fredoka({

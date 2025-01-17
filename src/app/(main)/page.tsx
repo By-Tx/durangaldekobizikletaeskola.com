@@ -1,9 +1,9 @@
 "use client";
 
 
-import Slideshow from "../components/main/slider";
-import News from "../components/notices";
-import SubTitle from "../components/Titles/SubTitle";
+import Slideshow from "./components/main/slider";
+import News from "./components/notices";
+import SubTitle from "./components/Titles/SubTitle";
 const images = [
   { url: 'https://photos.txuli.com/duranguesa/Duranguesa_3.jpg' ,
     title: '2014AN SORTUTAKO TXIRRINDULARITZA ESKOLA',

@@ -1,6 +1,6 @@
 "use client";
-import Slideshow from "../../components/main/slider"
-import TextInfo from "../../components/text";
+import Slideshow from "../components/main/slider"
+import TextInfo from "../components/text";
 
 export default function Page() {
     const images = [
