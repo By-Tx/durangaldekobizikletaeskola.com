@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image"
 import React, { useEffect, useState } from 'react';
-import img1 from "../media/runners/Duranguesa_91.jpg"
-import img2 from "../media/runners/Duranguesa_98.jpg"
-import img3 from "../media/runners/Duranguesa_111.jpg"
+import img1 from "../../media/runners/Duranguesa_91.jpg"
+import img2 from "../../media/runners/Duranguesa_98.jpg"
+import img3 from "../../media/runners/Duranguesa_111.jpg"
 
 export default function RunnerImages() {
     const [windowWidth, setWindowWidth] = useState<number | null>(null);
