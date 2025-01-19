@@ -29,10 +29,10 @@ export default function SignUp() {
   };
  
   return (
-    <div className="mt-20 max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <div className="mt-20 max-w-md mx-auto  p-8 rounded-lg shadow-lg">
   <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
   
-  <div className="space-y-4">
+  <div className="space-y-4 text-black">
     <div>
       <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
       <input 
