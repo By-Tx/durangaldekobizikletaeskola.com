@@ -2,7 +2,7 @@
 
 
 import Slideshow from "./components/main/slider";
-import News from "./components/notices";
+import News from "./components/noticeComponents/notices";
 import SubTitle from "./components/Titles/SubTitle";
 const images = [
   { url: 'https://photos.txuli.com/duranguesa/Duranguesa_3.jpg' ,

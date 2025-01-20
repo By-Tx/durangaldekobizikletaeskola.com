@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function News() {
   return (
-    <div className="flex flex-wrap h-auto xl:h-112 w-full gap-8 justify-center sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 xl:flex">
+    <div className="flex flex-wrap h-auto xl:h-112 w-full gap-8 justify-center sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 xl:flex mb-24">
 
       <Link
         href="/espainakoTxapelketa"

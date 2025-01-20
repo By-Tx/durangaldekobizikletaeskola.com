@@ -1,7 +1,7 @@
 // app/layout.tsx
 
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+
 import "../globals.css";
 import NavBar from "./components/main/navBar";
 import Sponsor from "./components/sponsors/sponsors";
@@ -33,7 +33,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/media/logo.png" />
       </head>
       <body
-       
+       className={`${fredoka}  antialiased`}
       >
 
          <NavBar /> 

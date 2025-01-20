@@ -1,6 +1,6 @@
 "use client";
 import TextInfo from "@/app/(main)/components/text";
-import Slideshow from "@/app/(main)/components/main/slider"
+
 import MainEvents from "@/app/(main)/components/mainEvents";
 import RunnerImages from "@/app/(main)/components/RunnerImges";
 import Title from "@/app/(main)/components/Titles/Title";

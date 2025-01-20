@@ -35,7 +35,7 @@ const Sponsor = () => {
 
     const renderMainSponsors = () => (
         <>
-            <SubTitle subTitle="BABEZLEAK" />
+            
 
             <MainSponsor 
             img='https://photos.txuli.com/duranguesa/patrocinadores/CafeDromedario.webp' 
@@ -80,6 +80,7 @@ const Sponsor = () => {
             {pathname === '/cafedromedario' && renderMainSponsors()}
             {pathname === '/eskola' && (
                 <>
+                    <SubTitle subTitle="BABESLEAK" />
                     {renderHelpers()}
                     {renderSecondarySponsors()}
 
@@ -87,6 +88,7 @@ const Sponsor = () => {
             )}
             {pathname !== '/cafedromedario' && pathname !== '/eskola' && (
                 <>
+                    <SubTitle subTitle="BABESLEAK" />
                     {renderMainSponsors()}
                     {renderHelpers()}
                     {renderSecondarySponsors()}

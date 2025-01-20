@@ -1,5 +1,5 @@
 import TopImage from "@/app/(main)/components/noticeComponents/topImageImage";
-import Image from "next/image";
+
 import NoticeContent from "../../components/noticeComponents/noticeContent";
 
 export default function Page() {  

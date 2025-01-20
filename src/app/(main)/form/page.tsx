@@ -38,7 +38,7 @@ export default function Page() {
             body: JSON.stringify(formData),
         });
 
-        const result = await response.json();
+        // const result = await response.json();
 
         
         if (response.ok) {
