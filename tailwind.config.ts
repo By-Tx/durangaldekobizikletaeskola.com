@@ -13,6 +13,7 @@ const config: Config = {
         foreground: "var(--foreground)",
         customblue:'#3984C8',
         customDarkBlue:'#21486C',
+        customDarkerBlue:'#18344e',
       },
       fontFamily: {
         fredoka: ['Fredoka', ...fontFamily.sans],

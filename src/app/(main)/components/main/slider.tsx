@@ -24,7 +24,7 @@ const captionStyle: React.CSSProperties = {
 };
 
 interface SlideshowProps {
-  images: { url: string; title: string; subtitle: string; higlightSubtitle: string | undefined }[];
+  images: { url: string; title: string | undefined; subtitle: string| undefined; higlightSubtitle: string | undefined }[];
 }
 
 const Slideshow: React.FC<SlideshowProps> = ({ images = [] }) => {

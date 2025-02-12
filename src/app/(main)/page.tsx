@@ -35,8 +35,7 @@ export default function Home() {
       <Slideshow
         images={images}
       />
-      <SubTitle
-        subTitle="ALBISTEAK"/>
+      <SubTitle subTitle="ALBISTEAK"/>
       <News />
       
       

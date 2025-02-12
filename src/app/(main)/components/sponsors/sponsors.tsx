@@ -9,26 +9,28 @@ import SubTitle from '../Titles/SubTitle';
 
 
 const SECONDARY_SPONSORS = [
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/VCG.png', link: 'https://www.vcg-decoletaje.com/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/BETSAIDE.png', link: 'https://www.betsaide.com/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/TECOEL.png', link: 'https://tecoel.es/' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/VCG.png', link: 'https://www.vcg-decoletaje.com/', style:undefined },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/BETSAIDE.png', link: 'https://www.betsaide.com/', style:undefined },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/TECOEL.png', link: 'https://tecoel.es/', style:undefined },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/MARISTAS.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/MALDABIKES.png', link: 'https://www.maldabikes.com/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/INGENIA.png', link: 'https://ingenia2014.com/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/mugarra.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/RURALKUTXA.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/CUBICAL.png', link: 'https://cubicaldenira.com/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/marraz.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/EUSKADILOWCOST.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/CONTROLPACK.png', link: 'https://www.controlpack.com/' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/MALDABIKES.png', link: 'https://www.maldabikes.com/', style:undefined },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/INGENIA.png', link: 'https://ingenia2014.com/', style:undefined },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/mugarra.png', link: '', style:undefined },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/RURALKUTXA.png', link: '', style:undefined },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/CUBICAL.png', link: 'https://cubicaldenira.com/', style:undefined },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/marraz.png', link: '', style:undefined },
+    
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/EUSKADILOWCOST.png', link: '', style:'xl:col-start-2' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/CONTROLPACK.png', link: 'https://www.controlpack.com/', style:undefined },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/orbeaw.png', link: 'https://www.orbea.com/', style:undefined },
 ];
 
 const HELPERS = [
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/IURRETA.png', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx' },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/DURANGO.png', link: 'https://www.durango.eus/' },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ABADIÑO.png', link: 'https://www.xn--abadio-0wa.org/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/IURRETA.png', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx' },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ELORRIO.png', link: 'https://www.elorrio.eus/eu-ES/Orriak/default.aspx' },
-];
+]; 
 
 const Sponsor = () => {
     const pathname = usePathname();
@@ -50,9 +52,9 @@ const Sponsor = () => {
     const renderSecondarySponsors = () => (
         <>
 
-            <div className="grid w-5/6  mx-auto sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 place-items-center gap-4 mb-16">
-                {SECONDARY_SPONSORS.map(({ img, link }, idx) => (
-                    <Secondsponsor key={idx} img={img} Link={link} />
+            <div className="grid w-5/6 mx-auto sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 place-items-center gap-4 mb-16 justify-items-center">
+                {SECONDARY_SPONSORS.map(({ img, link, style }, idx) => (
+                    <Secondsponsor key={idx} img={img} Link={link} style={style} />
                 ))}
             </div>
         </>

@@ -56,7 +56,7 @@ export default function Page() {
             <section >
                 <SubTitle subTitle="ORDUTEGIA" />
 
-                <div className=" font-fredoka text-2xl lg:flex mb-20">
+                <div className=" font-fredoka text-2xl lg:flex mb-20 px-4">
                     <div className="mx-auto
                     ">
                         Astean zehar:
