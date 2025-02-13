@@ -114,7 +114,7 @@ export default function cafeDromedario() {
 
         },
         {
-            image: 'https://photos.txuli.com/duranguesa/staff/lito2.jpg',
+            image: 'https://photos.txuli.com/duranguesa/staff/AngelLitoBilbao.jpg',
             name: 'Lito',
             
         },

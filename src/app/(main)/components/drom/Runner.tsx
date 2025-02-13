@@ -22,16 +22,16 @@ const Runner: FC<RunnerProps> = ({ runner = [],title }) => {
     return (
         <div className='flex w-full relative mb-11'>
    
-    <div className="bg-customblue font-fredoka text-white font-bold text-xl p-2 [writing-mode:vertical-rl] [text-orientation:upright] hidden sm:block absolute mx-7 xl:flex items-center justify-center rounded-xl h-86">
+    <div className="bg-customblue font-fredoka text-white font-bold text-xl p-2  [writing-mode:vertical-rl] [text-orientation:upright] hidden sm:block absolute mx-7 h-full xl:flex items-center justify-center rounded-xl">
         <h3>{title}</h3>
     </div>
 
   
-    <div className='px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 auto-rows-auto mb-11 w-full justify-center place-items-center ml-16'>
+    <div className='px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 auto-rows-auto  w-full justify-center place-items-center ml-16'>
         {runner.map(({ image, name, born, goals }, index) => (
             <div className="flex w-48 flex-col relative group" key={index}>
                 
-                <div>
+                <div className='h-72'>
                     <Image src={image} alt={name} width={200} height={200} className="rounded-t-xl" />
                 </div>
 
