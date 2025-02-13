@@ -11,6 +11,7 @@ import josu from "@/app/media/tecnicians/josu.jpg";
 import Slideshow from "../components/eskola/slide";
 import Runner from "../components/drom/Runner";
 import Technicians from "../components/drom/Technicians";
+import { title } from "process";
 export default function cafeDromedario() {
     const images = [
         {
@@ -67,21 +68,67 @@ export default function cafeDromedario() {
             born: '10/11/2005',
             city: 'Bilbao',
             goals: 'Bizkaiko txapelketa irabazi'
-        },
-       
+        }
     ];
+
+    const runnerMtbJunior = [
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/junior/mtb/AnderMendizabal.jpg',
+            name: 'Ander Mendizabal',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/junior/mtb/HegoiArrinda.jpg',
+            name: 'Hegoi Arrinda',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/junior/mtb/IparArrinda.jpg',
+            name: 'Ipar Arrinda',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+
+    ]
+    const runnerMtbKadete = [
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/mtb/AimarAguirrezabalaga.jpg',
+            name: 'Aimar Aguirrezabala',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/mtb/AndoniVillate.jpg',
+            name: 'Andoni Villate',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+    ]
     const technician = [
-       
+        {
+            image: 'https://photos.txuli.com/duranguesa/staff/AndoniGaraigorta.jpg',
+            name: 'Andoni Garaigorta',
+            style: ' xl:col-start-2',
+
+        },
         {
             image: 'https://photos.txuli.com/duranguesa/staff/lito2.jpg',
             name: 'Lito',
-            style:' xl:col-start-3',
+            
         },
         {
             image: 'https://photos.txuli.com/duranguesa/staff/IbonAchotegui.jpg',
-            name: 'Lito',
-            style:' xl:col-start-4',
-           
+            name: 'Ibon Achotegui',
+            
+
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/staff/XabierArizmendiarrieta.jpg',
+            name: 'Xabier Arizmendiarrieta',
+            
+
         },
     ]
     return (
@@ -108,16 +155,47 @@ export default function cafeDromedario() {
                     horietatik at, Txuma, Bizkaiko, Gipuzkoako eta zein Kantabriako Itzulia ere lehiatzen dute.
                 </p>
             </section>
-            <SubTitle subTitle="JUNIORRAK" />
+            <SubTitle subTitle="ERREPIDEA" />
 
-           
-                <Runner runner={runner} />
-           
-            <section >
-            
-            
+
+            <Runner runner={runner} title="JUNIOR" />
+            <Runner runner={runner} title="KADETE" />
             <Technicians technicians={technician} />
-            
+
+
+
+            <section >
+                <SubTitle subTitle="MTB" />
+                <p className="text-justify font-fredoka text-2xl px-8 font-light mb-3">
+                    2022. urtFean Durangaldeko Bizikleta Eskolak Mendi Bizikletako talde bat sortzeko eta bultzatzeko esfortzua egin zuen modalitate hau indartzeko eta gazteei beste aukera bat emateko, aukera zabalago bat sortuz
+                </p>
+                <p className="text-justify font-fredoka text-2xl px-8 font-light mt-3">
+                    Egutegiaren barruan, Green Seriesak (UCI C2 mailan dagoena eta Bizkaian ospatzen dena), Superprestigio, Bizkaiko eta Euskadiko Txapelketak lehiatzen dituzte.
+                </p>
+                <Runner runner={runnerMtbJunior} title="JUNIOR" />
+                <Runner runner={runnerMtbKadete} title="KADETE" />
+                
+
+            </section>
+
+            <section >
+                <SubTitle subTitle="PISTA" />
+                <p className="text-justify font-fredoka text-2xl px-8 font-light mb-3">
+                    Neguko egutegian taldeak ere pistan ere jarduten da kadete eta junior kategorietan.
+                    Berrizko belodromoa gure eskualdean daukagula aprobetxatuz, entrenamenduak egiten ditugu astean zehar,
+                    eta Anoetan antolatzen diren probetan ere parte hartzen dogu.
+                    Bertan, trebetasun desberdinak garatzen dituzte gazteak.
+                </p>
+
+            </section>
+            <section >
+                <SubTitle subTitle="CX" />
+                <p className="text-justify font-fredoka text-2xl px-8 font-light mb-3">
+                    Neguko egutegian ere Ziklokrosseko egutegia egiten dugu. Teknika oso garrantzitsua dan modalitatea da hau,
+                    eta hori lantzeko helburu argia dugu, teknika entrenamendu bereziak antolatuz.
+                    Euskal Herriko proba garrantzitsuenetan hartzen dugu parte,
+                    ETXF eta FEBICI-ko ranking-ean.
+                </p>
             </section>
             {/* junior road team
             <SubTitle subTitle="ERREPIDEKO JUNIOR TALDEKO TXIRRINDULARIAK" />

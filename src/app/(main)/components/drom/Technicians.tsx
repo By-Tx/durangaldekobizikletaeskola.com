@@ -26,7 +26,7 @@ const Technicians: FC<TechniciansProps> = ({ technicians = [] }) => {
                         <div>
                             <Image src={image} alt={name} width={200} height={200} className="rounded-t-xl" />
                         </div>
-                        <div className="bg-customDarkBlue text-2xl font-fredoka flex items-center justify-center h-14 rounded-b-xl">
+                        <div className="bg-customDarkBlue text-xl font-fredoka flex items-center justify-center h-14 rounded-b-xl">
                             {name}
                         </div>
                     </div>

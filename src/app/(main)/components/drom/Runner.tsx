@@ -3,24 +3,27 @@ import { FC } from 'react';
 import calendario from "@/app/media/runner/calendario.png";
 import ubi from "@/app/media/footer/marcador.png";
 import medalla from "@/app/media/runner/medalla.png";
+import { title } from 'process';
 interface RunnerProps {
     runner: {
         image: string;
         name: string;
         born: string;
         goals: string;
+        
     }[];
+    title: string;
 }
 
 
 
 
-const Runner: FC<RunnerProps> = ({ runner = [] }) => {
+const Runner: FC<RunnerProps> = ({ runner = [],title }) => {
     return (
         <div className='flex w-full relative mb-11'>
    
     <div className="bg-customblue font-fredoka text-white font-bold text-xl p-2 [writing-mode:vertical-rl] [text-orientation:upright] hidden sm:block absolute mx-7 xl:flex items-center justify-center rounded-xl h-86">
-        <h3>ERREPIDEA</h3>
+        <h3>{title}</h3>
     </div>
 
   
@@ -33,7 +36,7 @@ const Runner: FC<RunnerProps> = ({ runner = [] }) => {
                 </div>
 
                
-                <div className="bg-customDarkBlue text-2xl font-fredoka flex items-center justify-center h-14 rounded-b-xl">
+                <div className="bg-customDarkBlue text-xl font-fredoka flex items-center justify-center h-14 rounded-b-xl">
                     {name}
                 </div>
 
