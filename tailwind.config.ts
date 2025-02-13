@@ -22,7 +22,9 @@ const config: Config = {
         semibold: '500', 
       },
       height: {
+        86: '21.5rem',
         21: '5.30rem',
+        65: '17.438rem',
         100: '27rem',
         105: '28rem',
         112: '35rem',
@@ -30,6 +32,7 @@ const config: Config = {
         130: '35.5rem',
       },
       width: {
+
         100: '27rem',
         105: '29rem',
         112: '28rem',

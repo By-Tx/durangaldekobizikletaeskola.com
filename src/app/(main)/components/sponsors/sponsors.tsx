@@ -29,6 +29,7 @@ const HELPERS = [
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/IURRETA.png', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx' },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/DURANGO.png', link: 'https://www.durango.eus/' },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ABADIÑO.png', link: 'https://www.xn--abadio-0wa.org/' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/BERRIZ.png', link: '' },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ELORRIO.png', link: 'https://www.elorrio.eus/eu-ES/Orriak/default.aspx' },
 ]; 
 
