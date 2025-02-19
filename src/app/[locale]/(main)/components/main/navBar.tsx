@@ -1,4 +1,5 @@
 "use client";
+import { useTranslations } from "next-intl";
 import {Link} from '@/i18n/routing';
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
@@ -9,7 +10,7 @@ import logoMenu from "@/app/media/menu/logoMenu.svg";
 const NavBar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const t = useTranslations("menuComponent");
   const toggleMenu = () => {
     setMenuOpen(prevState => !prevState);
   };
@@ -50,22 +51,22 @@ const NavBar = () => {
         {!isMobile && (
           <div className="flex items-center space-x-6">
             <Link href="/eskola" className="text-white hover:text-blue-200 transition duration-150">
-              ESKOLA
+              {t("eskola")}
             </Link>
             <Link href="/cafedromedario" className="text-white hover:text-blue-200 transition duration-150">
               CAFÉ DROMEDARIO-FLOTAMET 
             </Link>
-            <Link href="/galeria" className="text-white hover:text-blue-200 transition duration-150">
+            {/* <Link href="/galeria" className="text-white hover:text-blue-200 transition duration-150">
                GALERIA
-            </Link>
+            </Link> */}
             <Link href="/form" className="text-white hover:text-blue-200 transition duration-150">
-              IZENA EMAN 
+              {t("form")} 
             </Link>
-            <Link href="/clothes" className="text-white hover:text-blue-200 transition duration-150">
+            {/* <Link href="/clothes" className="text-white hover:text-blue-200 transition duration-150">
               ARROPA
-            </Link>
+            </Link> */}
             <Link href="/contacto" className="text-white hover:text-blue-200 transition duration-150">
-              KONTAKTUA
+              {t("contact")}
             </Link>
           </div>
         )}
@@ -73,12 +74,12 @@ const NavBar = () => {
         {/* Language Switch and Login */}
        {!isMobile && ( 
         <div className="flex items-center space-x-4">
-          <Link
+          {/* <Link
             href="/login"
             className="bg-customDarkBlue text-white px-4 py-2 rounded-lg "
           >
             HASI SAIOA
-          </Link>
+          </Link> */}
           <div className="hidden md:flex items-center space-x-2">
             
             <div>EUS</div>
@@ -98,50 +99,50 @@ const NavBar = () => {
             className="text-xl hover:text-blue-300 transition duration-150"
             onClick={toggleMenu}
           >
-            HASIERA
+            {t("home")}
           </Link>
           <Link
             href="/eskola"
             className="text-xl hover:text-blue-300 transition duration-150"
             onClick={toggleMenu}
           >
-            ESKOLA
+            {t("eskola")}
           </Link>
           <Link
             href="/cafedromedario"
             className="text-xl hover:text-blue-300 transition duration-150"
             onClick={toggleMenu}
           >
-            CAFÉ DROMEDARIO-FLOTAMET TALDEA
+            CAFÉ DROMEDARIO-FLOTAMET 
           </Link>
-          <Link
+          {/* <Link
             href="/galeria"
             className="text-xl hover:text-blue-300 transition duration-150"
             onClick={toggleMenu}
           >
             ARGAZKI GALERIA
-          </Link>
+          </Link> */}
           <Link
             href="/form"
             className="text-xl hover:text-blue-300 transition duration-150"
             onClick={toggleMenu}
           >
-            IZENA EMAN TALDEAN
+            {t("form")}
           </Link>
           <Link
             href="/contacto"
             className="text-xl hover:text-blue-300 transition duration-150"
             onClick={toggleMenu}
           >
-            KONTAKTUA
+            {t("contact")}
           </Link>
-          <Link
+          {/* <Link
             href="/login"
             className="text-xl bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-150"
             onClick={toggleMenu}
           >
             HASI SAIOA
-          </Link>
+          </Link> */}
         </div>
       )}
     </nav>

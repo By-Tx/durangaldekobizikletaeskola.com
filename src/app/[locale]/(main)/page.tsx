@@ -23,7 +23,7 @@ const images = [
     subtitle: t("subtitle3"),
     higlightSubtitle: undefined
   },
-  { url: 'https://photos.txuli.com/duranguesa/fotomtb.jpg' 
+  { url: 'https://photos.txuli.com/duranguesa/portada.JPG' 
     ,
     title: t("title4"),
     subtitle: t("subtitle4"),

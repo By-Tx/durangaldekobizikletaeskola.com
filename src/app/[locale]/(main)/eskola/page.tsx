@@ -1,11 +1,12 @@
 "use client";
 import Slides from "../components/eskola/slide";
-
+import { useTranslations } from "next-intl";
 import SubTitle from "../components/Titles/SubTitle";
 import Planning from "../components/eskola/planning";
 
 
 export default function Page() {
+    const t = useTranslations("eskolaPage");
     const images = [
         { url: 'https://photos.txuli.com/duranguesa/esk04.jpeg' },
         {
@@ -19,38 +20,38 @@ export default function Page() {
     const planning = [
         {
             url: 'https://photos.txuli.com/duranguesa/planning/Escuelas.JPG',
-            title: 'NORENTZAT?',
-            text: 'Eskoletan 6 urtetik 14 urterako umeak parte hartzen dabe. Bizikletarekin ondo pasatzea, bidean dauzen putxu guztietan sartzea gustoko dutenen umeentzat.'
+            title: t("elementTitle"),
+            text: t("element1Text")
         },
         {
             url: 'https://photos.txuli.com/duranguesa/planning/escuela1.jpg',
-            title: 'HELBURUAK',
-            text: 'Helburuak Eskolan umeak hezitzen ditugu, grue baloreak oinarritzat hartuz, eta bizikletaren erabileraren eta teknikaren formakuntza eskeiniz.'
+            title: t("elementTitle2"),
+            text: t("element2Text")
         }
         ,
         {
             url: 'https://photos.txuli.com/duranguesa/planning/escuela2.jpg',
-            title: 'PLANGINTZA',
-            text: 'Astero 2 entrenamendu egiten ditugu( uda partean 3). Bestalde exkursioak, irteera bereziak, gymkanak, bizkaiko federakuntzako egutegian parte hartu eta bestelakoak egiten ditugu.'
+            title: t("elementTitle3"),
+            text: t("element3Text")
         }
     ]
     return (
         <main >
             <Slides
                 images={images}
-                title="ESKOLA"
+                title={t("title")}
 
             />
             <section className="my-20">
                 <p className="text-justify font-fredoka text-3xl px-5 font-light">
-                    Gure programaren helbururik garrantzitsuena kirola eta dibertsioaren bidez pertsonak trebatzea da, jarrera egokiak, baloreak eta gaitasunak bizikletaren bidez irakatsiz.
+                    {t("section1P1")}
                 </p>
-                <p className="text-justify font-fredoka text-3xl px-5 font-light">Infantil mailara salto egiten dutenean, beste helburu batzuk ere badaude, kadete mailarako prestatzea eta teknifikatzea da horietako bat.</p>
+                <p className="text-justify font-fredoka text-3xl px-5 font-light">{t("section1P2")}</p>
 
             </section>
 
             <section className="items-center justify-center">
-                <SubTitle subTitle="PLANINNGA" />
+                <SubTitle subTitle={t("section2SubTitle")} />
                 <Planning planning={planning} />
             </section>
             <section >

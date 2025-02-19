@@ -25,7 +25,7 @@ const Runner: FC<RunnerProps> = ({ runner = [],title }) => {
     </div>
 
   
-    <div className='px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 auto-rows-auto  w-full justify-center place-items-center ml-16'>
+    <div className='px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 auto-rows-auto  w-full justify-center place-items-center ml-0 md:ml-16'>
         {runner.map(({ image, name, born, goals }, index) => (
             <div className="flex w-48 flex-col relative group" key={index}>
                 

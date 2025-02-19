@@ -1,7 +1,7 @@
 // app/layout.tsx
 
 import type { Metadata } from "next";
-import {getLocale, getMessages} from 'next-intl/server';
+import { getMessages} from 'next-intl/server';
 import "../globals.css";
 import NavBar from "./components/main/navBar";
 import Sponsor from "./components/sponsors/sponsors";
@@ -47,6 +47,7 @@ export default async function RootLayout({
 
         {children}
         <Sponsor />
+        <Line />
         <Footer />
       </body>
     </html>

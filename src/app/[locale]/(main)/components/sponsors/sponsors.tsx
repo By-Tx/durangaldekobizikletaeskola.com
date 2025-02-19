@@ -20,17 +20,17 @@ const SECONDARY_SPONSORS = [
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/CUBICAL.png', link: 'https://cubicaldenira.com/', style: undefined },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/marraz.png', link: '', style: undefined },
 
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/EUSKADILOWCOST.png', link: '', style: 'xl:col-start-2' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/EUSKADILOWCOST.png', link: '', style: undefined  },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/CONTROLPACK.png', link: 'https://www.controlpack.com/', style: undefined },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/orbeaw.png', link: 'https://www.orbea.com/', style: undefined },
+   
 ];
 
 const HELPERS = [
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/IURRETA.png', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/DURANGO.png', link: 'https://www.durango.eus/' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ABADIÑO.png', link: 'https://www.xn--abadio-0wa.org/' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/IURRETA.png', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx', style: 'col-span-2' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/DURANGO.png', link: 'https://www.durango.eus/' , style: undefined},
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ABADIÑO.png', link: 'https://www.xn--abadio-0wa.org/' , style: undefined},
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/BERRIZ.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ELORRIO.png', link: 'https://www.elorrio.eus/eu-ES/Orriak/default.aspx' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ELORRIO.png', link: 'https://www.elorrio.eus/eu-ES/Orriak/default.aspx' , style: undefined},
 ];
 
 const Sponsor = () => {
@@ -44,7 +44,13 @@ const Sponsor = () => {
                 img='https://photos.txuli.com/duranguesa/patrocinadores/CafeDromedario.webp'
                 Link='https://cafedromedario.com/'
                 img2='https://photos.txuli.com/duranguesa/patrocinadores/flotamet.png'
-                Link2='https://cafedromedario.com/' />
+                Link2='https://cafedromedario.com/' 
+                img3='https://photos.txuli.com/duranguesa/patrocinadores/HIRUMET1.png'
+                Link3='https://www.hirumet.com/'
+                img4= 'https://photos.txuli.com/duranguesa/patrocinadores/orbeaw.png'
+                Link4= 'https://www.orbea.com/'
+                />
+                
 
 
         </>
@@ -53,11 +59,12 @@ const Sponsor = () => {
     const renderSecondarySponsors = () => (
         <>
 
-            <div className="grid w-5/6 mx-auto sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 place-items-center gap-4 mb-16 justify-items-center">
+            <div className=" grid w-9/12 mx-auto grid-cols-3 lg:grid-cols-4  place-items-center gap-4  justify-items-center mb-6">
                 {SECONDARY_SPONSORS.map(({ img, link, style }, idx) => (
                     <Secondsponsor key={idx} img={img} Link={link} style={style} />
                 ))}
             </div>
+            
         </>
     );
 
@@ -65,12 +72,12 @@ const Sponsor = () => {
         <>
 
 
-            <div className="w-10/12 mx-auto sm:grid sm:grid-cols-2 lg:flex lg:space-x-4 sm:gap-8 justify-center mb-20 place-items-center mt-16">
-                {HELPERS.map(({ img, link }, idx) => (
-                    <Helpers key={idx} img={img} Link={link} />
+            <div className=" bg-customDarkBlue lg:bg-transparent  rounded-lg w-8/12 mx-auto grid grid-cols-5  lg:flex lg:space-x-4 sm:gap-8 justify-center mb-20 place-items-center ">
+                {HELPERS.map(({ img, link, style }, idx) => (
+                    <Helpers key={idx} img={img} Link={link} style={style} />
                 ))}
             </div>
-
+            
 
         </>
     );
@@ -97,8 +104,9 @@ const Sponsor = () => {
                 <>
                     <SubTitle subTitle="BABESLEAK" />
                     {renderMainSponsors()}
-                    {renderHelpers()}
+                   
                     {renderSecondarySponsors()}
+                    {renderHelpers()}
 
                 </>
             )}

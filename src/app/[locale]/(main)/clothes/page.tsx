@@ -4,10 +4,10 @@ import ShopItems from '@/app/[locale]/(main)/components/shop/ShopItems';
 import SubTitle from '../components/Titles/SubTitle';
 import DropDownSelection from '../form/dropDownSelecction';
 
-import { useState } from 'react';
+// import { useState } from 'react';
 
 export default function clothes() {
-    const [selectedValues, setSelectedValues] = useState<string[]>([]);
+    // const [selectedValues, setSelectedValues] = useState<string[]>([]);
   
    
     const item=[

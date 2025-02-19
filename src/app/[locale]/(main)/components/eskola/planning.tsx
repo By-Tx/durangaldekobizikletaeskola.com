@@ -7,9 +7,9 @@ interface PlanningProps {
     { 
         url: string;
        
-        title:string;
+        title: string;
        
-        text: String ;
+        text: string ;
          }[];
 }
 // creamos el componente Planning con un array de objetos

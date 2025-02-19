@@ -5,13 +5,13 @@ import { useTranslations } from "use-intl";
 export default function News() {
   const t = useTranslations("noticeComponent");
   return (
-    <div className="flex flex-wrap h-auto xl:h-112 w-full gap-8 justify-center sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 xl:flex mb-24 ">
+    <div className="flex flex-wrap h-auto xl:h-112 w-full gap-8 justify-center sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 xl:flex mb-24 ">
 
       <Link
         href="/espainakoTxapelketa"
         className='hove:cursor-pointer'
       >
-        <div className='group relative h-96 w-96 hover:w-105  hover:h-100 transition-all duration-300 ease-in-out  mb-32'>
+        <div className='group relative h-96 w-96 hover:w-105  hover:h-100 transition-all duration-300 ease-in-out  mb-32 mx-auto'>
           <Image
             src={'https://photos.txuli.com/duranguesa/notices/noticiasSeleccion.png'}
             alt={t("altImage")}
@@ -33,9 +33,9 @@ export default function News() {
 
       <Link
         href="/irrisarriNotice"
-        className='hove:cursor-pointer'
+        className='hover:cursor-pointer'
       >
-        <div className='group relative h-96 w-96 hover:w-105  hover:h-100 transition-all duration-300 ease-in-out  mb-32'>
+        <div className='group relative h-96 w-96 hover:w-105  hover:h-100 transition-all duration-300 ease-in-out mb-32 mx-auto'>
           <Image
             src={'https://photos.txuli.com/duranguesa/notices/irrisarri.JPG'}
             alt={t("altImage2")}
@@ -57,9 +57,9 @@ export default function News() {
 
       <Link
         href="/bttTxapelduna"
-        className='hove:cursor-pointer'
+        className='hove:cursor-pointer md:col-span-2'
       >
-        <div className='group relative h-96 w-96 hover:w-105  hover:h-100 transition-all duration-300 ease-in-out  sm:mb-32 l:mb-0'>
+        <div className='group relative h-96 w-96 hover:w-105  hover:h-100 transition-all duration-300 ease-in-out  sm:mb-32 l:mb-0 mx-auto'>
           <Image
             src={'https://photos.txuli.com/duranguesa/notices/ander.JPG'}
             alt={t("altImage3")}

@@ -1,5 +1,5 @@
 import TopImage from "@/app/[locale]/(main)/components/noticeComponents/topImageImage";
-import { useTranslations } from "use-intl";
+import { useTranslations } from "next-intl";
 import NoticeContent from "../../components/noticeComponents/noticeContent";
 
 export default function Page() {  

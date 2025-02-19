@@ -1,13 +1,13 @@
 {
     "homePage": {
-        "title": "2014AN SORTUTAKO TXIRRINDULARITZA ESKOL",
-        "subtitle": "2014an sortu zuten eskola, abadiño, Elorrio eta Dukrangoko elkarteen elkarlanaren emaitza",
+        "title": "2014AN SORTUTAKO TXIRRINDULARITZA ESKOLA",
+        "subtitle": "2014an sortutako eskola, Abadiño, Elorrio eta Durangoko txirrindulari elkarteen elkarlanaren emaitza",
         "title2": "PROIEKTU SENDO BAT SORTZEKO GOGOA",
-        "subtitle2": "Eskola hiru elkarte sendoen basoan sortu zen, baliabideak optimizatuz eta etorkizun sendoa eraikitzeko",
+        "subtitle2": "Urtez urteko lanak erreferentziazko kirol talde baten bihurtu gaitu eskualdean, eta bere horretan jarraituko dugu denboran zutik jarrai dadin, taldea gure inguruan errotu eta hedatzeko.",
         "title3": "HELBURUA",
-        "subtitle3": "Txirrindularen kirolean gazteei trebatu, hezitze prozesuaz disfrutatuz eta txirrindularitzaren modalitate ezberdinetan lehiatzeko prestatuz",
+        "subtitle3": "Txirrindularitzaren bitartez gazteei trebatu, haiek hezitze prozesuaz goza dezaten eta kirol honen diziplina ezberdinetan lehiatzeko prestatuz",
         "title4": "BALOREAK",
-        "subtitle4": "Talde lana, esfortzua, konpromesua eta adiskiderasuna oinarri hartuta, elkarrekin helburuak lortzen ditugu eta bidean indarra hartzen dugu.",
+        "subtitle4": "Talde lana, ahalegina, konpromezua eta laguntasuna dira gure oinarri. Hauen bidez, elkarrekin helburuak lortzen ditugu eta bidean indarra hartzen dugu.",
         "componentSubtitle": "ALBISTEAK"
     },
     "noticeComponent": {
@@ -58,9 +58,61 @@
         "componentRunner2Title": "KADETE",
         "sectionMtbTitle": "MTB",
         "sectionMtbP1": " 2022. urtFean Durangaldeko Bizikleta Eskolak Mendi Bizikletako talde bat sortzeko eta bultzatzeko esfortzua egin zuen modalitate hau indartzeko eta gazteei beste aukera bat emateko, aukera zabalago bat sortuz.",
-        "sectionMtbP2": "  Egutegiaren barruan, Green Seriesak (UCI C2 mailan dagoena eta Bizkaian ospatzen dena), Superprestigio, Bizkaiko eta Euskadiko Txapelketak lehiatzen dituzte." 
+        "sectionMtbP2": "  Egutegiaren barruan, Green Seriesak (UCI C2 mailan dagoena eta Bizkaian ospatzen dena), Superprestigio, Bizkaiko eta Euskadiko Txapelketak lehiatzen dituzte." ,
+        "sectionPistaP1":"Neguko egutegian taldeak ere pistan ere jarduten da kadete eta junior kategorietan. Berrizko belodromoa gure eskualdean daukagula aprobetxatuz, entrenamenduak egiten ditugu astean zehar, eta Anoetan antolatzen diren probetan ere parte hartzen dogu. Bertan, trebetasun desberdinak garatzen dituzte gazteak.",
+        "sectionCXP1": "Neguko egutegian ere Ziklokrosseko egutegia egiten dugu. Teknika oso garrantzitsua dan modalitatea da hau, eta hori lantzeko helburu argia dugu, teknika entrenamendu bereziak antolatuz. Euskal Herriko proba garrantzitsuenetan hartzen dugu parte, ETXF eta FEBICI-ko ranking-ean."
 
 
 
+    },
+    "eskolaPage":{
+        "title": "ESKOLA",
+        "section1P1":"Gure programaren helbururik garrantzitsuena kirola eta dibertsioaren bidez pertsonak trebatzea da, jarrera egokiak, baloreak eta gaitasunak bizikletaren bidez irakatsiz.",
+        "section1P2":"Infantil mailara salto egiten dutenean, beste helburu batzuk ere badaude, kadete mailarako prestatzea eta teknifikatzea da horietako bat.",
+        "section2SubTitle":"PLANINNGA",
+        "elementTitle": "NORENTZAT?",
+        "element1Text": "Eskoletan 6 urtetik 14 urterako umeak parte hartzen dabe. Bizikletarekin ondo pasatzea, bidean dauzen putxu guztietan sartzea gustoko dutenen umeentzat.",
+        "elementTitle2": "PLANGINTZA",
+        "element2Text": "Helburuak Eskolan umeak hezitzen ditugu, grue baloreak oinarritzat hartuz, eta bizikletaren erabileraren eta teknikaren formakuntza eskeiniz.",
+        "elementTitle3": "ASTEA BUKAERA",
+        "element3Text": "Astero 2 entrenamendu egiten ditugu( uda partean 3). Bestalde exkursioak, irteera bereziak, gymkanak, bizkaiko federakuntzako egutegian parte hartu eta bestelakoak egiten ditugu."
+
+        
+    },
+    "formPage": {
+        "title": "IZENA EMAN",
+        "P": "Izena emateko, bete beheko formularioa eta lehen baino lehen zurekin kontaktuan jarriko gara. Eskerrik asko! Dudaren bat badaukazu, telefonoz kontaktatu dezakezu:",
+        "name": "Izen abizena",
+        "namePlaceholder": "Umearen izena",
+        "birth": "Jaiotze data",
+        "direction": "Helbidea",
+        "directionPlaceholder": "Zure helbidea",
+        "city": "Herria",
+        "cityPlaceholder": "Zuer Herria",
+        "school": "Ikasketa zentroa",
+        "schoolPlaceholder": " ikasketa zentroaren izena",
+        "parents": "Aita Ama edo tutorearen Izen-abizenak",
+        "parentsPlaceholder": "Aita Ama edo tutorearen Izen-abizenak",
+        "phone": "Telefono zenbakia",
+        "mail": "Posta elektronikoa",
+        "mailPlaceholder": "Zure.emaila@example.com",
+        "message": "MEZUA",
+        "messagePlaceholder": "Zure mezua hemen idatzi",
+        "button": "BIDALI"
+    },
+    "contact": {
+        "title": "KONTAKTUA",
+        "title2": "Hemen gaude laguntzeko!",
+        "p1": "Gurekin harremanetan jar zaitezke honako bide hauen bidez:",
+        "address": "Helbidea",
+        "phone": "Telefonoa",
+        "location": "Kokapena"
+    },
+    "menuComponent": {
+        "home": "HASIERA",
+        "eskola": "ESKOLA",
+        "form": "IZENA EMAN",
+        "contact": "KONTAKTUA"
     }
+  
 }

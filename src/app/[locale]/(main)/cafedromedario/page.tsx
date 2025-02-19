@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import { useTranslations } from "next-intl";
 import "./style.css"
 import SubTitle from "@/app/[locale]/(main)/components/Titles/SubTitle";
@@ -9,7 +8,7 @@ import Runner from "../components/drom/Runner";
 import Technicians from "../components/drom/Technicians";
 
 
-export default function cafeDromedario() {
+export default function CafeDromedario() {
     const t = useTranslations("dromPage");
     const images = [
         {
@@ -60,13 +59,83 @@ export default function cafeDromedario() {
             born: '10/11/2005',
             goals: 'Bizkaiko txapelketa irabazi'
         },
+        
+    ];
+    const runnercadete = [
         {
-            image: 'https://photos.txuli.com/duranguesa/staff/lito2.jpg',
-            name: 'Lito',
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/road/XubanGorroño.jpg',
+            name: 'Xuban Gorroño',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/road/RaúlRodríguez.jpg',
+            name: 'Raúl Rodríguez',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/road/MiguelPérez.jpg',
+            name: 'Miguel Pérez',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/road/MartinAlzaga.jpg',
+            name: ' Martin Alzaga',
             born: '10/11/2005',
             city: 'Bilbao',
             goals: 'Bizkaiko txapelketa irabazi'
-        }
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/road/MarkoRamos.jpg',
+            name: 'Marko Ramos',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/road/ManexKareaga.jpg',
+            name: 'Manex Kareaga',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/road/JavierPadilla.jpg',
+            name: ' Javier Padilla',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/road/IzeiAndueza.jpg',
+            name: 'Izei Andueza',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/road/HodeiMendibe.JPG',
+            name: 'Hodei Mendibe',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/road/AnderCossio.jpg',
+            name: 'Ander Cossio',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/road/AitzolMúgica.jpg',
+            name: 'Aitzol Múgica',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        {
+            image: 'https://photos.txuli.com/duranguesa/riders/cadete/road/AgerSenero.jpg',
+            name: 'Ager Senero',
+            born: '10/11/2005',
+            goals: 'Bizkaiko txapelketa irabazi'
+        },
+        
     ];
 
     const runnerMtbJunior = [
@@ -152,7 +221,7 @@ export default function cafeDromedario() {
 
 
             <Runner runner={runner} title={t("componentRunner1Title")} />
-            <Runner runner={runner} title={t("componentRunner2Title")} />
+            <Runner runner={runnercadete} title={t("componentRunner2Title")} />
             <Technicians technicians={technician} />
 
 
@@ -174,20 +243,14 @@ export default function cafeDromedario() {
             <section >
                 <SubTitle subTitle="PISTA" />
                 <p className="text-justify font-fredoka text-2xl px-8 font-light mb-3">
-                    Neguko egutegian taldeak ere pistan ere jarduten da kadete eta junior kategorietan.
-                    Berrizko belodromoa gure eskualdean daukagula aprobetxatuz, entrenamenduak egiten ditugu astean zehar,
-                    eta Anoetan antolatzen diren probetan ere parte hartzen dogu.
-                    Bertan, trebetasun desberdinak garatzen dituzte gazteak.
+                    {t("sectionPistaP1")}
                 </p>
 
             </section>
             <section >
                 <SubTitle subTitle="CX" />
                 <p className="text-justify font-fredoka text-2xl px-8 font-light mb-3">
-                    Neguko egutegian ere Ziklokrosseko egutegia egiten dugu. Teknika oso garrantzitsua dan modalitatea da hau,
-                    eta hori lantzeko helburu argia dugu, teknika entrenamendu bereziak antolatuz.
-                    Euskal Herriko proba garrantzitsuenetan hartzen dugu parte,
-                    ETXF eta FEBICI-ko ranking-ean.
+                    {t("sectionCXP1")}
                 </p>
             </section>
             
