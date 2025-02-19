@@ -1,13 +1,22 @@
 "use client";
-import { useTranslations } from "next-intl";
-import {Link} from '@/i18n/routing';
+
+import { useTranslations } from 'next-intl';
+
+import { Link } from '@/i18n/routing';
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-
+import LocaleSwitcherSelect from './LocaleSwitcherSelect';
 import imageLogo from "@/app/media/DURANGOALDEKO.png";
 import logoMenu from "@/app/media/menu/logoMenu.svg";
+import logoMenuCose from "@/app/media/menu/close.svg";
 
 const NavBar = () => {
+  const [isRotated, setIsRotated] = useState(false);
+  const [logo, setLogo] = useState(logoMenu);
+  const handleClick = () => {
+    setIsRotated(!isRotated); // Alternar la rotación
+    setLogo(isRotated ? logoMenu : logoMenuCose); // Alternar entre las imágenes
+  };
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const t = useTranslations("menuComponent");
@@ -40,10 +49,15 @@ const NavBar = () => {
         {isMobile && (
           <button
             onClick={toggleMenu}
-            className="focus:outline-none z-30"
+            className={`h-8 w-8 cursor-pointer  transition-transform duration-500 ease-in-out z-30  ${isRotated ? 'rotate-90' : ''}`}
             aria-label="Toggle menu"
           >
-            <Image src={logoMenu} alt="Menu" className="h-8 w-8 cursor-pointer" />
+            <Image
+              src={logo}
+              alt="Menu"
+              className={`h-8 w-8 cursor-pointer invert ${isRotated ? 'rotate-90' : ''}`}
+              onClick={handleClick}
+            />
           </button>
         )}
 
@@ -54,13 +68,13 @@ const NavBar = () => {
               {t("eskola")}
             </Link>
             <Link href="/cafedromedario" className="text-white hover:text-blue-200 transition duration-150">
-              CAFÉ DROMEDARIO-FLOTAMET 
+              CAFÉ DROMEDARIO-FLOTAMET
             </Link>
             {/* <Link href="/galeria" className="text-white hover:text-blue-200 transition duration-150">
                GALERIA
             </Link> */}
             <Link href="/form" className="text-white hover:text-blue-200 transition duration-150">
-              {t("form")} 
+              {t("form")}
             </Link>
             {/* <Link href="/clothes" className="text-white hover:text-blue-200 transition duration-150">
               ARROPA
@@ -68,27 +82,28 @@ const NavBar = () => {
             <Link href="/contacto" className="text-white hover:text-blue-200 transition duration-150">
               {t("contact")}
             </Link>
+
           </div>
         )}
 
         {/* Language Switch and Login */}
-       {!isMobile && ( 
-        <div className="flex items-center space-x-4">
-          {/* <Link
+        {!isMobile && (
+          <div className="flex items-center space-x-4">
+            {/* <Link
             href="/login"
             className="bg-customDarkBlue text-white px-4 py-2 rounded-lg "
           >
             HASI SAIOA
           </Link> */}
-          <div className="hidden md:flex items-center space-x-2">
-            
-            <div>EUS</div>
-            <div>/</div>
-            <div>ES</div>
-            
-          </div>
-          
-        </div>)}
+            <div className="hidden md:flex items-center space-x-2">
+
+              <LocaleSwitcherSelect />
+
+
+
+            </div>
+
+          </div>)}
       </div>
 
       {/* Mobile Menu */}
@@ -113,7 +128,7 @@ const NavBar = () => {
             className="text-xl hover:text-blue-300 transition duration-150"
             onClick={toggleMenu}
           >
-            CAFÉ DROMEDARIO-FLOTAMET 
+            CAFÉ DROMEDARIO-FLOTAMET
           </Link>
           {/* <Link
             href="/galeria"
@@ -143,6 +158,9 @@ const NavBar = () => {
           >
             HASI SAIOA
           </Link> */}
+          <div>
+            <LocaleSwitcherSelect />
+          </div>
         </div>
       )}
     </nav>

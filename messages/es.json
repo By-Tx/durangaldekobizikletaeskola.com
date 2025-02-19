@@ -1,17 +1,17 @@
 {
     "homePage": {
-        "title": "ESCUELA DE CICLISMO CREADA EN 2014",
-        "subtitle": "Escuela creada en 2014, fruto de la colaboración entre los clubes ciclistas de Abadiño, Elorrio y Durango",
-        "title2": "EL DESEO DE CREAR UN PROYECTO SÓLIDO",
-        "subtitle2": "El trabajo año tras año nos ha convertido en un equipo deportivo de referencia en la región, y seguiremos trabajando para que el equipo permanezca en el tiempo, arraigándose y expandiéndose en nuestro entorno.",
+        "title": "ESCUELA DE CICLISMO FUNDADA EN 2014",
+        "subtitle": "Escuela creada en 2014, resultado de la colaboración entre los clubes de ciclismo de Abadiño, Elorrio y Durango",
+        "title2": "GANAS DE CREAR UN PROYECTO FUERTE",
+        "subtitle2": "Los trabajos año tras año nos han convertido en un equipo deportivo de referencia en la comarca, y seguiremos así para que el equipo se mantenga de pie en el tiempo, arraigando y expandiéndose en nuestro entorno.",
         "title3": "OBJETIVO",
-        "subtitle3": "Formar a los jóvenes a través del ciclismo, para que disfruten del proceso de aprendizaje y se preparen para competir en las diferentes disciplinas de este deporte.",
+        "subtitle3": "Formar a los jóvenes a través del ciclismo, para que disfruten del proceso de formación y estén preparados para competir en las diferentes disciplinas de este deporte.",
         "title4": "VALORES",
-        "subtitle4": "El trabajo en equipo, el esfuerzo, el compromiso y la amistad son nuestra base. A través de ellos, logramos nuestros objetivos juntos y nos fortalecemos en el camino.",
+        "subtitle4": "El trabajo en equipo, el esfuerzo, el compromiso y la amistad son nuestros pilares. A través de estos, logramos metas juntos y ganamos fuerza en el camino.",
         "componentSubtitle": "NOTICIAS"
     },
     "noticeComponent": {
-        "noticeTitle": "Markel, 13º en el Campeonato de España",
+        "noticeTitle": "Markel, 13º Campeonato de España",
         "altImage": "Foto de Markel en un descenso",
         "category": "CADETE",
         "date": "12-01-2025",
@@ -26,64 +26,79 @@
     },
     "bttTxapeldunaPage": {
         "altImage": "Foto de Ander",
-        "title": "Ander, campeón de Euskadi de BTT en categoría cadete 2024",
-        "subTitle": "Mendizábal logró un resultado excelente en una exigente competición",
-        "p1": "En 2024, Ander Mendizábal marcó otro hito en su carrera deportiva al proclamarse vencedor del Campeonato de Euskadi de BTT en categoría cadete. La carrera fue dura y exigente, pero la técnica, ritmo y resistencia demostrados por Mendizábal le aseguraron un resultado brillante.",
-        "p2": "El campeonato, celebrado en los accidentados paisajes de Euskadi, requirió gran disciplina y esfuerzo. Ander mantuvo un rendimiento excepcional de principio a fin, cruzando la meta como campeón en una carrera espectacular.",
-        "p3": "La victoria de Mendizábal no solo resalta su gran nivel, sino que también refleja el prometedor futuro del BTT en Euskadi. Este campeonato ha sido una gran oportunidad para reunir a aficionados, familia y amigos en torno a este deporte, y Ander recibió el reconocimiento y los aplausos de todos por su logro."
+        "title": "Ander, campeón de BTT de Euskadi en categoría cadete 2024",
+        "subTitle": "Gran resultado logrado por Mendizabal en un campeonato exigente",
+        "p1": "En 2024, Ander Mendizábal alcanzó otro hito en su carrera deportiva al ganar el Campeonato de BTT de Euskadi en categoría cadete. La carrera fue dura y exigente, pero la técnica, ritmo y resistencia demostrados por Mendizábal le aseguraron un excelente resultado.",
+        "p2": "El campeonato, que tuvo lugar en los paisajes escarpados de Euskadi, requería gran disciplina y esfuerzo. Ander mantuvo un rendimiento impecable desde el principio hasta el final y cruzó la meta como campeón tras una espectacular carrera.",
+        "p3": "La victoria de Mendizábal no solo resalta su gran nivel, sino que también refleja un futuro prometedor para el BTT en Euskadi. Este campeonato fue una excelente ocasión para que los aficionados, familiares y amigos se unieran en torno a este deporte, y Ander recibió el reconocimiento y los aplausos de todos por su logro."
     },
     "espainakoTxapeldunaPage": {
         "altImage": "Foto de Markel",
-        "title": "Markel, 13º en el Campeonato de España",
-        "subtitle": "Markel, protagonista en el 13º Campeonato de España",
-        "p1": "El pasado 12 de enero se celebró el 13º Campeonato de España, y Markel fue uno de los principales protagonistas de la competición. Compitiendo con la Selección de Euskadi, sus destacadas actuaciones y habilidades excepcionales recibieron el aplauso de aficionados y expertos.",
-        "p2": "Markel se enfrentó a duros rivales, pero gracias a su estrategia y trabajo constante, consiguió un resultado destacado. Esta victoria refuerza aún más su trayectoria y genera grandes expectativas para sus próximos desafíos.",
-        "p3": "La participación de la Selección de Euskadi aportó un valor especial al campeonato, y el éxito de Markel subraya el esfuerzo y alto nivel de todo el equipo. Esta 13ª edición del Campeonato de España ha sido una gran muestra del nivel alcanzado a lo largo de los años."
+        "title": "Markel, 13º Campeonato de España",
+        "subtitle": "Markel vencedor del 13º Campeonato de España",
+        "p1": "El pasado 12 de enero se celebró el 13º Campeonato de España, y Markel fue uno de los protagonistas principales de la competición. Compitiendo con la selección de Euskadi, sus espectaculares actuaciones y habilidades recibieron una gran ovación tanto de los aficionados como de los expertos.",
+        "p2": "Markel se enfrentó a rivales fuertes, pero con su estrategia y trabajo constante, logró un gran resultado. Esta victoria refuerza aún más su carrera y genera grandes expectativas de cara a los próximos desafíos.",
+        "p3": "La participación de la selección de Euskadi le dio un toque especial al campeonato, destacando el esfuerzo y el alto nivel de todo el equipo. La 13ª edición del Campeonato de España ha sido otro excelente ejemplo del nivel alcanzado a lo largo de los años."
     },
     "irrisarriPage": {
-        "altImage": "Foto en Irrisarri",
+        "altImage": "Foto en Irrisarriland",
         "title": "Salida a Irrisarriland",
         "subTitle": "Aventura en Irrisarriland con la escuela",
-        "p1": "Los alumnos vivieron una aventura única en Irrisarriland durante la excursión escolar del 20 de octubre de 2024. Este parque de aventuras, ubicado en Igantzi (Navarra), ofrece múltiples actividades al aire libre.",
-        "p2": "En este día especial, los participantes pudieron disfrutar de tirolinas, circuitos acrobáticos, rutas en bicicleta de montaña y pruebas de orientación. Todas estas actividades no solo fomentaron el trabajo en equipo y la valentía, sino que también se convirtieron en una experiencia inolvidable.",
-        "p3": "La visita a Irrisarriland brindó a los niños la oportunidad perfecta para combinar naturaleza, deporte y amistad, dejando muchos recuerdos inolvidables."
+        "p1": "Los estudiantes vivieron una aventura única en Irrisarriland, en una salida escolar realizada el 20 de octubre de 2024. Este parque de aventuras, situado en Igantzi, Navarra, ofrece diversas actividades al aire libre en medio de la naturaleza.",
+        "p2": "En este día tan especial, los participantes tuvieron la oportunidad de probar tirolinas, circuitos acrobáticos, recorridos en bicicleta de montaña y pruebas de orientación. Estas actividades no solo fomentaron el trabajo en equipo y el coraje, sino que también ofrecieron un espacio perfecto para la diversión.",
+        "p3": "La visita a Irrisarriland ofreció a los niños una excelente oportunidad para combinar naturaleza, deporte y amistad, dejando un montón de hermosos recuerdos."
     },
     "dromPage": {
         "title": "CAFE DROMEDARIO",
-        "sectionRoadP1": "Al dar el salto de la Escuela a la categoría Cadete, las cosas comienzan a tomarse más en serio. Deben compaginar la competición con los estudios, siendo uno de los principales objetivos educarse en la competición y mejorar año tras año. Eso sí, al igual que en la escuela, disfrutar de la bicicleta y del proceso de aprendizaje sigue siendo fundamental, fomentando la motivación para que el ciclismo sea un deporte para toda la vida.",
-        "sectionRoadP2": "Los jóvenes participan en distintas modalidades: en el calendario de verano compiten en carretera y BTT, mientras que en invierno lo hacen en pista y ciclocross.",
-        "sectionRoadP3": "En carretera, nuestros jóvenes participan en los campeonatos más importantes de Bizkaia y Euskadi, además de competir en pruebas como Txuma, la Vuelta a Bizkaia, Gipuzkoa y Cantabria.",
+        "sectionRoadP1": "Desde la escuela hasta la categoría cadete, todo se pone más serio. Los jóvenes deben combinar la competición con los estudios, siendo uno de los objetivos principales formarlos como competidores, mientras dan un paso hacia adelante cada año. Sin embargo, como en la escuela, el disfrute del ciclismo, el trabajo en equipo y la formación continua son esenciales, y la motivación para hacer del ciclismo un deporte para toda la vida es clave.",
+        "sectionRoadP2": "Los jóvenes participan en diversas modalidades, compitiendo en carretera y mountain bike en verano, y en pista y ciclocross en invierno.",
+        "sectionRoadP3": "En carretera, nuestros jóvenes compiten en los campeonatos más importantes de Bizkaia y Euskal Herria, además de participar en vueltas como la de Txuma, Bizkaia, Gipuzkoa y Cantabria.",
         "subtitleRunnersRoad": "CARRETERA",
         "componentRunner1Title": "JUNIOR",
         "componentRunner2Title": "CADETE",
         "sectionMtbTitle": "MTB",
-        "sectionMtbP1": "En 2022, la Escuela de Ciclismo de Durangaldea hizo un gran esfuerzo para crear y fortalecer un equipo de Mountain Bike, ofreciendo a los jóvenes otra opción y ampliando las oportunidades deportivas.",
-        "sectionMtbP2": "Dentro del calendario, compiten en pruebas como las Green Series (evento UCI C2 celebrado en Bizkaia), el Superprestigio, y los Campeonatos de Bizkaia y Euskadi.",
-        "sectionPistaP1": "En el calendario de invierno, el equipo también participa en pista en las categorías cadete y junior. Aprovechamos el velódromo de Berriz para entrenar durante la semana y competimos en las pruebas organizadas en Anoeta, donde los jóvenes desarrollan diversas habilidades.",
-        "sectionCXP1": "También seguimos el calendario de ciclocross en invierno, una modalidad en la que la técnica es clave. Con el objetivo de mejorar en este aspecto, organizamos entrenamientos específicos y participamos en las pruebas más importantes del País Vasco, así como en los rankings de ETXF y FEBICI."
+        "sectionMtbP1": "En 2022, las Escuelas de Ciclismo de Durangaldea hicieron un esfuerzo para crear y fomentar un equipo de Mountain Bike, con el objetivo de fortalecer esta modalidad y ofrecer a los jóvenes una opción adicional, creando más oportunidades.",
+        "sectionMtbP2": "Dentro del calendario, los jóvenes compiten en eventos como las Green Series (de nivel UCI C2 y celebradas en Bizkaia), el Superprestigio, y los campeonatos de Bizkaia y Euskadi.",
+        "sectionPistaP1": "En invierno, el equipo también compite en pista en categorías cadete y junior. Aprovechando que tenemos el velódromo de Berriz en nuestra comarca, realizamos entrenamientos semanales, además de participar en competiciones organizadas en Anoeta. Aquí, los jóvenes desarrollan diversas habilidades.",
+        "sectionCXP1": "En invierno también seguimos el calendario de ciclocross. Esta modalidad, que es muy técnica, tiene como objetivo claro mejorar esas habilidades mediante entrenamientos específicos. Participamos en las pruebas más importantes de Euskadi, en los rankings de ETXF y FEBICI."
+    },
+    "eskolaPage": {
+        "title": "ESCUELA",
+        "section1P1": "El objetivo principal de nuestro programa es formar a las personas a través del deporte y la diversión, enseñando valores y habilidades a través del ciclismo.",
+        "section1P2": "Cuando los niños pasan a la categoría infantil, también existen otros objetivos, como la preparación y tecnificación para la categoría cadete.",
+        "section2SubTitle": "PLANIFICACIÓN",
+        "elementTitle": "¿PARA QUIÉN?",
+        "element1Text": "Niños de entre 6 y 14 años participan en la escuela. Es ideal para aquellos que disfrutan de la bicicleta y les gusta ensuciarse en los charcos del camino.",
+        "elementTitle2": "PLANIFICACIÓN",
+        "element2Text": "El objetivo en la escuela es educar a los niños, basándonos en los grandes valores, y ofrecer formación en el uso y técnica de la bicicleta.",
+        "elementTitle3": "FIN DE SEMANA",
+        "element3Text": "Cada semana realizamos 2 entrenamientos (3 durante el verano). Además, organizamos excursiones, salidas especiales, gymkanas, participamos en el calendario de la Federación de Bizkaia y más actividades."
     },
     "formPage": {
         "title": "INSCRÍBETE",
-        "P": "Para inscribirte, completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible. ¡Gracias! Si tienes alguna duda, puedes contactarnos por teléfono:",
+        "P": "Para inscribirte, completa el formulario de abajo y nos pondremos en contacto contigo lo antes posible. ¡Gracias! Si tienes alguna duda, puedes llamarnos por teléfono:",
         "name": "Nombre y apellidos",
-        "namePlaceholder": "Nombre del niño/a",
+        "namePlaceholder": "Nombre del niño",
         "birth": "Fecha de nacimiento",
         "direction": "Dirección",
         "directionPlaceholder": "Tu dirección",
-        "city": "Ciudad",
-        "cityPlaceholder": "Tu ciudad",
+        "city": "Localidad",
+        "cityPlaceholder": "Tu localidad",
         "school": "Centro educativo",
         "schoolPlaceholder": "Nombre del centro educativo",
-        "parents": "Nombre y apellidos del padre, madre o tutor",
+        "parents": "Nombre y apellidos de padre/madre o tutor",
+        "parentsPlaceholder": "Nombre y apellidos de los padres o tutor",
         "phone": "Número de teléfono",
         "mail": "Correo electrónico",
+        "mailPlaceholder": "Tu.email@example.com",
         "message": "MENSAJE",
+        "messagePlaceholder": "Escribe tu mensaje aquí",
         "button": "ENVIAR"
     },
     "contact": {
         "title": "CONTACTO",
         "title2": "¡Estamos aquí para ayudarte!",
-        "p1": "Puedes contactarnos a través de los siguientes medios:",
+        "p1": "Puedes ponerte en contacto con nosotros a través de los siguientes medios:",
         "address": "Dirección",
         "phone": "Teléfono",
         "location": "Ubicación"
@@ -91,7 +106,9 @@
     "menuComponent": {
         "home": "INICIO",
         "eskola": "ESCUELA",
-        "form": "INSCRIBIRSE",
-        "contact": "CONTACTO"
+        "form": "INSCRÍBETE",
+        "contact": "CONTACTO",
+        "label": "eus",
+        "localeSwitcher": "es"
     }
 }
