@@ -1,0 +1,63 @@
+{
+    "homePage": {
+        "title": "ESCUELA DE CICLISMO FUNDADA EN 2014",
+        "subtitle": "Escuela creada en 2014 como resultado de la colaboración entre los clubes de Abadiño, Elorrio y Dúrcal",
+        "title2": "DESEOS DE CREAR UN PROYECTO SÓLIDO",
+        "subtitle2": "La escuela nació en el seno de tres clubes sólidos, optimizando recursos y construyendo un futuro sólido",
+        "title3": "OBJETIVO",
+        "subtitle3": "Formar a los jóvenes en el deporte del ciclismo, disfrutando del proceso de aprendizaje y preparándolos para competir en diferentes modalidades de ciclismo",
+        "title4": "VALORES",
+        "subtitle4": "Trabajo en equipo, esfuerzo, compromiso y amistad como base, juntos logramos nuestros objetivos y ganamos fuerza en el camino.",
+        "componentSubtitle": "NOTICIAS"
+    },
+    "noticeComponent": {
+        "noticeTitle": "Markel, 13º Campeonato de España",
+        "altImage": "Foto de Markel en un descenso",
+        "category": "CADETE",
+        "date": "12-01-2025",
+        "noticeTitle2": "Salida a Irrisarriland",
+        "altImage2": "Foto en Irrisarriland",
+        "category2": "ESCOLA",
+        "date2": "20-10-2024",
+        "noticeTitle3": "Ander, campeón de BTT de Bizkaia",
+        "altImage3": "Foto de Ander",
+        "category3": "CADETE",
+        "date3": "26-05-2024"
+    },
+    "bttTxapeldunaPage": {
+        "altImage": "Foto de Ander",
+        "title": "Ander, campeón de BTT de Euskadi en categoría cadete 2024",
+        "subtitle": "Un gran logro de Mendizabal en una competición exigente",
+        "p1": "En 2024, Ander Mendizábal alcanzó otro hito en su carrera al ganar el Campeonato de BTT de Euskadi en categoría cadete. La carrera fue muy exigente, pero la técnica, ritmo y resistencia mostrados por Mendizábal le garantizaron un resultado excelente.",
+        "p2": "La competición, que se desarrolló en los paisajes montañosos de Euskadi, requería gran disciplina y esfuerzo. Ander mantuvo un rendimiento excepcional desde el inicio hasta el final, y cruzó la meta como campeón en una carrera espectacular.",
+        "p3": "La victoria de Mendizábal no solo resalta su nivel sobresaliente, sino que también refleja el futuro prometedor del deporte BTT en Euskadi. Este campeonato fue una excelente oportunidad para reunir a seguidores, familia y amigos en torno a este deporte, y Ander recibió el respeto y los aplausos de todos por su logro."
+    },
+    "espainakoTxapeldunaPage": {
+        "altImage": "Foto de Markel",
+        "title": "Markel, 13º Campeonato de España",
+        "subtitle": "Markel ganador en el 13º Campeonato de España",
+        "p1": "El pasado 12 de enero, se celebró el 13º Campeonato de España, y Markel fue uno de los protagonistas principales de la competición. Compitiendo con la Selección de Euskadi, sus espectaculares actuaciones y habilidades excepcionales recibieron una ovación de seguidores y expertos.",
+        "p2": "Markel se enfrentó a competidores muy fuertes, pero gracias a su estrategia y trabajo continuo, logró un resultado destacado. Esta victoria refuerza aún más su carrera y genera grandes expectativas para los próximos retos.",
+        "p3": "La participación de la Selección de Euskadi le dio un toque especial al campeonato, y el éxito de Markel resalta el esfuerzo del equipo y el alto nivel alcanzado. La 13ª edición del Campeonato de España ha sido una gran muestra del nivel que ha alcanzado a lo largo de los años."
+    },
+    "irrisarriPage": {
+        "altImage": "Foto en Irrisarriland",
+        "title": "Salida a Irrisarriland",
+        "subtitle": "Aventura en Irrisarriland con la escuela",
+        "p1": "Los estudiantes vivieron una aventura única en Irrisarriland durante la salida escolar realizada el 20 de octubre de 2024. Este parque de aventuras, situado en Igantzi, Navarra, está rodeado de naturaleza y ofrece una variedad de actividades al aire libre.",
+        "p2": "En este día tan especial, los participantes tuvieron la oportunidad de probar tirolinas, circuitos acrobáticos, rutas en bicicleta de montaña y pruebas de orientación. Todas estas actividades no solo fomentaron el trabajo en equipo y la valentía, sino que también crearon un espacio ideal para la diversión.",
+        "p3": "La visita a Irrisarriland ofreció una excelente oportunidad para que los niños combinaran naturaleza, deporte y amistad, y la salida dejó muchos recuerdos agradables."
+    },
+    "dromPage": {
+        "title": "CAFE DROMEDARIO",
+        "sectionRoadP1": "Desde la escuela, los jóvenes dan el salto a la categoría cadete, donde las cosas empiezan a ponerse serias. Deben compaginar la competición con los estudios, siendo uno de los objetivos principales formarse en la competición, avanzando año tras año. Sin embargo, al igual que en las escuelas, disfrutar del ciclismo y del proceso educativo entre compañeros es clave, y fomentar la motivación para que el ciclismo sea un deporte para toda la vida también es esencial.",
+        "sectionRoadP2": "Los jóvenes participan en diversas modalidades, en verano en carretera y mountain bike, y en invierno en pista y ciclocross.",
+        "sectionRoadP3": "En carretera, nuestros jóvenes participan en las competiciones más importantes de Bizkaia y Euskadi, además de competir en la Vuelta a Bizkaia, Gipuzkoa y Cantabria.",
+        "subtitleRunnersRoad": "CARRETERA",
+        "componentRunner1Title": "JUNIOR",
+        "componentRunner2Title": "CADETE",
+        "sectionMtbTitle": "MTB",
+        "sectionMtbP1": "En 2022, las Escuelas de Ciclismo de Durangaldea hicieron un esfuerzo por crear y fortalecer un equipo de Mountain Bike, con el objetivo de reforzar esta modalidad y ofrecer a los jóvenes una alternativa más amplia.",
+        "sectionMtbP2": "Dentro del calendario, compiten en las Green Series (de categoría UCI C2, celebradas en Bizkaia), Superprestigio, y los Campeonatos de Bizkaia y Euskadi."
+    }
+}

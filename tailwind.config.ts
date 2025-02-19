@@ -14,6 +14,7 @@ const config: Config = {
         customblue:'#3984C8',
         customDarkBlue:'#21486C',
         customDarkerBlue:'#18344e',
+        customGray:'#BCC3CA'
       },
       fontFamily: {
         fredoka: ['Fredoka', ...fontFamily.sans],
@@ -32,7 +33,7 @@ const config: Config = {
         130: '35.5rem',
       },
       width: {
-
+        50: '12.5rem',
         100: '27rem',
         105: '29rem',
         112: '28rem',

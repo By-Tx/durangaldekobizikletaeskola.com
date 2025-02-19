@@ -1,0 +1,66 @@
+{
+    "homePage": {
+        "title": "2014AN SORTUTAKO TXIRRINDULARITZA ESKOL",
+        "subtitle": "2014an sortu zuten eskola, abadiño, Elorrio eta Dukrangoko elkarteen elkarlanaren emaitza",
+        "title2": "PROIEKTU SENDO BAT SORTZEKO GOGOA",
+        "subtitle2": "Eskola hiru elkarte sendoen basoan sortu zen, baliabideak optimizatuz eta etorkizun sendoa eraikitzeko",
+        "title3": "HELBURUA",
+        "subtitle3": "Txirrindularen kirolean gazteei trebatu, hezitze prozesuaz disfrutatuz eta txirrindularitzaren modalitate ezberdinetan lehiatzeko prestatuz",
+        "title4": "BALOREAK",
+        "subtitle4": "Talde lana, esfortzua, konpromesua eta adiskiderasuna oinarri hartuta, elkarrekin helburuak lortzen ditugu eta bidean indarra hartzen dugu.",
+        "componentSubtitle": "ALBISTEAK"
+    },
+    "noticeComponent": {
+        "noticeTitle": "Markel, 13º Espainiako Txapelketan",
+        "altImage": "Markelen argazkia descenso baten",
+        "category": "KADETE",
+        "date": "12-01-2025",
+        "noticeTitle2": "Irrisarriland-era irteera",
+        "altImage2": "argazki bat Irrisarriland-en",
+        "category2": "ESKOLA",
+        "date2": " 20-10-2024",
+        "noticeTitle3": "Ander, bizkaiko btt-ko txapelduna",
+        "altImage3": "Anderren argazkia",
+        "category3": "KADETE",
+        "date3": " 26-05-2024"
+    },
+    "bttTxapeldunaPage": {
+        "altImage": "Anderren argazkia",
+        "title": "Ander, kadete mailan BTT-ko Euskadiko Txapelduna 2024",
+        "subTitle": "Emaitza bikaina lortu du Mendizabalek txapelketa zorrotz batean",
+        "p1": "2024an, Ander Mendizábalek bere kirol ibilbideko beste mugarri bat ezarri zuen kadete mailako BTT Euskadiko Txapelketan garaile izanik. Lasterketa zorrotz eta gogorra izan zen, baina Mendizábalek erakutsitako teknika, erritmo eta erresistentziak emaitza bikaina bermatu zioten.",
+        "p2": "Txapelketa, Euskadiko paisaia malkartsuetan garatu zena, diziplina eta ahalegin handia eskatzen zuen. Anderrek hasieratik bukaerara errendimendu paregabea mantendu zuen, eta lasterketa ikusgarri batekin helmugaratu zen txapeldun modura.",
+        "p3": "Mendizabalen garaipenak ez du soilik bere maila bikaina nabarmentzen, baita Euskadiko BTT kirolaren etorkizun oparoa islatzen du ere. Txapelketa hau aitzakia bikaina izan da zaleak, familia eta lagunak kirol honen inguruan batzeko, eta Anderrek guztien begirunea eta txaloak jaso zituen bere lorpenagatik."
+    },
+    "espainakoTxapeldunaPage": {
+        "altImage": "Markelen argazkia",
+        "title": "Markel, 13º Espainiako Txapelketan",
+        "subtitle": "Markel garaile 13. Espainiako Txapelketan",
+        "p1": "Joan den urtarrilaren 12an, 13. Espainiako Txapelketa ospatu zen, eta Markel lehiaketa honetako protagonista nagusietako bat izan zen. Euskadiko Selekzioarekin lehiatuz, bere saio ikusgarriak eta erakutsitako trebetasun apartak zaleen eta adituen txalo zaparrada jaso zuten.",
+        "p2": "Markelek aurkari sendoak izan zituen aurrean, baina bere estrategiaren eta etengabeko lanaren bidez, emaitza nabarmena lortu zuen. Garaipenak are gehiago sendotzen du bere ibilbidea, eta hurrengo erronkei begira itxaropen handiak piztu ditu.",
+        "p3": "Euskadiko Selekzioaren parte-hartzeak txapelketari ukitu berezia eman zion, eta Markelen arrakasta, talde osoaren ahalegina eta maila altua azpimarratzen ditu. Espainiako Txapelketaren 13. edizio honek urteetan zehar hartutako mailaren beste erakusgarri bikain bat izan da."
+    },
+    "irrisarriPage": {
+        "altImage": "irrisarrin argazkia",
+        "title": " Irrisarriland-era irteera",
+        "subTitle": " Abentura Irrisarriland-en eskolagaz",
+        "p1": "Ikasleek abentura paregabe bat bizi izan zuten Irrisarrilanden, 2024ko urriaren 20an egindako eskola irteeran. Naturaren erdian kokatutako abentura-parke hau, Nafarroako Igantzin dago, eta jarduera anitz eskaintzen ditu aire zabalean.",
+        "p2": "Egun berezi honetan, parte-hartzaileek tirolinak, zirkuitu akrobatikoak, mendiko bizikleta-ibilbideak eta orientazio-probak probatzeko aukera izan zuten. Jarduera horiek guztiak, talde-lana eta ausardia sustatzeaz gain, gozamenerako espazio ezin hobea bihurtu ziren.",
+        "p3": "Irrisarrilandera egindako bisitak aukera paregabea eskaini zien haurrei natura, kirola eta laguntasuna uztartzeko, eta irteerak oroitzapen eder asko utzi ditu."
+    },
+    "dromPage": {
+        "title": "CAFE DROMEDARIO",
+        "sectionRoadP1": "Eskolatik Kadete mailara egiten dute salto eta gauzak serio jartzen hasten dira. Konpetizioa ikasketekin batera uztartu behar dituzte helburu nagusienetariko bat konpetizioan hezitzea izanez eta urtetik urtera aurrera pausu bat emonez. Hori bai, eskoletan moduan, talden eta lagunen arteanbizikletaz eta heziketa prozesuaz disfrutatzea da, eta bizikleta bizitza osorako kirol bat izan daiten motibazioa sustatzea da.",
+        "sectionRoadP2":" Gazteek modalitate desberdinetan parte hartzen dute, udako egutegian errepidean eta mendi bizikletan eta neguko egutegian pista eta ziklokrosean.",
+        "sectionRoadP3": "  Errepidean, Bizkaiko zein Euskal Herriko txapelketa garrantzitsuenetan parte hartzen dute gure gazteek, horietatik at, Txuma, Bizkaiko, Gipuzkoako eta zein Kantabriako Itzulia ere lehiatzen dute.",
+        "subtitleRunnersRoad": "ERREPIDEA",
+        "componentRunner1Title": "JUNIOR",
+        "componentRunner2Title": "KADETE",
+        "sectionMtbTitle": "MTB",
+        "sectionMtbP1": " 2022. urtFean Durangaldeko Bizikleta Eskolak Mendi Bizikletako talde bat sortzeko eta bultzatzeko esfortzua egin zuen modalitate hau indartzeko eta gazteei beste aukera bat emateko, aukera zabalago bat sortuz.",
+        "sectionMtbP2": "  Egutegiaren barruan, Green Seriesak (UCI C2 mailan dagoena eta Bizkaian ospatzen dena), Superprestigio, Bizkaiko eta Euskadiko Txapelketak lehiatzen dituzte." 
+
+
+
+    }
+}
