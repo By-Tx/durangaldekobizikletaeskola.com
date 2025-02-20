@@ -1,8 +1,7 @@
 
-
+import { redirect } from '@/i18n/routing';
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 import LogInForm from "../components/auth/logInForm";
 export default async function SignIn() {
 
@@ -14,7 +13,7 @@ export default async function SignIn() {
 
   if (session) {
 
-    redirect("/dashboard");
+    redirect({ href: "/dashboard", locale: "en" });
   }
 
 

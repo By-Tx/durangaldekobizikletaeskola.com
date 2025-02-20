@@ -8,7 +8,7 @@ export const auth = betterAuth({
     
     trustedOrigins: [
         'https://durango.txuli.com',
-        'http://localhost:4224',
+        'http://localhost:4225',
         
     ],
     database: createPool({
