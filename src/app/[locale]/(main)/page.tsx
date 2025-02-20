@@ -7,7 +7,7 @@ import SubTitle from "./components/Titles/SubTitle";
 export default function Home() {
   const t = useTranslations("homePage");
 const images = [
-  { url: 'https://photos.txuli.com/duranguesa/Duranguesa_3.jpg' ,
+  { url: 'https://photos.txuli.com/duranguesa/Duranguesa_3escale.webp' ,
     title: t("title"),
     subtitle: t("subtitle"),
     higlightSubtitle: undefined
@@ -23,7 +23,7 @@ const images = [
     subtitle: t("subtitle3"),
     higlightSubtitle: undefined
   },
-  { url: 'https://photos.txuli.com/duranguesa/portada1.jpg' 
+  { url: 'https://photos.txuli.com/duranguesa/portada1escaled.webp' 
     ,
     title: t("title4"),
     subtitle: t("subtitle4"),
