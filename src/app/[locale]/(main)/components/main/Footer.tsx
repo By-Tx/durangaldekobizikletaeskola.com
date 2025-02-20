@@ -16,7 +16,7 @@ export default function Footer() {
                 {/* Información y Mapa */}
                 <div className="bg-customblue p-4">
                     {/* Información y Mapa */}
-                    <div className="flex flex-col lg:grid lg:grid-cols-2 h-auto lg:h-56">
+                    <div className="flex flex-col lg:grid lg:grid-cols-2 h-112 lg:h-56">
                         {/* Información de Contacto + Redes Sociales */}
                         <div className="flex flex-col justify-center items-center lg:items-end text-xl font-fredoka my-2 lg:pr-6">
                             <div className="flex items-center my-2 text-center lg:text-end">

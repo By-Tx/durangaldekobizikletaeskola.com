@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useTransition } from 'react';
+import {useTransition } from 'react';
 import { useParams } from 'next/navigation';
 import { usePathname, useRouter } from '@/i18n/routing';
 
