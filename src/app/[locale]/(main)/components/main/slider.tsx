@@ -41,7 +41,7 @@ const Slideshow: React.FC<SlideshowProps> = ({ images = [] }) => {
         {images.map((slideImage, index) => (
           <div key={index}>
             <div style={{ ...divStyle, backgroundImage: `url(${slideImage.url})` }}>
-              <div style={captionStyle} className='left-10 bottom-10 md:bottom-24'>
+              <div style={captionStyle} className='left-5 md:left-10 bottom-10 md:bottom-24'>
                 <h2 className="text-4xl font-semibold text-left w-96  font-fredoka">{slideImage.title}</h2>
                 <p className="text-lg  w-96 font-fredoka font-light">{slideImage.subtitle}  <br />
                 {slideImage.higlightSubtitle}
