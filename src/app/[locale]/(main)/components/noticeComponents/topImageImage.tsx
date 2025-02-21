@@ -5,7 +5,7 @@ import Bar from './bar';
 export default function TopImage(props: { image: string, alt: string|undefined, title: string, subTitle: string }) {
     return (
         <>
-            <div className="mt-24 h-112 relative">
+            <div className=" h-112 relative">
                 <Image src={props.image} alt=""
                     width={1600}
                     height={600}

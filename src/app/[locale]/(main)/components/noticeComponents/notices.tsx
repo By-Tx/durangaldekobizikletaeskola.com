@@ -11,7 +11,7 @@ export default function News() {
         href="/espainakoTxapelketa"
         className='hove:cursor-pointer'
       >
-        <div className='group relative h-96 w-96 hover:w-105  hover:h-100 transition-all duration-300 ease-in-out  mb-32 mx-auto'>
+        <div className='group relative h-96 w-96 hover:w-100  lg:hover:h-100 transition-all duration-300 ease-in-out  mb-32 mx-auto'>
           <Image
             src={'https://photos.txuli.com/duranguesa/notices/noticiasSeleccion.png'}
             alt={t("altImage")}
@@ -35,7 +35,7 @@ export default function News() {
         href="/irrisarriNotice"
         className='hover:cursor-pointer'
       >
-        <div className='group relative h-96 w-96 hover:w-105  hover:h-100 transition-all duration-300 ease-in-out mb-32 mx-auto'>
+        <div className='group relative h-96 w-96 hover:w-100  lg:hover:h-100 transition-all duration-300 ease-in-out mb-32 mx-auto'>
           <Image
             src={'https://photos.txuli.com/duranguesa/notices/irrisarri.JPG'}
             alt={t("altImage2")}
@@ -59,7 +59,7 @@ export default function News() {
         href="/bttTxapelduna"
         className='hove:cursor-pointer md:col-span-2'
       >
-        <div className='group relative h-96 w-96 hover:w-105  hover:h-100 transition-all duration-300 ease-in-out  sm:mb-32 l:mb-0 mx-auto'>
+        <div className='group relative h-96 w-96  hover:w-100  lg:hover:h-100 transition-all duration-300 ease-in-out  sm:mb-32 l:mb-0 mx-auto'>
           <Image
             src={'https://photos.txuli.com/duranguesa/notices/ander.JPG'}
             alt={t("altImage3")}

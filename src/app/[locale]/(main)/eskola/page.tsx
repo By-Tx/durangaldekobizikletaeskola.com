@@ -3,7 +3,7 @@ import Slides from "../components/eskola/slide";
 import { useTranslations } from "next-intl";
 import SubTitle from "../components/Titles/SubTitle";
 import Planning from "../components/eskola/planning";
-
+import Line from "@/app/[locale]/(main)/components/main/line0m";
 
 export default function Page() {
     const t = useTranslations("eskolaPage");
@@ -42,6 +42,7 @@ export default function Page() {
                 title={t("title")}
 
             />
+            <Line />
             <section className="my-20">
                 <p className="text-justify font-fredoka text-3xl px-5 font-light">
                     {t("section1P1")}

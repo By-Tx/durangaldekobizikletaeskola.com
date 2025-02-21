@@ -27,7 +27,7 @@ interface SlideshowProps {
 const Slideshow: React.FC<SlideshowProps> = ({ images = [] }) => {
   return (
     <div className="slide-container w-full h-auto mx-auto">
-      <Slide duration={4000} transitionDuration={1000} infinite indicators={false} arrows={false} autoplay>
+      <Slide duration={6000} transitionDuration={1000} infinite indicators={false} arrows={false} autoplay>
         {images.map((slideImage, index) => (
           <div key={index} style={divStyle} className="relative">
             {/* Imagen con Next.js */}

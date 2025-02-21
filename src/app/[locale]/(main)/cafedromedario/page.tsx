@@ -2,11 +2,12 @@
 import { useTranslations } from "next-intl";
 import "./style.css"
 import SubTitle from "@/app/[locale]/(main)/components/Titles/SubTitle";
-
+import Line from "@/app/[locale]/(main)/components/main/line0m";
 import Slideshow from "../components/eskola/slide";
 import Runner from "../components/drom/Runner";
 import Technicians from "../components/drom/Technicians";
-
+import P from "@/app/[locale]/(main)/components/main/P";
+import Section from "@/app/[locale]/(main)/components/main/Section";
 
 export default function CafeDromedario() {
     const t = useTranslations("dromPage");
@@ -59,7 +60,7 @@ export default function CafeDromedario() {
             born: '10/11/2005',
             goals: 'Bizkaiko txapelketa irabazi'
         },
-        
+
     ];
     const runnercadete = [
         {
@@ -135,7 +136,7 @@ export default function CafeDromedario() {
             born: '10/11/2005',
             goals: 'Bizkaiko txapelketa irabazi'
         },
-        
+
     ];
 
     const runnerMtbJunior = [
@@ -183,40 +184,41 @@ export default function CafeDromedario() {
         {
             image: 'https://photos.txuli.com/duranguesa/staff/AngelLitoBilbao.jpg',
             name: 'Lito',
-            
+
         },
         {
             image: 'https://photos.txuli.com/duranguesa/staff/IbonAchotegui.jpg',
             name: 'Ibon Achotegui',
-            
+
 
         },
         {
             image: 'https://photos.txuli.com/duranguesa/staff/XabierArizmendiarrieta.jpg',
             name: 'Xabier Arizmendiarrieta',
-            
+
 
         },
     ]
     return (
         <div className="">
-            
+
             <Slideshow
                 images={images}
                 title={t("title")}
             />
-            
-            <section className="mt-6">
-                <p className="text-justify font-fredoka text-2xl px-8 font-light mb-3">
-                {t("sectionRoadP1")}
-                </p>
-                <p className="text-justify font-fredoka text-2xl px-8 font-light mb-3">
-                {t("sectionRoadP2")}
-                </p>
-                <p className="text-justify font-fredoka text-2xl px-8 font-light mb-3">
-                {t("sectionRoadP3")}
-                </p>
-            </section>
+            <Line/>
+
+            <Section >
+                <P>
+                    {t("sectionRoadP1")}
+                </P>
+                <P>
+                    {t("sectionRoadP2")}
+                </P>
+                <P>
+                    {t("sectionRoadP3")}
+                </P>
+            </Section>
             <SubTitle subTitle={t("subtitleRunnersRoad")} />
 
 
@@ -226,34 +228,34 @@ export default function CafeDromedario() {
 
 
 
-            <section >
+            <Section >
                 <SubTitle subTitle={t("sectionMtbTitle")} />
-                <p className="text-justify font-fredoka text-2xl px-8 font-light mb-3">
-                {t("sectionMtbP1")}
-                </p>
-                <p className="text-justify font-fredoka text-2xl px-8 font-light mt-3">
-                {t("sectionMtbP2")}
-                </p>
+                <P>
+                    {t("sectionMtbP1")}
+                </P>
+                <P>
+                    {t("sectionMtbP2")}
+                </P>
                 <Runner runner={runnerMtbJunior} title={t("componentRunner1Title")} />
                 <Runner runner={runnerMtbKadete} title={t("componentRunner2Title")} />
-                
 
-            </section>
 
-            <section >
+            </Section>
+
+            <Section>
                 <SubTitle subTitle="PISTA" />
-                <p className="text-justify font-fredoka text-2xl px-8 font-light mb-3">
+                <P>
                     {t("sectionPistaP1")}
-                </p>
+                </P>
 
-            </section>
-            <section >
+            </Section>
+            <Section >
                 <SubTitle subTitle="CX" />
-                <p className="text-justify font-fredoka text-2xl px-8 font-light mb-3">
+                <P>
                     {t("sectionCXP1")}
-                </p>
-            </section>
-            
+                </P>
+            </Section>
+
 
 
         </div>

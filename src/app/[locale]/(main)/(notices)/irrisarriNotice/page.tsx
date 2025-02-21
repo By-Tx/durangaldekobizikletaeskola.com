@@ -6,7 +6,7 @@ export default function Page() {
     return (
         
         <>
-         <TopImage image = "https://photos.txuli.com/duranguesa/notices/irrisarri.JPG" alt={t("altImage")} title={t("title")} subTitle={t("subtitle")}/>
+         <TopImage image = "https://photos.txuli.com/duranguesa/notices/irrisarri.JPG" alt={t("altImage")} title={t("title")} subTitle={t("subTitle")}/>
                 <NoticeContent 
                 p1={t("p1")}
                 p2={t("p2")}

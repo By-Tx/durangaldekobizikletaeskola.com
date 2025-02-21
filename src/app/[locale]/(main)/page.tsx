@@ -10,7 +10,7 @@ const images = [
   { url: 'https://photos.txuli.com/duranguesa/Duranguesa_3escale.webp' ,
     title: t("title"),
     subtitle: t("subtitle"),
-    higlightSubtitle: undefined
+    higlightSubtitle: undefined,
   },
   { url: 'https://photos.txuli.com/duranguesa/foto3.jpg',
     title: t("title2"),
