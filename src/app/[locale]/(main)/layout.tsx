@@ -33,9 +33,12 @@ export default async function RootLayout({
 }>) {
   
   const messages = await getMessages();
+  const locale = 'eus'; // Define your locale here
+  const defaultLocale = 'eus'; // Define your default locale here
   return (
-    <NextIntlClientProvider messages={messages}>
-    <html lang="es">
+    <NextIntlClientProvider messages={messages}
+    locale={locale || defaultLocale || 'eus'}>
+    <html lang="eus">
       <head>
          <link rel="shortcut icon" href="/media/logo.png" /> 
       </head>

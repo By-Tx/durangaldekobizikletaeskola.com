@@ -9,8 +9,7 @@
     "lint": "next lint",
     "pm2:start": "pm2 start \"npm run start\" --name durangobzk",
     "pm2:rs": "pm2 restart durangobzk --update-env",
-    "pm2:stop": "pm2 delete durangobzk",
-    "postbuild": "next-sitemap"
+    "pm2:stop": "pm2 delete durangobzk"
   },
   "dependencies": {
     "@better-auth/cli": "^1.1.10",
