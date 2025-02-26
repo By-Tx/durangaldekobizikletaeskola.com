@@ -1,8 +1,8 @@
 
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import React, { useEffect, useState } from 'react';
 
-import { StaticImageData } from 'next/image';
+import { StaticImageData } from "next/legacy/image";
 export default function TechnicianImages(props: { image1: StaticImageData, image2: StaticImageData | undefined, image3: StaticImageData }) {
     const [windowWidth, setWindowWidth] = useState<number | null>(null);
     useEffect(() => {

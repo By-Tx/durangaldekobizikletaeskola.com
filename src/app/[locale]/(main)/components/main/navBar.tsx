@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/routing';
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import LocaleSwitcherSelect from './LocaleSwitcherSelect';
 import imageLogo from "@/app/media/DURANGOALDEKO.png";
 import logoMenu from "@/app/media/menu/logoMenu.svg";

@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image"
+import Image from "next/legacy/image"
 import React, { useEffect, useState } from 'react';
 import img1 from "../../media/runners/Duranguesa_91.jpg"
 import img2 from "../../media/runners/Duranguesa_98.jpg"

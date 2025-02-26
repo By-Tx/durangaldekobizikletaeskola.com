@@ -1,6 +1,6 @@
 
 import logos from "@/app/media/linkLogo.png";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import facebook from "@/app/media/RSS/facebook.svg";
 import instagram from "@/app/media/RSS/instagram.svg";
 import twitter from "@/app/media/RSS/twitter.svg";

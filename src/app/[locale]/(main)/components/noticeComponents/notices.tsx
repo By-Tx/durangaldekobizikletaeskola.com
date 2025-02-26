@@ -1,5 +1,5 @@
 
-import Image from 'next/image';
+import Image from "next/image";
 import {Link} from '@/i18n/routing';
 import { useTranslations } from "use-intl";
 export default function News() {
@@ -35,7 +35,7 @@ export default function News() {
         href="/irrisarriNotice"
         className='hover:cursor-pointer'
       >
-        <div className='group relative h-96 w-96 hover:w-100  lg:hover:h-100 transition-all duration-300 ease-in-out mb-32 mx-auto'>
+        <div className='group relative h-96 w-96 hover:w-100  lg:hover:h-100 transition-all duration-300 ease-in-out  mb-32 mx-auto'>
           <Image
             src={'https://photos.txuli.com/duranguesa/notices/irrisarri.JPG'}
             alt={t("altImage2")}

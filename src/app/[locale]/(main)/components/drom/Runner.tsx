@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { FC } from 'react';
 import calendario from "@/app/media/runner/calendario.png";
 import medalla from "@/app/media/runner/medalla.png";
@@ -30,7 +30,7 @@ const Runner: FC<RunnerProps> = ({ runner = [],title }) => {
             <div className="flex w-48 flex-col relative group" key={index}>
                 
                 <div className='h-72'>
-                    <Image src={image} alt={name} width={200} height={200} className="rounded-t-xl" />
+                    <Image src={image} alt={name} width={192} height={288} className="rounded-t-xl" />
                 </div>
 
                

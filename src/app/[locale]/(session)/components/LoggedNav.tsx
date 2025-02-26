@@ -1,5 +1,5 @@
 "use client"
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Logout from "@/app/[locale]/(main)/components/auth/logOut";
 import ImgMenu from '../media/home.svg'
 import { useEffect, useState } from 'react';

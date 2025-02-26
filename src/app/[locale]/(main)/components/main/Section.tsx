@@ -7,7 +7,7 @@ interface SectionProps {
 
 const Section: React.FC<SectionProps> = ({ children, className = "" }) => {
   return (
-    <section className={`bg-black ${className}`}>
+    <section className={`my-20 ${className}`}>
       {children}
     </section>
   );

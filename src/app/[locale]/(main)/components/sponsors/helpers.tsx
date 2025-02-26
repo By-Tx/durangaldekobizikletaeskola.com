@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 
 const Helpers = (props: { Link: string | undefined; img: string | undefined; style: string | undefined}) => {
     return (

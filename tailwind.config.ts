@@ -25,6 +25,7 @@ const config: Config = {
       height: {
         86: '21.5rem',
         21: '5.30rem',
+        29: '7.45rem',
         65: '17.438rem',
         100: '27rem',
         105: '28rem',
@@ -43,6 +44,9 @@ const config: Config = {
         111: '27.5rem',
         130: '32.5rem', 
       },
+      margin: {
+        33: '8.25rem',
+      }
     },
   },
   plugins: [],

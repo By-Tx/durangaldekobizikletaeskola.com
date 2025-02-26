@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 
 const MainSponsor = (props: { Link: string | undefined; img: string | undefined;  Link2: string | undefined; img2: string | undefined;img3: string | undefined;Link3: string; img4: string | undefined;Link4: string }) => {
     return (
@@ -17,7 +17,7 @@ const MainSponsor = (props: { Link: string | undefined; img: string | undefined;
                             alt="Logo patrocinador"
                             className="object-contain transition-transform duration-300 transform hover:scale-105"
                             width={270}
-                            height={74}
+                            height={94}
                         />
                     </a>
                 </div>
@@ -35,7 +35,7 @@ const MainSponsor = (props: { Link: string | undefined; img: string | undefined;
                             alt="Logo patrocinador"
                             className="object-contain transition-transform duration-300 transform hover:scale-105 py-1"
                             width={270}
-                            height={74}
+                            height={94}
                         />
                     </a>
                 </div>
@@ -53,7 +53,7 @@ const MainSponsor = (props: { Link: string | undefined; img: string | undefined;
                             alt="Logo patrocinador"
                             className="object-contain transition-transform duration-300 transform hover:scale-105 py-1"
                             width={270}
-                            height={74}
+                            height={94}
                         />
                     </a>
                 </div>
@@ -69,7 +69,7 @@ const MainSponsor = (props: { Link: string | undefined; img: string | undefined;
                             alt="Logo patrocinador"
                             className="object-contain transition-transform duration-300 transform hover:scale-105 py-1"
                             width={270}
-                            height={74}
+                            height={94}
                         />
                     </a>
                 </div>
