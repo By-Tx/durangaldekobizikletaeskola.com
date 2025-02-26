@@ -12,7 +12,7 @@ const Helpers = (props: { Link: string | undefined; img: string | undefined; sty
             alt="Logo patrocinador"
             className="object-contain transition-transform duration-300 transform hover:scale-105"
             width={160}
-            height={100}
+            height={90}
         />
     </a>
 </div>

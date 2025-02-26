@@ -26,7 +26,7 @@ const SECONDARY_SPONSORS = [
 ];
 
 const HELPERS = [
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/IURRETA.png', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx', style: 'col-span-2' },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/IURRETA1.png', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx', style: 'col-span-2' },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/DURANGO.png', link: 'https://www.durango.eus/' , style: undefined},
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ABADIÑO.png', link: 'https://www.xn--abadio-0wa.org/' , style: undefined},
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/BERRIZ.png', link: '' },
