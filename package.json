@@ -9,7 +9,8 @@
     "lint": "next lint",
     "pm2:start": "pm2 start \"npm run start\" --name durangobzk",
     "pm2:rs": "pm2 restart durangobzk --update-env",
-    "pm2:stop": "pm2 delete durangobzk"
+    "pm2:stop": "pm2 delete durangobzk",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@better-auth/cli": "^1.1.10",
@@ -18,6 +19,7 @@
     "mysql2": "^3.11.5",
     "next": "^15.1.2",
     "next-intl": "^3.26.4",
+    "next-sitemap": "^4.2.3",
     "nodemailer": "^6.9.16",
     "react": "^18",
     "react-dom": "^18",

@@ -7,7 +7,7 @@ dotenv.config();
 export const auth = betterAuth({
     
     trustedOrigins: [
-        'https://durango.txuli.com',
+        'https://durangaldekobizikletaeskola.com',
         'http://localhost:4225',
         
     ],

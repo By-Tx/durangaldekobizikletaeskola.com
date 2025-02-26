@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   title: "DURANGALDEKO BZK",
   description:
     "Durangaldeko Bizikleta Eskola - Batu gure tropelera! Bizikletaren munduan murgiltzeko aukera ezin hobea, errepide, mendi, ziklokros edo pista diziplinetan!",
+  
 };
 
 export default async function RootLayout({
