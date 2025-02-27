@@ -29,11 +29,13 @@
     "target": "ES2017"
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-, "next-sitemap.js"  ],
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
+    "next-sitemap.js",
+    "build/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
