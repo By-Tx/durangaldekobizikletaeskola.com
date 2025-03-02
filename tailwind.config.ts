@@ -23,6 +23,7 @@ const config: Config = {
         semibold: '500', 
       },
       height: {
+        74: '18.5rem',
         86: '21.5rem',
         21: '5.30rem',
         29: '7.45rem',

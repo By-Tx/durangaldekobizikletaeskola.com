@@ -1,53 +1,45 @@
-"use client"; 
-import { useState, useEffect } from "react";
-import Card from "../components/gallery/Card";
+import Card from "@/app/[locale]/(main)/components/gallery/Card";
 
-export default function Page() {
-  const [responseMessage, setResponseMessage] = useState("");
-  const [data, setData] = useState(null); // Nuevo estado para guardar los datos
-  const [fetchData, setFetchData] = useState<{ image: string; title: string; }[]>([]);
+async function fetchGalleryData() {
+  try {
+    const API_URL =
+      process.env.NODE_ENV === "development"
+        ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
+        : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
 
-  // Definir la función 'test'
-  const test = async () => {
-    const fetchData = [];
-    const response = await fetch("/api/gallery", {
+    if (!API_URL) {
+      throw new Error("API URL no definida en las variables de entorno");
+    }
+
+    const response = await fetch(`${API_URL}/api/gallery`, {
       method: "POST",
+      cache: "no-store", // Evita caché para asegurar datos frescos en cada request
     });
 
-    let responseData = null;
-    if (response.ok) {
-      responseData = await response.json(); // Obtén los datos de la respuesta
-      setData(responseData); // Guarda los datos en el estado
-
-      setResponseMessage("Fetching correcto");
-    } else {
-      setResponseMessage("Fetching incorrecto");
+    if (!response.ok) {
+      throw new Error(`Error al obtener datos: ${response.status}`);
     }
 
-    console.log(data);
-    if (responseData !== null) {
-      for (let i = 0; i < responseData.length; i++) {
-        if (!responseData[i].includes("../")) {
-          fetchData.push({
-            title: responseData[i].slice(0, -1),
-            image: "https://photos.txuli.com/duranguesa/covers/" +
-              responseData[i].slice(0, -1) + ".jpg"
-          });
-        }
-      }
-      setFetchData(fetchData);
-      console.log("Fetch Data:");
-      console.log(fetchData);
-    }
-  };
+    const responseData = await response.json();
 
-  
-  useEffect(() => {
-    test();
-  }, []); 
+    return responseData
+      .filter((item: string) => !item.includes("../"))
+      .map((item: string) => ({
+        
+        image: `https://photos.txuli.com/duranguesa/covers/${item.slice(0, -1)}.jpg`,
+        
+      }));
+  } catch (error) {
+    console.error("Fetching error:", error);
+    return [];
+  }
+}
+
+export default async function Page() {
+  const fetchData = await fetchGalleryData();
 
   return (
-    <div className="mt-20">
+    <div className="mt-20 grid h-screen w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 px-6">
       <Card album={fetchData} />
     </div>
   );
