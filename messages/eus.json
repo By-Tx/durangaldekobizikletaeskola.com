@@ -34,8 +34,8 @@
     },
     "espainakoTxapeldunaPage": {
         "altImage": "Markelen argazkia",
-        "title": "Markel, 13º Espainiako Txapelketan",
-        "subtitle": "Markel garaile 13. Espainiako Txapelketan",
+        "title": "Markel, 13. Espainiako Txapelketetan",
+        "subtitle": "Markelek 13. postua lortu zuen Espainiako Txapelketan",
         "p1": "Joan den urtarrilaren 12an, 13. Espainiako Txapelketa ospatu zen, eta Markel lehiaketa honetako protagonista nagusietako bat izan zen. Euskadiko Selekzioarekin lehiatuz, bere saio ikusgarriak eta erakutsitako trebetasun apartak zaleen eta adituen txalo zaparrada jaso zuten.",
         "p2": "Markelek aurkari sendoak izan zituen aurrean, baina bere estrategiaren eta etengabeko lanaren bidez, emaitza nabarmena lortu zuen. Garaipenak are gehiago sendotzen du bere ibilbidea, eta hurrengo erronkei begira itxaropen handiak piztu ditu.",
         "p3": "Euskadiko Selekzioaren parte-hartzeak txapelketari ukitu berezia eman zion, eta Markelen arrakasta, talde osoaren ahalegina eta maila altua azpimarratzen ditu. Espainiako Txapelketaren 13. edizio honek urteetan zehar hartutako mailaren beste erakusgarri bikain bat izan da."
@@ -44,8 +44,8 @@
         "altImage": "irrisarrin argazkia",
         "title": " Irrisarriland-era irteera",
         "subTitle": " Abentura Irrisarriland-en eskolagaz",
-        "p1": "Ikasleek abentura paregabe bat bizi izan zuten Irrisarrilanden, 2024ko urriaren 20an egindako eskola irteeran. Naturaren erdian kokatutako abentura-parke hau, Nafarroako Igantzin dago, eta jarduera anitz eskaintzen ditu aire zabalean.",
-        "p2": "Egun berezi honetan, parte-hartzaileek tirolinak, zirkuitu akrobatikoak, mendiko bizikleta-ibilbideak eta orientazio-probak probatzeko aukera izan zuten. Jarduera horiek guztiak, talde-lana eta ausardia sustatzeaz gain, gozamenerako espazio ezin hobea bihurtu ziren.",
+        "p1": "Gazteek abentura paregabe bat bizi izan zuten Irrisarri Land-en urriaren 20an egindako eskola irteeran. Naturaren erdian kokatutako abentura-parke hau, Nafarroako Igantzin dago, eta jarduera anitz eskaintzen ditu aire zabalean.",
+        "p2": "Egun berezi honetan, gazteek tirolinak, zirkuitu akrobatikoak, mendiko bizikleta-ibilbideak eta orientazio-probak probatzeko aukera izan zuten. Jarduera horiek guztiak, talde-lana eta ausardia sustatzeaz gain, gozamenerako espazio ezin hobea bihurtu ziren.",
         "p3": "Irrisarrilandera egindako bisitak aukera paregabea eskaini zien haurrei natura, kirola eta laguntasuna uztartzeko, eta irteerak oroitzapen eder asko utzi ditu."
     },
     "dromPage": {
@@ -54,13 +54,13 @@
         "sectionRoadP2":" Gazteek modalitate desberdinetan parte hartzen dute, udako egutegian errepidean eta mendi bizikletan eta neguko egutegian pista eta ziklokrosean.",
         "sectionRoadP3": "  Errepidean, Bizkaiko zein Euskal Herriko txapelketa garrantzitsuenetan parte hartzen dute gure gazteek, horietatik at, Txuma, Bizkaiko, Gipuzkoako eta zein Kantabriako Itzulia ere lehiatzen dute.",
         "subtitleRunnersRoad": "ERREPIDEA",
-        "componentRunner1Title": "JUNIOR",
-        "componentRunner2Title": "KADETE",
+        "componentRunner1Title": "JUNIORRAK",
+        "componentRunner2Title": "KADETEAK",
         "sectionMtbTitle": "MTB",
-        "sectionMtbP1": " 2022. urtFean Durangaldeko Bizikleta Eskolak Mendi Bizikletako talde bat sortzeko eta bultzatzeko esfortzua egin zuen modalitate hau indartzeko eta gazteei beste aukera bat emateko, aukera zabalago bat sortuz.",
+        "sectionMtbP1": " 2022. urtean Durangaldeko Bizikleta Eskolak Mendi Bizikletako talde bat sortzeko eta bultzatzeko esfortzua egin zuen modalitate hau indartzeko eta gazteei beste aukera bat emateko, aukera zabalago bat sortuz.",
         "sectionMtbP2": "  Egutegiaren barruan, Green Seriesak (UCI C2 mailan dagoena eta Bizkaian ospatzen dena), Superprestigio, Bizkaiko eta Euskadiko Txapelketak lehiatzen dituzte." ,
         "sectionPistaP1":"Neguko egutegian taldeak ere pistan ere jarduten da kadete eta junior kategorietan. Berrizko belodromoa gure eskualdean daukagula aprobetxatuz, entrenamenduak egiten ditugu astean zehar, eta Anoetan antolatzen diren probetan ere parte hartzen dogu. Bertan, trebetasun desberdinak garatzen dituzte gazteak.",
-        "sectionCXP1": "Neguko egutegian ere Ziklokrosseko egutegia egiten dugu. Teknika oso garrantzitsua dan modalitatea da hau, eta hori lantzeko helburu argia dugu, teknika entrenamendu bereziak antolatuz. Euskal Herriko proba garrantzitsuenetan hartzen dugu parte, ETXF eta FEBICI-ko ranking-ean."
+        "sectionCXP1": "Neguko egutegian ere Ziklokrosseko egutegia egiten dugu. Teknika oso garrantzitsua dan modalitatea da hau, eta hori lantzeko helburu argia dugu, teknika entrenamendu bereziak antolatuz. Euskal Herriko proba garrantzitsuenetan hartzen dugu parte, ETXF eta BTxF-ko sailkapenean."
 
 
 
@@ -84,15 +84,15 @@
         "P": "Izena emateko, bete beheko formularioa eta lehen baino lehen zurekin kontaktuan jarriko gara. Eskerrik asko! Dudaren bat badaukazu, telefonoz kontaktatu dezakezu:",
         "name": "Izen abizena",
         "namePlaceholder": "Umearen izena",
-        "birth": "Jaiotze data",
+        "birth": "Jaiotza-data",
         "direction": "Helbidea",
-        "directionPlaceholder": "Zure helbidea",
+        "directionPlaceholder": "Helbidea",
         "city": "Herria",
-        "cityPlaceholder": "Zuer Herria",
+        "cityPlaceholder": "Herria",
         "school": "Ikasketa zentroa",
         "schoolPlaceholder": " Ikasketa zentroaren izena",
-        "parents": "Aita Ama edo tutorearen Izen-abizenak",
-        "parentsPlaceholder": "Aita Ama edo tutorearen Izen-abizenak",
+        "parents": "Aita, ama edo tutorearen izen-abizenak",
+        "parentsPlaceholder": "Aita Ama edo tutorearen izen-abizenak",
         "phone": "Telefono zenbakia",
         "mail": "Posta elektronikoa",
         "mailPlaceholder": "Zure.emaila@example.com",

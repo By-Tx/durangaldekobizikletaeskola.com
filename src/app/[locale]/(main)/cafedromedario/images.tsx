@@ -170,12 +170,12 @@ export const technician = [
     },
     {
         image: 'https://photos.txuli.com/duranguesa/staff/AngelLitoBilbao.jpg',
-        name: 'Lito',
+        name: 'Angel Bilbao "Lito"',
 
     },
     {
         image: 'https://photos.txuli.com/duranguesa/staff/IbonAchotegui.jpg',
-        name: 'Ibon Achotegui',
+        name: 'Ibon Atxotegi',
 
 
     },
