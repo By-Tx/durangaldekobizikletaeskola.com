@@ -1,6 +1,6 @@
 
-import TopImage from "@/app/[locale]/(main)/components/noticeComponents/topImageImage";
-import NoticeContent from "../../components/noticeComponents/noticeContent";
+import TopImage from "@/app/[locale]/components/mainPage/noticeComponents/topImageImage";
+import NoticeContent from "../../../components/mainPage/noticeComponents/noticeContent";
 import { useTranslations } from "next-intl";
 export default function Page() {  
 const t = useTranslations("bttTxapeldunaPage");

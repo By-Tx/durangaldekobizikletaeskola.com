@@ -1,9 +1,9 @@
 "use client";
-import Slides from "../components/eskola/slide";
+import Slides from "../../components/mainPage/eskola/slide";
 import { useTranslations } from "next-intl";
-import SubTitle from "../components/Titles/SubTitle";
-import Planning from "../components/eskola/planning";
-import Line from "@/app/[locale]/(main)/components/main/line0m";
+import SubTitle from "../../components/mainPage/Titles/SubTitle";
+import Planning from "../../components/mainPage/eskola/planning";
+import Line from "@/app/[locale]/components/main/line0m";
 
 export default function Page() {
     const t = useTranslations("eskolaPage");

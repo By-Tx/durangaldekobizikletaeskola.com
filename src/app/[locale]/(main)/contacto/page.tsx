@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import Title from "../components/Titles/Title";
+import Title from "../../components/mainPage/Titles/Title";
 export default async function Page() {
     const t = await getTranslations("contact");
 

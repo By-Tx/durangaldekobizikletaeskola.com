@@ -20,17 +20,17 @@ const SECONDARY_SPONSORS = [
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/CUBICAL.png', link: 'https://cubicaldenira.com/', style: undefined },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/marraz.png', link: '', style: undefined },
 
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/EUSKADILOWCOST.png', link: '', style: undefined  },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/EUSKADILOWCOST.png', link: '', style: undefined },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/CONTROLPACK.png', link: 'https://www.controlpack.com/', style: undefined },
-   
+
 ];
 
 const HELPERS = [
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/IURRETA1.png', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx', style: 'col-span-2' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/DURANGO.png', link: 'https://www.durango.eus/' , style: undefined},
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ABADIÑO.png', link: 'https://www.xn--abadio-0wa.org/' , style: undefined},
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/DURANGO.png', link: 'https://www.durango.eus/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ABADIÑO.png', link: 'https://www.xn--abadio-0wa.org/', style: undefined },
     { img: 'https://photos.txuli.com/duranguesa/patrocinadores/BERRIZ.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ELORRIO.png', link: 'https://www.elorrio.eus/eu-ES/Orriak/default.aspx' , style: undefined},
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ELORRIO.png', link: 'https://www.elorrio.eus/eu-ES/Orriak/default.aspx', style: undefined },
 ];
 
 const Sponsor = () => {
@@ -44,13 +44,13 @@ const Sponsor = () => {
                 img='https://photos.txuli.com/duranguesa/patrocinadores/CafeDromedario.webp'
                 Link='https://cafedromedario.com/'
                 img2='https://photos.txuli.com/duranguesa/patrocinadores/flotamet.png'
-                Link2='https://cafedromedario.com/' 
+                Link2='https://cafedromedario.com/'
                 img3='https://photos.txuli.com/duranguesa/patrocinadores/HIRUMET1.png'
                 Link3='https://www.hirumet.com/'
-                img4= 'https://photos.txuli.com/duranguesa/patrocinadores/orbeaw.png'
-                Link4= 'https://www.orbea.com/'
-                />
-                
+                img4='https://photos.txuli.com/duranguesa/patrocinadores/orbeaw.png'
+                Link4='https://www.orbea.com/'
+            />
+
 
 
         </>
@@ -64,7 +64,7 @@ const Sponsor = () => {
                     <Secondsponsor key={idx} img={img} Link={link} style={style} />
                 ))}
             </div>
-            
+
         </>
     );
 
@@ -77,7 +77,7 @@ const Sponsor = () => {
                     <Helpers key={idx} img={img} Link={link} style={style} />
                 ))}
             </div>
-            
+
 
         </>
     );
@@ -87,12 +87,13 @@ const Sponsor = () => {
 
     return (
         <div className='w-full'>
-            {pathname === '/eus/cafedromedario' || pathname === '/es/cafedromedario' && (
+            {(pathname === '/eus/cafedromedario' || pathname === '/es/cafedromedario') && (
                 <>
-                <SubTitle subTitle="BABESLEAK" />
-                {renderMainSponsors()}</>
-                )}
-            {pathname === '/es/eskola'||pathname === '/eus/eskola' && (
+                    <SubTitle subTitle="BABESLEAK" />
+                    {renderMainSponsors()}
+                </>
+            )}
+            {pathname === '/es/eskola' || pathname === '/eus/eskola' && (
                 <>
                     <SubTitle subTitle="BABESLEAK" />
                     {renderHelpers()}
@@ -104,7 +105,7 @@ const Sponsor = () => {
                 <>
                     <SubTitle subTitle="BABESLEAK" />
                     {renderMainSponsors()}
-                   
+
                     {renderSecondarySponsors()}
                     {renderHelpers()}
 

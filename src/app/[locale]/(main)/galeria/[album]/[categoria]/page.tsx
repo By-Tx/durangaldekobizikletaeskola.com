@@ -1,12 +1,15 @@
-import Card from "@/app/[locale]/(main)/components/gallery/Card";
-import Item from "@/app/[locale]/(main)/components/gallery/ItemGallery"
-interface AlbumPageProps {
-    params: { album: string; categoria?: string };
-  }
+"use client"
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Gallery from "@/app/[locale]/components/mainPage/gallery/ItemGallery";
 
- 
-async function fetchImages(album: string) {
+// Definimos un tipo para los datos de las imágenes
+interface Image {
+  src: string;
+  link: string;
+}
 
+async function fetchImages(album: string): Promise<Image[]> {
   try {
     const API_URL =
       process.env.NODE_ENV === "development"
@@ -21,7 +24,7 @@ async function fetchImages(album: string) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ album }),
-      cache: "no-store", 
+      cache: "no-store", // Evitar caché
     });
 
     if (!response.ok) {
@@ -33,29 +36,43 @@ async function fetchImages(album: string) {
     return responseData
       .filter((item: string) => !item.includes("../"))
       .map((item: string) => ({
-        title: item,
-        image: `https://photos.txuli.com/duranguesa/gallery/${album}/${item}`,
-        link: `/${item.slice(0, -1)}`,
+        src: `https://photos.txuli.com/duranguesa/gallery/${album}/${item}`,
+        link: `https://photos.txuli.com/duranguesa/gallery/${album}/${item}`,
       }));
   } catch (error) {
     console.error("Fetching error:", error);
-    return [];
+    return []; // Retornar arreglo vacío si hay error
   }
 }
 
-export default async function AlbumPage({ params }: AlbumPageProps) {
-const { album } = await params;
-const { categoria } = await params;
-  const test = `${album}/${categoria}`;
-  const fetchData = await fetchImages(test);
+const AlbumPage = () => {
+  const [fetchData, setFetchData] = useState<Image[]>([]); // Usamos el tipo Image[]
+  
+  
+  const rutaActual = usePathname(); // Obtener la ruta actual
+  const rutaSinIdioma = rutaActual.split('/').pop() || ''; // Obtenemos la última parte de la ruta
 
+  useEffect(() => {
+    const fetchDataAsync = async () => {
+    
+      const data = await fetchImages(rutaSinIdioma); // Llamamos la función para obtener las imágenes
+      setFetchData(data); // Guardamos los datos en el estado
+     
+    };
+
+    if (rutaSinIdioma) {
+      fetchDataAsync(); // Solo llamamos a la función si tenemos un álbum válido
+    }
+  }, [rutaSinIdioma]); // Vuelve a ejecutarse si cambia la ruta
+
+ 
   return (
     <div>
-        <div className="mt-20 flex h-screen w-full">
-      <Card album={fetchData} />
-    
-    </div>
-
+      <div className="mt-20 flex h-screen w-full">
+        <Gallery images={fetchData} /> {/* Le pasamos las imágenes al componente Gallery */}
+      </div>
     </div>
   );
-}
+};
+
+export default AlbumPage;

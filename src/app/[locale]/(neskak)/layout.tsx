@@ -3,13 +3,11 @@
 import type { Metadata } from "next";
 import { getMessages} from 'next-intl/server';
 import "../globals.css";
-import NavBar from "../components/main/navBar";
-import Sponsor from "../components/mainPage/sponsors/sponsors";
-import Footer from "../components/main/Footer";
-import { Fredoka } from 'next/font/google';
-import Line from "@/app/[locale]/components/main/line";
-import { NextIntlClientProvider } from "next-intl";
 
+import { Fredoka } from 'next/font/google';
+
+import { NextIntlClientProvider } from "next-intl";
+import NavBar from "../components/main/navBar";
 const fredoka = Fredoka({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700'],
@@ -19,9 +17,9 @@ const fredoka = Fredoka({
 
 
 export const metadata: Metadata = {
-  title: "DURANGALDEKO BZK",
+  title: "PUNTAGALEA OCCIDENT",
   description:
-    "Durangaldeko Bizikleta Eskola - Batu gure tropelera! Bizikletaren munduan murgiltzeko aukera ezin hobea, errepide, mendi, ziklokros edo pista diziplinetan!",
+    "PUNTAGALEA OCCIDENT - Batu gure tropelera! Bizikletaren munduan murgiltzeko aukera ezin hobea, errepide, mendi, ziklokros edo pista diziplinetan!",
   
 };
 
@@ -45,13 +43,12 @@ export default async function RootLayout({
         className={`${fredoka}  antialiased`}
       >
 
-<NavBar />
-        <Line />
+      <NavBar  className="bg-customPuntagaleaOrange" color2="bg-customPuntagaleaDarkOrange"/>
 
         {children}
-        <Sponsor />
-        <Line />
-        <Footer />
+        
+        
+        
       </body>
     </html>
     </NextIntlClientProvider>

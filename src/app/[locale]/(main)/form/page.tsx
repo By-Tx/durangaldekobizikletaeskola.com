@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Title from "@/app/[locale]/(main)/components/Titles/Title";
+import Title from "@/app/[locale]/components/mainPage/Titles/Title";
 import { useTranslations } from "next-intl";
 export default function Page() {
     const t = useTranslations("formPage");

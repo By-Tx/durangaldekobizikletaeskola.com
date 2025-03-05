@@ -1,12 +1,16 @@
 'use client';
 
-import {useTransition } from 'react';
+import { useTransition } from 'react';
 import { useParams } from 'next/navigation';
 import { usePathname, useRouter } from '@/i18n/routing';
 
 type Locale = 'eus' | 'es';
 
-export default function LocaleSwitcher() {
+interface LocaleSwitcherProps {
+  className?: string; // Prop opcional para cambiar la clase
+}
+
+export default function LocaleSwitcher({ className }: LocaleSwitcherProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
@@ -22,11 +26,11 @@ export default function LocaleSwitcher() {
   }
 
   return (
-    <div className="flex items-center space-x-2 text-white">
+    <div className={`flex items-center space-x-2 text-white `}>
       {/* Cambiar idioma con EUS */}
       <div
         onClick={() => changeLocale('eus')}
-        className={`cursor-pointer ${isPending && 'opacity-50'} ${currentLocale === 'eus' ? 'bg-customDarkBlue' : ''} p-2 rounded`}
+        className={`cursor-pointer ${isPending && 'opacity-50'} ${currentLocale === 'eus' ? className || 'bg-customDarkBlue' : ''} p-2 rounded`}
       >
         EUS
       </div>
@@ -36,7 +40,7 @@ export default function LocaleSwitcher() {
       {/* Cambiar idioma con ES */}
       <div
         onClick={() => changeLocale('es')}
-        className={`cursor-pointer ${isPending && 'opacity-50'} ${currentLocale === 'es' ? 'bg-customDarkBlue' : ''} p-2 rounded`}
+        className={`cursor-pointer ${isPending && 'opacity-50'} ${currentLocale === 'es' ? className || 'bg-customDarkBlue' : ''} p-2 rounded`}
       >
         ES
       </div>

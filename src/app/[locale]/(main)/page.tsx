@@ -1,8 +1,8 @@
 "use client";
 import { useTranslations } from "next-intl";
-import Slideshow from "./components/main/slider";
-import News from "./components/noticeComponents/notices";
-import SubTitle from "./components/Titles/SubTitle";
+import Slideshow from "../components/main/slider";
+import News from "../components/mainPage/noticeComponents/notices";
+import SubTitle from "../components/mainPage/Titles/SubTitle";
 
 export default function Home() {
   const t = useTranslations("homePage");

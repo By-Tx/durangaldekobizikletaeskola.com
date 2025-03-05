@@ -10,7 +10,12 @@ import imageLogo from "@/app/media/DURANGOALDEKO.png";
 import logoMenu from "@/app/media/menu/logoMenu.svg";
 import logoMenuCose from "@/app/media/menu/close.svg";
 
-const NavBar = () => {
+interface nProps {
+  
+  className?: string;
+  color2?: string;
+}
+const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
   const [isRotated, setIsRotated] = useState(false);
   const [logo, setLogo] = useState(logoMenu);
   const handleClick = () => {
@@ -38,7 +43,8 @@ const NavBar = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-gradient-to-r bg-customblue shadow-md z-20 font-fredoka">
+    <nav className={`fixed top-0 left-0 w-full bg-gradient-to-r ${className ? className : 'bg-customblue'} shadow-md z-20 font-fredoka`}>
+
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link href="/">
@@ -70,15 +76,18 @@ const NavBar = () => {
             <Link href="/cafedromedario" className="text-white hover:text-blue-200 transition duration-150">
               CAFÉ DROMEDARIO-FLOTAMET
             </Link>
-            {/* <Link href="/galeria" className="text-white hover:text-blue-200 transition duration-150">
-               GALERIA
+            {/* <Link href="/puntagalea" className="text-white hover:text-customPuntagaleaOrange transition duration-150">
+             PUNTAGALEA OCCIDENT
             </Link> */}
+             {/* <Link href="/galeria" className="text-white hover:text-blue-200 transition duration-150">
+               GALERIA
+            </Link>  */}
             <Link href="/form" className="text-white hover:text-blue-200 transition duration-150">
               {t("form")}
             </Link>
-            {/* <Link href="/clothes" className="text-white hover:text-blue-200 transition duration-150">
+             {/* <Link href="/clothes" className="text-white hover:text-blue-200 transition duration-150">
               ARROPA
-            </Link> */}
+            </Link>  */}
             <Link href="/contacto" className="text-white hover:text-blue-200 transition duration-150">
               {t("contact")}
             </Link>
@@ -97,7 +106,7 @@ const NavBar = () => {
           </Link> */}
             <div className="hidden md:flex items-center space-x-2">
 
-              <LocaleSwitcherSelect />
+              <LocaleSwitcherSelect className={color2} />
 
 
 
@@ -129,6 +138,13 @@ const NavBar = () => {
             onClick={toggleMenu}
           >
             CAFÉ DROMEDARIO-FLOTAMET
+          </Link>
+          <Link
+            href="/puntagalea"
+            className="text-xl hover:text-blue-300 transition duration-150"
+            onClick={toggleMenu}
+          >
+            PUNTAGALEA OCCIDENT
           </Link>
           {/* <Link
             href="/galeria"

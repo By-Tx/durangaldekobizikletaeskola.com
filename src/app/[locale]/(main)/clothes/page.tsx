@@ -1,7 +1,7 @@
 "use client"
-import Title from '@/app/[locale]/(main)/components/Titles/Title';
-import ShopItems from '@/app/[locale]/(main)/components/shop/ShopItems';
-import SubTitle from '../components/Titles/SubTitle';
+import Title from '@/app/[locale]/components/mainPage/Titles/Title';
+import ShopItems from '@/app/[locale]/components/mainPage/shop/ShopItems';
+import SubTitle from '../../components/mainPage/Titles/SubTitle';
 import DropDownSelection from '../form/dropDownSelecction';
 
 // import { useState } from 'react';

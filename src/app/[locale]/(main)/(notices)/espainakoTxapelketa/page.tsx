@@ -1,6 +1,6 @@
-import TopImage from "@/app/[locale]/(main)/components/noticeComponents/topImageImage";
+import TopImage from "@/app/[locale]/components/mainPage/noticeComponents/topImageImage";
 import { useTranslations } from "next-intl";
-import NoticeContent from "../../components/noticeComponents/noticeContent";
+import NoticeContent from "../../../components/mainPage/noticeComponents/noticeContent";
 
 export default function Page() {  
     const t = useTranslations("espainakoTxapeldunaPage");

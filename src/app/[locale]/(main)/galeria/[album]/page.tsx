@@ -1,48 +1,65 @@
+"use client"
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Card from "@/app/[locale]/components/mainPage/gallery/Card";
 
-import Card from "@/app/[locale]/(main)/components/gallery/Card";
 
 
-
-async function fetchImages(album: string, params: { album: string }) {
-  try {
+export default function Gallery() {
+  const [albumData, setAlbumData] = useState<{ image: string; link: string; title: string; }[]>([]);
   
-    const API_URL =
-    process.env.NODE_ENV === "development"
-      ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
-      : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
-    const response = await fetch(`${API_URL}/api/category`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ album }),
-      cache: "no-store", // Evita el caché para SSR
-    });
+  const rutaActual = usePathname();
+  const rutaSinIdioma = rutaActual.split('/').pop();
 
-    if (!response.ok) {
-      throw new Error("Error fetching data");
+
+  useEffect(() => {
+    async function fetchAlbumData() {
+      const API_URL =
+        process.env.NODE_ENV === "development"
+          ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
+          : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
+
+      if (!API_URL) {
+        throw new Error("API URL no definida en las variables de entorno");
+      }
+
+      try {
+        // Llamada al endpoint '/category' en lugar de '/api/gallery'
+        const response = await fetch(`${API_URL}/api/category`, {
+          method: "POST",
+          cache: "no-store", // Evita caché para asegurar datos frescos en cada request
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ album: rutaSinIdioma }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Error al obtener los datos");
+        }
+
+        const data = await response.json();
+
+        const filteredData = data
+          .filter((item: string) => !item.includes("../"))
+          .map((item: string) => ({
+            image: `https://photos.txuli.com/duranguesa/covers/${item.slice(0, -1)}.jpg`,
+            title: item.slice(0, -1),
+            link: `${rutaSinIdioma}/${item.slice(0, -1)}/`,
+          }));
+
+        setAlbumData(filteredData); // Actualizamos el estado con los datos filtrados y mapeados
+      } catch (error) {
+        console.error("Error al cargar los datos", error);
+      } 
     }
 
-    const responseData = await response.json();
+    fetchAlbumData();
+  }, [rutaSinIdioma]); // Vuelve a ejecutarse si cambia la ruta
 
-    return responseData
-      .filter((item: string) => !item.includes("../"))
-      .map((item: string) => ({
-        title: item.slice(0, -1),
-        image: `https://photos.txuli.com/duranguesa/covers/${album}/${item.slice(0, -1)}.png`,
-        link: `${album}/${item.slice(0, -1)}`,
-      }));
-  } catch (error) {
-    console.error("Fetching error:", error);
-    return [];
-  }
-}
-
-export default async function AlbumPage({ params }: { params: { album: string } }) {
-  const {album} = await params;
-  const fetchData = await fetchImages(album, params);
-
+ 
+  
   return (
-    <div className="mt-20 grid h-screen w-full space-x-4">
-      <Card album={fetchData} />
+    <div>
+      <Card album={albumData} />
     </div>
   );
 }

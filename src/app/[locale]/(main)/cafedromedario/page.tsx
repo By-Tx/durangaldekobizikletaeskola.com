@@ -1,15 +1,15 @@
 "use client"
 import { useTranslations } from "next-intl";
 import "./style.css"
-import SubTitle from "@/app/[locale]/(main)/components/Titles/SubTitle";
-import Line from "@/app/[locale]/(main)/components/main/line0m";
+import SubTitle from "@/app/[locale]/components/mainPage/Titles/SubTitle";
+import Line from "@/app/[locale]/components/main/line0m";
 
-import Slideshow from "../components/eskola/slide";
-import Runner from "../components/drom/Runner";
-import Technicians from "../components/drom/Technicians";
-import P from "@/app/[locale]/(main)/components/main/P";
-import Section from "@/app/[locale]/(main)/components/main/Section";
-import { images, runner, runnercadete, runnerMtbJunior, technician, runnerMtbKadete } from "./images";
+import Slideshow from "../../components/mainPage/eskola/slide";
+import Runner from "../../components/mainPage/drom/Runner";
+import Technicians from "../../components/mainPage/drom/Technicians";
+import P from "@/app/[locale]/components/main/P";
+import Section from "@/app/[locale]/components/main/Section";
+import { images, runner, runnercadete, runnerMtbJunior, technician, runnerMtbKadete } from "../../(neskak)/puntagalea/images";
 
 export default function CafeDromedario() {
     const t = useTranslations("dromPage");

@@ -11,6 +11,9 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        customPuntagaleaBlue: '#014AA8',
+        customPuntagaleaOrange: '#FF7D01',
+        customPuntagaleaDarkOrange: '#E65C00',
         customblue:'#3984C8',
         customDarkBlue:'#21486C',
         customDarkerBlue:'#18344e',
