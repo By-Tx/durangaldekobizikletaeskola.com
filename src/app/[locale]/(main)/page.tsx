@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import Slideshow from "../components/main/slider";
 import News from "../components/mainPage/noticeComponents/notices";
 import SubTitle from "../components/mainPage/Titles/SubTitle";
-
+import Line from "@/app/[locale]/components/main/line0m";
 export default function Home() {
   const t = useTranslations("homePage");
 const images = [
@@ -37,6 +37,7 @@ const images = [
       <Slideshow
         images={images}
       />
+      <Line />
       <SubTitle subTitle={t("componentSubtitle")}/>
       <News />
       

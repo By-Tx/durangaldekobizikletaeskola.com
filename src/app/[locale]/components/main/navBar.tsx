@@ -76,12 +76,12 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
             <Link href="/cafedromedario" className="text-white hover:text-blue-200 transition duration-150">
               CAFÉ DROMEDARIO-FLOTAMET
             </Link>
-            {/* <Link href="/puntagalea" className="text-white hover:text-customPuntagaleaOrange transition duration-150">
+             <Link href="/puntagalea" className="text-white hover:text-customPuntagaleaOrange transition duration-150">
              PUNTAGALEA OCCIDENT
-            </Link> */}
-             <Link href="/galeria" className="text-white hover:text-blue-200 transition duration-150">
+            </Link> 
+              <Link href="/galeria" className="text-white hover:text-blue-200 transition duration-150">
                GALERIA
-            </Link>  
+            </Link>   
             <Link href="/form" className="text-white hover:text-blue-200 transition duration-150">
               {t("form")}
             </Link>
@@ -98,12 +98,12 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
         {/* Language Switch and Login */}
         {!isMobile && (
           <div className="flex items-center space-x-4">
-            {/* <Link
+           <Link
             href="/login"
             className="bg-customDarkBlue text-white px-4 py-2 rounded-lg "
           >
             HASI SAIOA
-          </Link> */}
+          </Link> 
             <div className="hidden md:flex items-center space-x-2">
 
               <LocaleSwitcherSelect className={color2} />
@@ -139,19 +139,19 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
           >
             CAFÉ DROMEDARIO-FLOTAMET
           </Link>
-          <Link
+          {/* <Link
             href="/puntagalea"
             className="text-xl hover:text-blue-300 transition duration-150"
             onClick={toggleMenu}
           >
             PUNTAGALEA OCCIDENT
-          </Link>
+          </Link> */}
           {/* <Link
             href="/galeria"
             className="text-xl hover:text-blue-300 transition duration-150"
             onClick={toggleMenu}
           >
-            ARGAZKI GALERIA
+           GALERIA
           </Link> */}
           <Link
             href="/form"

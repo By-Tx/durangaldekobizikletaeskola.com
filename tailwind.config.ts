@@ -14,6 +14,7 @@ const config: Config = {
         customPuntagaleaBlue: '#014AA8',
         customPuntagaleaOrange: '#FF7D01',
         customPuntagaleaDarkOrange: '#E65C00',
+        customPuntagaleaDarkerOrange: '#C44A00',
         customblue:'#3984C8',
         customDarkBlue:'#21486C',
         customDarkerBlue:'#18344e',
@@ -40,6 +41,7 @@ const config: Config = {
       width: {
         18: '4.5rem',
         50: '12.5rem',
+        86: '22.0rem',
         97: '24.5rem',
         100: '27rem',
         105: '29rem',

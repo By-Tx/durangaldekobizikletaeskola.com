@@ -51,7 +51,7 @@ export default async function RootLayout({
         {children}
         <Sponsor />
         <Line />
-        <Footer />
+        <Footer  color="bg-customblue"/>
       </body>
     </html>
     </NextIntlClientProvider>

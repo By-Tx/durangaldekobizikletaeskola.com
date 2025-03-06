@@ -11,7 +11,7 @@ export default function News() {
         href="/espainakoTxapelketa"
         className='hove:cursor-pointer'
       >
-        <div className='group relative h-96 w-96 hover:w-100  lg:hover:h-100 transition-all duration-300 ease-in-out  mb-32 mx-auto'>
+        <div className='group relative h-96 w-86 hover:w-100  lg:hover:h-100 transition-all duration-300 ease-in-out  mb-32 mx-auto'>
           <Image
             src={'https://photos.txuli.com/duranguesa/notices/noticiasSeleccion.png'}
             alt={t("altImage")}
@@ -24,8 +24,8 @@ export default function News() {
           </div>
           <div className='bg-customDarkBlue text-white text-center rounded-b-2xl pl-1'>
             <div className='ml-1 mb-5  '>
-              <h3 className='font-fredoka font-semibold text-xl text-left'>{t("noticeTitle")}  </h3>
-              <h4 className='font-fredoka font-light text-left text-2xl'>{t("category")}</h4>
+              <h3 className='font-fredoka font-semibold text-xl text-left px-1'>{t("noticeTitle")}  </h3>
+              <h4 className='font-fredoka font-light text-left text-2xl px-1'>{t("category")}</h4>
             </div>
           </div>
         </div>
@@ -35,7 +35,7 @@ export default function News() {
         href="/irrisarriNotice"
         className='hover:cursor-pointer'
       >
-        <div className='group relative h-96 w-96 hover:w-100  lg:hover:h-100 transition-all duration-300 ease-in-out  mb-32 mx-auto'>
+        <div className='group relative h-96 w-86 hover:w-100  lg:hover:h-100 transition-all duration-300 ease-in-out  mb-32 mx-auto'>
           <Image
             src={'https://photos.txuli.com/duranguesa/notices/irrisarri.JPG'}
             alt={t("altImage2")}
@@ -48,8 +48,8 @@ export default function News() {
           </div>
           <div className='bg-customDarkBlue text-white text-center rounded-b-2xl pl-1'>
             <div className='ml-1 mb-5'>
-              <h3 className='font-fredoka font-semibold text-xl text-left'> {t("noticeTitle2")} </h3>
-              <h4 className='font-fredoka font-light text-left text-2xl'>{t("category2")}</h4>
+              <h3 className='font-fredoka font-semibold text-xl text-left px-1'> {t("noticeTitle2")} </h3>
+              <h4 className='font-fredoka font-light text-left text-2xl px-1'>{t("category2")}</h4>
             </div>
           </div>
         </div>
@@ -57,9 +57,9 @@ export default function News() {
 
       <Link
         href="/bttTxapelduna"
-        className='hove:cursor-pointer md:col-span-2'
+        className='hove:cursor-pointer '
       >
-        <div className='group relative h-96 w-96  hover:w-100  lg:hover:h-100 transition-all duration-300 ease-in-out  sm:mb-32 l:mb-0 mx-auto'>
+        <div className='group relative h-96 w-86 hover:w-100  lg:hover:h-100 transition-all duration-300 ease-in-out  mb-32 mx-auto'>
           <Image
             src={'https://photos.txuli.com/duranguesa/notices/ander.JPG'}
             alt={t("altImage3")}
@@ -72,15 +72,37 @@ export default function News() {
           </div>
           <div className='bg-customDarkBlue text-white text-center rounded-b-2xl pl-1'>
             <div className='ml-1 mb-5 '>
-              <h3 className='font-fredoka font-semibold text-xl text-left'>{t("noticeTitle3")}</h3>
-              <h4 className='font-fredoka font-light text-left text-2xl'>{t("category3")}</h4>
+              <h3 className='font-fredoka font-semibold text-xl text-left px-1'>{t("noticeTitle3")}</h3>
+              <h4 className='font-fredoka font-light text-left text-2xl px-1'>{t("category3")}</h4>
             </div>
           </div>
         </div>
       </Link>
 
 
-
+      <Link
+        href="/puntagaleaTeam"
+        className='hove:cursor-pointer '
+      >
+        <div className='group relative h-96 w-86 hover:w-100  lg:hover:h-100 transition-all duration-300 ease-in-out  mb-32 mx-auto'>
+          <Image
+            src={'https://photos.txuli.com/duranguesa/notices/ander.JPG'}
+            alt={t("altImage3")}
+            width={400}
+            height={240}
+            className='w-full h-full object-cover rounded-t-2xl '
+          />
+          <div className='absolute bottom-0 bg-opacity-75  text-white w-full text-left p-2 font-fredoka font-light'>
+            26-05-2024
+          </div>
+          <div className='bg-customDarkBlue text-white text-center rounded-b-2xl pl-1'>
+            <div className='ml-1 mb-5 '>
+              <h3 className='font-fredoka font-semibold text-xl text-left px-1'>{t("noticeTitle3")}</h3>
+              <h4 className='font-fredoka font-light text-left text-2xl px-1'>{t("category3")}</h4>
+            </div>
+          </div>
+        </div>
+      </Link>
       
 
     </div>

@@ -53,10 +53,11 @@ export default function Page() {
         <section className=" mb-20">
             <Title title={t("title")} />
 
-            <p className="mt-4 text-center text-lg text-white ">
+           
+            <form onSubmit={handleSubmit} className="mt-10 max-w-3xl mx-auto bg-gradient-to-br bg-customblue shadow-2xl rounded-lg p-8 text-black">
+            <p className="my-4 text-center  text-white  font-fredoka text-xl ">
                 {t("P")}
             </p>
-            <form onSubmit={handleSubmit} className="mt-10 max-w-3xl mx-auto bg-gradient-to-br bg-customblue shadow-2xl rounded-lg p-8 text-black">
                 <div className="grid gap-6 md:grid-cols-2">
                     <div>
                         <label className="block text-lg font-medium text-white">{t("name")}</label>
