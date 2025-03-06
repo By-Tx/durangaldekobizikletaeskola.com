@@ -35,11 +35,11 @@ const Slides: React.FC<SlideshowProps> = ({ images = [], title }) => {
         <div className="slide-container w-full h-auto  mx-auto relative">
             <h1 style={captionStyle} className='font-fredoka text-5xl font-semibold'>{title}</h1>
             <Slide
-                duration={4000} // Duración de cada slide en milisegundos
-                transitionDuration={1000} // Duración de la transición en milisegundos
-                infinite={true} // Hacer que el slider sea infinito
-                indicators={false} // Mostrar indicadores
-                arrows={false} // Mostrar flechas de navegación
+                duration={4000}
+                transitionDuration={1000}
+                infinite={true} 
+                indicators={false} 
+                arrows={false}
                 autoplay={true}
             >
                 {images.map((slideImage, index) => (

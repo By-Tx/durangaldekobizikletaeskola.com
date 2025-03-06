@@ -4,12 +4,12 @@ import { FC } from 'react'
 import Image from 'next/image'
 
 interface ImageProps {
-  src: string; // src es el único campo necesario
+  src: string; 
   link: string;
 }
 
 interface GalleryProps {
-  images: ImageProps[]; // Aquí está el array de objetos de imágenes
+  images: ImageProps[]; 
 }
 
 const Gallery: FC<GalleryProps> = ({ images }) => {
@@ -22,10 +22,10 @@ const Gallery: FC<GalleryProps> = ({ images }) => {
             <Image
               src={item.src}
               alt={`Imagen ${index + 1}`}
-              layout="intrinsic" // Esto asegura que la imagen mantenga sus proporciones
+              layout="intrinsic" 
               width={400}
               height={300}
-              className="object-cover cursor-pointer h-full w-full rounded-lg" // Usamos h-full y w-full para asegurar que ocupe todo el espacio
+              className="object-cover cursor-pointer h-full w-full rounded-lg" 
             />
           </div>
         ))}

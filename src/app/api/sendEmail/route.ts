@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
                 return NextResponse.json({ message: "Faltan datos en el formulario" }, { status: 400 });
             }
 
-            // Configuración de Nodemailer
+            // Nodemailer Config
             const transporter = nodemailer.createTransport({
                 service: "gmail", 
                 auth: {
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
                 },
             });
 
-            // Enviamos el correo
+           
             await transporter.sendMail({
                 from: process.env.EMAIL_USER,
                 to: process.env.EMAIL_RECIPIENT, 

@@ -4,7 +4,7 @@ const MainSponsor = (props: { Link: string | undefined; img: string | undefined;
     return (
         <>
             <div className="w-10/12 mx-auto grid grid-cols-2 gap-4  md:grid-cols-4">
-                {/* Primer patrocinador */}
+              
                 <div className="bg-customDarkBlue mb-6 w-44 sm:w-full max-w-sm h-32 md:h-40 rounded-lg shadow-lg flex items-center justify-center mx-auto">
                     <a
                         href={props.Link}
@@ -22,7 +22,7 @@ const MainSponsor = (props: { Link: string | undefined; img: string | undefined;
                     </a>
                 </div>
 
-                {/* Segundo patrocinador */}
+                
                 <div className="bg-customDarkBlue mb-6 w-44 sm:w-full max-w-sm h-32 md:h-40 rounded-lg shadow-lg flex items-center justify-center mx-auto">
                     <a
                         href={props.Link2}
@@ -40,7 +40,7 @@ const MainSponsor = (props: { Link: string | undefined; img: string | undefined;
                     </a>
                 </div>
 
-                {/* Tercer patrocinador */}
+             
                 <div className="bg-customDarkBlue mb-6 w-44 sm:w-full max-w-sm h-32 md:h-40 rounded-lg shadow-lg flex items-center justify-center mx-auto">
                     <a
                         href={props.Link2}

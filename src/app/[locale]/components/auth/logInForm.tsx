@@ -13,12 +13,11 @@ export default function LogInForm() {
     await authClient.signIn.email({
       email,
       password,
-      callbackURL: "/es/dashboard",  // URL de redirección después del login
+      callbackURL: "/es/dashboard",  
       fetchOptions: {
         onSuccess() {
-          // Redirige al dashboard una vez que el inicio de sesión sea exitoso
-          // En este caso utilizamos `redirect` directamente
-          window.location.href = '/es/dashboard';  // Usamos la redirección estándar en el navegador
+          
+          window.location.href = '/es/dashboard';  
         },
       },
     });
