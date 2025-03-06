@@ -79,8 +79,31 @@ export default function News() {
         </div>
       </Link>
 
-
       <Link
+        href="/tenporadaAsiera"
+        className='hove:cursor-pointer '
+      >
+        <div className='group relative h-96 w-86 hover:w-100  lg:hover:h-100 transition-all duration-300 ease-in-out  mb-32 mx-auto'>
+          <Image
+            src={'https://photos.txuli.com/duranguesa/notices/cronica1.jpeg'}
+            alt={t("altImage3")}
+            width={400}
+            height={240}
+            className='w-full h-full object-cover rounded-t-2xl '
+          />
+          <div className='absolute bottom-0 bg-opacity-75  text-white w-full text-left p-2 font-fredoka font-light'>
+            1-03-2025
+          </div>
+          <div className='bg-customDarkBlue text-white text-center rounded-b-2xl pl-1'>
+            <div className='ml-1 mb-5 '>
+              <h3 className='font-fredoka font-semibold text-xl text-left px-1'>{t("noticeTitle4")}</h3>
+              <h4 className='font-fredoka font-light text-left text-2xl px-1'>{t("category4")}</h4>
+            </div>
+          </div>
+        </div>
+      </Link>
+
+      {/* <Link
         href="/puntagaleaTeam"
         className='hove:cursor-pointer '
       >
@@ -102,7 +125,7 @@ export default function News() {
             </div>
           </div>
         </div>
-      </Link>
+      </Link> */}
       
 
     </div>

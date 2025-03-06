@@ -22,7 +22,10 @@
         "noticeTitle3": "Ander, Euskadiko BTT-ko Txapelduna",
         "altImage3": "Anderren argazkia",
         "category3": "KADETE",
-        "date3": " 26-05-2024"
+        "date3": " 26-05-2024",
+        "noticeTitle4": "2025ko estrenaldia",
+        "altImage4": "argazki bat karreran",
+        "category4": "JUNIOR-KADETE"
     },
     "bttTxapeldunaPage": {
         "altImage": "Anderren argazkia",
@@ -40,6 +43,19 @@
         "p2": "Markelek aurkari sendoak izan zituen aurrean, baina bere estrategiaren eta etengabeko lanaren bidez, emaitza nabarmena lortu zuen. Garaipenak are gehiago sendotzen du bere ibilbidea, eta hurrengo erronkei begira itxaropen handiak piztu ditu.",
         "p3": "Euskadiko Selekzioaren parte-hartzeak txapelketari ukitu berezia eman zion, eta Markelen arrakasta, talde osoaren ahalegina eta maila altua azpimarratzen ditu. Espainiako Txapelketaren 13. edizio honek urteetan zehar hartutako mailaren beste erakusgarri bikain bat izan da."
     },
+    "2025StartPage": {
+        "altImage": "argazki ",
+        "title": "Inicio temporada 2025",
+        "subTitle": "Nuestros jóvenes han dado inicio a la temporada 2025 con fuerza",
+        "p1": "Aurtengo denboraldiari hasiera eman diote gure gazteek, bazter guztiak astinduz, bai asfaltoan zein mendian, inoiz baino gehiago garen honetan. Gipuzko (Beasain eta Eibar) eta Aragoi (Zaragoza) izan dira 2025ko denboraldiaren hasieraren plazak, jarraian lasterketa bakoitzaren kronika:",
+
+        "p2": "Beasainen hasi ziren kadeteak, ohiko 40 kilometroko ibilbidea burutuz, Olaberriako igoera epaile izanik. Gureak lasterketa osoan zehar erne aritu ziren ihesaldi saiakeretan sartuz eta pelotoiko aurreneko posizioetan mantenduz. Olaberrian sufritu ostean, atzetik aurrerakoa egin zuten Aratz eta Xubanek, laugarren eta hamargarren helmugaratuz, hurrenez hurren. Aipatzekoa ere hasieran irten ziren 14 taldekidetik 12k lasterketa amaitu zutela, martxa honetan jarraituko dugulakoan gaude. Mendaro dute denek ikuspuntuan.",
+        "p3": "Zaragozan BTTko Espainiako Kopako lehen froga izan zuten gure mendizaleek, gehienek azkeneko postuetatik egin zuten irteera, nahitanahiezko atzetik aurrerako lasterketa eginez. Orokorrean zorte ona ez zuten bidelagun izan: matxurek, zulatuek eta bestelako arazoek haien emaitzak kamustarazi zituzten, Markel eta Andoni kadetetan eta Jon zein Ander paretsu bukatuz. Haietako askok asteburu honetan Valladoliden (Gaztela eta Leon) beste aukera baten bila doaz, Espainiako Kopako proba berri baten.",
+        "p4": "Azkenengoz, juniorrek Eibar izan zuten urte honetako estreinaldiko hasiera, intentsiatate guztietako emozioak eraginez. Hasiera indartsu bat izan ostean (Axular eta Jon ihesita eta besteak eroso pelotoiko lehen postuetan), azken kilometroetan dena hankaz gora bukatu zuen: Jonek sprintean giharrek “kitto” esan zioten, Unaik aurretik kalanbreak eta Axular, Alain eta Oinatzek hanka baino gehiago lurrean jarri behar izan zuten, Oinatzek kolpearen ondorioz eguna ospitaleratua bukatuz (zorionez ez da larritasun handikoa eta laster izango dugu bueltan). Asteburu honetan Mutrikuko lasterketan ondo egiteko itxaropentsu daude, aurreko eguneko egoerari buelta emateko intentzioarekin.",
+        "subTitle2": "Sailkapenak",
+        "r1": "USURBE FROGA"
+        
+    },
     "irrisarriPage": {
         "altImage": "irrisarrin argazkia",
         "title": " Irrisarriland-era irteera",
@@ -51,33 +67,28 @@
     "dromPage": {
         "title": "CAFE DROMEDARIO-FLOTAMET",
         "sectionRoadP1": "Eskolatik Kadete mailara egiten dute salto eta gauzak serio jartzen hasten dira. Konpetizioa ikasketekin batera uztartu behar dituzte helburu nagusienetariko bat konpetizioan hezitzea izanez eta urtetik urtera aurrera pausu bat emonez. Hori bai, eskoletan moduan, talden eta lagunen arteanbizikletaz eta heziketa prozesuaz disfrutatzea da, eta bizikleta bizitza osorako kirol bat izan daiten motibazioa sustatzea da.",
-        "sectionRoadP2":" Gazteek modalitate desberdinetan parte hartzen dute, udako egutegian errepidean eta mendi bizikletan eta neguko egutegian pista eta ziklokrosean.",
+        "sectionRoadP2": " Gazteek modalitate desberdinetan parte hartzen dute, udako egutegian errepidean eta mendi bizikletan eta neguko egutegian pista eta ziklokrosean.",
         "sectionRoadP3": "  Errepidean, Bizkaiko zein Euskal Herriko txapelketa garrantzitsuenetan parte hartzen dute gure gazteek, horietatik at, Txuma, Bizkaiko, Gipuzkoako eta zein Kantabriako Itzulia ere lehiatzen dute.",
         "subtitleRunnersRoad": "ERREPIDEA",
         "componentRunner1Title": "JUNIORRAK",
         "componentRunner2Title": "KADETEAK",
         "sectionMtbTitle": "MTB",
         "sectionMtbP1": " 2022. urtean Durangaldeko Bizikleta Eskolak Mendi Bizikletako talde bat sortzeko eta bultzatzeko esfortzua egin zuen modalitate hau indartzeko eta gazteei beste aukera bat emateko, aukera zabalago bat sortuz.",
-        "sectionMtbP2": "  Egutegiaren barruan, Green Seriesak (UCI C2 mailan dagoena eta Bizkaian ospatzen dena), Superprestigio, Bizkaiko eta Euskadiko Txapelketak lehiatzen dituzte." ,
-        "sectionPistaP1":"Neguko egutegian taldeak ere pistan ere jarduten da kadete eta junior kategorietan. Berrizko belodromoa gure eskualdean daukagula aprobetxatuz, entrenamenduak egiten ditugu astean zehar, eta Anoetan antolatzen diren probetan ere parte hartzen dogu. Bertan, trebetasun desberdinak garatzen dituzte gazteak.",
+        "sectionMtbP2": "  Egutegiaren barruan, Green Seriesak (UCI C2 mailan dagoena eta Bizkaian ospatzen dena), Superprestigio, Bizkaiko eta Euskadiko Txapelketak lehiatzen dituzte.",
+        "sectionPistaP1": "Neguko egutegian taldeak ere pistan ere jarduten da kadete eta junior kategorietan. Berrizko belodromoa gure eskualdean daukagula aprobetxatuz, entrenamenduak egiten ditugu astean zehar, eta Anoetan antolatzen diren probetan ere parte hartzen dogu. Bertan, trebetasun desberdinak garatzen dituzte gazteak.",
         "sectionCXP1": "Neguko egutegian ere Ziklokrosseko egutegia egiten dugu. Teknika oso garrantzitsua dan modalitatea da hau, eta hori lantzeko helburu argia dugu, teknika entrenamendu bereziak antolatuz. Euskal Herriko proba garrantzitsuenetan hartzen dugu parte, ETXF eta BTxF-ko sailkapenean."
-
-
-
     },
-    "eskolaPage":{
+    "eskolaPage": {
         "title": "ESKOLA",
-        "section1P1":"Gure programaren helbururik garrantzitsuena kirola eta dibertsioaren bidez pertsonak trebatzea da, jarrera egokiak, baloreak eta gaitasunak bizikletaren bidez irakatsiz.",
-        "section1P2":"Infantil mailara salto egiten dutenean, beste helburu batzuk ere badaude, kadete mailarako prestatzea eta teknifikatzea da horietako bat.",
-        "section2SubTitle":"PLANINNGA",
+        "section1P1": "Gure programaren helbururik garrantzitsuena kirola eta dibertsioaren bidez pertsonak trebatzea da, jarrera egokiak, baloreak eta gaitasunak bizikletaren bidez irakatsiz.",
+        "section1P2": "Infantil mailara salto egiten dutenean, beste helburu batzuk ere badaude, kadete mailarako prestatzea eta teknifikatzea da horietako bat.",
+        "section2SubTitle": "PLANINNGA",
         "elementTitle": "NORENTZAT?",
         "element1Text": "Eskoletan 6 urtetik 14 urterako umeak parte hartzen dabe. Bizikletarekin ondo pasatzea, bidean dauzen putxu guztietan sartzea gustoko dutenen umeentzat.",
         "elementTitle2": "PLANGINTZA",
         "element2Text": "Helburuak Eskolan umeak hezitzen ditugu, grue baloreak oinarritzat hartuz, eta bizikletaren erabileraren eta teknikaren formakuntza eskeiniz.",
         "elementTitle3": "ASTEA BUKAERA",
         "element3Text": "Astero 2 entrenamendu egiten ditugu( uda partean 3). Bestalde exkursioak, irteera bereziak, gymkanak, bizkaiko federakuntzako egutegian parte hartu eta bestelakoak egiten ditugu."
-
-        
     },
     "formPage": {
         "title": "IZENA EMAN",
@@ -113,8 +124,5 @@
         "eskola": "ESKOLA",
         "form": "IZENA EMAN",
         "contact": "KONTAKTUA"
-       
-
     }
-  
 }

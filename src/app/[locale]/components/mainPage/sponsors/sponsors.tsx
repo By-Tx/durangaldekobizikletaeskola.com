@@ -81,7 +81,7 @@ const Sponsor = () => {
 
         </>
     );
-    if (pathname == '/eus/bttTxapelduna' || pathname == '/es/bttTxapelduna' || pathname == 'es/irrisarriNotice' || pathname == 'eus/irrisarriNotice' || pathname == '/eus/espainakoTxapelketa' || pathname == '/es/espainakoTxapelketa') {
+    if (pathname == '/eus/bttTxapelduna' || pathname == '/es/bttTxapelduna' || pathname == 'es/irrisarriNotice' || pathname == 'eus/irrisarriNotice' || pathname == '/eus/espainakoTxapelketa' || pathname == '/es/espainakoTxapelketa'|| pathname == '/eus/tenporadaAsiera' || pathname == '/es/tenporadaAsiera' ) {
         return null;
     }
 
