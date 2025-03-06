@@ -2,7 +2,7 @@ import Image from "next/image";
 import Bar from './bar';
 
 
-export default function TopImage(props: { image: string, alt: string|undefined, title: string, subTitle: string }) {
+export default function TopImage(props: { image: string, alt: string|undefined, title: string, subTitle: string, colors?: string }) {
     return (
         <>
             <div className=" h-112 relative">
@@ -15,7 +15,7 @@ export default function TopImage(props: { image: string, alt: string|undefined, 
                     <h2 className='text-left p-2 font-fredoka font-slim text-2xl uppercase'>{props.subTitle}</h2>
                 </div>
             </div>
-            <Bar />
+            <Bar color={props.colors}/>
         </>
     )
 }

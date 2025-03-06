@@ -1,6 +1,7 @@
 "use client";
 import { authClient } from "@/lib/auth-client"; // Importar el cliente de autenticación
 
+
 import { useState } from "react";
 export default function LogInForm() {
   const [email, setEmail] = useState('');
@@ -12,10 +13,18 @@ export default function LogInForm() {
     await authClient.signIn.email({
       email,
       password,
-      callbackURL: "/dashboard",
+      callbackURL: "/es/dashboard",  // URL de redirección después del login
+      fetchOptions: {
+        onSuccess() {
+          // Redirige al dashboard una vez que el inicio de sesión sea exitoso
+          // En este caso utilizamos `redirect` directamente
+          window.location.href = '/es/dashboard';  // Usamos la redirección estándar en el navegador
+        },
+      },
     });
+  }    
 
-  };
+
 
   return (
     <div className="flex justify-center items-center h-screen">

@@ -79,9 +79,9 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
             {/* <Link href="/puntagalea" className="text-white hover:text-customPuntagaleaOrange transition duration-150">
              PUNTAGALEA OCCIDENT
             </Link> */}
-             {/* <Link href="/galeria" className="text-white hover:text-blue-200 transition duration-150">
+             <Link href="/galeria" className="text-white hover:text-blue-200 transition duration-150">
                GALERIA
-            </Link>  */}
+            </Link>  
             <Link href="/form" className="text-white hover:text-blue-200 transition duration-150">
               {t("form")}
             </Link>

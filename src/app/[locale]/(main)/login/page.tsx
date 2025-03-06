@@ -13,7 +13,7 @@ export default async function SignIn() {
 
   if (session) {
 
-    redirect({ href: "/dashboard", locale: "en" });
+    redirect({ href: "/dashboard", locale: "es" });
   }
 
 

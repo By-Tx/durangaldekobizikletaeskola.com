@@ -41,7 +41,7 @@ export default function Gallery() {
         const filteredData = data
           .filter((item: string) => !item.includes("../"))
           .map((item: string) => ({
-            image: `https://photos.txuli.com/duranguesa/covers/${item.slice(0, -1)}.jpg`,
+            image: `https://photos.txuli.com/duranguesa/covers/${rutaSinIdioma}/${item.slice(0, -1)}.jpg`,
             title: item.slice(0, -1),
             link: `${rutaSinIdioma}/${item.slice(0, -1)}/`,
           }));
@@ -58,7 +58,7 @@ export default function Gallery() {
  
   
   return (
-    <div>
+    <div className="mt-20 grid h-screen w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 px-6">
       <Card album={albumData} />
     </div>
   );

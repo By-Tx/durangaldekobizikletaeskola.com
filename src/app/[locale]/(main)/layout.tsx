@@ -42,7 +42,7 @@ export default async function RootLayout({
          <link rel="shortcut icon" href="/media/logo.png" /> 
       </head>
       <body
-        className={`${fredoka}  antialiased`}
+        className={`${fredoka}  antialiased pageNO-specific`}
       >
 
 <NavBar />

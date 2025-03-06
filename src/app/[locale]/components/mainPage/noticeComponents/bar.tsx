@@ -1,5 +1,12 @@
-export default function Bar(){
+
+interface bProps {
+  
+    color?: string;
+    
+  }
+  const bar: React.FC<bProps> = ({ color = ""}) => {
     return (
-        <div className=" bg-customDarkBlue w-full h-6"></div>
+        <div className={`${color ? color : 'bg-customDarkBlue'} w-full h-6 `}></div>
     )
 }
+export default bar;

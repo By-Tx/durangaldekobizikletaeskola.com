@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@better-auth/cli": "^1.1.21",
-    "better-auth": "^1.1.21",
+    "better-auth": "1.2",
     "dotenv": "^16.4.7",
     "mysql2": "^3.11.5",
     "next": "^15.1.2",

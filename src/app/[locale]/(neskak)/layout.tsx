@@ -3,7 +3,7 @@
 import type { Metadata } from "next";
 import { getMessages} from 'next-intl/server';
 import "../globals.css";
-
+import Line from "@/app/[locale]/components/main/line";
 import { Fredoka } from 'next/font/google';
 
 import { NextIntlClientProvider } from "next-intl";
@@ -40,11 +40,11 @@ export default async function RootLayout({
          <link rel="shortcut icon" href="/media/logo.png" /> 
       </head>
       <body
-        className={`${fredoka}  antialiased`}
+        className={`${fredoka}  antialiased page-specific`}
       >
 
       <NavBar  className="bg-customPuntagaleaOrange" color2="bg-customPuntagaleaDarkOrange"/>
-
+      <Line  color="bg-customPuntagaleaDarkOrange"/>
         {children}
         
         
