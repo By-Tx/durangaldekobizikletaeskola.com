@@ -25,7 +25,7 @@ export default function Page() {
         <a href="https://yosoyciclista.s3.amazonaws.com/documentos/smartweb/noticia/57735/documentos/doc_67c4d2949334d7_65454139_imagen_CLASIFICACION-CADETE-MASC.pdf" className="font-fredoka text-blue-500 underline font-semibold text-2xl" target="_blank" rel="noopener noreferrer">Copa españa BTT XCO CADETE</a>
         </div>
         <div className="mb-10 text-center">
-        <a href="https://www.gtxe.eus/datos/carreras/202503031156540.LIII%20PRUEBA%20USURBE%20-%20TO-%20Resultados%20-%2039,7%20km.pdf?s_CAT=CAD&s_ANIO=2025" className="font-fredoka text-blue-500 underline font-semibold text-2xl" target="_blank" rel="noopener noreferrer">Copa españa BTT XCO JUNIOR</a>
+        <a href="https://yosoyciclista.s3.amazonaws.com/documentos/smartweb/noticia/57735/documentos/doc_67c4d293af1213_80457163_imagen_CLASIFICACION-JUNIOR-MASC.pdf" className="font-fredoka text-blue-500 underline font-semibold text-2xl" target="_blank" rel="noopener noreferrer">Copa españa BTT XCO JUNIOR</a>
         </div>
       </section>
         </>
