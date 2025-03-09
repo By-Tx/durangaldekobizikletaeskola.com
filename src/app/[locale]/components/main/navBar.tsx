@@ -19,13 +19,18 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
   const [isRotated, setIsRotated] = useState(false);
   const [logo, setLogo] = useState(logoMenu);
   const handleClick = () => {
-    setIsRotated(!isRotated); // Alternar la rotación
-    setLogo(isRotated ? logoMenu : logoMenuCose); // Alternar entre las imágenes
+    setIsRotated(!isRotated);
+    setLogo(isRotated ? logoMenu : logoMenuCose);
   };
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const t = useTranslations("menuComponent");
   const toggleMenu = () => {
+    if (menuOpen) {
+      
+      setLogo(logoMenu);
+      setIsRotated(false);
+    }
     setMenuOpen(prevState => !prevState);
   };
 
@@ -76,9 +81,9 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
             <Link href="/cafedromedario" className="text-white hover:text-blue-200 transition duration-150">
               CAFÉ DROMEDARIO-FLOTAMET
             </Link>
-             <Link href="/puntagalea" className="text-white hover:text-customPuntagaleaOrange transition duration-150">
+              <Link href="/puntagalea" className="text-white hover:text-customPuntagaleaDarkOrange transition duration-150">
              PUNTAGALEA OCCIDENT
-            </Link> 
+            </Link>  
               <Link href="/galeria" className="text-white hover:text-blue-200 transition duration-150">
                GALERIA
             </Link>   
@@ -98,12 +103,12 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
         {/* Language Switch and Login */}
         {!isMobile && (
           <div className="flex items-center space-x-4">
-           <Link
+           {/* <Link
             href="/login"
             className="bg-customDarkBlue text-white px-4 py-2 rounded-lg "
           >
             HASI SAIOA
-          </Link> 
+          </Link>  */}
             <div className="hidden md:flex items-center space-x-2">
 
               <LocaleSwitcherSelect className={color2} />
@@ -121,14 +126,14 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
           <Link
             href="/"
             className="text-xl hover:text-blue-300 transition duration-150"
-            onClick={toggleMenu}
+             onClick={toggleMenu}
           >
             {t("home")}
           </Link>
           <Link
             href="/eskola"
             className="text-xl hover:text-blue-300 transition duration-150"
-            onClick={toggleMenu}
+             onClick={toggleMenu}
           >
             {t("eskola")}
           </Link>
@@ -139,20 +144,20 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
           >
             CAFÉ DROMEDARIO-FLOTAMET
           </Link>
-          {/* <Link
+           <Link
             href="/puntagalea"
             className="text-xl hover:text-blue-300 transition duration-150"
             onClick={toggleMenu}
           >
             PUNTAGALEA OCCIDENT
-          </Link> */}
-          {/* <Link
+          </Link> 
+           <Link
             href="/galeria"
             className="text-xl hover:text-blue-300 transition duration-150"
             onClick={toggleMenu}
           >
            GALERIA
-          </Link> */}
+          </Link> 
           <Link
             href="/form"
             className="text-xl hover:text-blue-300 transition duration-150"
@@ -175,7 +180,7 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
             HASI SAIOA
           </Link> */}
           <div>
-            <LocaleSwitcherSelect />
+          <LocaleSwitcherSelect className={color2} />
           </div>
         </div>
       )}

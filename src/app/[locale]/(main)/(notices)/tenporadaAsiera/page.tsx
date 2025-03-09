@@ -7,7 +7,7 @@ export default function Page() {
     return (
 
         <>
-            <TopImage image="https://photos.txuli.com/duranguesa/notices/temporada20251.jpeg" alt={t("altImage")} title={t("title")} subTitle={t("subTitle")} />
+            <TopImage image="https://photos.txuli.com/duranguesa/notices/noticia20252.jpeg" alt={t("altImage")} title={t("title")} subTitle={t("subTitle")} />
 
             <P>{t("p1")}</P>
             <P>{t("p2")}</P>

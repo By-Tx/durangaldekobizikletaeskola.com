@@ -25,7 +25,7 @@
         "date3": "26-05-2024",
         "noticeTitle4": "Inicio temporada 2025",
         "altImage4": "foto de los corredores",
-        "category4": "JUNIOR-KADETE"
+        "category4": "JUNIOR-CADETE"
     },
     "bttTxapeldunaPage": {
         "altImage": "Foto de Ander",
@@ -43,6 +43,17 @@
         "p2": "Markel se enfrentó a rivales fuertes, pero con su estrategia y trabajo constante, logró un gran resultado. Esta victoria refuerza aún más su carrera y genera grandes expectativas de cara a los próximos desafíos.",
         "p3": "La participación de la selección de Euskadi le dio un toque especial al campeonato, destacando el esfuerzo y el alto nivel de todo el equipo. La 13ª edición del Campeonato de España ha sido otro excelente ejemplo del nivel alcanzado a lo largo de los años."
     },
+    "PuntaGaleaPage":{
+
+        "altImage": "foto de las corredoras",
+        "title": "Nuevo grupo de chicas",
+        "subtitle": "La Escuela de Ciclismo de Durango se ha asociado con el grupo femenino de Punta Galea para impulsar las categorías cadete y junior femeninas",
+        "p1": "A partir de 2025, la Escuela de Ciclismo de Durango dará otro paso en su compromiso con el ciclismo femenino; se ha asociado con el grupo Punta Galea e incorporado en las categorías cadete y junior femeninas.",
+        "p2": "Mediante esta alianza se refuerza la apuesta por impulsar el ciclismo femenino, facilitando que las corredoras empiecen desde muy temprana edad y asegurando el seguimiento en el desarrollo deportivo. Además, gracias a la colaboración entre ambas escuelas, las jóvenes ciclistas continuarán aprendiendo, mejorando y participando en más competiciones.",
+        "p3": "La Escuela de Ciclismo de Durango y el grupo Punta Galea han destacado la importancia de este acuerdo para avanzar en igualdad dentro del ciclismo y ofrecer nuevas oportunidades a las chicas. Esa unión es un impulso fundamental para desarrollar el talento de los jóvenes y construir un proyecto sólido en el ciclismo femenino."
+        
+      },
+      
     "irrisarriPage": {
         "altImage": "Foto en Irrisarriland",
         "title": "Salida a Irrisarriland",

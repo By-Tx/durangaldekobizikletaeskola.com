@@ -2,7 +2,7 @@
 import { useTranslations } from "next-intl";
 import "./style.css"
 import SubTitle from "@/app/[locale]/components/mainPage/Titles/SubTitle";
-import Line from "@/app/[locale]/components/main/line0m";
+import  Line  from "@/app/[locale]/components/main/line0m";
 
 import Slideshow from "../../components/mainPage/eskola/slide";
 import Runner from "../../components/mainPage/drom/Runner";
@@ -13,15 +13,15 @@ import { images, runner, runnercadete, runnerMtbJunior, technician, runnerMtbKad
 
 export default function CafeDromedario() {
     const t = useTranslations("dromPage");
-    
+
     return (
         <div className="">
-        
+
             <Slideshow
                 images={images}
                 title={t("title")}
             />
-            <Line/>
+            <Line />
 
             <Section >
                 <P>

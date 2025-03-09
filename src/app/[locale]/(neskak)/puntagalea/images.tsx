@@ -1,45 +1,50 @@
 export const images = [
     {
-        url: 'https://photos.txuli.com/duranguesa/Duranguesa_3.jpg',
+        url: 'https://photos.txuli.com/duranguesa/neskaPortada1.webp',
 
     },
     {
-        url: 'https://photos.txuli.com/duranguesa/foto3.jpg',
+        url: 'https://photos.txuli.com/duranguesa/neskaPortada2.webp',
 
     },
     {
-        url: 'https://photos.txuli.com/duranguesa/fotomtb.jpg',
+        url: 'https://photos.txuli.com/duranguesa/neskaPortada3.webp',
     },
     {
-        url: 'https://photos.txuli.com/duranguesa/foto2.jpg',
+        url: 'https://photos.txuli.com/duranguesa/neskaPortada4.webp',
 
     },
 ];
 export const runner = [
     {
-        image: 'https://photos.txuli.com/duranguesa/riders/junior/road/AlainArantzamendi.jpg',
-        name: 'Alain Arantzamendi',
+        image: 'https://photos.txuli.com/duranguesa/riders/neskak/GaraziMarzan.JPG',
+        name: 'Garazi Marzan',
         
     },
     {
-        image: 'https://photos.txuli.com/duranguesa/riders/junior/road/IoritzAldazabal.jpg',
-        name: 'Ioritz Aldazabal',
+        image: 'https://photos.txuli.com/duranguesa/riders/neskak/AroaMagaz.JPG',
+        name: 'Aroa Magaz',
        
     },
     {
-        image: 'https://photos.txuli.com/duranguesa/riders/junior/road/JonZuburruti.jpg',
-        name: 'Jon Zuburruti',
+        image: 'https://photos.txuli.com/duranguesa/riders/neskak/maialenNarbona.JPG',
+        name: 'Maialen Narbona',
         
     },
     {
-        image: 'https://photos.txuli.com/duranguesa/riders/junior/road/OinatzMeilan.jpg',
-        name: 'Oinatz Meilan',
+        image: 'https://photos.txuli.com/duranguesa/riders/neskak/naiaBilbao.JPG',
+        name: 'Naia Bilbao',
         
         
     },
     {
-        image: 'https://photos.txuli.com/duranguesa/riders/junior/road/UnaiBorrajo.jpg',
-        name: 'Unai Borrajo',
+        image: 'https://photos.txuli.com/duranguesa/riders/neskak/naiaMuñiz.JPG',
+        name: 'Naia Muñiz',
+        
+    },
+    {
+        image: 'https://photos.txuli.com/duranguesa/riders/neskak/tatianaRoizo.JPG',
+        name: 'Tatiana Roizo',
         
     },
     
