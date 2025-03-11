@@ -2,8 +2,8 @@
 import Slideshow from "../../components/mainPage/eskola/slide";
 import Section from "../../components/main/Section";
 import P from "../../components/main/P";
-import Runner from "../../components/mainPage/drom/Runner";
-import { runner } from "./images";
+// import Runner from "../../components/mainPage/drom/Runner";
+// import { runner } from "./images";
 import { images } from "./images";
 import Line from "../../components/main/line0m";
 import { useTranslations } from "next-intl";
@@ -16,9 +16,9 @@ export default function Page() {
                 title="PUNTAGALEA OCCIDENT-DURANGALDEKO"
             />
             <Line color="bg-customPuntagaleaDarkOrange"/>
-            <Section >
+            {/* <Section >
             <Runner runner={runner} title={t("titleRunners")} color="bg-customPuntagaleaOrange" color2="bg-customPuntagaleaBlue" />
-            </Section >
+            </Section > */}
             <Section >
                 <P>
                 {t("p1")}

@@ -25,7 +25,8 @@
         "date3": "26-05-2024",
         "noticeTitle4": "Inicio temporada 2025",
         "altImage4": "foto de los corredores",
-        "category4": "JUNIOR-CADETE"
+        "category4": "JUNIOR & CADETE",
+        "noticeTitle5": "Nuevo equipo de chicas "
     },
     "bttTxapeldunaPage": {
         "altImage": "Foto de Ander",
@@ -47,13 +48,25 @@
 
         "altImage": "foto de las corredoras",
         "title": "Nuevo grupo de chicas",
-        "subtitle": "La Escuela de Ciclismo de Durango se ha asociado con el grupo femenino de Punta Galea para impulsar las categorías cadete y junior femeninas",
-        "p1": "A partir de 2025, la Escuela de Ciclismo de Durango dará otro paso en su compromiso con el ciclismo femenino; se ha asociado con el grupo Punta Galea e incorporado en las categorías cadete y junior femeninas.",
+        "subtitle": "Durangaldeko Bizikleta Eskola se ha asociado con el grupo femenino de Punta Galea para impulsar las categorías cadete y junior femeninas",
+        "p1": "A partir de 2025, Durangaldeko Bizikleta Eskola dará otro paso en su compromiso con el ciclismo femenino; se ha asociado con el grupo Punta Galea e incorporado en las categorías cadete y junior femeninas.",
         "p2": "Mediante esta alianza se refuerza la apuesta por impulsar el ciclismo femenino, facilitando que las corredoras empiecen desde muy temprana edad y asegurando el seguimiento en el desarrollo deportivo. Además, gracias a la colaboración entre ambas escuelas, las jóvenes ciclistas continuarán aprendiendo, mejorando y participando en más competiciones.",
-        "p3": "La Escuela de Ciclismo de Durango y el grupo Punta Galea han destacado la importancia de este acuerdo para avanzar en igualdad dentro del ciclismo y ofrecer nuevas oportunidades a las chicas. Esa unión es un impulso fundamental para desarrollar el talento de los jóvenes y construir un proyecto sólido en el ciclismo femenino."
+        "p3": "Durangaldeko Bizikleta Eskola y el grupo Punta Galea han destacado la importancia de este acuerdo para avanzar en igualdad dentro del ciclismo y ofrecer nuevas oportunidades a las chicas. Esa unión es un impulso fundamental para desarrollar el talento de los jóvenes y construir un proyecto sólido en el ciclismo femenino."
         
       },
       
+        "PuntaGaleaMainPage": {
+          "altImage": "Foto de la chica",
+          "title": "PUNTAGALEA OCCIDENT-DURANGALDE",
+          "p1": "Es una escuela de ciclismo creada en 2014, fruto de la unión entre Abadiño Muntsaratz Txirrindulari Kirol Klubak, Elorrioko Txirrindulari Elkarteak y Duranguesa Txirrindulari Elkarte. Esta escuela, que ya cumple 11 años, fue fundada con la intención de fortalecer fuerzas. Es una escuela creada con la idea de emprender un proyecto sólido, en el que se unen tres asociaciones que, aunque tienen nombres distintos, son sólidas e históricas. Además, tenían como objetivo minimizar el uso de recursos en tiempos difíciles para todos. Que las tres asociaciones avanzaran en la misma dirección era otro de sus objetivos, y deseaban fomentar el ciclismo en la región con un mensaje claro: LA UNIÓN HACE LA FUERZA.",
+          "p2": "Este año, más de 110 jóvenes de entre 6 y 18 años conforman nuestra escuela, asegurando la buena labor de los últimos años. Detrás de todo ello está el apoyo de los ayuntamientos: Durangoko Udala, el Ayuntamiento de Abadiño Elizateko, el Ayuntamiento de Elorrioko, el Ayuntamiento de Iurreta Eleizateko y, por último, el Berrizko Udala, que se ha sumado al proyecto.",
+          "p3": "A partir de este año, Durangaldeko Bizikleta Eskola dará otro paso en su compromiso con el ciclismo femenino: se ha asociado con el grupo Punta Galea y se ha incorporado en las categorías cadete y junior femeninas.",
+          "p4": "Con esta alianza se refuerza el compromiso de apostar por el fomento del ciclismo femenino, facilitando que las corredoras progresen desde la base y garantizando el seguimiento en su desarrollo deportivo. Además, gracias a la colaboración entre ambas escuelas, los jóvenes ciclistas continuarán aprendiendo, mejorando y participando en más competiciones.",
+          "p5": "Durangaldeko Bizikleta Eskola y el grupo Punta Galea han subrayado la importancia de este acuerdo para avanzar en la igualdad dentro del ciclismo y ofrecer nuevas oportunidades a las chicas. Esa unión es un impulso fundamental para desarrollar el talento de los jóvenes y para construir un proyecto sólido en el ciclismo femenino.",
+          "titleRunners": "CADETES"
+        }
+      
+,      
     "irrisarriPage": {
         "altImage": "Foto en Irrisarriland",
         "title": "Salida a Irrisarriland",

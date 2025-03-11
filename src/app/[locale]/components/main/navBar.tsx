@@ -82,7 +82,7 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
               CAFÉ DROMEDARIO-FLOTAMET
             </Link>
               <Link href="/puntagalea" className="text-white hover:text-customPuntagaleaDarkOrange transition duration-150">
-             PUNTAGALEA OCCIDENT
+              P.GALEA DURANGALDEKO NESKAK
             </Link>  
               <Link href="/galeria" className="text-white hover:text-blue-200 transition duration-150">
                GALERIA
@@ -144,13 +144,13 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
           >
             CAFÉ DROMEDARIO-FLOTAMET
           </Link>
-           <Link
+            <Link
             href="/puntagalea"
             className="text-xl hover:text-blue-300 transition duration-150"
             onClick={toggleMenu}
           >
-            PUNTAGALEA OCCIDENT
-          </Link> 
+            P.GALEA DURANGALDEKO NESKAK
+          </Link>  
            <Link
             href="/galeria"
             className="text-xl hover:text-blue-300 transition duration-150"

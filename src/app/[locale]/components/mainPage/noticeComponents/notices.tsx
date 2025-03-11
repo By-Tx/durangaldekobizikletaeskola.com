@@ -24,8 +24,8 @@ export default function News() {
           </div>
           <div className='bg-customDarkBlue text-white text-center rounded-b-2xl pl-1'>
             <div className='ml-1 mb-5 '>
-              <h3 className='font-fredoka font-semibold text-xl text-left px-1'>Nesken Talde Berria!</h3>
-              <h4 className='font-fredoka font-light text-left text-2xl px-1'>Kadete & Junior</h4>
+              <h3 className='font-fredoka font-semibold text-xl text-left px-1'>{t("noticeTitle5")}</h3>
+              <h4 className='font-fredoka font-light text-left text-2xl px-1'>{t("category4")}</h4>
             </div>
           </div>
         </div>
