@@ -29,13 +29,10 @@ export default function Page() {
                 <P>
                 {t("p3")}
                 </P>
-                <P>
-                {t("p4")}
-                </P>
-                <P>
-                {t("p5")}
+            
+               
 
-                </P>
+                
             </Section>
             
 

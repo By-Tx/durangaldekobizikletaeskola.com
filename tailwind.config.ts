@@ -36,7 +36,9 @@ const config: Config = {
         105: '28rem',
         112: '35rem',
         110: '26.5rem',
+        116: '29.25rem',
         130: '35.5rem',
+        131: '36.5rem',
       },
       width: {
         18: '4.5rem',

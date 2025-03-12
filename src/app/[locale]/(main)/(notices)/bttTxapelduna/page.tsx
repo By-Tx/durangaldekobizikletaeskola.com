@@ -11,7 +11,8 @@ const t = useTranslations("bttTxapeldunaPage");
         p1={t("p1")}
         p2={t("p2")}
         p3={t("p3")}
-        
+        p4=""
+        p5=""
         />
         </>
     )

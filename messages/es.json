@@ -44,29 +44,24 @@
         "p2": "Markel se enfrentó a rivales fuertes, pero con su estrategia y trabajo constante, logró un gran resultado. Esta victoria refuerza aún más su carrera y genera grandes expectativas de cara a los próximos desafíos.",
         "p3": "La participación de la selección de Euskadi le dio un toque especial al campeonato, destacando el esfuerzo y el alto nivel de todo el equipo. La 13ª edición del Campeonato de España ha sido otro excelente ejemplo del nivel alcanzado a lo largo de los años."
     },
-    "PuntaGaleaPage":{
-
+    "PuntaGaleaPage": {
         "altImage": "foto de las corredoras",
         "title": "Nuevo grupo de chicas",
         "subtitle": "Durangaldeko Bizikleta Eskola se ha asociado con el grupo femenino de Punta Galea para impulsar las categorías cadete y junior femeninas",
+        "p1": "Es una escuela de ciclismo creada en 2014, fruto de la unión entre Abadiño Muntsaratz Txirrindulari Kirol Klubak, Elorrioko Txirrindulari Elkarteak y Duranguesa Txirrindulari Elkarte. Esta escuela, que ya cumple 11 años, fue fundada con la intención de fortalecer fuerzas. Es una escuela creada con la idea de emprender un proyecto sólido, en el que se unen tres asociaciones que, aunque tienen nombres distintos, son sólidas e históricas. Además, tenían como objetivo minimizar el uso de recursos en tiempos difíciles para todos. Que las tres asociaciones avanzaran en la misma dirección era otro de sus objetivos, y deseaban fomentar el ciclismo en la región con un mensaje claro: LA UNIÓN HACE LA FUERZA.",
+        "p2": "Este año, más de 110 jóvenes de entre 6 y 18 años conforman nuestra escuela, asegurando la buena labor de los últimos años. Detrás de todo ello está el apoyo de los ayuntamientos: Durangoko Udala, el Ayuntamiento de Abadiño Elizateko, el Ayuntamiento de Elorrioko, el Ayuntamiento de Iurreta Eleizateko y, por último, el Berrizko Udala, que se ha sumado al proyecto.",
+        "p3": "A partir de este año, Durangaldeko Bizikleta Eskola dará otro paso en su compromiso con el ciclismo femenino: se ha asociado con el grupo Punta Galea y se ha incorporado en las categorías cadete y junior femeninas.",
+        "p4": "Con esta alianza se refuerza el compromiso de apostar por el fomento del ciclismo femenino, facilitando que las corredoras progresen desde la base y garantizando el seguimiento en su desarrollo deportivo. Además, gracias a la colaboración entre ambas escuelas, los jóvenes ciclistas continuarán aprendiendo, mejorando y participando en más competiciones.",
+        "p5": "Durangaldeko Bizikleta Eskola y el grupo Punta Galea han subrayado la importancia de este acuerdo para avanzar en la igualdad dentro del ciclismo y ofrecer nuevas oportunidades a las chicas. Esa unión es un impulso fundamental para desarrollar el talento de los jóvenes y para construir un proyecto sólido en el ciclismo femenino."
+    },
+    "PuntaGaleaMainPage": {
+        "altImage": "Foto de la chica",
+        "title": "PUNTAGALEA OCCIDENT-DURANGALDE",
         "p1": "A partir de 2025, Durangaldeko Bizikleta Eskola dará otro paso en su compromiso con el ciclismo femenino; se ha asociado con el grupo Punta Galea e incorporado en las categorías cadete y junior femeninas.",
         "p2": "Mediante esta alianza se refuerza la apuesta por impulsar el ciclismo femenino, facilitando que las corredoras empiecen desde muy temprana edad y asegurando el seguimiento en el desarrollo deportivo. Además, gracias a la colaboración entre ambas escuelas, las jóvenes ciclistas continuarán aprendiendo, mejorando y participando en más competiciones.",
-        "p3": "Durangaldeko Bizikleta Eskola y el grupo Punta Galea han destacado la importancia de este acuerdo para avanzar en igualdad dentro del ciclismo y ofrecer nuevas oportunidades a las chicas. Esa unión es un impulso fundamental para desarrollar el talento de los jóvenes y construir un proyecto sólido en el ciclismo femenino."
-        
-      },
-      
-        "PuntaGaleaMainPage": {
-          "altImage": "Foto de la chica",
-          "title": "PUNTAGALEA OCCIDENT-DURANGALDE",
-          "p1": "Es una escuela de ciclismo creada en 2014, fruto de la unión entre Abadiño Muntsaratz Txirrindulari Kirol Klubak, Elorrioko Txirrindulari Elkarteak y Duranguesa Txirrindulari Elkarte. Esta escuela, que ya cumple 11 años, fue fundada con la intención de fortalecer fuerzas. Es una escuela creada con la idea de emprender un proyecto sólido, en el que se unen tres asociaciones que, aunque tienen nombres distintos, son sólidas e históricas. Además, tenían como objetivo minimizar el uso de recursos en tiempos difíciles para todos. Que las tres asociaciones avanzaran en la misma dirección era otro de sus objetivos, y deseaban fomentar el ciclismo en la región con un mensaje claro: LA UNIÓN HACE LA FUERZA.",
-          "p2": "Este año, más de 110 jóvenes de entre 6 y 18 años conforman nuestra escuela, asegurando la buena labor de los últimos años. Detrás de todo ello está el apoyo de los ayuntamientos: Durangoko Udala, el Ayuntamiento de Abadiño Elizateko, el Ayuntamiento de Elorrioko, el Ayuntamiento de Iurreta Eleizateko y, por último, el Berrizko Udala, que se ha sumado al proyecto.",
-          "p3": "A partir de este año, Durangaldeko Bizikleta Eskola dará otro paso en su compromiso con el ciclismo femenino: se ha asociado con el grupo Punta Galea y se ha incorporado en las categorías cadete y junior femeninas.",
-          "p4": "Con esta alianza se refuerza el compromiso de apostar por el fomento del ciclismo femenino, facilitando que las corredoras progresen desde la base y garantizando el seguimiento en su desarrollo deportivo. Además, gracias a la colaboración entre ambas escuelas, los jóvenes ciclistas continuarán aprendiendo, mejorando y participando en más competiciones.",
-          "p5": "Durangaldeko Bizikleta Eskola y el grupo Punta Galea han subrayado la importancia de este acuerdo para avanzar en la igualdad dentro del ciclismo y ofrecer nuevas oportunidades a las chicas. Esa unión es un impulso fundamental para desarrollar el talento de los jóvenes y para construir un proyecto sólido en el ciclismo femenino.",
-          "titleRunners": "CADETES"
-        }
-      
-,      
+        "p3": "Durangaldeko Bizikleta Eskola y el grupo Punta Galea han destacado la importancia de este acuerdo para avanzar en igualdad dentro del ciclismo y ofrecer nuevas oportunidades a las chicas. Esa unión es un impulso fundamental para desarrollar el talento de los jóvenes y construir un proyecto sólido en el ciclismo femenino.",
+        "titleRunners": "CADETES"
+    },
     "irrisarriPage": {
         "altImage": "Foto en Irrisarriland",
         "title": "Salida a Irrisarriland",
@@ -75,17 +70,16 @@
         "p2": "En este día tan especial, los participantes tuvieron la oportunidad de probar tirolinas, circuitos acrobáticos, recorridos en bicicleta de montaña y pruebas de orientación. Estas actividades no solo fomentaron el trabajo en equipo y el coraje, sino que también ofrecieron un espacio perfecto para la diversión.",
         "p3": "La visita a Irrisarriland ofreció a los niños una excelente oportunidad para combinar naturaleza, deporte y amistad, dejando un montón de hermosos recuerdos."
     },
-    "2025StartPage":{
+    "2025StartPage": {
         "altImage": "Foto de los corredores",
         "title": "Inicio temporada 2025",
         "subTitle": "Nuestros jóvenes han dado inicio a la temporada 2025 con fuerza",
-        "p1" : "Nuestros jóvenes han dado inicio a la temporada sacudiendo todos los rincones, tanto en asfalto como en montaña, en un año en el que somos más que nunca. Gipuzkoa (Beasain y Eibar) y Aragón (Zaragoza) han sido los escenarios del comienzo de la temporada 2025. A continuación, el resumen de cada carrera:",
+        "p1": "Nuestros jóvenes han dado inicio a la temporada sacudiendo todos los rincones, tanto en asfalto como en montaña, en un año en el que somos más que nunca. Gipuzkoa (Beasain y Eibar) y Aragón (Zaragoza) han sido los escenarios del comienzo de la temporada 2025. A continuación, el resumen de cada carrera:",
         "p2": "En Beasain comenzaron los cadetes, completando el recorrido habitual de 40 kilómetros, con la subida a Olaberria como juez de la prueba. Nuestros ciclistas estuvieron atentos a los intentos de fuga y se mantuvieron en las primeras posiciones del pelotón. Tras sufrir en Olaberria, Aratz y Xuban remontaron desde atrás, finalizando en cuarta y décima posición, respectivamente. También cabe destacar que, de los 14 corredores que iniciaron la prueba, 12 lograron terminarla, lo que nos da confianza para seguir en esta línea. Ahora todos tienen la mirada puesta en Mendaro.",
-        "p3":"En Zaragoza, nuestros ciclistas de montaña participaron en la primera prueba de la Copa de España de BTT. La mayoría salió desde los últimos puestos, viéndose obligados a remontar, pero la suerte no estuvo de su lado: averías, pinchazos y otros problemas afectaron sus resultados. Markel y Andoni en cadetes, y Jon y Ander, finalizaron con tiempos similares. Muchos de ellos buscarán una nueva oportunidad este fin de semana en Valladolid (Castilla y León), en otra prueba de la Copa de España.",
+        "p3": "En Zaragoza, nuestros ciclistas de montaña participaron en la primera prueba de la Copa de España de BTT. La mayoría salió desde los últimos puestos, viéndose obligados a remontar, pero la suerte no estuvo de su lado: averías, pinchazos y otros problemas afectaron sus resultados. Markel y Andoni en cadetes, y Jon y Ander, finalizaron con tiempos similares. Muchos de ellos buscarán una nueva oportunidad este fin de semana en Valladolid (Castilla y León), en otra prueba de la Copa de España.",
         "p4": "Por último, los juveniles debutaron en Eibar, viviendo emociones de toda intensidad. Tras un inicio fuerte (con Axular y Jon en fuga y el resto cómodos en las primeras posiciones del pelotón), los últimos kilómetros lo cambiaron todo: Jon sufrió calambres en el sprint, Unai los había padecido antes y Axular, Alain y Oinatz terminaron más en el suelo que sobre la bicicleta. Oinatz tuvo que ser hospitalizado tras una caída, aunque por suerte sin gravedad, y pronto estará de vuelta. Este fin de semana están ilusionados por hacerlo bien en la carrera de Mutriku y darle la vuelta a la situación.",
         "subTitle2": "Clasificaciones"
-    }
-    ,
+    },
     "dromPage": {
         "title": "CAFE DROMEDARIO-FLOTAMET",
         "sectionRoadP1": "Desde la escuela hasta la categoría cadete, todo se pone más serio. Los jóvenes deben combinar la competición con los estudios, siendo uno de los objetivos principales formarlos como competidores, mientras dan un paso hacia adelante cada año. Sin embargo, como en la escuela, el disfrute del ciclismo, el trabajo en equipo y la formación continua son esenciales, y la motivación para hacer del ciclismo un deporte para toda la vida es clave.",
