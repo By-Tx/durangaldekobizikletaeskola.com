@@ -4,7 +4,7 @@ import Slideshow from "../components/main/slider";
 import News from "../components/mainPage/noticeComponents/notices";
 import SubTitle from "../components/mainPage/Titles/SubTitle";
 import Line from "@/app/[locale]/components/main/line0m";
-import Section from "@/app/[locale]/components/main/Section";
+
 import { useNewsItems } from "./noticeProps";
 export default function Home() {
   const newsItems = useNewsItems();
@@ -38,32 +38,32 @@ export default function Home() {
     },
 
   ];
-  const images2 = [
-    {
-      url: 'https://photos.txuli.com/duranguesa/Duranguesa_3escale.webp',
-      title: t("title"),
-      subtitle: t("subtitle"),
-      height: 600, // altura en píxeles
-    },
-    {
-      url: 'https://photos.txuli.com/duranguesa/foto3.jpg',
-      title: t("title2"),
-      subtitle: t("subtitle2"),
-      height: 600,
-    },
-    {
-      url: 'https://photos.txuli.com/duranguesa/fotomtb.jpg',
-      title: t("title3"),
-      subtitle: t("subtitle3"),
-      height: 650,
-    },
-    {
-      url: 'https://photos.txuli.com/duranguesa/portada1escaled.webp',
-      title: t("title4"),
-      subtitle: t("subtitle4"),
-      height: 650,
-    },
-  ];
+  // const images2 = [
+  //   {
+  //     url: 'https://photos.txuli.com/duranguesa/Duranguesa_3escale.webp',
+  //     title: t("title"),
+  //     subtitle: t("subtitle"),
+  //     height: 600, // altura en píxeles
+  //   },
+  //   {
+  //     url: 'https://photos.txuli.com/duranguesa/foto3.jpg',
+  //     title: t("title2"),
+  //     subtitle: t("subtitle2"),
+  //     height: 600,
+  //   },
+  //   {
+  //     url: 'https://photos.txuli.com/duranguesa/fotomtb.jpg',
+  //     title: t("title3"),
+  //     subtitle: t("subtitle3"),
+  //     height: 650,
+  //   },
+  //   {
+  //     url: 'https://photos.txuli.com/duranguesa/portada1escaled.webp',
+  //     title: t("title4"),
+  //     subtitle: t("subtitle4"),
+  //     height: 650,
+  //   },
+  // ];
 
   return (
     <div >

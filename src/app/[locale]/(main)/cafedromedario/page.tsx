@@ -1,20 +1,26 @@
 "use client"
 import { useTranslations } from "next-intl";
+
 import "./style.css"
 import SubTitle from "@/app/[locale]/components/mainPage/Titles/SubTitle";
-import  Line  from "@/app/[locale]/components/main/line0m";
+import Line from "@/app/[locale]/components/main/line0m";
 
 import Slideshow from "../../components/mainPage/eskola/slide";
 // import Runner from "../../components/mainPage/drom/Runner";
 // import Technicians from "../../components/mainPage/drom/Technicians";
 import P from "@/app/[locale]/components/main/P";
 import Section from "@/app/[locale]/components/main/Section";
- import { images } from "./images";
+import { images } from "./images";
+
+
+
+
 
 export default function CafeDromedario() {
     const t = useTranslations("dromPage");
 
     return (
+        
         <div className="">
 
             <Slideshow
