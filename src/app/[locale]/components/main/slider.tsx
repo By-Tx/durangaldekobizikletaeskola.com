@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import Image from "next/legacy/image";
 import { Slide } from 'react-slideshow-image';

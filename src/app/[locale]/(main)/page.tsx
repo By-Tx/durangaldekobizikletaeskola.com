@@ -1,14 +1,53 @@
-"use client";
-import { useTranslations } from "next-intl";
+
+import {getLocale, getTranslations} from 'next-intl/server';
 import Slideshow from "../components/main/slider";
 import News from "../components/mainPage/noticeComponents/notices";
 import SubTitle from "../components/mainPage/Titles/SubTitle";
 import Line from "@/app/[locale]/components/main/line0m";
 
 import { useNewsItems } from "./noticeProps";
-export default function Home() {
-  const newsItems = useNewsItems();
-  const t = useTranslations("homePage");
+import ButtonNotice from '../components/mainPage/noticeComponents/Button';
+interface Notice {
+  href: string;
+  imageSrc: string;
+  alt: string;
+  date: string;
+  title: string;
+  category: string;
+}
+interface NoticeResponse {
+  data: Notice[];
+}
+
+async function fetchNotices(locale: string): Promise<NoticeResponse> {
+  const API_URL =
+    process.env.NODE_ENV === "development"
+      ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
+      : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
+
+  if (!API_URL) {
+    throw new Error("API URL no definida en las variables de entorno");
+  }
+
+  const response = await fetch(`${API_URL}/api/mainNotices`, {
+    method: "POST",
+    cache: "no-store", // Evita caché para asegurar datos frescos en cada request
+    body: JSON.stringify({ path: "mainNotices", loc:locale }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error fetching notices");
+  }
+
+  return response.json();
+ 
+}
+export default async function Home() {
+  const locale = await getLocale(); 
+  
+  const response = await fetchNotices(locale);
+  
+    const t = await getTranslations("homePage");
   const images = [
     {
       url: 'https://photos.txuli.com/duranguesa/Duranguesa_3escale.webp',
@@ -73,9 +112,10 @@ export default function Home() {
       />
       <Line />
       <SubTitle subTitle={t("componentSubtitle")} />
-      
-        <News items={newsItems} />
-{/*       
+    
+      <News items={response.data} />
+      <ButtonNotice/>
+      {/*       
       <Line />
       {images2.map((section, idx) => {
         const isEven = idx % 2 === 0;

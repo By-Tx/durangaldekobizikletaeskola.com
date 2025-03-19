@@ -14,6 +14,14 @@ export function useNewsItems(): NewsItem[] {
 
   const newsItems: NewsItem[] = [
     {
+      href: "/cronica9-03-25",
+      imageSrc: "https://photos.txuli.com/duranguesa/notices/cronica2.jpeg",
+      alt: "Imagen de Selección",
+      date: "9-03-2025",
+      title: t("noticeTitle6"),
+      category: t("category4"),
+    },
+    {
       href: "/puntagaleaTeam",
       imageSrc: "https://photos.txuli.com/duranguesa/notices/portadaneskak.JPG",
       alt: t("altImage3"),
@@ -29,14 +37,15 @@ export function useNewsItems(): NewsItem[] {
       title: t("noticeTitle4"),
       category: t("category4"),
     },
-    {
-      href: "/espainakoTxapelketa",
-      imageSrc: "https://photos.txuli.com/duranguesa/notices/noticiasSeleccion.png",
-      alt: "Imagen de Selección",
-      date: "12-01-2025",
-      title: t("noticeTitle"),
-      category: t("category"),
-    },
+  
+    // {
+    //   href: "/espainakoTxapelketa",
+    //   imageSrc: "https://photos.txuli.com/duranguesa/notices/noticiasSeleccion.png",
+    //   alt: "Imagen de Selección",
+    //   date: "12-01-2025",
+    //   title: t("noticeTitle"),
+    //   category: t("category"),
+    // },
     // {
     //   href: "/irrisarriNotice",
     //   imageSrc: "https://photos.txuli.com/duranguesa/notices/irrisarri.JPG",

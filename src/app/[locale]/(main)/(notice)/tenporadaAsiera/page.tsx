@@ -2,6 +2,7 @@ import TopImage from "@/app/[locale]/components/mainPage/noticeComponents/topIma
 import { useTranslations } from "next-intl";
 import SubTitle from "@/app/[locale]/components/mainPage/Titles/SubTitle";
 import P from "@/app/[locale]/components/main/P";
+import Section from "@/app/[locale]/components/main/Section";
 export default function Page() {
     const t = useTranslations("2025StartPage");
     return (
@@ -9,10 +10,12 @@ export default function Page() {
         <>
             <TopImage image="https://photos.txuli.com/duranguesa/notices/noticia20252.jpeg" alt={t("altImage")} title={t("title")} subTitle={t("subTitle")} />
 
+            <Section>
             <P>{t("p1")}</P>
             <P>{t("p2")}</P>
             <P>{t("p3")}</P>
             <P>{t("p4")}</P>
+            </Section>
         <SubTitle subTitle={t("subTitle2")} />
       <section>
       <div className="mb-10 text-center">

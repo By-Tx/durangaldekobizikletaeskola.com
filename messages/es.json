@@ -10,6 +10,9 @@
         "subtitle4": "El trabajo en equipo, el esfuerzo, el compromiso y la amistad son nuestros pilares. A través de estos, logramos metas juntos y ganamos fuerza en el camino.",
         "componentSubtitle": "NOTICIAS"
     },
+    "noticePage":{
+        "title": "TODAS LAS NOTICIAS"
+    },
     "noticeComponent": {
         "noticeTitle": "Markel, 13º Campeonato de España",
         "altImage": "Foto de Markel en un descenso",
@@ -26,7 +29,23 @@
         "noticeTitle4": "Inicio temporada 2025",
         "altImage4": "foto de los corredores",
         "category4": "JUNIOR & CADETE",
-        "noticeTitle5": "Nuevo equipo de chicas "
+        "noticeTitle5": "Nuevo equipo de chicas ",
+        "noticeTitle6": "¿Y dónde no?"
+
+
+    },
+    "cronica9-03-25Page": {
+        "altImage": "Foto de Ander",
+        "title": "Y donde no?",
+        "subTitle": "Segunda semana de competición de la temporada 2025 para los nuestros en los caminos de Euskal Herria y del Estado",
+        "p1": "Retos cercanos y lejanos para nuestros jóvenes este pasado domingo, viajando de Castilla hasta tierras del Norte y viceversa.",
+        "p2": "En cadetes tuvimos dos citas, en Mendaro y Lehuntze. La carrera de Mendaro fue rápida, con Amets (4º) y Aratz (9º) luchando por la victoria hasta el último momento, terminando entre los diez primeros. En general, fue una competición bien disputada.",
+        "p3": "La de Lehuntze fue un verdadero desafío para nuestros chicos de Castilla (Raúl y Mateo), con 40 vueltas a un circuito de 1,2 km. Aunque la cabeza de carrera se escapó desde el principio, se mantuvieron luchadores, con Raúl llegando 13º y Mateo 16º. En los próximos fines de semana, el equipo se dividirá entre la Aiarako Bira y las carreras de Gipuzkoa, por lo que habrá trabajo para mantener todo en orden.",
+        "p4": "Los júnior compitieron con ganas en la carrera de Mutriku, enfrentándose dos veces al exigente giro de Kalbario. Cuando saltaron las chispas, nuestros tres corredores, Axular, Jon y Unai, se mantuvieron al frente. En la segunda subida, los dos últimos destacaron junto a otros pocos ciclistas, logrando Unai el tercer puesto y Jon el sexto. Además, nos llevamos la clasificación por equipos, demostrando nuestra fortaleza. Amauri, recién llegado de Puerto Rico, ya ha aprendido que aquí no hay bromas, le esperan semanas intensas de aprendizaje. No nos moveremos mucho, ya que la próxima cita será en Berriatua, donde esperamos reafirmar nuestras fuerzas este sábado.",
+        "p5": "Nuestros ciclistas de BTT viajaron a Valladolid para disputar la segunda prueba de la Copa de España, con resultados variados. Andoni y Markel, aprovechando los puntos de la semana anterior, lograron salir más adelante. En una carrera de gran velocidad, sus cualidades brillaron, terminando Andoni en el puesto 19º y Markel en el 23º. En la categoría júnior, sin embargo, Jon tuvo aún peor suerte que en Zaragoza y sufrió una fuerte caída que le obligó a retirarse. Estamos seguros de que pronto podrá darle la vuelta a la situación.",
+        "p6": "El domingo, todos los montañeros se trasladarán a Erandio para dar inicio a las Green Series."
+        
+
     },
     "bttTxapeldunaPage": {
         "altImage": "Foto de Ander",

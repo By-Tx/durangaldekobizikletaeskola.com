@@ -10,6 +10,9 @@
         "subtitle4": "Talde lana, ahalegina, konpromezua eta laguntasuna dira gure oinarri. Hauen bidez, elkarrekin helburuak lortzen ditugu eta bidean indarra hartzen dugu.",
         "componentSubtitle": "ALBISTEAK"
     },
+    "noticePage":{
+        "title": "ALBISTE GUZTIAK"
+    },
 
     "noticeComponent": {
         "noticeTitle": "Markel, 13º Espainiako Txapelketan",
@@ -27,7 +30,8 @@
         "noticeTitle4": "2025ko estrenaldia",
         "altImage4": "argazki bat karreran",
         "category4": "JUNIOR-KADETE",
-        "noticeTitle5": "Nesken Talde berria!"
+        "noticeTitle5": "Nesken Talde berria!",
+        "noticeTitle6": "Eta non ez?"
     },
     "bttTxapeldunaPage": {
         "altImage": "Anderren argazkia",
@@ -36,6 +40,19 @@
         "p1": "2024an, Ander Mendizabalek bere kirol ibilbideko beste mugarri bat ezarri zuen kadete mailako BTT Euskadiko Txapelketan garaile izanik. Lasterketa zorrotz eta gogorra izan zen, baina Mendizábalek erakutsitako teknika, erritmo eta erresistentziak emaitza bikaina bermatu zioten.",
         "p2": "Txapelketa, Euskadiko paisaia malkartsuetan garatu zena, diziplina eta ahalegin handia eskatzen zuen. Anderrek hasieratik bukaerara errendimendu paregabea mantendu zuen, eta lasterketa ikusgarri batekin helmugaratu zen txapeldun modura.",
         "p3": "Mendizabalen garaipenak ez du soilik bere maila bikaina nabarmentzen, baita Euskadiko BTT kirolaren etorkizun oparoa islatzen du ere. Txapelketa hau aitzakia bikaina izan da zaleak, familia eta lagunak kirol honen inguruan batzeko, eta Anderrek guztien begirunea eta txaloak jaso zituen bere lorpenagatik."
+    },
+    "cronica9-03-25Page": {
+        "altImage": "Foto ",
+        "title": "ETA NON EZ?  ",
+        "subTitle": "2025ko denboraldiaren bigarren astea izan dute gureek  Euskal Herri zein Estatuko bideetan",
+        "p1": "Hurbileko eta urruneko erronkak gure gazteentzat pasa den igande honetan, Gaztelatik Iparraldeko lurretaraino etorriz eta joanez aldi berean. ",
+        "p2": "Kadetetan bi hitzordu izan genituen, Mendaron eta Lehuntzen, hain zuzen ere. Lasterketa azkarra izan zen Mendarokoa, Amets (4.) eta Aratz (9.) azken momenturaino garaipenaren borrokan izan baitziren, hamarren artean sailkatuz. Orokorrean ondo lehiatutakoa izan zen lasterketa hau. Lehuntzekoa zorabiozkoa izan zen gure Gaztelako (Raúl eta Mateo) mutilentzat, 1,2 Km-ko zirkuitu bati 40 itzuli emanez. Hasieratik lasterketa buruak ihes egin zuen arren borrokalari mantendu ziren, Raúl 13. eta Mateo 16. helmugaratuz. Hurrengo asteburuetan bideak zatituko dira: Aiarako Bira eta Gipuzkoako lasterketek bitan utziko du gure taldea, lanak izango ditugu dena bere onetik ez irtetzeko.",
+        "p3": "Juniorrek Mutrikuko lasterketan gogoz jardun zuten, Kalbarioko “ziaboga” epaile irmoa parez-pare birritan gainditzeko prest. Txinpartak piztu zirenean gure hiru taldekide aurrean mantendu ziren; Axular, Jon eta Unai. Bigarren igoeran azken biak nabarmendu ziren beste gutxi batzuekin batera eta helmugan Unaik hirugarren postua eta Jonek seigarren tokia eskuratu zuten. Honekin batera taldeko sailkapena eraman genuen, indartsu gaudelaren seinale. Puerto Ricotik etorri berri zaigun Amauri jada badaki hemen txantxa gutxi daudela, aste luzeak izango ditu etxera irakaspenak emateko. Bertatik ez gara asko mugituko, hurrengo plaza Berriatua izango baita, ea larunbat honetan indarrak berresten ditugun.  ",
+        "p4": "Los júnior compitieron con ganas en la carrera de Mutriku, enfrentándose dos veces al exigente giro de Kalbario. Cuando saltaron las chispas, nuestros tres corredores, Axular, Jon y Unai, se mantuvieron al frente. En la segunda subida, los dos últimos destacaron junto a otros pocos ciclistas, logrando Unai el tercer puesto y Jon el sexto. Además, nos llevamos la clasificación por equipos, demostrando nuestra fortaleza. Amauri, recién llegado de Puerto Rico, ya ha aprendido que aquí no hay bromas, le esperan semanas intensas de aprendizaje. No nos moveremos mucho, ya que la próxima cita será en Berriatua, donde esperamos reafirmar nuestras fuerzas este sábado.",
+        "p5": "Gure BTTko txirrindulariak Valladolidera joan ziren Espainiako Kopako bigarren proba lehiatzera, emaitza oso ezberdinekin: alde batetik, Andoni eta Markelek aurreko asteko emaitzak baliatuz aurrerago eman zuten irteera. Abiadura handiko lasterketa izanik, haien bertuteak azalera eraman eta biak lehen hogeiren inguruan sailkatu ziren, 19. Andonik eta 23. Markelek. Juniorretan, ordea, Jonek Zaragozan baino are zoritxar gehiago jasan eta jaso zuen, kolpe handi baten erruz erretiratzera behartuta ikusi baitzen, egoerari laster buelta emateko gai dela ziur gaude.",
+        "p6": "Igandean Erandiora salto egingo dute mendizale guztiek, Green Seriesari hasiera emanez. "
+        
+
     },
     "espainakoTxapeldunaPage": {
         "altImage": "Markelen argazkia",
