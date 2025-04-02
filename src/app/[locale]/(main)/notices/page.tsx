@@ -41,9 +41,10 @@ interface Notice {
 export default async function Page() {
     const locale = await getLocale(); 
     const response = await fetchNotices(locale);
+    const t = await getTranslations("noticePage");
     return (
         <div>
-            <Title title="Your Title Here" />
+            <Title title={t("title")} />
             <Section>
             <News items={response.data} />
             </Section>

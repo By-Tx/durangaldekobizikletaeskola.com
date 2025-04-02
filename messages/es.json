@@ -10,8 +10,9 @@
         "subtitle4": "El trabajo en equipo, el esfuerzo, el compromiso y la amistad son nuestros pilares. A través de estos, logramos metas juntos y ganamos fuerza en el camino.",
         "componentSubtitle": "NOTICIAS"
     },
-    "noticePage":{
-        "title": "TODAS LAS NOTICIAS"
+    "noticePage": {
+        "title": "TODAS LAS NOTICIAS",
+        "button": "VER MÁS"
     },
     "noticeComponent": {
         "noticeTitle": "Markel, 13º Campeonato de España",
@@ -30,9 +31,11 @@
         "altImage4": "foto de los corredores",
         "category4": "JUNIOR & CADETE",
         "noticeTitle5": "Nuevo equipo de chicas ",
-        "noticeTitle6": "¿Y dónde no?"
-
-
+        "noticeTitle6": "¿Y dónde no?",
+        "noticeTitle7": "LOS CINCO UNIDOS",
+        "category5": "JUNIOR & CADETE & ESCUELA",
+        "noticeTitle8": "AQUÍ Y ALLÁ",
+        "noticeTitle9": "UNA PARA CADA "
     },
     "cronica9-03-25Page": {
         "altImage": "Foto de Ander",
@@ -44,8 +47,6 @@
         "p4": "Los júnior compitieron con ganas en la carrera de Mutriku, enfrentándose dos veces al exigente giro de Kalbario. Cuando saltaron las chispas, nuestros tres corredores, Axular, Jon y Unai, se mantuvieron al frente. En la segunda subida, los dos últimos destacaron junto a otros pocos ciclistas, logrando Unai el tercer puesto y Jon el sexto. Además, nos llevamos la clasificación por equipos, demostrando nuestra fortaleza. Amauri, recién llegado de Puerto Rico, ya ha aprendido que aquí no hay bromas, le esperan semanas intensas de aprendizaje. No nos moveremos mucho, ya que la próxima cita será en Berriatua, donde esperamos reafirmar nuestras fuerzas este sábado.",
         "p5": "Nuestros ciclistas de BTT viajaron a Valladolid para disputar la segunda prueba de la Copa de España, con resultados variados. Andoni y Markel, aprovechando los puntos de la semana anterior, lograron salir más adelante. En una carrera de gran velocidad, sus cualidades brillaron, terminando Andoni en el puesto 19º y Markel en el 23º. En la categoría júnior, sin embargo, Jon tuvo aún peor suerte que en Zaragoza y sufrió una fuerte caída que le obligó a retirarse. Estamos seguros de que pronto podrá darle la vuelta a la situación.",
         "p6": "El domingo, todos los montañeros se trasladarán a Erandio para dar inicio a las Green Series."
-        
-
     },
     "bttTxapeldunaPage": {
         "altImage": "Foto de Ander",
@@ -161,5 +162,35 @@
         "contact": "CONTACTO",
         "label": "eus",
         "localeSwitcher": "es"
+    },
+    "cronica15-03-25Page": {
+        "altImage": "Foto ",
+        "title": "LOS CINCO UNIDOS ",
+        "subTitle2": "Clasificaciones",
+        "subTitle": "Fin de semana lleno de carreras para nuestros ciclistas, con participación en seis competiciones.",
+        "p1": " Los cadetes se dividieron en dos grupos: la mayoría compitió en Zarautz, mientras que cinco corredores iniciaron la Aiarako Bira en Llodio. En Zarautz, Mateo y Martin tuvieron mala suerte, y Marko fue el primero del equipo en llegar a meta, a poco más de un minuto del grupo de los ganadores. En Aiara, el primer día quedaron fuera de los primeros puestos tras un incidente en la última parte de la carrera, con Raúl como el mejor clasificado. En la etapa de montaña del día siguiente, Aratz fue el mejor del equipo, mientras que Xuban sufrió un pinchazo justo antes de iniciar la última subida. En general, el equipo rindió bien, superando las expectativas previas. Este fin de semana, los cadetes afrontarán nuevos retos en Deba y la Aiarako Bira. ",
+        "p2": "Para los juniors, mientras la semana anterior afrontaron Kalbario, la jornada en Berriatua fue un auténtico calvario: en una tarde fría y lluviosa, la carrera se les escapó pronto y, aunque intentaron remontar, no lograron recortar distancias. Finalmente, Unai (8º), Axular (13º) y Jon (25º) lograron completar la prueba. La próxima cita será en Antzuola, con la decisiva subida a Uzarraga.",
+        "p3": "Los ciclistas de BTT debutaron en el calendario vasco en las Green Series de Akarlanda (Erandio), en un circuito embarrado y técnico. En la categoría cadete, Markel hizo una gran carrera, logrando el tercer puesto en el podio, mientras que Andoni (7º) también se colocó en el top 10. Destacó también el estreno de Gari, Iker y Aimar en esta temporada de ruedas gruesas. Este fin de semana viajarán a Sabiñánigo, donde les deseamos tanto una buena experiencia como buenos resultados.",
+        "p4": "En Akarlanda también participaron los niños de la escuela —benjamines, alevines e infantiles—, disfrutando del barro y viviendo la emoción de la competición, muchos de ellos por primera vez. Como la primavera trae nueva vida, nuestros pequeños dan sus primeros pasos en el ciclismo."
+    },
+    "cronica23-03-25Page": {
+        "altImage": "Foto ",
+        "title": "AQUÍ Y ALLÁ ",
+        "subTitle2": "Clasificaciones",
+        "subTitle": "Fin de semana pasado por agua y por barro para nuestros jóvenes, con resultados agridulces en general.",
+        "p1": " En categoría cadete, la mayoría dieron sus pedaladas en Deba; por un lado, las caídas forzaron la retirada de varios de nuestros corredores. Por el otro, Amets se metió de lleno en el sprint y fue capaz de terminar tercero. En Aiarako Bira sufrieron la dura competencia, dando buena cuenta de ello en las dos etapas: no pudieron estar cerca de los puestos cabeceros en la cronoescalada y en la siguiente etapa solo Aratz fue capaz de llegar a meta en el grupo de cabeza. Este fin de semana, las citas de Zestoa y las últimas etapas de Aiarako Bira centrarán los esfuerzos de nuestros ciclistas.",
+        "p2": "Los juniors tomaron el protagonismo en Antzuola, cogiendo la responsabilidad de cerrar el hueco con la escapada del día, en la que Amauri y Jon tuvieron la culpa de neutralizarla. A pesar de una caída de Unai, tuvieron la capacidad de ganar la clasificación por equipos, siendo Jon el más adelantado, terminando noveno, además de que todo el equipo pudo concluir la carrera.",
+        "p3": "Los chicos de BTT marcharon hasta Sabiñánigo para competir en la última prueba de la SuperCup, teniendo el barro como compañero de fatigas durante todo el fin de semana. En cadetes, Markel y Andoni completaron una muy buena carrera, concluyendo en cuarta y quinta posición respectivamente, mientras que en juniors Ander remontó desde la última hasta la novena posición, obteniendo sus primeros puntos UCI. Todos volverán a casa, y disputarán la Green Series de Ispaster, donde los esfuerzos serán refrendados por nuestros corredores.",
+        "p4": "Los chicos y chicas de categoría escolar dieron inicio a la temporada de carretera en Ermua, siendo para algunos sus primeras pedaladas con la bicicleta de carretera. Disfrutaron y sufrieron a partes iguales en un recorrido revirado y con constantes cambios de pendiente. Aún tienen mucho que aprender, tienen por delante una vida en bicicleta para ello."
+    },
+    "cronica29-03-25Page": {
+        "altImage": "Foto ",
+        "title": "UNA PARA CADA",
+        "subTitle2": "Sailkapenak",
+        "subTitle": "Fin de semana fructífero en cuanto a resultados para nuestros cadetes y juniors, en el que el buen  tiempo sucedió al mal tiempo de las últimas carreras. ",
+        "p1": " Los juniors abrieron el fin de semana en Deba, una carrera la cual se disputó a altísima intensidad una vez se iniciaron las dificultades. Unai y Axular, situados en el grupo principal tras la cabeza de  carrera, trataron de cerrar el hueco por todos los medios posibles, y a pesar de que no lo  consiguieron, Unai se distanció del grupo, consiguiendo la segunda posición y Axular llegó octavo dentro del mismo grupo. Amauri (muy activo al inicio) y Alain llegaron en el segundo gran grupo y  Oinatz, todavía en fase de recuperación, pudo llegar a meta algo más atrás. Amorebieta les espera,  en un terreno que conocen bastante bien y que a buen seguro darán que hablar. ",
+        "p2": "En cadetes volvieron a dividirse en dos, con suertes diametralmente opuestas. En Zestoa, Amets  consiguió la victoria al sprint (la primera de la temporada), batiendo con holgura al resto de rivales,  con Xuban entrando en el mismo grupo. A destacar también la labor de Miguel, que estuvo combativo  en algunos tramos de la carrera. En Aiarako Bira faltaban por disputarse las dos etapas más  importantes, siendo Aratz un actor importante de la etapa del sábado, en fuga gran parte de ella. Por  desgracia, una caída posterior lastró a los nuestros, que hizo retirar a Markel con molestias en la  muñeca. En ambas etapas Martin fue el corredor más destacado de nuestro equipo, con el resto del  equipo acusando los esfuerzos acumulados de tres fines de semana de competición de alto nivel.  Este sábado juniors y cadetes se darán el relevo en Amorebieta, donde las cuestas de Etxano y  Urumin dictarán sentencia en esta categoría. ",
+        "p3": "Las Green Series tuvieron en Ispaster un nuevo escenario para nuestros ciclistas de BTT, en un  circuito correoso por el estado del barro. En cadetes, Markel y Andoni se disputaron el último cajón  del podium, siendo Markel el que finalmente terminó tercero (y Andoni cuarto), demostrando ambos  que están en un buen momento. En juniors, por otra parte, tanto Ander como Ipar y Hegoi (poco a  poco recuperándose del esguince) no tuvieron ni el día ni la fortuna de su parte, concluyendo lejos de  lo que nos acostumbran. Este fin de semana algunos se sumarán a los carreteros en Amorebieta,  mientras que otros tendrán un pequeño respiro o marcharán rumbo a Alpedrete para una nueva  prueba de Copa de España.",
+        "p4": "Nuestros corredores más pequeños se dieron cita en Ispaster el día anterior a los cadetes y juniors,  donde se rebozaron de lo lindo con el barro, sumando nuevas experiencias y aprendizajes para el  futuro. "
     }
 }

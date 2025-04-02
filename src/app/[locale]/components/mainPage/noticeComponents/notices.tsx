@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import Section from "@/app/[locale]/components/main/Section";
-import Title from "@/app/[locale]/components/mainPage/Titles/Title";
+
 
 export interface NewsItem {
   href: string;

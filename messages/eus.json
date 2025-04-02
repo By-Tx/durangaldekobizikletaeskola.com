@@ -10,10 +10,10 @@
         "subtitle4": "Talde lana, ahalegina, konpromezua eta laguntasuna dira gure oinarri. Hauen bidez, elkarrekin helburuak lortzen ditugu eta bidean indarra hartzen dugu.",
         "componentSubtitle": "ALBISTEAK"
     },
-    "noticePage":{
-        "title": "ALBISTE GUZTIAK"
+    "noticePage": {
+        "title": "ALBISTE GUZTIAK",
+        "button": "ALBISTE GEHIAGO"
     },
-
     "noticeComponent": {
         "noticeTitle": "Markel, 13º Espainiako Txapelketan",
         "altImage": "Markelen argazkia descenso baten",
@@ -31,8 +31,13 @@
         "altImage4": "argazki bat karreran",
         "category4": "JUNIOR-KADETE",
         "noticeTitle5": "Nesken Talde berria!",
-        "noticeTitle6": "Eta non ez?"
-    },
+        "noticeTitle6": "ETA NON EZ?",
+        "noticeTitle7": "BOSTAK BAT",
+        "category5": "JUNIOR & KADETE & ESKOLA",
+        "noticeTitle8": "GUREAN ETA HAIENEAN",
+        "noticeTitle9": "BANA"
+        
+    }, 
     "bttTxapeldunaPage": {
         "altImage": "Anderren argazkia",
         "title": "Ander, kadete mailan BTT-ko Euskadiko Txapelduna 2024",
@@ -40,19 +45,6 @@
         "p1": "2024an, Ander Mendizabalek bere kirol ibilbideko beste mugarri bat ezarri zuen kadete mailako BTT Euskadiko Txapelketan garaile izanik. Lasterketa zorrotz eta gogorra izan zen, baina Mendizábalek erakutsitako teknika, erritmo eta erresistentziak emaitza bikaina bermatu zioten.",
         "p2": "Txapelketa, Euskadiko paisaia malkartsuetan garatu zena, diziplina eta ahalegin handia eskatzen zuen. Anderrek hasieratik bukaerara errendimendu paregabea mantendu zuen, eta lasterketa ikusgarri batekin helmugaratu zen txapeldun modura.",
         "p3": "Mendizabalen garaipenak ez du soilik bere maila bikaina nabarmentzen, baita Euskadiko BTT kirolaren etorkizun oparoa islatzen du ere. Txapelketa hau aitzakia bikaina izan da zaleak, familia eta lagunak kirol honen inguruan batzeko, eta Anderrek guztien begirunea eta txaloak jaso zituen bere lorpenagatik."
-    },
-    "cronica9-03-25Page": {
-        "altImage": "Foto ",
-        "title": "ETA NON EZ?  ",
-        "subTitle": "2025ko denboraldiaren bigarren astea izan dute gureek  Euskal Herri zein Estatuko bideetan",
-        "p1": "Hurbileko eta urruneko erronkak gure gazteentzat pasa den igande honetan, Gaztelatik Iparraldeko lurretaraino etorriz eta joanez aldi berean. ",
-        "p2": "Kadetetan bi hitzordu izan genituen, Mendaron eta Lehuntzen, hain zuzen ere. Lasterketa azkarra izan zen Mendarokoa, Amets (4.) eta Aratz (9.) azken momenturaino garaipenaren borrokan izan baitziren, hamarren artean sailkatuz. Orokorrean ondo lehiatutakoa izan zen lasterketa hau. Lehuntzekoa zorabiozkoa izan zen gure Gaztelako (Raúl eta Mateo) mutilentzat, 1,2 Km-ko zirkuitu bati 40 itzuli emanez. Hasieratik lasterketa buruak ihes egin zuen arren borrokalari mantendu ziren, Raúl 13. eta Mateo 16. helmugaratuz. Hurrengo asteburuetan bideak zatituko dira: Aiarako Bira eta Gipuzkoako lasterketek bitan utziko du gure taldea, lanak izango ditugu dena bere onetik ez irtetzeko.",
-        "p3": "Juniorrek Mutrikuko lasterketan gogoz jardun zuten, Kalbarioko “ziaboga” epaile irmoa parez-pare birritan gainditzeko prest. Txinpartak piztu zirenean gure hiru taldekide aurrean mantendu ziren; Axular, Jon eta Unai. Bigarren igoeran azken biak nabarmendu ziren beste gutxi batzuekin batera eta helmugan Unaik hirugarren postua eta Jonek seigarren tokia eskuratu zuten. Honekin batera taldeko sailkapena eraman genuen, indartsu gaudelaren seinale. Puerto Ricotik etorri berri zaigun Amauri jada badaki hemen txantxa gutxi daudela, aste luzeak izango ditu etxera irakaspenak emateko. Bertatik ez gara asko mugituko, hurrengo plaza Berriatua izango baita, ea larunbat honetan indarrak berresten ditugun.  ",
-        "p4": "Los júnior compitieron con ganas en la carrera de Mutriku, enfrentándose dos veces al exigente giro de Kalbario. Cuando saltaron las chispas, nuestros tres corredores, Axular, Jon y Unai, se mantuvieron al frente. En la segunda subida, los dos últimos destacaron junto a otros pocos ciclistas, logrando Unai el tercer puesto y Jon el sexto. Además, nos llevamos la clasificación por equipos, demostrando nuestra fortaleza. Amauri, recién llegado de Puerto Rico, ya ha aprendido que aquí no hay bromas, le esperan semanas intensas de aprendizaje. No nos moveremos mucho, ya que la próxima cita será en Berriatua, donde esperamos reafirmar nuestras fuerzas este sábado.",
-        "p5": "Gure BTTko txirrindulariak Valladolidera joan ziren Espainiako Kopako bigarren proba lehiatzera, emaitza oso ezberdinekin: alde batetik, Andoni eta Markelek aurreko asteko emaitzak baliatuz aurrerago eman zuten irteera. Abiadura handiko lasterketa izanik, haien bertuteak azalera eraman eta biak lehen hogeiren inguruan sailkatu ziren, 19. Andonik eta 23. Markelek. Juniorretan, ordea, Jonek Zaragozan baino are zoritxar gehiago jasan eta jaso zuen, kolpe handi baten erruz erretiratzera behartuta ikusi baitzen, egoerari laster buelta emateko gai dela ziur gaude.",
-        "p6": "Igandean Erandiora salto egingo dute mendizale guztiek, Green Seriesari hasiera emanez. "
-        
-
     },
     "espainakoTxapeldunaPage": {
         "altImage": "Markelen argazkia",
@@ -67,15 +59,13 @@
         "title": "2025ko denboraldia hasiera",
         "subTitle": "Gure gazteek 2025ko denboraldia indartsu hasi dute",
         "p1": "Aurtengo denboraldiari hasiera eman diote gure gazteek, bazter guztiak astinduz, bai asfaltoan zein mendian, inoiz baino gehiago garen honetan. Gipuzko (Beasain eta Eibar) eta Aragoi (Zaragoza) izan dira 2025ko denboraldiaren hasieraren plazak, jarraian lasterketa bakoitzaren kronika:",
-
         "p2": "Beasainen hasi ziren kadeteak, ohiko 40 kilometroko ibilbidea burutuz, Olaberriako igoera epaile izanik. Gureak lasterketa osoan zehar erne aritu ziren ihesaldi saiakeretan sartuz eta pelotoiko aurreneko posizioetan mantenduz. Olaberrian sufritu ostean, atzetik aurrerakoa egin zuten Aratz eta Xubanek, laugarren eta hamargarren helmugaratuz, hurrenez hurren. Aipatzekoa ere hasieran irten ziren 14 taldekidetik 12k lasterketa amaitu zutela, martxa honetan jarraituko dugulakoan gaude. Mendaro dute denek ikuspuntuan.",
         "p3": "Zaragozan BTTko Espainiako Kopako lehen froga izan zuten gure mendizaleek, gehienek azkeneko postuetatik egin zuten irteera, nahitanahiezko atzetik aurrerako lasterketa eginez. Orokorrean zorte ona ez zuten bidelagun izan: matxurek, zulatuek eta bestelako arazoek haien emaitzak kamustarazi zituzten, Markel eta Andoni kadetetan eta Jon zein Ander paretsu bukatuz. Haietako askok asteburu honetan Valladoliden (Gaztela eta Leon) beste aukera baten bila doaz, Espainiako Kopako proba berri baten.",
         "p4": "Azkenengoz, juniorrek Eibar izan zuten urte honetako estreinaldiko hasiera, intentsiatate guztietako emozioak eraginez. Hasiera indartsu bat izan ostean (Axular eta Jon ihesita eta besteak eroso pelotoiko lehen postuetan), azken kilometroetan dena hankaz gora bukatu zuen: Jonek sprintean giharrek “kitto” esan zioten, Unaik aurretik kalanbreak eta Axular, Alain eta Oinatzek hanka baino gehiago lurrean jarri behar izan zuten, Oinatzek kolpearen ondorioz eguna ospitaleratua bukatuz (zorionez ez da larritasun handikoa eta laster izango dugu bueltan). Asteburu honetan Mutrikuko lasterketan ondo egiteko itxaropentsu daude, aurreko eguneko egoerari buelta emateko intentzioarekin.",
         "subTitle2": "Sailkapenak",
         "r1": "USURBE FROGA"
-        
     },
-    "PuntaGaleaPage":{
+    "PuntaGaleaPage": {
         "altImage": "Nesken argazkia",
         "title": "Nesken Talde Berria",
         "subtitle": "Durangaldeko Bizikleta Eskolak Punta Galeako emakumezkoen taldearekin bat egin du emakumeen kadete eta junior kategoriak bultzatzeko",
@@ -84,17 +74,14 @@
         "p3": " Urte honetatik aurrera, Durangaldeko Bizikleta Eskolak beste urrats bat emango du emakumezkoen txirrindularitzarekiko konpromisoan, Punta Galea taldearekin bat egin du eta emakumeen kadete eta junior kategorietan sartu da.",
         "p4": "Aliantza honen bidez, emakumeen txirrindularitza sustatzeko apustua indartzen dute, emakume korrikalariek txikitatik aurrera egitea erraztuz eta kirol-hazkundean jarraipena bermatuz. Gainera, bi eskolen arteko elkarlanari esker, txirrindulari gazteek ikasten, hobetzen eta lehiaketa gehiagotan parte hartzen jarraituko dute.",
         "p5": "Durangaldeko Bizikleta Eskolak eta Punta Galea taldeek akordio honen garrantzia azpimarratu dute, txirrindularitzaren barruan berdintasunean aurrera egiten jarraitzeko eta neskeei aukera berriak eskaintzeko. Batasun hori funtsezko bultzada da gazteen talentua garatzeko eta emakumezkoen txirrindularitzan proiektu sendo bat garatzeko."
-        
-        
     },
-    "PuntaGaleaMainPage":{
+    "PuntaGaleaMainPage": {
         "altImage": "Nesken argazkia",
         "title": "PUNTAGALEA OCCIDENT-DURANGALDEKO",
         "p1": "2025. urtetik aurrera, Durangaldeko Bizikleta Eskolak beste urrats bat emango du emakumezkoen txirrindularitzarekiko konpromisoan, Punta Galea taldearekin bat egin du eta emakumeen kadete eta junior kategorietan sartu da. ",
         "p2": "Aliantza honen bidez, emakumeen txirrindularitza sustatzeko apustua indartzen dute, emakume korrikalariek txikitatik aurrera egitea erraztuz eta kirol-hazkundean jarraipena bermatuz. Gainera, bi eskolen arteko elkarlanari esker, txirrindulari gazteek ikasten, hobetzen eta lehiaketa gehiagotan parte hartzen jarraituko dute.",
         "p3": "Durangaldeko Bizikleta Eskolak eta Punta Galea taldeek akordio honen garrantzia azpimarratu dute, txirrindularitzaren barruan berdintasunean aurrera egiten jarraitzeko eta neskeei aukera berriak eskaintzeko. Batasun hori funtsezko bultzada da gazteen talentua garatzeko eta emakumezkoen txirrindularitzan proiektu sendo bat garatzeko.",
         "titleRunners": "KAdETEAK"
-
     },
     "irrisarriPage": {
         "altImage": "irrisarrin argazkia",
@@ -164,5 +151,47 @@
         "eskola": "ESKOLA",
         "form": "IZENA EMAN",
         "contact": "KONTAKTUA"
+    },
+    "cronica9-03-25Page": {
+        "altImage": "Foto ",
+        "title": "ETA NON EZ?  ",
+        "subTitle": "2025ko denboraldiaren bigarren astea izan dute gureek  Euskal Herri zein Estatuko bideetan",
+        "p1": "Hurbileko eta urruneko erronkak gure gazteentzat pasa den igande honetan, Gaztelatik Iparraldeko lurretaraino etorriz eta joanez aldi berean. ",
+        "p2": "Kadetetan bi hitzordu izan genituen, Mendaron eta Lehuntzen, hain zuzen ere. Lasterketa azkarra izan zen Mendarokoa, Amets (4.) eta Aratz (9.) azken momenturaino garaipenaren borrokan izan baitziren, hamarren artean sailkatuz. Orokorrean ondo lehiatutakoa izan zen lasterketa hau. Lehuntzekoa zorabiozkoa izan zen gure Gaztelako (Raúl eta Mateo) mutilentzat, 1,2 Km-ko zirkuitu bati 40 itzuli emanez. Hasieratik lasterketa buruak ihes egin zuen arren borrokalari mantendu ziren, Raúl 13. eta Mateo 16. helmugaratuz. Hurrengo asteburuetan bideak zatituko dira: Aiarako Bira eta Gipuzkoako lasterketek bitan utziko du gure taldea, lanak izango ditugu dena bere onetik ez irtetzeko.",
+        "p3": "Juniorrek Mutrikuko lasterketan gogoz jardun zuten, Kalbarioko “ziaboga” epaile irmoa parez-pare birritan gainditzeko prest. Txinpartak piztu zirenean gure hiru taldekide aurrean mantendu ziren; Axular, Jon eta Unai. Bigarren igoeran azken biak nabarmendu ziren beste gutxi batzuekin batera eta helmugan Unaik hirugarren postua eta Jonek seigarren tokia eskuratu zuten. Honekin batera taldeko sailkapena eraman genuen, indartsu gaudelaren seinale. Puerto Ricotik etorri berri zaigun Amauri jada badaki hemen txantxa gutxi daudela, aste luzeak izango ditu etxera irakaspenak emateko. Bertatik ez gara asko mugituko, hurrengo plaza Berriatua izango baita, ea larunbat honetan indarrak berresten ditugun.  ",
+        "p4": "Los júnior compitieron con ganas en la carrera de Mutriku, enfrentándose dos veces al exigente giro de Kalbario. Cuando saltaron las chispas, nuestros tres corredores, Axular, Jon y Unai, se mantuvieron al frente. En la segunda subida, los dos últimos destacaron junto a otros pocos ciclistas, logrando Unai el tercer puesto y Jon el sexto. Además, nos llevamos la clasificación por equipos, demostrando nuestra fortaleza. Amauri, recién llegado de Puerto Rico, ya ha aprendido que aquí no hay bromas, le esperan semanas intensas de aprendizaje. No nos moveremos mucho, ya que la próxima cita será en Berriatua, donde esperamos reafirmar nuestras fuerzas este sábado.",
+        "p5": "Gure BTTko txirrindulariak Valladolidera joan ziren Espainiako Kopako bigarren proba lehiatzera, emaitza oso ezberdinekin: alde batetik, Andoni eta Markelek aurreko asteko emaitzak baliatuz aurrerago eman zuten irteera. Abiadura handiko lasterketa izanik, haien bertuteak azalera eraman eta biak lehen hogeiren inguruan sailkatu ziren, 19. Andonik eta 23. Markelek. Juniorretan, ordea, Jonek Zaragozan baino are zoritxar gehiago jasan eta jaso zuen, kolpe handi baten erruz erretiratzera behartuta ikusi baitzen, egoerari laster buelta emateko gai dela ziur gaude.",
+        "p6": "Igandean Erandiora salto egingo dute mendizale guztiek, Green Seriesari hasiera emanez. "
+    },
+    "cronica15-03-25Page": {
+        "altImage": "Foto ",
+        "title": "BOSTAK BAT",
+        "subTitle2": "Sailkapenak",
+        "subTitle": "Asteburuan gure txirrindularientzako lasterketekin beteta, sei lehiaketetan parte hartuz.",
+        "p1": " Lasterketez jositako asteburua gure txirrindularientzat, 6 hitzordutan gure izena emanez. Kadeteak  bitan zatitu ziren: gehiengoak Zarautzeko plaza izan zuten bide eta bertan falta zen bostekoa  Laudion eman zioten hasiera Aiarako Birari. Zarautzen Mateo eta Martin zoritxarrekoak izan ziren,  Marko taldeko lehena helmugaratuz, irabazleen taldetik minutu pasatxora. Aiaran ere lehen egunean azken txanpako txinpartan bidetik aterarazi zieten eta lasterketaren lehiatik kanpo gelditu ziren,  Raúl taldeko lehena izanik. Hurrengo egunean, mendatean bukatutako etapan Aratz izan zen taldeko lehen sailkatua, Xubanek zoritxarrezko zulatua izanik mendatea hastear zenean. Orokorrean txukun  moldatu da boskotea, aurretik esperotako emaitzak gaindituz. Asteburu honetan Deban eta Aiarako  Biran erronka berrien zain ditugu gure kadeteak. ",
+        "p2": "Juniorrek aurreko astean Kalbariotik zehar egin zuten bitartean, Berriatuako eguna kalbarioa izan  zen; 100 inguru txirrindularik hasiera eman bazioten, 27k bakarrik osatu zuten lasterketa, arratsalde  hotz eta euritsuan. Lasterketak azker egin zien ihes gureei eta atzetik aurrerako egiten saiatu ziren,  baina ez zuten indar nahikoa izan distantziak txikitzeko. Azkenenan Unai (8), Axular (13) eta Jonek (25) helmugaratu ziren. Antzuola gure juniorren plaza berria izango da, Uzarragako igoera  erabakigarriarekin.  ",
+        "p3": "BTTko txirrindulariek estreinakoz lehiatu ziren Euskal Herriko egutegian, Akarlandako (Erandio)  Green Seriesetan, zirkuitu lokaztu eta teknikoan. Kadetetan, Markelek lasterketa borobila egin eta  podiuma erdietsi zuen hirugarren postua eskuratuz, Andoni (7) ere hamarren artean sailkatuz.  Nabarmentzekoa ere Gari, Iker eta Aimarren estreinaldia gurpil lodiekin denboraldi honetan.  Asteburu honetan, Sabiñánigora izango dute bidaia, esperientzia zein emaitza onak opa dizkiegu  gure lokatz-zaleei.",
+        "p4": "Akarlandan ere gure eskolako haurrak, benjaminak, alebinak eta infantilak izan ziren, lokatza jasan  eta harekin gozatuz, haietako askok bere lehen pedalkadak emanez lehia baten, udaberria bizi berria ekartzen ohi duen moduan, gure txikiak ere txirrindularitzaren hastenpenetan daude. "
+    
+    },
+    "cronica23-03-25Page": {
+        "altImage": "Foto ",
+        "title": "GUREAN ETA HAIENEAN",
+        "subTitle2": "Sailkapenak",
+        "subTitle": "Lasterketez eta euriz betetako asteburua pasatakoa gure gazteentzat, emaitza gazi- gozoak uztartu zituena.",
+        "p1": " Kadeteek Deban hasi zuten lasterketen ibilaldia; alde batetik, erorikoek gure  txirrindulariei erabat eragin zien hainbat erretiratzera behartuz. Bestalde, Amets  sprintan burua sartu eta hirugarren amaitzea lortu zuen. Aiarako Biran, lehia gogorra  zela somatu zuten eta gorriak ikusi zuten bere horretan mantentzeko, kronoigoeran  urrun bukatu zuten eta igandeko etapan Aratz izan zen taldeko bakarra buruko taldean  helmugaratzen. Datozen erronkak Zestoa eta Aiarako Birako azkenengo etapak dira,  beste behin dena emateko gogoekin izango dira.",
+        "p2": "Juniorrak Antzuolan ospatutako lasterketan protagonistak izan ziren beste behin.  Atzetik aurrerakoa egin behar izan zuten lasterketa erditik aurrera, Amauri eta Jonen  lanari esker ihesaldia itxi zen. Zoritxarrez Unaik erorikoa izan zuen, baina hala ere denek  lan nahikoa egin zuten taldekako sailkapena etxera eramateko, Jon (9) lehen hamarren sailkatuz, taldeko denak helmugaratuz.  ",
+        "p3": "BTTko txirrindulariak Sabiñánigora joan ziren SuperCup-eko azkenengo frogan  lehiatzera, asteburu osoan lokatza bidelagun gisa sufrituz eta gozatuz. Kadetetan  Markel eta Andonik oso emaitza onak eskuratu zituzten, laugarren eta bosgarren  sailkatuz, hurrenez hurren. Juniorretan Anderrek sekulako atzetik aurrerakoa egin  ostean bederatzigarren sailkatu zen, bere lehen UCI puntuak hartuz. Orain etxera  bueltatuko dira, igandeko Ispasterreko Green Seriesan, hain zuzen ere.  .",
+        "p4": "Eskoletako gazteenak Ermuan errepideko denboraldiko lehen lasterketa lehiatu zuten,  denbora osoan erne egoteko ibilbide sigi-sagatsuan, ez ziren txarto moldatu gureak,  batzuentzat errepideko bizikletan eman zituzten lehen pedalkadak izan zirela jakinda,  oraindik asko dute ikasteke. "
+    },
+    "cronica29-03-25Page": {
+        "altImage": "Foto ",
+        "title": "BANA",
+        "subTitle2": "Sailkapenak",
+        "subTitle": "Asteburu oparoa gure kadete eta juniorrentzat, zeinetan eguraldi onak azken lasterketetako eguraldi  txarra gainditu duen.",
+        "p1": " Juniorrek Deban izan zuten hasiera eta helmuga, lasterketa oso lehiatua behin eguneko igoerak hasi  zirenean. Unai eta Axular talde nagusian buru-belarri izan ziren eguneko ihesaldia zapuzteko, eta helburua lortu ez bazen ere, Unaik taldetik ihes egin eta bigarren postua eskuratu zuen, Axular  zortzigarren helmugaratuz, talde nagusiaren barruan. Amauri (borrokalari lasterketaren hasieran) eta  Alain bigarren multzoan heldu ziren eta Oinatzek, bere partetik pixkat atzeraxeago bukatu zuen,  oraindik bere errekuperazio prozesuan sartuta dagoela. Zornotza dute xede larunbat honetan, aski  ezagutzen duten ibilbidean.",
+        "p2": "Kadetetan beste behin bideak zatitu ziren, eta horrekin emaitzek ere bi alde erakutsi zuten. Zestoan,  Ametsek garaipena erdietsi zuen, errepideko denboraldiko lehena, sprintean aise irabaziz beste  aurkariei, Xuban talde berean helmugaratuz. Aipatzekoa ere Miguelen lanak, oldarkor lasterketako  zenbait momentutan. Aiarako Biran, lehiaketako astebururik gogorrena egokitu zitzaien gure  taldekideei: larunbateko etapan eguneko ihesaldian izan ostean, eroriko batek gure gazte gehienen  aukerak zapuztu zituen, Markelek eskumuturrean kolpea jaso eta erretiratzera behartua ikusi zelarik.  Bi egunetan taldeko aurreratuena Martin izan zen, gainontzekoak goi mailako hiru asteburuko  lehiaketak uzten duen nekea jasan ostean lan nahikoak izan zituzten honekin bukatzeko. Juniorren  bezala, Zornotzan izango dute lehia berria, Etxano eta Urumineko koska erabakiorrek esango dute  noraino helduko diren. ",
+        "p3": "BTTko gazteek Ispasterreko Green Seriesan lehiatu zuten, lokatzaren egoerak bereizten zuen  lasterketan. Kadetetan Markel eta Andoni hirugarren posturako borrokan mantendu ziren, Markelek  postu hori helmugan erdietsiz (Andoni laugarren), sasoi onean daudenaren islada garbia. Juniorretan,  aldiz, Anderrek, Hegoik (gutxinaka errekuperatzen) eta Iparrek bezala, ez zuten ez eguna ez zoria bere  alde izan, ohituta dauden postuetatik urrun sailkatuz. Batzuk Zornotzan errepidekoekin lotuko dituzte  indarrak, beste batzuk, ordea, atseden hartu edo Alpedreten (Madril) ospatuko den Espainiako Kopa  froga berrian parte hartuko dute.  ",
+        "p4": "Txikienek ere Ispasterren izan zuten hitzordua, kadete eta juniorrek ez beste, hauek larunbatean  ospatuz haien lasterketak. Lokatzetan blai bukatu zuten, esperientzia eta irakaspen berriak jasoz  hurrengo erronketarako prest. "
     }
 }

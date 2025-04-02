@@ -46,8 +46,31 @@
       "date": "9-03-2025",
       "titleKey": "noticeTitle6",
       "categoryKey": "category4"
+    },
+    {
+      "href": "/cronica15-03-25",
+      "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica3.jpeg",
+      "altKey": "altImage3",
+      "date": "15-03-2025",
+      "titleKey": "noticeTitle7",
+      "categoryKey": "category5"
+    },
+    {
+      "href": "/cronica23-03-25",
+      "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica4.jpeg",
+      "altKey": "altImage3",
+      "date": "23-03-2025",
+      "titleKey": "noticeTitle8",
+      "categoryKey": "category5"
+    },
+    {
+      "href": "/cronica29-03-25",
+      "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica5b.JPEG",
+      "altKey": "altImage3",
+      "date": "29-03-2025",
+      "titleKey": "noticeTitle9",
+      "categoryKey": "category5"
     }
-    
 
   ]
   

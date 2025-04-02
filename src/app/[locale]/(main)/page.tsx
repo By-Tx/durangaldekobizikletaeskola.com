@@ -1,11 +1,11 @@
 
 import {getLocale, getTranslations} from 'next-intl/server';
-import Slideshow from "../components/main/slider";
+import Slideshow from "../components/mainPage/eskola/slide";
 import News from "../components/mainPage/noticeComponents/notices";
 import SubTitle from "../components/mainPage/Titles/SubTitle";
 import Line from "@/app/[locale]/components/main/line0m";
 
-import { useNewsItems } from "./noticeProps";
+
 import ButtonNotice from '../components/mainPage/noticeComponents/Button';
 interface Notice {
   href: string;
@@ -77,45 +77,43 @@ export default async function Home() {
     },
 
   ];
-  // const images2 = [
-  //   {
-  //     url: 'https://photos.txuli.com/duranguesa/Duranguesa_3escale.webp',
-  //     title: t("title"),
-  //     subtitle: t("subtitle"),
-  //     height: 600, // altura en píxeles
-  //   },
-  //   {
-  //     url: 'https://photos.txuli.com/duranguesa/foto3.jpg',
-  //     title: t("title2"),
-  //     subtitle: t("subtitle2"),
-  //     height: 600,
-  //   },
-  //   {
-  //     url: 'https://photos.txuli.com/duranguesa/fotomtb.jpg',
-  //     title: t("title3"),
-  //     subtitle: t("subtitle3"),
-  //     height: 650,
-  //   },
-  //   {
-  //     url: 'https://photos.txuli.com/duranguesa/portada1escaled.webp',
-  //     title: t("title4"),
-  //     subtitle: t("subtitle4"),
-  //     height: 650,
-  //   },
-  // ];
+   const images2 = [
+     {
+       url: 'https://photos.txuli.com/duranguesa/mainPage/foto1.jpg',
+       title: t("title"),
+       subtitle: t("subtitle"),
+       height: 600, // altura en píxeles
+     },
+     {
+       url: 'https://photos.txuli.com/duranguesa/mainPage/foto2.jpg',
+       title: t("title2"),
+       subtitle: t("subtitle2"),
+       height: 600,
+     },
+     {
+       url: 'https://photos.txuli.com/duranguesa/mainPage/foto3.jpg',
+       title: t("title3"),
+       subtitle: t("subtitle3"),
+       height: 650,
+     },
+     {
+       url: 'https://photos.txuli.com/duranguesa/portada1escaled.webp',
+       title: t("title4"),
+       subtitle: t("subtitle4"),
+       height: 650,
+     },
+   ];
 
   return (
     <div >
 
-      <Slideshow
-        images={images}
-      />
+      <Slideshow images={images} title='Durangaldeko Bizikleta Eskola' />
       <Line />
       <SubTitle subTitle={t("componentSubtitle")} />
     
       <News items={response.data} />
       <ButtonNotice/>
-      {/*       
+        
       <Line />
       {images2.map((section, idx) => {
         const isEven = idx % 2 === 0;
@@ -136,9 +134,9 @@ export default async function Home() {
             ></div>
 
             
-            <div className="absolute z-10 inset-0 flex items-center">
+            <div className="absolute z-10 inset-0 flex items-center font-fredoka">
               <div className={`flex w-full p-4 ${isEven ? "justify-start ml-4" : "justify-end mr-4"}`}>
-                <div className="w-1/4">
+                <div className="w-full lg:w-1/4">
                   <h2 className="text-3xl font-bold text-white">{section.title}</h2>
                   <p className="mt-2 text-xl text-white">{section.subtitle}</p>
                 </div>
@@ -148,7 +146,7 @@ export default async function Home() {
         );
       })}
 
-      <Line /> */}
+      <Line /> 
 
 
 
