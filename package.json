@@ -16,7 +16,7 @@
     "better-auth": "1.2",
     "dotenv": "^16.4.7",
     "mysql2": "^3.11.5",
-    "next": "^15.1.2",
+    "next": "^15.2.4",
     "next-intl": "^3.26.5",
     "next-sitemap": "^4.2.3",
     "nodemailer": "^6.9.16",
