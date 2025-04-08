@@ -1,6 +1,6 @@
 import TopImage from "@/app/[locale]/components/mainPage/noticeComponents/topImageImage";
 import { useTranslations } from "next-intl";
-import SubTitle from "@/app/[locale]/components/mainPage/Titles/SubTitle";
+
 import P from "@/app/[locale]/components/main/P";
 import Section from "@/app/[locale]/components/main/Section";
 export default function Page() {
