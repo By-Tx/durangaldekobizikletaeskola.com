@@ -14,29 +14,7 @@
         "title": "TODAS LAS NOTICIAS",
         "button": "VER MÁS"
     },
-    "noticeComponent": {
-        "noticeTitle": "Markel, 13º Campeonato de España",
-        "altImage": "Foto de Markel en un descenso",
-        "category": "CADETE",
-        "date": "12-01-2025",
-        "noticeTitle2": "Salida a Irrisarriland",
-        "altImage2": "Foto en Irrisarriland",
-        "category2": "ESCUELA",
-        "date2": "20-10-2024",
-        "noticeTitle3": "Ander, campeón de BTT de euskadi",
-        "altImage3": "Foto de Ander",
-        "category3": "CADETE",
-        "date3": "26-05-2024",
-        "noticeTitle4": "Inicio temporada 2025",
-        "altImage4": "foto de los corredores",
-        "category4": "JUNIOR & CADETE",
-        "noticeTitle5": "Nuevo equipo de chicas ",
-        "noticeTitle6": "¿Y dónde no?",
-        "noticeTitle7": "LOS CINCO UNIDOS",
-        "category5": "JUNIOR & CADETE & ESCUELA",
-        "noticeTitle8": "AQUÍ Y ALLÁ",
-        "noticeTitle9": "UNA PARA CADA "
-    },
+    
     "cronica9-03-25Page": {
         "altImage": "Foto de Ander",
         "title": "Y donde no?",
@@ -192,5 +170,62 @@
         "p2": "En cadetes volvieron a dividirse en dos, con suertes diametralmente opuestas. En Zestoa, Amets  consiguió la victoria al sprint (la primera de la temporada), batiendo con holgura al resto de rivales,  con Xuban entrando en el mismo grupo. A destacar también la labor de Miguel, que estuvo combativo  en algunos tramos de la carrera. En Aiarako Bira faltaban por disputarse las dos etapas más  importantes, siendo Aratz un actor importante de la etapa del sábado, en fuga gran parte de ella. Por  desgracia, una caída posterior lastró a los nuestros, que hizo retirar a Markel con molestias en la  muñeca. En ambas etapas Martin fue el corredor más destacado de nuestro equipo, con el resto del  equipo acusando los esfuerzos acumulados de tres fines de semana de competición de alto nivel.  Este sábado juniors y cadetes se darán el relevo en Amorebieta, donde las cuestas de Etxano y  Urumin dictarán sentencia en esta categoría. ",
         "p3": "Las Green Series tuvieron en Ispaster un nuevo escenario para nuestros ciclistas de BTT, en un  circuito correoso por el estado del barro. En cadetes, Markel y Andoni se disputaron el último cajón  del podium, siendo Markel el que finalmente terminó tercero (y Andoni cuarto), demostrando ambos  que están en un buen momento. En juniors, por otra parte, tanto Ander como Ipar y Hegoi (poco a  poco recuperándose del esguince) no tuvieron ni el día ni la fortuna de su parte, concluyendo lejos de  lo que nos acostumbran. Este fin de semana algunos se sumarán a los carreteros en Amorebieta,  mientras que otros tendrán un pequeño respiro o marcharán rumbo a Alpedrete para una nueva  prueba de Copa de España.",
         "p4": "Nuestros corredores más pequeños se dieron cita en Ispaster el día anterior a los cadetes y juniors,  donde se rebozaron de lo lindo con el barro, sumando nuevas experiencias y aprendizajes para el  futuro. "
+    },
+    "presentacion":{
+        "title": "PRESENTACION OFICIAL ",
+        "subTitle": "PRESENTACION DEL EQUIPO 2025",
+        "altImage": "foto oficial de la presentacion 2025",
+        "p1": "Siguiendo con la costumbre anual, ayer presentamos a nuestros equipos de 2025. Una de las novedades de este año es el nuevo equipo de chicas, ¡una noticia que nos llena de alegría!",
+        "p2": "Junto con ello, también presentamos la Durango-Durango Emakumen Saria, que se celebrará el 20 de mayo a partir de las 15:00 horas, con salida desde la Plaza Ezkurdi de Durango.",
+        "p3": "¡Gracias a todos los que os acercasteis y, cómo no, a todos los patrocinadores! ¡Sin vosotros esto no habría sido posible!"
+    },
+    
+    "cronica04-04-25Page": {
+        "altImage": "Foto ",
+        "title": "TODOS LOS CAMINOS NOS UNEN",
+        "subTitle2": "Sailkapenak",
+        "subTitle": "Asteburu oparoa gure kadete eta juniorrentzat, zeinetan eguraldi onak azken lasterketetako eguraldi  txarra gainditu duen.",
+        "p1": "  El pasado fin de semana se reunieron en Zornotza los cadetes y juniors, cada uno en su horario, y la mayoría de las bicicletas de montaña se quedaron en casa con el objetivo de participar allí.",
+        "p2": "Por la mañana comenzaron los cadetes y la suerte no estuvo nada de nuestro lado: caídas, pinchazos, roturas de bicicleta y otras averías arruinaron por completo las opciones de nuestros ciclistas, clasificándose Amets entre los veinte primeros. También es destacable la valentía de Raúl, que logró protagonismo entrando en la escapada del día. Ahora, nuestros cadetes tomarán un pequeño descanso aprovechando la Semana Santa, pero a la vuelta volverán con ganas de dar guerra en las carreteras.",
+        "p3": "Los juniors comenzaron por la tarde, y en esta categoría los resultados fueron algo diferentes. Tras romperse completamente la carrera por los repechos a mitad de recorrido, Unai y Axular se mantuvieron delante, no muy lejos de la escapada. Unai consiguió conectar con la cabeza, pero se quedó sin fuerzas en el sprint, logrando una quinta posición, y Axular se clasificó dentro de los veinte primeros en el grupo perseguidor. Este domingo volveremos a competir por caminos que nos llevarán desde el norte (Baiona) hasta la frontera (Lizarrieta).",
+        "p4": "En Mungia tuvo lugar una nueva prueba de la Copa de Primavera para los más jóvenes del equipo, celebrada en un circuito exigente. A pesar de no estar acostumbrados a tantas subidas, estamos seguros de que disfrutaron, y además, tendrán más oportunidades y tiempo para aprender en las próximas semanas."
+    },
+    "cronica12-04-25Page": {
+        "altImage": "Foto ",
+        "title": "MEND(IK)ATE HONEK LOTUTA",
+        "subTitle": "Fin de semana corto",
+        "p1": "  Fin de semana “corto” para nuestro equipo, ya que todas las competiciones se disputaron el domingo, con gran protagonismo de los nuestros tanto en las carreteras del norte como en los bosques de Meatzaldea.",
+        "p2": "En Ortuella se celebró una nueva prueba de las Green Series, con un circuito embarrado y exigente, como viene siendo habitual últimamente. En categoría cadete, a Markel se le escapó el tercer puesto del podio por muy poco en el último momento, pero se llevó a casa una meritoria cuarta posición, mientras que Andoni, a pesar de no tener su mejor día, logró entrar en el top 10. En junior, Ander logró mejorar respecto a la semana anterior y terminó octavo, sumando más puntos UCI. También hay que destacar la mala suerte de varios compañeros de equipo debido a averías. Ahora tomarán un pequeño descanso antes de afrontar las siguientes pruebas, ya que el gran objetivo del año se va acercando.",
+        "p3": "En carretera, la carrera fue desde Bayona hasta el puerto de Lizarrieta, en la Vuelta a Lapurdi. En una competición totalmente loca, nuestros juniors se mantuvieron en cabeza en todo momento, destacando especialmente en los últimos kilómetros, con Unai logrando una brillante segunda posición y Axular entrando séptimo.",
+        "p4": "Este fin de semana el equipo se dividirá en dos: Unai y Axular estarán en Mallorca (junto a Aratz y Amets) compitiendo en el Campeonato de España de Pista, mientras que el resto afrontará un nuevo reto en Agurain, en el inicio del Campeonato de Euskal Herria..",
+        "p5":"Los más pequeños de nuestra escuela cerraron el fin de semana participando en la Mini Green Series de Ortuella, con una gran actuación general. Se nota que han crecido y se han formado entre barro. ¡Que siga así!"
+
+    },
+    "noticeComponent": {
+        "noticeTitle": "Markel, 13º Campeonato de España",
+        "altImage": "Foto de Markel en un descenso",
+        "category": "CADETE",
+        "date": "12-01-2025",
+        "noticeTitle2": "Salida a Irrisarriland",
+        "altImage2": "Foto en Irrisarriland",
+        "category2": "ESCUELA",
+        "date2": "20-10-2024",
+        "noticeTitle3": "Ander, campeón de BTT de euskadi",
+        "altImage3": "Foto de Ander",
+        "category3": "CADETE",
+        "date3": "26-05-2024",
+        "noticeTitle4": "Inicio temporada 2025",
+        "altImage4": "foto de los corredores",
+        "category4": "JUNIOR & CADETE",
+        "noticeTitle5": "Nuevo equipo de chicas ",
+        "noticeTitle6": "¿Y dónde no?",
+        "noticeTitle7": "LOS CINCO UNIDOS",
+        "category5": "JUNIOR & CADETE & ESCUELA",
+        "noticeTitle8": "AQUÍ Y ALLÁ",
+        "noticeTitle9": "UNA PARA CADA ",
+        "noticeTitle10": "PRESENTACION DE EL EQUIPO ",
+        "category6": "EVENTO DE EQUIPO",
+        "noticeTitle11": "TODOS LOS CAMINOS NOS UNEN ",
+        "noticeTitle12": "MEND(IK)ATE HONEK LOTUTA"
     }
 }
