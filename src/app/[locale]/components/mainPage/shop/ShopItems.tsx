@@ -20,7 +20,7 @@ const ShopItems: FC<ShopProps> = ({ item = [], title, onAdd }) => {
             </div>
             <div className='px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-11 auto-rows-auto  w-full justify-center place-items-center xl:ml-24 2xl:ml-16'>
                 {item.map(({ image, name, image2, add }, index) => (
-                    <div className="w-50 group relative" key={index} style={{ width: 200, height: 300 }}>
+                    <div className="w-[200px] h-[300px] group relative" key={index}>
                         <div className="w-full h-full bg-white rounded-t-xl flex items-center justify-center">
                             <div className="flip-card-inner w-full h-full">
                                 {/* default image*/}
