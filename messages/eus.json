@@ -226,5 +226,16 @@
         "p4": "Asteburu honetan taldea bitan zatituko da, Unai eta Axular Mallorcan izango dira (Aratz eta Ametsekin batera) Espainiako Pista Txapelketan, eta gelditzen direnak Agurainen izango dute erronka berria, Euskal Herria Txapelketako hasieran.",
         "p5":"Gure eskolako umeek itxi zuten asteburua, Ortuellako Mini Green Seriesan, oso ondo arituz orokorrean. Nabaritzen da lokatzetan hezita eta hazita daudela. Horrela jarrai bedi."
 
+    },
+    "shopPage": {
+        "title": "Arropa",
+        "add": "Gehitu",
+        "school": "Eskolak",
+        "equipmentText": "Lortu zure ekipamendua",
+        "clothes-type": "Arropa mota",
+        "nameSurname": "Izen-abizenak",
+        "telephone": "Telefono zenbakia",
+        "send": "Bidali",
+        "size": "Hautatu nerria"
     }
 }

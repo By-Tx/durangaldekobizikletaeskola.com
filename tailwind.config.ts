@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
-const { fontFamily } = require('tailwindcss/defaultTheme');
+import defaultTheme from 'tailwindcss/defaultTheme';
+const { fontFamily } = defaultTheme;
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -15,18 +17,19 @@ const config: Config = {
         customPuntagaleaOrange: '#FF7D01',
         customPuntagaleaDarkOrange: '#E65C00',
         customPuntagaleaDarkerOrange: '#C44A00',
-        customblue:'#3984C8',
-        customDarkBlue:'#21486C',
-        customDarkerBlue:'#18344e',
-        customGray:'#BCC3CA',
-        customDarkBlueSession:'#001f5f'
+        customblue: '#3984C8',
+        customDarkBlue: '#21486C',
+        customDarkerBlue: '#18344e',
+        customGray: '#BCC3CA',
+        customDarkBlueSession: '#001f5f'
 
       },
       fontFamily: {
         fredoka: ['Fredoka', ...fontFamily.sans],
       },
       fontWeight: {
-        semibold: '500', 
+        semibold: '500',
+        semibold600: '600',
       },
       height: {
         74: '18.5rem',
@@ -34,6 +37,7 @@ const config: Config = {
         21: '5.30rem',
         29: '7.45rem',
         65: '17.438rem',
+        83: '20.75rem',
         100: '27rem',
         105: '28rem',
         112: '35rem',
@@ -52,7 +56,7 @@ const config: Config = {
         112: '28rem',
         110: '26.5rem',
         111: '27.5rem',
-        130: '32.5rem', 
+        130: '32.5rem',
       },
       margin: {
         33: '8.25rem',
