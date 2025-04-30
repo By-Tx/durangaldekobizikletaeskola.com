@@ -88,13 +88,27 @@ const Sponsor = () => {
 
     return (
         <div className='w-full'>
-            {(pathname === '/eus/cafedromedario' || pathname === '/es/cafedromedario') && (
+            {pathname === '/eus/cafedromedario'  && (
                 <>
                     <SubTitle subTitle="BABESLEAK" />
                     {renderMainSponsors()}
                 </>
             )}
-            {pathname === '/es/eskola' || pathname === '/eus/eskola' && (
+            {pathname === '/es/cafedromedario' && (
+                <>
+                    <SubTitle subTitle="PATROCINADORES" />
+                    {renderMainSponsors()}
+                </>
+            )}
+            {pathname === '/es/eskola' && (
+                <>
+                    <SubTitle subTitle="PATROCINADORES" />
+                    {renderHelpers()}
+                    {renderSecondarySponsors()}
+
+                </>
+            )}
+            {pathname === '/eus/eskola' && (
                 <>
                     <SubTitle subTitle="BABESLEAK" />
                     {renderHelpers()}
@@ -102,7 +116,17 @@ const Sponsor = () => {
 
                 </>
             )}
-            {(pathname !== '/eus/cafedromedario' && pathname !== '/es/cafedromedario' && pathname !== '/es/eskola' && pathname !== '/eus/eskola') && (
+            {(pathname !== '/es/cafedromedario' && pathname !== '/es/eskola' && pathname !== '/eus/cafedromedario' && pathname !== '/eus/eskola' && pathname === '/es' ) && (
+                <>
+                    <SubTitle subTitle="PATROCINADORES" />
+                    {renderMainSponsors()}
+
+                    {renderSecondarySponsors()}
+                    {renderHelpers()}
+
+                </>
+            )}
+            {(pathname !== '/eus/cafedromedario' && pathname !== '/eus/eskola' && pathname !== '/es/cafedromedario' && pathname !== '/es/eskola' && pathname === '/eus') && (
                 <>
                     <SubTitle subTitle="BABESLEAK" />
                     {renderMainSponsors()}
