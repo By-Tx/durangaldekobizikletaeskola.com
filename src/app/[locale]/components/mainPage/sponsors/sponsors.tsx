@@ -9,28 +9,29 @@ import SubTitle from '../Titles/SubTitle';
 
 
 const SECONDARY_SPONSORS = [
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/VCG.png', link: 'https://www.vcg-decoletaje.com/', style: undefined },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/BETSAIDE.png', link: 'https://www.betsaide.com/', style: undefined },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/TECOEL.png', link: 'https://tecoel.es/', style: undefined },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/MARISTAS.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/MALDABIKES.png', link: 'https://www.maldabikes.com/', style: undefined },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/INGENIA.png', link: 'https://ingenia2014.com/', style: undefined },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/mugarra.png', link: '', style: undefined },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/RURALKUTXA.png', link: '', style: undefined },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/CUBICAL.png', link: 'https://cubicaldenira.com/', style: undefined },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/marraz.png', link: '', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-VCG.webp', link: 'https://www.vcg-decoletaje.com/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Betsaide.webp', link: 'https://www.betsaide.com/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Tecoel.webp', link: 'https://tecoel.es/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Maristas.webp', link: 'https://maristak.com/' },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-MaldaBikes.webp', link: 'https://www.maldabikes.com/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Ingenia.webp', link: 'https://ingenia2014.com/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-SuministrosMugarra.webp', link: '', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-RuralKutxa.webp', link: 'https://www.ruralkutxa.com/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-CubicalDenira.webp', link: 'https://cubicaldenira.com/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-MarrazDesign.webp', link: '', style: undefined },
 
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/EUSKADILOWCOST.png', link: '', style: undefined },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/CONTROLPACK.png', link: 'https://www.controlpack.com/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-EuskadiLowCost.webp', link: 'https://www.euskadilowcost.com/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-ControlPack.webp', link: 'https://www.controlpack.com/', style: undefined },
 
 ];
 
 const HELPERS = [
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/IURRETA1.png', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx', style: 'col-span-2' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/DURANGO.png', link: 'https://www.durango.eus/', style: undefined },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ABADIÑO.png', link: 'https://www.xn--abadio-0wa.org/', style: undefined },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/BERRIZ.png', link: '' },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/ELORRIO.png', link: 'https://www.elorrio.eus/eu-ES/Orriak/default.aspx', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Iurreta.webp', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx', style: 'col-span-2' },
+   // { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Durango.webp', link: 'https://www.durango.eus/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/durango.png', link: 'https://www.durango.eus/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Abadiño.webp', link: 'https://www.xn--abadio-0wa.org/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Berrizko.webp', link: 'https://www.berriz.eus/' },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Elorrio.webp', link: 'https://www.elorrio.eus/eu-ES/Orriak/default.aspx', style: undefined },
 ];
 
 const Sponsor = () => {
@@ -41,13 +42,13 @@ const Sponsor = () => {
 
 
             <MainSponsor
-                img='https://photos.txuli.com/duranguesa/patrocinadores/CafeDromedario.webp'
+                img='https://photos.txuli.com/duranguesa/sponsors/New-CafeDromedario.webp'
                 Link='https://cafedromedario.com/'
-                img2='https://photos.txuli.com/duranguesa/patrocinadores/flotamet.png'
-                Link2='https://cafedromedario.com/'
-                img3='https://photos.txuli.com/duranguesa/patrocinadores/HIRUMET1.png'
+                img2='https://photos.txuli.com/duranguesa/sponsors/New-Flotamet.webp'
+                Link2='https://www.recuperacion.org/miembros/flotamet-s-l/'
+                img3='https://photos.txuli.com/duranguesa/sponsors/New-Hirumet.webp'
                 Link3='https://www.hirumet.com/'
-                img4='https://photos.txuli.com/duranguesa/patrocinadores/orbeaw.png'
+                img4='https://photos.txuli.com/duranguesa/sponsors/New-Orbea.webp'
                 Link4='https://www.orbea.com/'
             />
 
@@ -87,13 +88,27 @@ const Sponsor = () => {
 
     return (
         <div className='w-full'>
-            {(pathname === '/eus/cafedromedario' || pathname === '/es/cafedromedario') && (
+            {pathname === '/eus/cafedromedario'  && (
                 <>
                     <SubTitle subTitle="BABESLEAK" />
                     {renderMainSponsors()}
                 </>
             )}
-            {pathname === '/es/eskola' || pathname === '/eus/eskola' && (
+            {pathname === '/es/cafedromedario' && (
+                <>
+                    <SubTitle subTitle="PATROCINADORES" />
+                    {renderMainSponsors()}
+                </>
+            )}
+            {pathname === '/es/eskola' && (
+                <>
+                    <SubTitle subTitle="PATROCINADORES" />
+                    {renderHelpers()}
+                    {renderSecondarySponsors()}
+
+                </>
+            )}
+            {pathname === '/eus/eskola' && (
                 <>
                     <SubTitle subTitle="BABESLEAK" />
                     {renderHelpers()}
@@ -101,7 +116,17 @@ const Sponsor = () => {
 
                 </>
             )}
-            {(pathname !== '/eus/cafedromedario' && pathname !== '/es/cafedromedario' && pathname !== '/es/eskola' && pathname !== '/eus/eskola') && (
+            {(pathname !== '/es/cafedromedario' && pathname !== '/es/eskola' && pathname !== '/eus/cafedromedario' && pathname !== '/eus/eskola' && pathname === '/es' ) && (
+                <>
+                    <SubTitle subTitle="PATROCINADORES" />
+                    {renderMainSponsors()}
+
+                    {renderSecondarySponsors()}
+                    {renderHelpers()}
+
+                </>
+            )}
+            {(pathname !== '/eus/cafedromedario' && pathname !== '/eus/eskola' && pathname !== '/es/cafedromedario' && pathname !== '/es/eskola' && pathname === '/eus') && (
                 <>
                     <SubTitle subTitle="BABESLEAK" />
                     {renderMainSponsors()}
