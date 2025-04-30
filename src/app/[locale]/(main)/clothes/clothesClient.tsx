@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import Title from '@/app/[locale]/components/mainPage/Titles/Title';
 import ShopItems from '@/app/[locale]/components/mainPage/shop/ShopItems';
 import SubTitle from '../../components/mainPage/Titles/SubTitle';
@@ -11,7 +12,25 @@ interface SelectedProduct {
     talla?: string;
 }
 
-export default function ClothesClient({ t, item, itemSchool, tallas }: any) {
+interface ClothesClientProps {
+    t: {
+        title: string;
+        school: string;
+        nameSurname: string;
+        telephone: string;
+        send: string;
+        equipmentText: string;
+        size: string;
+        clothesType: string;
+        add: string;
+    };
+    item: { name: string; image: string; image2: string; add: string; }[];
+    itemSchool: { name: string; image: string; image2: string; add: string; }[];
+    tallas: string[];
+    items?: { content: string; value: string; checked: boolean }[];
+}
+
+export default function ClothesClient({ t, item, itemSchool, tallas }: ClothesClientProps) {
     const [selectedProducts, setSelectedProducts] = useState<SelectedProduct[]>([]);
 
     const handleAddProduct = (product: { name: string; image: string }, type: "item" | "itemSchool") => {
@@ -100,7 +119,13 @@ export default function ClothesClient({ t, item, itemSchool, tallas }: any) {
                     <div className="space-y-4 mt-8">
                         {selectedProducts.map((producto, idx) => (
                             <div key={producto.name + idx} className="flex flex-col md:flex-row items-center gap-4 bg-white bg-opacity-80 rounded-lg p-4">
-                                <img src={producto.image} alt={producto.name} className="w-20 h-24 object-contain rounded" />
+                                <Image
+                                    src={producto.image}
+                                    alt={producto.name}
+                                    width={80}
+                                    height={96}
+                                    className="w-20 h-24 object-contain rounded"
+                                />
                                 <span className="flex-1 font-semibold font-fredoka text-customDarkBlue capitalize">
                                     {producto.name} <span className="text-gray-500">{getTypeLabel(producto.type)}</span>
                                 </span>

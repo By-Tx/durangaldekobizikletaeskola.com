@@ -44,10 +44,10 @@ export default async function ClothesPage() {
                 title: t("title"),
                 school: t("school"),
                 equipmentText: t("equipmentText"),
-                "nameSurname": t("nameSurname"),
+                nameSurname: t("nameSurname"),
                 telephone: t("telephone"),
                 send: t("send"),
-                "clothes-type": t("clothes-type"),
+                clothesType: t("clothesType"),
                 add: t("add"),
                 size: t("size"),
             }}
