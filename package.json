@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 4225",
+    "dev": "next dev -p 4229",
     "build": "next build",
-    "start": "next start -p 4224",
+    "start": "next start -p 4228",
     "lint": "next lint",
     "pm2:start": "pm2 start \"npm run start\" --name durangobzk",
     "pm2:rs": "pm2 restart durangobzk --update-env",
