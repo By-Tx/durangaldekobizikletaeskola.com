@@ -17,7 +17,7 @@ const MainSponsor = (props: { Link: string | undefined; img: string | undefined;
                             alt="Logo patrocinador"
                             className="object-contain transition-transform duration-300 transform hover:scale-105"
                             width={270}
-                            height={94}
+                            height={135}
                         />
                     </a>
                 </div>
@@ -35,7 +35,7 @@ const MainSponsor = (props: { Link: string | undefined; img: string | undefined;
                             alt="Logo patrocinador"
                             className="object-contain transition-transform duration-300 transform hover:scale-105 py-1"
                             width={270}
-                            height={94}
+                            height={135}
                         />
                     </a>
                 </div>
@@ -43,7 +43,7 @@ const MainSponsor = (props: { Link: string | undefined; img: string | undefined;
              
                 <div className="bg-customDarkBlue mb-6 w-44 sm:w-full max-w-sm h-32 md:h-40 rounded-lg shadow-lg flex items-center justify-center mx-auto">
                     <a
-                        href={props.Link2}
+                        href={props.Link3}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="h-full w-full flex items-center justify-center p-4"
@@ -53,7 +53,7 @@ const MainSponsor = (props: { Link: string | undefined; img: string | undefined;
                             alt="Logo patrocinador"
                             className="object-contain transition-transform duration-300 transform hover:scale-105 py-1"
                             width={270}
-                            height={94}
+                            height={135}
                         />
                     </a>
                 </div>
@@ -69,7 +69,7 @@ const MainSponsor = (props: { Link: string | undefined; img: string | undefined;
                             alt="Logo patrocinador"
                             className="object-contain transition-transform duration-300 transform hover:scale-105 py-1"
                             width={270}
-                            height={94}
+                            height={135}
                         />
                     </a>
                 </div>
