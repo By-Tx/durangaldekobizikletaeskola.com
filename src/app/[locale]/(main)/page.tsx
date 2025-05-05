@@ -83,25 +83,25 @@ export default async function Home() {
        url: 'https://photos.txuli.com/duranguesa/mainPage/foto1.jpg',
        title: t("title"),
        subtitle: t("subtitle"),
-       height: 600, // altura en píxeles
+       height: 300, // altura en píxeles
      },
      {
        url: 'https://photos.txuli.com/duranguesa/mainPage/foto2.jpg',
        title: t("title2"),
        subtitle: t("subtitle2"),
-       height: 600,
+       height: 300,
      },
      {
        url: 'https://photos.txuli.com/duranguesa/mainPage/foto3.jpg',
        title: t("title3"),
        subtitle: t("subtitle3"),
-       height: 650,
+       height: 300,
      },
      {
        url: 'https://photos.txuli.com/duranguesa/portada1escaled.webp',
        title: t("title4"),
        subtitle: t("subtitle4"),
-       height: 650,
+       height: 300,
      },
    ];
 
@@ -117,32 +117,33 @@ export default async function Home() {
         
       <Line />
       {images2.map((section, idx) => {
-        const isEven = idx % 2 === 0;
         return (
           <div key={idx} className="w-full relative" style={{ height: `${section.height}px` }}>
            
-            <div
+
+           <div
               style={{ backgroundImage: `url(${section.url})` }}
               className="absolute inset-0 bg-cover bg-center filter brightness-50"
-            ></div>
-
-            
+            >
+          
+            </div>
             <div
-              className={`absolute inset-0 ${isEven
-                ? "bg-gradient-to-r from-black to-transparent"
-                : "bg-gradient-to-l from-black to-transparent"
-                } bg-black opacity-50`}
+              className="absolute inset-0 z-5"
+              style={{background: "linear-gradient(to right, black 10%, transparent 70%)",}} // esta con styles porque no lo puedo poner en el classname
             ></div>
 
-            
             <div className="absolute z-10 inset-0 flex items-center font-fredoka">
-              <div className={`flex w-full p-4 ${isEven ? "justify-start ml-4" : "justify-end mr-4"}`}>
+              <div className="flex w-full p-4 justify-start ml-4">
                 <div className="w-full lg:w-1/4">
                   <h2 className="text-3xl font-bold text-white">{section.title}</h2>
                   <p className="mt-2 text-xl text-white">{section.subtitle}</p>
                 </div>
               </div>
             </div>
+
+            
+
+
           </div>
         );
       })}
