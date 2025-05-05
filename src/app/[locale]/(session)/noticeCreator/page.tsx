@@ -6,18 +6,23 @@ import { useState } from 'react'
 
 export default function Page() {
   const [formData, setFormData] = useState({
+    //data of the cover
     href: '',
     imageSrc: '',
     altKey: '',
     date: '',
+    //data es language
     titleKey: '',
+    subtitleKey: '',
     categoryKey: '',
     p1: '',
     p2: '',
     p3: '',
     p4: '',
+    //data eus language
     altKeyEus: '',
     titleKeyEus: '',
+    subtitleKeyEus: '',
     categoryKeyEus: '',
     p1Eus: '',
     p2Eus: '',
@@ -41,12 +46,16 @@ export default function Page() {
         ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
         : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
     try {
-       await fetch(`${API_URL}/api/content`, {
+      const response = await fetch(`${API_URL}/api/content`, {
         method: "POST",
         cache: "no-store",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+      const data = await response.json();
+      if (response.ok) {
+        alert(data.message);
+      }
     } catch (error) {
       console.log("Error:", error);
     }
@@ -54,7 +63,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg">
+      <div className="max-w-6xl mx-auto mt-8 p-6 bg-white/45 shadow-lg rounded-lg text-black">
         <h1 className="text-2xl font-semibold mb-6 text-center text-gray-800">Crear cronica nueva</h1>
         <div className='flex justify-between'>
           <div className='w-1/2'>
@@ -88,14 +97,14 @@ export default function Page() {
 
                 {/* Alt Text */}
                 <div>
-                  <label htmlFor="altKey" className="block text-gray-700">Texto alternativo de la imagen:</label>
+                  <label htmlFor="altKeyEus" className="block text-gray-700">Texto alternativo de la imagen:</label>
                   <input
                     type="text"
-                    id="altKey"
-                    name="altKey"
+                    id="altKeyEus"
+                    name="altKeyEus"
                     value={formData.altKeyEus}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black bg-transparent"
                   />
                 </div>
               </section>
@@ -108,34 +117,46 @@ export default function Page() {
                     type="date"
                     id="date"
                     name="date"
+                    
                     value={formData.date}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
-
+                <h3 className='text-black text-l'>contenido de la pagina de la noticia</h3>
                 {/* Title */}
                 <div>
-                  <label htmlFor="titleKey" className="block text-gray-700">Título:</label>
+                  <label htmlFor="titleKeyEus" className="block text-gray-700">Título:</label>
                   <input
                     type="text"
-                    id="titleKey"
-                    name="titleKey"
+                    id="titleKeyEus"
+                    name="titleKeyEus"
                     value={formData.titleKeyEus}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
-
+                {/* subtitle Text */}
+                <div>
+                  <label htmlFor="subtitleKeyEus" className="block text-gray-700">Subtitulo:</label>
+                  <input
+                    type="text"
+                    id="subtitleKeyEus"
+                    name="subtitleKeyEus"
+                    value={formData.subtitleKeyEus}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                  />
+                </div>
 
                 {/* Paragraph 1 */}
                 <div>
-                  <label htmlFor="p1" className="block text-gray-700">Parrafo 1:</label>
+                  <label htmlFor="p1Eus" className="block text-gray-700">Parrafo 1:</label>
                   <input
                     type="text"
-                    id="p1"
-                    name="p1"
+                    id="p1Eus"
+                    name="p1Eus"
                     value={formData.p1Eus}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -144,11 +165,11 @@ export default function Page() {
 
                 {/* Paragraph 2 */}
                 <div>
-                  <label htmlFor="p2" className="block text-gray-700">Parrafo 2:</label>
+                  <label htmlFor="p2Eus" className="block text-gray-700">Parrafo 2:</label>
                   <input
                     type="text"
-                    id="p2"
-                    name="p2"
+                    id="p2Eus"
+                    name="p2Eus"
                     value={formData.p2Eus}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -157,11 +178,11 @@ export default function Page() {
 
                 {/* Paragraph 3 */}
                 <div>
-                  <label htmlFor="p3" className="block text-gray-700">Parrafo 3:</label>
+                  <label htmlFor="p3Eus" className="block text-gray-700">Parrafo 3:</label>
                   <input
                     type="text"
-                    id="p3"
-                    name="p3"
+                    id="p3Eus"
+                    name="p3Eus"
                     value={formData.p3Eus}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -173,8 +194,8 @@ export default function Page() {
                   <label htmlFor="p4" className="block text-gray-700">Parrafo 4:</label>
                   <input
                     type="text"
-                    id="p4"
-                    name="p4"
+                    id="p4Eus"
+                    name="p4Eus"
                     value={formData.p4Eus}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -199,18 +220,7 @@ export default function Page() {
                   />
                 </div>
 
-                {/* Image URL */}
-                <div>
-                  <label htmlFor="imageSrc" className="block text-gray-700">Imagen URL:</label>
-                  <input
-                    type="text"
-                    id="imageSrc"
-                    name="imageSrc"
-                    value={formData.imageSrc}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
+               
 
                 {/* Alt Text */}
                 <div>
@@ -239,7 +249,7 @@ export default function Page() {
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
-
+                  <h3 className='text-black text-l'>contenido de la pagina de la noticia</h3>
                 {/* Title */}
                 <div>
                   <label htmlFor="titleKey" className="block text-gray-700">Título:</label>
@@ -250,6 +260,18 @@ export default function Page() {
                     value={formData.titleKey}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                {/* subtitle Text */}
+                <div>
+                  <label htmlFor="subtitleKey" className="block text-gray-700">Subtitulo</label>
+                  <input
+                    type="text"
+                    id="subtitleKey"
+                    name="subtitleKey"
+                    value={formData.subtitleKey}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
                   />
                 </div>
 

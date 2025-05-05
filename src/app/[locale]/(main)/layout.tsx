@@ -1,7 +1,7 @@
 // app/layout.tsx
 
 import type { Metadata } from "next";
-import { getMessages} from 'next-intl/server';
+import { getMessages } from 'next-intl/server';
 import "../globals.css";
 import NavBar from "../components/main/navBar";
 import Sponsor from "../components/mainPage/sponsors/sponsors";
@@ -22,39 +22,39 @@ export const metadata: Metadata = {
   title: "DURANGALDEKO BZK",
   description:
     "Durangaldeko Bizikleta Eskola - Batu gure tropelera! Bizikletaren munduan murgiltzeko aukera ezin hobea, errepide, mendi, ziklokros edo pista diziplinetan!",
-  
+
 };
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-  
+
 }>) {
-  
+
   const messages = await getMessages();
-  
+
   return (
     <NextIntlClientProvider messages={messages}
     >
-    <html lang="eus">
-      <head>
-         <link rel="shortcut icon" href="/media/logo.png" /> 
-      </head>
-      <body
-        className={`${fredoka}  antialiased pageNO-specific absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]`
-      }
-      >
+      <html lang="eus">
+        <head>
+          <link rel="shortcut icon" href="/media/logo.png" />
+        </head>
+        <body
+          className={`${fredoka}  antialiased pageNO-specific absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]`
+          }
+        >
 
-<NavBar />
-        <Line />
+          <NavBar />
+          <Line />
 
-        {children}
-        <Sponsor />
-        <Line />
-        <Footer  color="bg-customblue"/>
-      </body>
-    </html>
+          {children}
+          <Sponsor />
+          <Line />
+          <Footer color="bg-customblue" />
+        </body>
+      </html>
     </NextIntlClientProvider>
   );
 }
