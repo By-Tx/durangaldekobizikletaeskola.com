@@ -4,6 +4,7 @@ import Image from "next/image";
 import Title from '@/app/[locale]/components/mainPage/Titles/Title';
 import ShopItems from '@/app/[locale]/components/mainPage/shop/ShopItems';
 import SubTitle from '../../components/mainPage/Titles/SubTitle';
+import info from "@/app/media/info.svg";
 
 // Tipos para los productos seleccionados y props del componente
 interface SelectedProduct {
@@ -24,6 +25,7 @@ interface ClothesClientProps {
         size: string;
         clothesType: string;
         add: string;
+        info: string;
     };
     item: { name: string; image: string; image2: string; add: string; }[];
     itemSchool: { name: string; image: string; image2: string; add: string; }[];
@@ -69,6 +71,18 @@ export default function ClothesClient({ t, item, itemSchool, tallas }: ClothesCl
     return (
         <>
             <Title title={t.title} />
+            <section className="flex items-center gap-2 mx-3 mb-3">
+                <Image
+                    src={info}
+                    alt="Descripción de la imagen"
+                    width={30}
+                    height={30}
+                />
+                <div className="text-lg font-fredoka text-customDarkBlue font-semibold italic">
+                    <p>{t.info}</p>
+                </div>
+            </section>
+
             <section>
                 <ShopItems item={item} title="Dromedario" onAdd={product => handleAddProduct(product, "item")} />
                 <ShopItems item={itemSchool} title={t.school} onAdd={product => handleAddProduct(product, "itemSchool")} />

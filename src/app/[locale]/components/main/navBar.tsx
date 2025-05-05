@@ -48,7 +48,7 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full bg-gradient-to-r ${className ? className : 'bg-customblue'} shadow-md z-20 font-fredoka`}>
+    <nav className={`fixed top-0 left-0 w-full bg-gradient-to-r ${className ? className : 'bg-customblue'} shadow-md z-30 font-fredoka`}>
 
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}
@@ -91,7 +91,7 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
               {t("form")}
             </Link>
               <Link href="/clothes" className="text-white hover:text-blue-200 transition duration-150">
-              ARROPA
+              {t("clothes")}
             </Link>  
             <Link href="/contacto" className="text-white hover:text-blue-200 transition duration-150">
               {t("contact")}
@@ -122,7 +122,7 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
 
       {/* Mobile Menu */}
       {isMobile && menuOpen && (
-        <div className="absolute top-0 left-0 w-full h-screen bg-black/70 flex flex-col items-center justify-center space-y-6 text-white z-20">
+        <div className="absolute top-0 left-0 w-full h-screen bg-black/70 flex flex-col items-center justify-center space-y-6 text-white z-28">
           <Link
             href="/"
             className="text-xl hover:text-blue-300 transition duration-150"
@@ -165,6 +165,9 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
           >
             {t("form")}
           </Link>
+          <Link href="/clothes" className="text-xl hover:text-blue-300 transition duration-150">
+              {t("clothes")}
+            </Link>  
           <Link
             href="/contacto"
             className="text-xl hover:text-blue-300 transition duration-150"
@@ -172,13 +175,14 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
           >
             {t("contact")}
           </Link>
-          <Link
+            
+          {/* <Link
             href="/login"
             className="text-xl bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-150"
             onClick={toggleMenu}
           >
             HASI SAIOA
-          </Link> 
+          </Link>  */}
           <div>
           <LocaleSwitcherSelect className={color2} />
           </div>

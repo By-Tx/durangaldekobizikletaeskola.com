@@ -153,6 +153,7 @@
     "menuComponent": {
         "home": "HASIERA",
         "eskola": "ESKOLA",
+        "clothes": "AROPA",
         "form": "IZENA EMAN",
         "contact": "KONTAKTUA"
     },
@@ -234,8 +235,9 @@
         "equipmentText": "Lortu zure ekipamendua",
         "clothesType": "Arropa mota",
         "nameSurname": "Izen-abizenak",
-        "telephone": "Telefono zenbakia",
+        "telephone": "Pozta elektronikoa",
         "send": "Bidali",
-        "size": "Hautatu nerria"
+        "size": "Hautatu neurria",
+        "info": "Eskaerak irailean eta maiatzean egingo dira."
     }
 }

@@ -137,6 +137,7 @@
         "home": "INICIO",
         "eskola": "ESCUELA",
         "form": "INSCRÍBETE",
+        "clothes": "ROPA",
         "contact": "CONTACTO",
         "label": "eus",
         "localeSwitcher": "es"
@@ -235,8 +236,9 @@
         "equipmentText": "Consigue tu equipación",
         "clothesType": "Tipo de ropa",
         "nameSurname": "Nombre-apellidos",
-        "telephone": "Número de teléfono",
+        "telephone": "correo electrónico",
         "send": "Enviar",
-        "size": "Selecciona la talla"
+        "size": "Selecciona la talla",
+        "info": "Los pedidos se realizaran los meses de septiembre y mayo"
     }
 }
