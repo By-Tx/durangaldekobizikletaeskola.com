@@ -5,11 +5,14 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   distDir: process.env.NODE_ENV === 'production' ? 'build' : '.next',
   images: {
-    domains: ['photos.txuli.com'], // Agrega aquí el dominio externo desde el que quieres cargar imágenes
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'photos.txuli.com',
+        pathname: '/**',
+      },
+    ],
   },
-  
 };
 
-
-
-export default withNextIntl (nextConfig);
+export default withNextIntl(nextConfig);
