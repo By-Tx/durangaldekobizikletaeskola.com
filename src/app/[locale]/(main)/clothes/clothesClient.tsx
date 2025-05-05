@@ -31,10 +31,15 @@ interface ClothesClientProps {
 }
 
 export default function ClothesClient({ t, item, itemSchool, tallas }: ClothesClientProps) {
+
     const [selectedProducts, setSelectedProducts] = useState<SelectedProduct[]>([]);
 
     const handleAddProduct = (product: { name: string; image: string }, type: "item" | "itemSchool") => {
-        setSelectedProducts((prev) => [...prev, { ...product, type, talla: "" }]);
+        setSelectedProducts((prev) => {
+            const alreadyExists = prev.some(p => p.name === product.name && p.type === type);
+            if (alreadyExists) return prev;
+            return [...prev, { ...product, type, talla: "" }];
+        });
     };
 
     const handleRemoveProduct = (index: number) => {
@@ -51,9 +56,7 @@ export default function ClothesClient({ t, item, itemSchool, tallas }: ClothesCl
 
     const getTypeLabel = (type: "item" | "itemSchool") => {
         if (type === "item") return "(Dromedario)";
-        if (type === "itemSchool") {
-            return `(${t.school})`;
-        }
+        if (type === "itemSchool") return `(${t.school})`;
         return "";
     };
 
@@ -69,26 +72,55 @@ export default function ClothesClient({ t, item, itemSchool, tallas }: ClothesCl
             <form
                 action=""
                 className="mt-10 max-w-3xl mx-auto bg-gradient-to-br rounded-lg p-8 text-black space-y-6"
-                onSubmit={e => {
+                onSubmit={async e => {
                     e.preventDefault();
 
                     const form = e.currentTarget as HTMLFormElement;
                     const data = new FormData(form);
 
-                    const nombre = data.get("nombre");
-                    const telefono = data.get("telefono");
+                    interface Payload {
+                        nombre: FormDataEntryValue | null;
+                        mail: FormDataEntryValue | null;
+                        productos: ProductoPayload[];
+                    }
 
-                    const tallasSeleccionadas = selectedProducts.map((producto, idx) => ({
-                        name: producto.name,
-                        type: producto.type,
-                        talla: data.get(`talla-${producto.name}-${idx}`),
-                    }));
+                    interface ProductoPayload {
+                        name: string;
+                        type: string;
+                        talla: FormDataEntryValue | null;
+                    }
 
-                    console.log({
-                        nombre,
-                        telefono,
-                        productos: tallasSeleccionadas,
-                    });
+                    const payload: Payload = {
+                        nombre: data.get("nombre"),
+                        mail: data.get("mail"),
+                        productos: selectedProducts.map((producto, idx): ProductoPayload => ({
+                            name: producto.name,
+                            type: producto.type === "item" ? "dromedario" : "escuela",
+                            talla: data.get(`talla-${producto.name}-${idx}`),
+                        }))
+                    };
+
+                    try {
+                        const res = await fetch("/api/sendEmailClothes", {
+                            method: "POST",
+                            body: JSON.stringify(payload),
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        });
+
+                        if (!res.ok) {
+                            throw new Error("Error al enviar el formulario.");
+                        }
+
+                        console.log("Formulario enviado correctamente:", payload);
+                        alert("Formulario enviado correctamente.");
+                        setSelectedProducts([]);
+                        form.reset();
+                    } catch (error) {
+                        console.error("Error al enviar:", error);
+                        alert("Ocurrió un error al enviar el formulario. Inténtalo de nuevo.");
+                    }
                 }}
             >
                 <div className="flex flex-col md:flex-row gap-4">
@@ -104,9 +136,9 @@ export default function ClothesClient({ t, item, itemSchool, tallas }: ClothesCl
                     </div>
                     <div className="flex-1">
                         <input
-                            type="tel"
-                            id="telefono"
-                            name="telefono"
+                            type="email"
+                            id="mail"
+                            name="mail"
                             className="w-full rounded-md border border-gray-300 px-3 py-2 placeholder:text-customDarkBlue placeholder:font-fredoka placeholder:text-lg placeholder:uppercase placeholder:font-semibold"
                             placeholder={t.telephone}
                             required
@@ -114,7 +146,6 @@ export default function ClothesClient({ t, item, itemSchool, tallas }: ClothesCl
                     </div>
                 </div>
 
-                {/* Selected items */}
                 {selectedProducts.length > 0 && (
                     <div className="space-y-4 mt-8">
                         {selectedProducts.map((producto, idx) => (

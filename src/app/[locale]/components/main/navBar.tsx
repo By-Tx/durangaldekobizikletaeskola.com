@@ -90,9 +90,9 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
             <Link href="/form" className="text-white hover:text-blue-200 transition duration-150">
               {t("form")}
             </Link>
-             {/* <Link href="/clothes" className="text-white hover:text-blue-200 transition duration-150">
+              <Link href="/clothes" className="text-white hover:text-blue-200 transition duration-150">
               ARROPA
-            </Link>  */}
+            </Link>  
             <Link href="/contacto" className="text-white hover:text-blue-200 transition duration-150">
               {t("contact")}
             </Link>
@@ -172,13 +172,13 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
           >
             {t("contact")}
           </Link>
-          {/* <Link
+          <Link
             href="/login"
             className="text-xl bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-150"
             onClick={toggleMenu}
           >
             HASI SAIOA
-          </Link> */}
+          </Link> 
           <div>
           <LocaleSwitcherSelect className={color2} />
           </div>
