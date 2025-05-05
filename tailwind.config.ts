@@ -56,7 +56,10 @@ const config: Config = {
         112: '28rem',
         110: '26.5rem',
         111: '27.5rem',
-        130: '32.5rem',
+
+        130: '32.5rem', 
+        
+
       },
       margin: {
         33: '8.25rem',

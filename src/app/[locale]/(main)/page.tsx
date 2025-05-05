@@ -7,6 +7,7 @@ import Line from "@/app/[locale]/components/main/line0m";
 
 
 import ButtonNotice from '../components/mainPage/noticeComponents/Button';
+
 interface Notice {
   href: string;
   imageSrc: string;
