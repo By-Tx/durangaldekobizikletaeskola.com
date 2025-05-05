@@ -227,5 +227,16 @@
         "category6": "EVENTO DE EQUIPO",
         "noticeTitle11": "TODOS LOS CAMINOS NOS UNEN ",
         "noticeTitle12": "MEND(IK)ATE HONEK LOTUTA"
+    },
+    "shopPage": {
+        "title": "Ropa",
+        "add": "Añadir",
+        "school": "Escuelas",
+        "equipmentText": "Consigue tu equipación",
+        "clothesType": "Tipo de ropa",
+        "nameSurname": "Nombre-apellidos",
+        "telephone": "Número de teléfono",
+        "send": "Enviar",
+        "size": "Selecciona la talla"
     }
 }

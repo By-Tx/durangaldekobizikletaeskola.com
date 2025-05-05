@@ -1,62 +1,60 @@
-"use client"
-import Title from '@/app/[locale]/components/mainPage/Titles/Title';
-import ShopItems from '@/app/[locale]/components/mainPage/shop/ShopItems';
-import SubTitle from '../../components/mainPage/Titles/SubTitle';
-import DropDownSelection from '../form/dropDownSelecction';
+import { getTranslations } from 'next-intl/server';
+import ClothesClient from './clothesClient';
 
-// import { useState } from 'react';
+export default async function ClothesPage() {
+    const t = await getTranslations("shopPage");
+    const tallas = ["XS", "S", "M", "L", "XL", "XXL"];
 
-export default function clothes() {
-    // const [selectedValues, setSelectedValues] = useState<string[]>([]);
-  
-   
-    const item=[
+    const item = [
         {
-            image: 'https://photos.txuli.com/duranguesa/clothes/mailotDromFront.jpeg',
-            image2: 'https://photos.txuli.com/duranguesa/clothes/mailotDromSide.jpeg',
-            name: 'maillot'
+            image: 'https://photos.txuli.com/duranguesa/clothes/mailotDromFront.png',
+            image2: 'https://photos.txuli.com/duranguesa/clothes/mailotDromSide.png',
+            name: 'maillot',
+            add: t("add")
         },
         {
-            image: 'https://photos.txuli.com/duranguesa/clothes/culotteDrom.jpeg',
-            image2: 'https://photos.txuli.com/duranguesa/clothes/culotteDromSide.jpeg',
-            name: 'culotte'
+            image: 'https://photos.txuli.com/duranguesa/clothes/culotteDromFront.png',
+            image2: 'https://photos.txuli.com/duranguesa/clothes/culotteDromSide.png',
+            name: 'culotte',
+            add: t("add")
         }
-       
-    ]
-    const itemShool=[
+    ];
+    const itemSchool = [
         {
-            image: 'https://photos.txuli.com/duranguesa/clothes/mailotDromFront.jpeg',
-            image2: 'https://photos.txuli.com/duranguesa/clothes/mailotDromSide.jpeg',
-            name: 'maillot'
+            image: 'https://photos.txuli.com/duranguesa/clothes/mailotEscuelaFront.png',
+            image2: 'https://photos.txuli.com/duranguesa/clothes/mailotEscuelaSide.png',
+            name: 'maillot',
+            add: t("add")
         },
         {
-            image: 'https://photos.txuli.com/duranguesa/clothes/culotteDrom.jpeg',
-            image2: 'https://photos.txuli.com/duranguesa/clothes/culotteDromSide.jpeg',
-            name: 'culotte'
+            image: 'https://photos.txuli.com/duranguesa/clothes/culotteEscuelaFront.png',
+            image2: 'https://photos.txuli.com/duranguesa/clothes/culotteEscuelaSide.png',
+            name: 'culotte',
+            add: t("add")
         }
-       
-    ]
+    ];
     const items = [
-        {content: 'maillot', value: 'maillot', checked: false},
-        {content: 'culotte', value: 'culotte', checked: false},
-    ]
+        { content: 'maillot', value: 'maillot', checked: false },
+        { content: 'culotte', value: 'culotte', checked: false },
+    ];
+
     return (
-    <>
-    <Title title='ARROPA'/>
-   
-    <section>
-    <ShopItems item={item}  title="Dromedario"/>
-    <ShopItems item={itemShool}  title="Eskolak"/>
-    </section>
-    <SubTitle subTitle='LORTU ZURE EKIPAMENDUA'/>
-
-    <form action="" className="mt-10 max-w-3xl mx-auto bg-gradient-to-br bg-customblue shadow-2xl rounded-lg p-8 text-black">
-    
-    
-    </form>
-    <DropDownSelection items={items} title='Arropa mota' />
-    
-    </>
-    )
+        <ClothesClient
+            t={{
+                title: t("title"),
+                school: t("school"),
+                equipmentText: t("equipmentText"),
+                nameSurname: t("nameSurname"),
+                telephone: t("telephone"),
+                send: t("send"),
+                clothesType: t("clothesType"),
+                add: t("add"),
+                size: t("size"),
+            }}
+            item={item}
+            itemSchool={itemSchool}
+            items={items}
+            tallas={tallas}
+        />
+    );
 }
-
