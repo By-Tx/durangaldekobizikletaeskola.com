@@ -3,9 +3,13 @@ import { getTranslations } from 'next-intl/server';
 import ClothesClient from './clothesClient';
 
 export default async function ClothesPage() {
+    // Traducciones para la página de la tienda
     const t = await getTranslations("shopPage");
+
+    // Array de tallas disponibles
     const tallas = ["XS", "S", "M", "L", "XL", "XXL"];
 
+    // Productos
     const item = [
         {
             image: 'https://photos.txuli.com/duranguesa/clothes/mailotDromFront.png',
@@ -34,12 +38,15 @@ export default async function ClothesPage() {
             add: t("add")
         }
     ];
+    
+    // Opciones de items para posibles usos futuros (no usado directamente aquí)
     const items = [
         { content: 'maillot', value: 'maillot', checked: false },
         { content: 'culotte', value: 'culotte', checked: false },
     ];
 
     return (
+        // Renderiza el componente principal de la página de ropa, pasando traducciones, productos y tallas
         <ClothesClient
             t={{
                 title: t("title"),
