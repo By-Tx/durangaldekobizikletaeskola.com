@@ -58,6 +58,7 @@ export default async function ClothesPage() {
                 clothesType: t("clothesType"),
                 add: t("add"),
                 size: t("size"),
+                info: t("info"),
             }}
             item={item}
             itemSchool={itemSchool}
