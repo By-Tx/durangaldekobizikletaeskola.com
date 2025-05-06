@@ -1,12 +1,12 @@
+import { getLocale } from 'next-intl/server';
+import { createTranslator } from 'next-intl';
 
-import {getLocale, getTranslations} from 'next-intl/server';
 import Slideshow from "../components/mainPage/eskola/slide";
 import News from "../components/mainPage/noticeComponents/notices";
 import SubTitle from "../components/mainPage/Titles/SubTitle";
 import Line from "@/app/[locale]/components/main/line0m";
-
-
 import ButtonNotice from '../components/mainPage/noticeComponents/Button';
+
 interface Notice {
   href: string;
   imageSrc: string;
@@ -14,7 +14,11 @@ interface Notice {
   date: string;
   title: string;
   category: string;
+  titleKey: string;
+  categoryKey: string;
+  altKey: string;
 }
+
 interface NoticeResponse {
   data: Notice[];
 }
@@ -31,8 +35,8 @@ async function fetchNotices(locale: string): Promise<NoticeResponse> {
 
   const response = await fetch(`${API_URL}/api/mainNotices`, {
     method: "POST",
-    cache: "no-store", // Evita caché para asegurar datos frescos en cada request
-    body: JSON.stringify({ path: "mainNotices", loc:locale }),
+    cache: "no-store",
+    body: JSON.stringify({ path: "mainNotices", loc: locale }),
   });
 
   if (!response.ok) {
@@ -40,17 +44,51 @@ async function fetchNotices(locale: string): Promise<NoticeResponse> {
   }
 
   return response.json();
- 
 }
+
 export default async function Home() {
-  const locale = await getLocale(); 
-  
-  const response = await fetchNotices(locale);
-  
-    const t = await getTranslations("homePage");
+  const locale = await getLocale();
+  const notices = await fetchNotices(locale);
+
+  const API_URL =
+    process.env.NODE_ENV === "development"
+      ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
+      : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
+
+  // load translations from de api
+  let messages: Record<string, unknown> = {};
+
+  try {
+    const res = await fetch(`${API_URL}/api/translations?lang=${locale}`, {
+      cache: 'no-store'
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(` Error cargando traducciones (${locale}):`, errorText);
+      throw new Error("No se pudieron cargar las traducciones");
+    }
+
+    messages = await res.json();
+  } catch (e) {
+    console.error(" Error al cargar mensajes JSON:", e);
+  }
+
+  //create translator
+  const t = createTranslator({ locale, messages, namespace: 'homePage' });
+  const tNotices = createTranslator({ locale, messages, namespace: 'noticeComponent' });
+
+  // translate the notices
+  const translatedNotices = notices.data.map((item) => ({
+    ...item,
+    title: tNotices(item.titleKey) ?? item.titleKey,
+    category: tNotices(item.categoryKey) ?? item.categoryKey,
+    alt: tNotices(item.altKey) ?? item.altKey,
+  }));
+
   const images = [
     {
-      url: 'https://photos.txuli.com/duranguesa/Duranguesa_3escale.webp',
+      url: 'https://photos.txuli.com/duranguesa/Durangaldeko_3escale.webp',
       title: t("title"),
       subtitle: t("subtitle"),
       higlightSubtitle: undefined,
@@ -62,21 +100,19 @@ export default async function Home() {
       higlightSubtitle: undefined
     },
     {
-      url: 'https://photos.txuli.com/duranguesa/fotomtb.jpg'
-      ,
+      url: 'https://photos.txuli.com/duranguesa/fotomtb.jpg',
       title: t("title3"),
       subtitle: t("subtitle3"),
       higlightSubtitle: undefined
     },
     {
-      url: 'https://photos.txuli.com/duranguesa/portada1escaled.webp'
-      ,
+      url: 'https://photos.txuli.com/duranguesa/portada1escaled.webp',
       title: t("title4"),
       subtitle: t("subtitle4"),
       higlightSubtitle: undefined
     },
-
   ];
+
    const aboutusImages = [
      {
        url: 'https://photos.txuli.com/duranguesa/mainPage/foto1.jpg',
@@ -109,9 +145,11 @@ export default async function Home() {
       {/*El carrusel de imagenes de arriba*/}
       <Slideshow images={images} title='DURANGALDEKO BIZIKLETA ESKOLA' />
       
+
       <Line />
 
       <SubTitle subTitle={t("componentSubtitle")} />
+
 
       {/* Carga de las noticias */}
       <News items={response.data} />
@@ -142,16 +180,12 @@ export default async function Home() {
               </div>
             </div>
 
+
           </div>
-        );
-      })}
+        </div>
+      ))}
 
-      <Line /> 
-
-
-
-
-
+      <Line />
     </div>
   );
 }

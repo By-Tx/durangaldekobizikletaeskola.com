@@ -1,5 +1,5 @@
 "use client";
-import { authClient } from "@/lib/auth-client"; // Importar el cliente de autenticación
+import { authClient } from "@/lib/auth-client"; 
 
 
 import { useState } from "react";

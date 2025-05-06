@@ -35,7 +35,11 @@
         "noticeTitle7": "BOSTAK BAT",
         "category5": "JUNIOR & KADETE & ESKOLA",
         "noticeTitle8": "GUREAN ETA HAIENEAN",
-        "noticeTitle9": "BANA"
+        "noticeTitle9": "BANA",
+        "noticeTitle10": "TALDEAREN AURKEZPENA",
+        "category6": "TALDEAREN EKITALDIA",
+        "noticeTitle11": "BIDEAK ELKARTZEN GAITUZTE",
+        "noticeTitle12": "MEND(IK)ATE HONEK LOTUTA "
         
     }, 
     "bttTxapeldunaPage": {
@@ -149,6 +153,7 @@
     "menuComponent": {
         "home": "HASIERA",
         "eskola": "ESKOLA",
+        "clothes": "AROPA",
         "form": "IZENA EMAN",
         "contact": "KONTAKTUA"
     },
@@ -193,5 +198,46 @@
         "p2": "Kadetetan beste behin bideak zatitu ziren, eta horrekin emaitzek ere bi alde erakutsi zuten. Zestoan,  Ametsek garaipena erdietsi zuen, errepideko denboraldiko lehena, sprintean aise irabaziz beste  aurkariei, Xuban talde berean helmugaratuz. Aipatzekoa ere Miguelen lanak, oldarkor lasterketako  zenbait momentutan. Aiarako Biran, lehiaketako astebururik gogorrena egokitu zitzaien gure  taldekideei: larunbateko etapan eguneko ihesaldian izan ostean, eroriko batek gure gazte gehienen  aukerak zapuztu zituen, Markelek eskumuturrean kolpea jaso eta erretiratzera behartua ikusi zelarik.  Bi egunetan taldeko aurreratuena Martin izan zen, gainontzekoak goi mailako hiru asteburuko  lehiaketak uzten duen nekea jasan ostean lan nahikoak izan zituzten honekin bukatzeko. Juniorren  bezala, Zornotzan izango dute lehia berria, Etxano eta Urumineko koska erabakiorrek esango dute  noraino helduko diren. ",
         "p3": "BTTko gazteek Ispasterreko Green Seriesan lehiatu zuten, lokatzaren egoerak bereizten zuen  lasterketan. Kadetetan Markel eta Andoni hirugarren posturako borrokan mantendu ziren, Markelek  postu hori helmugan erdietsiz (Andoni laugarren), sasoi onean daudenaren islada garbia. Juniorretan,  aldiz, Anderrek, Hegoik (gutxinaka errekuperatzen) eta Iparrek bezala, ez zuten ez eguna ez zoria bere  alde izan, ohituta dauden postuetatik urrun sailkatuz. Batzuk Zornotzan errepidekoekin lotuko dituzte  indarrak, beste batzuk, ordea, atseden hartu edo Alpedreten (Madril) ospatuko den Espainiako Kopa  froga berrian parte hartuko dute.  ",
         "p4": "Txikienek ere Ispasterren izan zuten hitzordua, kadete eta juniorrek ez beste, hauek larunbatean  ospatuz haien lasterketak. Lokatzetan blai bukatu zuten, esperientzia eta irakaspen berriak jasoz  hurrengo erronketarako prest. "
+    },
+    "presentacion":{
+        "title": "AURKEZPEN OFIZIALA",
+        "subTitle": "2025-eko AURKEZPENA",
+        "altImage": "Aurkezpen ofiziala",
+        "p1": "Urteroko ohiturari eutsiz, gure taldeen aurkezpena egin genuen atzo. Aurtengo berrietako bat nesken talde berria da, asko pozten gaituen albistea!",
+        "p2": "Horrekin batera Durango-Durango Emakumeen lasterketa ere aurkeztu genuen, Maiatzaren 20an, 15:00tik aurrera ospatuko dena, Durangoko Ezkurdi Plazatik hasita!",
+        "p3": "Eskerrak ematea hurbildu zineten guztioi eta nola ez, babesle guztiei! Zuek gabe hau ez zen posible izango eta!"
+    },
+    "cronica04-04-25Page": {
+        "altImage": "Foto ",
+        "title": "BIDE GUZTIEK ELKARTZEN GAITUZTE",
+        "subTitle2": "Sailkapenak",
+        "subTitle": "Asteburu oparoa gure kadete eta juniorrentzat, zeinetan eguraldi onak azken lasterketetako eguraldi  txarra gainditu duen.",
+        "p1": " Pasa den asteburuan Zornotzan batu ziren kadete eta juniorrak, bakoitza bere orduan, eta mendiko  bizikleta gehienak etxean gelditu ziren bertan parte hartzeko helburuarekin.",
+        "p2": "Goizean kadeteak abiatu ziren eta zoria ez genuen batere alde izan: eroriko, zulatu, bizikleta apurketa  zein bestelako matxurek erabat zapuztu zuten gure txirrindularien aukerak, Amets lehen hogeiren  artean sailkatuz. Nabarmentzekoa ere Raúlen kemena, eguneko ihesaldian sartuta protagonismoa  izatea lortu zuen. Orain, gure kadeteak atseden apur bat hartuko dute Aste Santua baliatuz, baina  bueltan berriz izango dira bideak astintzeko prest.  ",
+        "p3": "Juniorrak arratsaldean abiadan ziren, eta honetan emaitzak zerbait ezberdinak izan ziren. Erdi bideko  koskek lasterketa erabat hautsi ostean, Unai eta Axular aurrean mantendu ziren, ihesalditik ez oso  urrun. Unaik aurrera jo zuen eta buruarekin lotzeko gai izan zen arren, sprintean indarge gelditu zen,  bosgarren postua lortuz, Axular atzeko taldean lehen hogeiren barruan sailkatuz. Igande honetan  Iparraldetik (Baiona) mugara (Lizarrieta) eramango gaituen bideetan izango gara beste behin lehia emateko intentzioarekin.",
+        "p4": "Mungian izan zen Udaberri Kopako froga berria taldeko gazteenentzat, zirkuitu gogorrean ospatu  zena. Aldapei ohituta egon ez arren, ziur gaude gozatu zutela, horrez gain, ikasteko beta eta aukera gehiago izango dituzte datozen asteetan.  "
+    },
+    "cronica12-04-25Page": {
+        "altImage": "Foto ",
+        "title": "MEND(IK)ATE HONEK LOTUTA",
+        "subTitle": "Asteburu motza.",
+        "p1": "Asteburu “motza” gure taldearena, lasterketa guztiak igandean ospatu baitziren, Iparraldeko errepide zein Meatzaldeko basoetan gureek protagonismo handia izanik.",
+        "p2": "Ortuellan Green Serieseko froga berria ospatu zen eta zirkuitu lokaztu eta gogorra egokitu zitzaien, azkenaldian ohi den moduan. Kadetetan, Markeli azkenengo momentuan podiumeko hirugarren postua hatzamar puntatik ihes egin zion, baina pozik egoteko laugarren postua eraman zuen etxera eta Andonik, egunik onena ez izan arren, lehen hamarren sailkapena ixteko gai izan zen. Juniorretan, Anderrek aurreko astekoari buelta eman eta zortzigarren helmugaratu zen, UCI puntu gehiago eskuratuz. Nabarmentzekoa ere taldekide askoren zoritxarra, matxurak medio. Orain atseden txiki hartuko dute lasterketa berrietan lehiatu baino lehen, urteko helburua hurbiltzen doa eta.",
+        "p3": "Errepidean, Baionatik Lizarrietako mendatera egin zuten bidea, Lapurtarren Itzulian, hain zuzen ere. Lasterketa erabat zoroan, gure juniorrak aurrean mantendu ziren momentu oro, eta azkenengo kilometroetan ere sendo aritu ziren, Unairen bigarren postua eta Axularren zazpigarrena nabarmenduz.",
+        "p4": "Asteburu honetan taldea bitan zatituko da, Unai eta Axular Mallorcan izango dira (Aratz eta Ametsekin batera) Espainiako Pista Txapelketan, eta gelditzen direnak Agurainen izango dute erronka berria, Euskal Herria Txapelketako hasieran.",
+        "p5":"Gure eskolako umeek itxi zuten asteburua, Ortuellako Mini Green Seriesan, oso ondo arituz orokorrean. Nabaritzen da lokatzetan hezita eta hazita daudela. Horrela jarrai bedi."
+
+    },
+    "shopPage": {
+        "title": "Arropa",
+        "add": "Gehitu",
+        "school": "Eskolak",
+        "equipmentText": "Lortu zure ekipamendua",
+        "clothesType": "Arropa mota",
+        "nameSurname": "Izen-abizenak",
+        "telephone": "Pozta elektronikoa",
+        "send": "Bidali",
+        "size": "Hautatu neurria",
+        "info": "Eskaerak irailean eta maiatzean egingo dira."
     }
 }

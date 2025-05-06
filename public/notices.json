@@ -1,76 +1,99 @@
 [
-    {
-      "href": "/bttTxapelduna",
-      "imageSrc": "https://photos.txuli.com/duranguesa/notices/ander.JPG",
-      "altKey": "altImage3",
-      "date": "26-05-2024",
-      "titleKey": "noticeTitle3",
-      "categoryKey": "category3"
-    },
-    {
-      "href": "/irrisarriNotice",
-      "imageSrc": "https://photos.txuli.com/duranguesa/notices/irrisarri.JPG",
-      "altKey": "altImage3",
-      "date": "20-10-2024",
-      "titleKey": "noticeTitle2",
-      "categoryKey": "category2"
-    },
-    {
-      "href": "/espainakoTxapelketa",
-      "imageSrc": "https://photos.txuli.com/duranguesa/notices/noticiasSeleccion.png",
-      "altKey": "altImage3",
-      "date": "12-01-2025",
-      "titleKey": "noticeTitle",
-      "categoryKey": "category"
-    },
-    {
-      "href": "/tenporadaAsiera",
-      "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica1.jpeg",
-      "altKey": "altImage4",
-      "date": "1-03-2025",
-      "titleKey": "noticeTitle4",
-      "categoryKey": "category4"
-    },
-    {
-      "href": "/puntagaleaTeam",
-      "imageSrc": "https://photos.txuli.com/duranguesa/notices/portadaneskak.JPG",
-      "altKey": "altImage3",
-      "date": "6-03-2025",
-      "titleKey": "noticeTitle5",
-      "categoryKey": "category4"
-    },
-    {
-      "href": "/cronica9-03-25",
-      "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica2.jpeg",
-      "altKey": "altImage3",
-      "date": "9-03-2025",
-      "titleKey": "noticeTitle6",
-      "categoryKey": "category4"
-    },
-    {
-      "href": "/cronica15-03-25",
-      "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica3.jpeg",
-      "altKey": "altImage3",
-      "date": "15-03-2025",
-      "titleKey": "noticeTitle7",
-      "categoryKey": "category5"
-    },
-    {
-      "href": "/cronica23-03-25",
-      "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica4.jpeg",
-      "altKey": "altImage3",
-      "date": "23-03-2025",
-      "titleKey": "noticeTitle8",
-      "categoryKey": "category5"
-    },
-    {
-      "href": "/cronica29-03-25",
-      "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica5b.JPEG",
-      "altKey": "altImage3",
-      "date": "29-03-2025",
-      "titleKey": "noticeTitle9",
-      "categoryKey": "category5"
-    }
-
-  ]
+  {
+    "href": "/bttTxapelduna",
+    "imageSrc": "https://photos.txuli.com/duranguesa/notices/ander.JPG",
+    "altKey": "altImage3",
+    "date": "26-05-2024",
+    "titleKey": "noticeTitle3",
+    "categoryKey": "category3"
+  },
+  {
+    "href": "/irrisarriNotice",
+    "imageSrc": "https://photos.txuli.com/duranguesa/notices/irrisarri.JPG",
+    "altKey": "altImage3",
+    "date": "20-10-2024",
+    "titleKey": "noticeTitle2",
+    "categoryKey": "category2"
+  },
+  {
+    "href": "/espainakoTxapelketa",
+    "imageSrc": "https://photos.txuli.com/duranguesa/notices/noticiasSeleccion.png",
+    "altKey": "altImage3",
+    "date": "12-01-2025",
+    "titleKey": "noticeTitle",
+    "categoryKey": "category"
+  },
+  {
+    "href": "/tenporadaAsiera",
+    "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica1.jpeg",
+    "altKey": "altImage4",
+    "date": "1-03-2025",
+    "titleKey": "noticeTitle4",
+    "categoryKey": "category4"
+  },
+  {
+    "href": "/puntagaleaTeam",
+    "imageSrc": "https://photos.txuli.com/duranguesa/notices/portadaneskak.JPG",
+    "altKey": "altImage3",
+    "date": "6-03-2025",
+    "titleKey": "noticeTitle5",
+    "categoryKey": "category4"
+  },
+  {
+    "href": "/cronica9-03-25",
+    "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica2.jpeg",
+    "altKey": "altImage3",
+    "date": "9-03-2025",
+    "titleKey": "noticeTitle6",
+    "categoryKey": "category4"
+  },
+  {
+    "href": "/cronica15-03-25",
+    "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica3.jpeg",
+    "altKey": "altImage3",
+    "date": "15-03-2025",
+    "titleKey": "noticeTitle7",
+    "categoryKey": "category5"
+  },
+  {
+    "href": "/cronica23-03-25",
+    "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica4.jpeg",
+    "altKey": "altImage3",
+    "date": "23-03-2025",
+    "titleKey": "noticeTitle8",
+    "categoryKey": "category5"
+  },
+  {
+    "href": "/cronica29-03-25",
+    "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica5b.JPEG",
+    "altKey": "altImage3",
+    "date": "29-03-2025",
+    "titleKey": "noticeTitle9",
+    "categoryKey": "category5"
+  },
+  {
+    "href": "/presentacion",
+    "imageSrc": "https://photos.txuli.com/duranguesa/notices/DuranguesaPresenta2red.jpg",
+    "altKey": "altImage3",
+    "date": "4-04-2025",
+    "titleKey": "noticeTitle10",
+    "categoryKey": "category6"
+  },
+  {
+    "href": "/cronica05-04-25",
+    "imageSrc": "https://photos.txuli.com/duranguesa/notices/por.jpg",
+    "altKey": "altImage3",
+    "date": "5-04-2025",
+    "titleKey": "noticeTitle11",
+    "categoryKey": "category5"
+  },
+  {
+    "href": "/cronica12-04-25",
+    "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica120425v2.jpg",
+    "altKey": "altImage3",
+    "date": "12-04-2025",
+    "titleKey": "noticeTitle12",
+    "categoryKey": "category5"
+  }
   
+]

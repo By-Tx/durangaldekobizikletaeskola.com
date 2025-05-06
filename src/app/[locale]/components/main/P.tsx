@@ -7,7 +7,7 @@ interface pProps {
 
 const p: React.FC<pProps> = ({ children, className = "" }) => {
   return (
-    <p className={`text-justify font-fredoka text-3xl px-8 font-light mx-8  mb-6${className}`}>
+    <p className={`text-justify font-fredoka text-3xl px-8 font-light mx-8  mb-6 ${className}`}>
       {children}
     </p>
   );
