@@ -30,31 +30,33 @@ export async function POST(req: NextRequest) {
         const lastKey = Object.keys(dataEs.noticeComponent).pop();
 
         const number = lastKey ? parseInt(lastKey.replace('noticeTitle', '')) + 1 : 1;
-
+        const newNumber= number
         const filteredNotice = {
+            
             date: newNotice.date,
             href: "/cronica" + newNotice.date,
             imageSrc: newNotice.imageSrc,
-            altKey: "altKey" + number,
-            titleKey: "noticeTitle" + number,
-            categoryKey: "noticeCategory" + number,
+            altKey: "altKey" + newNumber,
+            titleKey: "noticeTitle" + newNumber,
+            categoryKey: "noticeCategory" + newNumber,
 
         };
+        
         //add the translation data of cover data to the file eus.json
         const tanslationNoticeCoverEus = {
-            ['AltImage' + number]: newNotice.altKeyEus,
-            ['title' + number]: newNotice.titleKeyEus,
-            ['category' + number]: newNotice.categoryKeyEus,
-            ['date' + number]: newNotice.date,
+            ['AltImage' + newNumber]: newNotice.altKeyEus,
+            ['noticeTitle' + newNumber]: newNotice.titleKeyEus,
+            ['noticeCategory' + newNumber]: newNotice.categoryKeyEus,
+            ['date' + newNumber]: newNotice.date,
             translation: ['cronica' + newNotice.date]
         }
         //add the translation data of cover data to the file es.json
         const tanslationNoticeCoverEs = {
-            ['AltImage' + number]: newNotice.altKey,
-            ['title' + number]: newNotice.titleKey,
-            ['category' + number]: newNotice.categoryKey,
-            ['date' + number]: newNotice.dateEs,
-            translation: ['cronica' + newNotice.dateEs]
+            ['AltImage' + newNumber]: newNotice.altKey,
+            ['noticeTitle' + newNumber]: newNotice.titleKey,
+            ['noticeCategory' + newNumber]: newNotice.categoryKey,
+            ['date' + newNumber]: newNotice.date,
+            translation: ['cronica' + newNotice.date]
         }
         //add translation data info the file eus.json
         const translationNoticeEus = {
@@ -90,9 +92,9 @@ export async function POST(req: NextRequest) {
         const updatedData = [...data, filteredNotice];
         
         try {
-             await fs.writeFile(filePath, JSON.stringify(updatedData, null, 2));  // save the cover data in the file
-             await fs.writeFile(filePathEs, JSON.stringify(dataEs, null, 2));
-             await fs.writeFile(filePathEs, JSON.stringify(dataEus, null, 2));
+               await fs.writeFile(filePath, JSON.stringify(updatedData, null, 2));  // save the cover data in the file
+               await fs.writeFile(filePathEs, JSON.stringify(dataEs, null, 2));
+               await fs.writeFile(filePathEus, JSON.stringify(dataEus, null, 2));
             return new Response(JSON.stringify({ message: 'Nueva noticia agregada correctamente' }), { status: 200 });
         } catch (err) {
             return new Response(JSON.stringify({ message: 'Error al guardar el archivo', error: err }), { status: 500 });
