@@ -24,12 +24,12 @@ export const runtime = "nodejs";
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>; // 👈 Tipo correcto como Promesa
+  params: Promise<{ locale: string }>; 
 };
 
 export default async function LocaleLayout(props: Props) {
   const { children } = props;
-  const { locale } = await props.params; // 👈 Await aquí
+  const { locale } = await props.params; 
 
   const baseUrl =
     process.env.NODE_ENV === "development"
