@@ -33,18 +33,23 @@ body.pageNO-specific::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 
-body:not(.page-specific)::-webkit-scrollbar-thumb:hover {
+body:not(.page-specific)::-webkit-scrollbar-thumb:active {
   background-color: #21486C; /* Mismo color al pasar el mouse */
+}
+
+/* Fondo más oscuro para el scrollbar */
+::-webkit-scrollbar-track {
+  background-color:  #3d3d3d; /* Fondo gris oscuro */
 }
 
 /* Estilo para el scrollbar en la página específica */
 body.page-specific::-webkit-scrollbar-thumb {
-  background-color: #E65C00; /* Color rojo para el pulgar del scrollbar */
+  background-color: #FF7D01; /* Color rojo para el pulgar del scrollbar */
   border-radius: 10px;
 }
 
-body.page-specific::-webkit-scrollbar-thumb:hover {
-  background-color: #e5533e; /* Color más oscuro al pasar el mouse */
+body.page-specific::-webkit-scrollbar-thumb:active {
+  background-color: #E65C00; /* Color más oscuro al hacer clic */
 }
 
 /* Estilo para el hover de Ropa */

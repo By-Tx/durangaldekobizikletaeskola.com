@@ -113,37 +113,74 @@ export default async function Home() {
     },
   ];
 
-  const images2 = images.map(img => ({
-    ...img,
-    height: 300
-  }));
+   const aboutusImages = [
+     {
+       url: 'https://photos.txuli.com/duranguesa/mainPage/foto1.jpg',
+       title: t("title"),
+       subtitle: t("subtitle"),
+       height: 300, // altura en píxeles
+     },
+     {
+       url: 'https://photos.txuli.com/duranguesa/mainPage/foto2.jpg',
+       title: t("title2"),
+       subtitle: t("subtitle2"),
+       height: 300,
+     },
+     {
+       url: 'https://photos.txuli.com/duranguesa/mainPage/foto3.jpg',
+       title: t("title3"),
+       subtitle: t("subtitle3"),
+       height: 300,
+     },
+     {
+       url: 'https://photos.txuli.com/duranguesa/portada1escaled.webp',
+       title: t("title4"),
+       subtitle: t("subtitle4"),
+       height: 300,
+     },
+   ];
 
   return (
-    <div>
-      <Slideshow images={images} title="Durangaldeko Bizikleta Eskola" />
-      <Line />
-      <SubTitle subTitle={t("componentSubtitle")} />
-      <News items={translatedNotices} />
-      <ButtonNotice />
+    <div >
+      {/*El carrusel de imagenes de arriba*/}
+      <Slideshow images={images} title='DURANGALDEKO BIZIKLETA ESKOLA' />
+      
+
       <Line />
 
-      {images2.map((section, idx) => (
-        <div key={idx} className="w-full relative" style={{ height: `${section.height}px` }}>
-          <div
-            style={{ backgroundImage: `url(${section.url})` }}
-            className="absolute inset-0 bg-cover bg-center filter brightness-50"
-          />
-          <div
-            className="absolute inset-0 z-5"
-            style={{ background: "linear-gradient(to right, black 10%, transparent 70%)" }}
-          />
-          <div className="absolute z-10 inset-0 flex items-center font-fredoka">
-            <div className="flex w-full p-4 justify-start ml-4">
-              <div className="w-full lg:w-1/4">
-                <h2 className="text-3xl font-bold text-white">{section.title}</h2>
-                <p className="mt-2 text-xl text-white">{section.subtitle}</p>
+      <SubTitle subTitle={t("componentSubtitle")} />
+
+
+      {/* Carga de las noticias */}
+      <News items={response.data} />
+
+      {/* Boton ver mas noticias */}
+      <ButtonNotice/>
+        
+      <Line />
+      {aboutusImages.map((section, idx) => {
+        return (
+          <div key={idx} className="w-full relative" style={{ height: `${section.height}px` }}>
+            
+            {/* Foto de fondo con 50% brightness */}
+            <div style={{ backgroundImage: `url(${section.url})` }} className="absolute inset-0 bg-cover bg-center filter brightness-50"></div>
+
+            {/* 
+                Degradado negro-transparente que empieza en 10% y acaba en 70% 
+                ⓘ : usa styles en vez de classname porque classname no me deja hacer degradados con porcentajes 
+            */}
+            <div className="absolute inset-0 z-5" style={{background: "linear-gradient(to right, black 10%, transparent 70%)",}}></div>
+
+            <div className="absolute z-10 inset-0 flex items-center font-fredoka">
+              <div className="flex w-full p-4 justify-start ml-4">
+                <div className="w-full lg:w-1/4">
+                  <h2 className="text-3xl font-bold text-white">{section.title}</h2>  {/* texto del titulo */}
+                  <p className="mt-2 text-xl text-white">{section.subtitle}</p> {/* paragrafo */}
+                </div>
               </div>
             </div>
+
+
           </div>
         </div>
       ))}
