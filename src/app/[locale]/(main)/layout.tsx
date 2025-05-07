@@ -24,7 +24,7 @@ export const runtime = "nodejs";
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>; 
+  params: { locale: string };
 };
 
 export default async function LocaleLayout(props: Props) {
@@ -55,6 +55,7 @@ export default async function LocaleLayout(props: Props) {
         className={`${fredoka} antialiased pageNO-specific absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]`}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
+          
           <NavBar />
           <Line />
           {children}

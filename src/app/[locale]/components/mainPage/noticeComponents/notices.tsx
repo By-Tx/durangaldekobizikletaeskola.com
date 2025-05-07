@@ -4,7 +4,7 @@ import Section from "@/app/[locale]/components/main/Section";
 
 
 export interface NewsItem {
-  href: string;
+  slug: string;
   imageSrc: string;
   alt: string;
   date: string;
@@ -16,7 +16,18 @@ interface NewsProps {
   items: NewsItem[];
 }
 
+
 export default function News({ items }: NewsProps) {
+  const handelClick = async () => { 
+    const API_URL =
+    process.env.NODE_ENV === "development"
+      ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
+      : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
+
+  const res = await fetch(`${API_URL}/api/RenderNews`, {
+    cache: "no-store",
+  });
+  }
   return (
     <>
     
@@ -26,7 +37,7 @@ export default function News({ items }: NewsProps) {
             key={index}
             className="group relative h-96 w-86 hover:w-100  transition-all duration-300 ease-in-out  mx-auto mb-20 xl:mb-20 "
           >
-            <Link href={item.href} className="hover:cursor-pointer">
+            <Link key={item.slug} href={`/notice/${item.slug}`} className="hover:cursor-pointer">
               <Image
                 src={item.imageSrc}
                 alt={item.alt}
