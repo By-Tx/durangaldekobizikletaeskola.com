@@ -1,5 +1,5 @@
 declare global {
-    var prisma: PrismaClient | undefined;
+    let prisma: PrismaClient | undefined;
 }
 
 export {};

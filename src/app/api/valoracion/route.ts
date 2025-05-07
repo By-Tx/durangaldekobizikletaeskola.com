@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
         }
 
         return NextResponse.json({ ok: true });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: "Error al guardar la valoración" }, { status: 500 });
     }
 }
