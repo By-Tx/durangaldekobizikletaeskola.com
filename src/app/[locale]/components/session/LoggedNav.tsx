@@ -1,5 +1,6 @@
 "use client"
-import Image from "next/legacy/image"
+import Image from "next/image";
+import Link from "next/link";
 import Logout from "@/app/[locale]/components/auth/logOut";
 import ImgMenu from '../media/home.svg'
 import { useEffect, useState } from 'react';
@@ -61,13 +62,15 @@ export default function LoggedNav() {
                     <div className="flex items-center gap-x-4 px-2">
                         
                         <div className="w-11 relative z-10">
-                            <a href="/dashboard">
+                            <Link
+                                key="/dashboard"
+                                href="/dashboard">
                                 <Image
                                     src={ImgMenu}
                                     alt=""
                                     className={`filter invert h-10 transition-all duration-150`}
                                 />
-                            </a>
+                            </Link>
                         </div>
 
                         
@@ -76,17 +79,23 @@ export default function LoggedNav() {
                                 className={`${isInUpperZone || isMobile ? 'opacity-100 delay-350' : 'opacity-0'
                                     }`}
                             >
-                                <a href="/projects" className="text-white">
+                                <Link
+                                    key="/projects"
+                                    href="/projects"
+                                    className="text-white">
                                     Carreras
-                                </a>
+                                </Link>
                             </div>
                             <div
                                 className={`${isInUpperZone || isMobile ? 'opacity-100 delay-350' : 'opacity-0'
                                     }`}
                             >
-                                <a href="/about" className="text-white">
+                                <Link
+                                    key="/about"
+                                    href="/about"
+                                    className="text-white">
                                     Faltas
-                                </a>
+                                </Link>
                             </div>
                             <div
                                 className={`${isInUpperZone || isMobile ? 'opacity-100 delay-350' : 'opacity-0'
