@@ -304,7 +304,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/jaime/github/durangaldekobizikletaeskola.com/src/generated/prisma/client",
+      "value": "/home/asier/github/durangonextjs/src/generated/prisma/client",
       "fromEnvVar": null
     },
     "config": {
@@ -318,7 +318,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/jaime/github/durangaldekobizikletaeskola.com/prisma/schema.prisma",
+    "sourceFilePath": "/home/asier/github/durangonextjs/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -332,7 +332,7 @@ const config = {
     "db"
   ],
   "activeProvider": "mysql",
-  "postinstall": true,
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
