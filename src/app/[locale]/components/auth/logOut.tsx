@@ -17,7 +17,7 @@ const Logout = () => {
                     },
                 });
             
-        }} >Sign out</button>
+        }} >Cerrar sesión</button>
     );
 }
 export default Logout;
