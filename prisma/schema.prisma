@@ -77,7 +77,7 @@ model events_resultado {
   posicion              Int?
   valoracion_escala     Decimal?     @db.Decimal(2, 1)
   valoracion_deportista String?      @db.Text
-  valoracion_director   String?      @db.Text
+  valoracion_entrenador   String?      @db.Text
   evento_id             Int?
   deportista_id         String?      @db.VarChar(50)
   events                events?      @relation(fields: [evento_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "events_resultado_ibfk_1")

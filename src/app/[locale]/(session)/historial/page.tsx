@@ -4,19 +4,6 @@ import { redirect } from "next/navigation";
 import HistorialContent from "@/app/[locale]/components/session/Historial";
 import prisma from "@/lib/prisma";
 
-// Define el tipo Carrera para tipar correctamente
-interface Carrera {
-    fecha: string;
-    tiempo: string;
-    posicion: string;
-    categoria: string;
-    modalidad: string;
-    lugar: string;
-    evento_id: number;
-    valoracion_deportista?: string;
-    valoracion_director?: string;
-}
-
 export default async function Page() {
     const session = await auth.api.getSession({
         headers: await headers()
@@ -26,35 +13,61 @@ export default async function Page() {
         redirect("/");
     }
 
-    const jugadorId = session.user.id;
+    const jugadorId = 'D009';
 
-    // Llama al procedimiento almacenado con el id del jugador
-    const historial = await prisma.$queryRaw`
-        CALL historialCarreras(${jugadorId})
-    `;
-    const carreras: Carrera[] = Array.isArray(historial) ? (historial[0] as Carrera[]) : [];
-
-    // Obtén las valoraciones para cada carrera del deportista
-    const valoraciones = await prisma.events_resultado.findMany({
-        where: { deportista_id: jugadorId },
-        select: {
-            evento_id: true,
-            valoracion_deportista: true,
-            valoracion_director: true,
-        }
+    // Consulta para obtener nombre y apellidos del corredor
+    const deportista = await prisma.deportistas.findUnique({
+        where: { numero_licencia: jugadorId },
+        select: { nombre: true, apellidos: true }
     });
 
-    // Une las carreras con sus valoraciones
-    const carrerasConValoracion = carreras.map((carrera: Carrera) => {
-        const valoracion = valoraciones.find(v => v.evento_id === carrera.evento_id);
+    // Llama al procedimiento almacenado con el id del jugador
+    const rawResults: any[] = await prisma.$queryRaw`
+        CALL historialCarreras(${jugadorId})
+    `;
+
+    // Normaliza los resultados (dependiendo de cómo devuelve los datos MySQL)
+    const carreras = Array.isArray(rawResults[0]) ? rawResults[0] : rawResults;
+
+    // Mapea los resultados a un formato más manejable
+    const historialData = carreras.map((carrera: any) => {
+        const formatDate = (date: any) => {
+            if (date instanceof Date && !isNaN(date.getTime())) {
+                return date.toLocaleDateString('es-ES');
+            }
+            return String(date);
+        };
+
+        const formatTime = (date: any) => {
+            if (date instanceof Date && !isNaN(date.getTime())) {
+                const hours = String(date.getHours()).padStart(2, '0');
+                const minutes = String(date.getMinutes()).padStart(2, '0');
+                return `${hours}:${minutes}`;
+            }
+            const timeStr = String(date);
+            return timeStr.length >= 5 ? timeStr.slice(0, 5) : timeStr;
+        };
+
         return {
-            ...carrera,
-            valoracion_deportista: valoracion?.valoracion_deportista || "",
-            valoracion_director: valoracion?.valoracion_director || "",
+            fecha: formatDate(carrera.f0),
+            lugar: String(carrera.f1),
+            categoria: String(carrera.f2),
+            modalidad: String(carrera.f3),
+            tiempo: formatTime(carrera.f4),
+            posicion: Number(carrera.f5),
+            valoracion_deportista: String(carrera.f6),
+            valoracion_entrenador: String(carrera.f7),
+            evento_id: carrera.f8,
+            deportista_id: jugadorId  
         };
     });
 
     return (
-        <HistorialContent historial={carrerasConValoracion} />
+        <HistorialContent
+            historial={historialData}
+            nombre={(deportista?.nombre || "").toUpperCase()}
+            apellidos={(deportista?.apellidos || "").toUpperCase()}
+            rol={session.user.role || ""}
+        />
     );
 }

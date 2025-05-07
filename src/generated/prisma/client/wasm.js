@@ -178,7 +178,7 @@ exports.Prisma.Events_resultadoScalarFieldEnum = {
   posicion: 'posicion',
   valoracion_escala: 'valoracion_escala',
   valoracion_deportista: 'valoracion_deportista',
-  valoracion_director: 'valoracion_director',
+  valoracion_entrenador: 'valoracion_entrenador',
   evento_id: 'evento_id',
   deportista_id: 'deportista_id'
 };
@@ -265,7 +265,7 @@ exports.Prisma.eventsOrderByRelevanceFieldEnum = {
 
 exports.Prisma.events_resultadoOrderByRelevanceFieldEnum = {
   valoracion_deportista: 'valoracion_deportista',
-  valoracion_director: 'valoracion_director',
+  valoracion_entrenador: 'valoracion_entrenador',
   deportista_id: 'deportista_id'
 };
 

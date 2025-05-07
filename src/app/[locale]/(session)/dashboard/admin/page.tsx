@@ -1,16 +1,16 @@
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { redirect } from '@/i18n/routing';
 
 export default async function admin(){
    const session = await auth.api.getSession({
            headers: await headers()
        });
        if(session?.user.role !== 'admin'){
-            redirect("/dashboard");
+            redirect({ href: "/dashboard", locale: "es" });
        }
        if (!session) {
-           redirect("/");
+           redirect({ href: "/", locale: "es" });
        }
  return(
     

@@ -152,7 +152,7 @@ export default async function Home() {
 
 
       {/* Carga de las noticias */}
-      <News items={response.data} />
+      <News items={translatedNotices} />
 
       {/* Boton ver mas noticias */}
       <ButtonNotice/>
@@ -179,11 +179,9 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-
-
           </div>
-        </div>
-      ))}
+        );
+      })}
 
       <Line />
     </div>

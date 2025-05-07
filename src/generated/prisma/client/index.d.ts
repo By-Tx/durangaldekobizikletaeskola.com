@@ -5786,7 +5786,7 @@ export namespace Prisma {
     posicion: number | null
     valoracion_escala: Decimal | null
     valoracion_deportista: string | null
-    valoracion_director: string | null
+    valoracion_entrenador: string | null
     evento_id: number | null
     deportista_id: string | null
   }
@@ -5797,7 +5797,7 @@ export namespace Prisma {
     posicion: number | null
     valoracion_escala: Decimal | null
     valoracion_deportista: string | null
-    valoracion_director: string | null
+    valoracion_entrenador: string | null
     evento_id: number | null
     deportista_id: string | null
   }
@@ -5808,7 +5808,7 @@ export namespace Prisma {
     posicion: number
     valoracion_escala: number
     valoracion_deportista: number
-    valoracion_director: number
+    valoracion_entrenador: number
     evento_id: number
     deportista_id: number
     _all: number
@@ -5835,7 +5835,7 @@ export namespace Prisma {
     posicion?: true
     valoracion_escala?: true
     valoracion_deportista?: true
-    valoracion_director?: true
+    valoracion_entrenador?: true
     evento_id?: true
     deportista_id?: true
   }
@@ -5846,7 +5846,7 @@ export namespace Prisma {
     posicion?: true
     valoracion_escala?: true
     valoracion_deportista?: true
-    valoracion_director?: true
+    valoracion_entrenador?: true
     evento_id?: true
     deportista_id?: true
   }
@@ -5857,7 +5857,7 @@ export namespace Prisma {
     posicion?: true
     valoracion_escala?: true
     valoracion_deportista?: true
-    valoracion_director?: true
+    valoracion_entrenador?: true
     evento_id?: true
     deportista_id?: true
     _all?: true
@@ -5955,7 +5955,7 @@ export namespace Prisma {
     posicion: number | null
     valoracion_escala: Decimal | null
     valoracion_deportista: string | null
-    valoracion_director: string | null
+    valoracion_entrenador: string | null
     evento_id: number | null
     deportista_id: string | null
     _count: Events_resultadoCountAggregateOutputType | null
@@ -5985,7 +5985,7 @@ export namespace Prisma {
     posicion?: boolean
     valoracion_escala?: boolean
     valoracion_deportista?: boolean
-    valoracion_director?: boolean
+    valoracion_entrenador?: boolean
     evento_id?: boolean
     deportista_id?: boolean
     events?: boolean | events_resultado$eventsArgs<ExtArgs>
@@ -6000,12 +6000,12 @@ export namespace Prisma {
     posicion?: boolean
     valoracion_escala?: boolean
     valoracion_deportista?: boolean
-    valoracion_director?: boolean
+    valoracion_entrenador?: boolean
     evento_id?: boolean
     deportista_id?: boolean
   }
 
-  export type events_resultadoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tiempo" | "posicion" | "valoracion_escala" | "valoracion_deportista" | "valoracion_director" | "evento_id" | "deportista_id", ExtArgs["result"]["events_resultado"]>
+  export type events_resultadoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tiempo" | "posicion" | "valoracion_escala" | "valoracion_deportista" | "valoracion_entrenador" | "evento_id" | "deportista_id", ExtArgs["result"]["events_resultado"]>
   export type events_resultadoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | events_resultado$eventsArgs<ExtArgs>
     deportistas?: boolean | events_resultado$deportistasArgs<ExtArgs>
@@ -6023,7 +6023,7 @@ export namespace Prisma {
       posicion: number | null
       valoracion_escala: Prisma.Decimal | null
       valoracion_deportista: string | null
-      valoracion_director: string | null
+      valoracion_entrenador: string | null
       evento_id: number | null
       deportista_id: string | null
     }, ExtArgs["result"]["events_resultado"]>
@@ -6402,7 +6402,7 @@ export namespace Prisma {
     readonly posicion: FieldRef<"events_resultado", 'Int'>
     readonly valoracion_escala: FieldRef<"events_resultado", 'Decimal'>
     readonly valoracion_deportista: FieldRef<"events_resultado", 'String'>
-    readonly valoracion_director: FieldRef<"events_resultado", 'String'>
+    readonly valoracion_entrenador: FieldRef<"events_resultado", 'String'>
     readonly evento_id: FieldRef<"events_resultado", 'Int'>
     readonly deportista_id: FieldRef<"events_resultado", 'String'>
   }
@@ -9794,7 +9794,7 @@ export namespace Prisma {
     posicion: 'posicion',
     valoracion_escala: 'valoracion_escala',
     valoracion_deportista: 'valoracion_deportista',
-    valoracion_director: 'valoracion_director',
+    valoracion_entrenador: 'valoracion_entrenador',
     evento_id: 'evento_id',
     deportista_id: 'deportista_id'
   };
@@ -9911,7 +9911,7 @@ export namespace Prisma {
 
   export const events_resultadoOrderByRelevanceFieldEnum: {
     valoracion_deportista: 'valoracion_deportista',
-    valoracion_director: 'valoracion_director',
+    valoracion_entrenador: 'valoracion_entrenador',
     deportista_id: 'deportista_id'
   };
 
@@ -10366,7 +10366,7 @@ export namespace Prisma {
     posicion?: IntNullableFilter<"events_resultado"> | number | null
     valoracion_escala?: DecimalNullableFilter<"events_resultado"> | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: StringNullableFilter<"events_resultado"> | string | null
-    valoracion_director?: StringNullableFilter<"events_resultado"> | string | null
+    valoracion_entrenador?: StringNullableFilter<"events_resultado"> | string | null
     evento_id?: IntNullableFilter<"events_resultado"> | number | null
     deportista_id?: StringNullableFilter<"events_resultado"> | string | null
     events?: XOR<EventsNullableScalarRelationFilter, eventsWhereInput> | null
@@ -10379,7 +10379,7 @@ export namespace Prisma {
     posicion?: SortOrderInput | SortOrder
     valoracion_escala?: SortOrderInput | SortOrder
     valoracion_deportista?: SortOrderInput | SortOrder
-    valoracion_director?: SortOrderInput | SortOrder
+    valoracion_entrenador?: SortOrderInput | SortOrder
     evento_id?: SortOrderInput | SortOrder
     deportista_id?: SortOrderInput | SortOrder
     events?: eventsOrderByWithRelationInput
@@ -10396,7 +10396,7 @@ export namespace Prisma {
     posicion?: IntNullableFilter<"events_resultado"> | number | null
     valoracion_escala?: DecimalNullableFilter<"events_resultado"> | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: StringNullableFilter<"events_resultado"> | string | null
-    valoracion_director?: StringNullableFilter<"events_resultado"> | string | null
+    valoracion_entrenador?: StringNullableFilter<"events_resultado"> | string | null
     evento_id?: IntNullableFilter<"events_resultado"> | number | null
     deportista_id?: StringNullableFilter<"events_resultado"> | string | null
     events?: XOR<EventsNullableScalarRelationFilter, eventsWhereInput> | null
@@ -10409,7 +10409,7 @@ export namespace Prisma {
     posicion?: SortOrderInput | SortOrder
     valoracion_escala?: SortOrderInput | SortOrder
     valoracion_deportista?: SortOrderInput | SortOrder
-    valoracion_director?: SortOrderInput | SortOrder
+    valoracion_entrenador?: SortOrderInput | SortOrder
     evento_id?: SortOrderInput | SortOrder
     deportista_id?: SortOrderInput | SortOrder
     _count?: events_resultadoCountOrderByAggregateInput
@@ -10428,7 +10428,7 @@ export namespace Prisma {
     posicion?: IntNullableWithAggregatesFilter<"events_resultado"> | number | null
     valoracion_escala?: DecimalNullableWithAggregatesFilter<"events_resultado"> | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: StringNullableWithAggregatesFilter<"events_resultado"> | string | null
-    valoracion_director?: StringNullableWithAggregatesFilter<"events_resultado"> | string | null
+    valoracion_entrenador?: StringNullableWithAggregatesFilter<"events_resultado"> | string | null
     evento_id?: IntNullableWithAggregatesFilter<"events_resultado"> | number | null
     deportista_id?: StringNullableWithAggregatesFilter<"events_resultado"> | string | null
   }
@@ -11034,7 +11034,7 @@ export namespace Prisma {
     posicion?: number | null
     valoracion_escala?: Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: string | null
-    valoracion_director?: string | null
+    valoracion_entrenador?: string | null
     events?: eventsCreateNestedOneWithoutEvents_resultadoInput
     deportistas?: deportistasCreateNestedOneWithoutEvents_resultadoInput
   }
@@ -11045,7 +11045,7 @@ export namespace Prisma {
     posicion?: number | null
     valoracion_escala?: Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: string | null
-    valoracion_director?: string | null
+    valoracion_entrenador?: string | null
     evento_id?: number | null
     deportista_id?: string | null
   }
@@ -11056,7 +11056,7 @@ export namespace Prisma {
     posicion?: NullableIntFieldUpdateOperationsInput | number | null
     valoracion_escala?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: NullableStringFieldUpdateOperationsInput | string | null
-    valoracion_director?: NullableStringFieldUpdateOperationsInput | string | null
+    valoracion_entrenador?: NullableStringFieldUpdateOperationsInput | string | null
     events?: eventsUpdateOneWithoutEvents_resultadoNestedInput
     deportistas?: deportistasUpdateOneWithoutEvents_resultadoNestedInput
   }
@@ -11067,7 +11067,7 @@ export namespace Prisma {
     posicion?: NullableIntFieldUpdateOperationsInput | number | null
     valoracion_escala?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: NullableStringFieldUpdateOperationsInput | string | null
-    valoracion_director?: NullableStringFieldUpdateOperationsInput | string | null
+    valoracion_entrenador?: NullableStringFieldUpdateOperationsInput | string | null
     evento_id?: NullableIntFieldUpdateOperationsInput | number | null
     deportista_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -11078,7 +11078,7 @@ export namespace Prisma {
     posicion?: number | null
     valoracion_escala?: Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: string | null
-    valoracion_director?: string | null
+    valoracion_entrenador?: string | null
     evento_id?: number | null
     deportista_id?: string | null
   }
@@ -11089,7 +11089,7 @@ export namespace Prisma {
     posicion?: NullableIntFieldUpdateOperationsInput | number | null
     valoracion_escala?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: NullableStringFieldUpdateOperationsInput | string | null
-    valoracion_director?: NullableStringFieldUpdateOperationsInput | string | null
+    valoracion_entrenador?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type events_resultadoUncheckedUpdateManyInput = {
@@ -11098,7 +11098,7 @@ export namespace Prisma {
     posicion?: NullableIntFieldUpdateOperationsInput | number | null
     valoracion_escala?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: NullableStringFieldUpdateOperationsInput | string | null
-    valoracion_director?: NullableStringFieldUpdateOperationsInput | string | null
+    valoracion_entrenador?: NullableStringFieldUpdateOperationsInput | string | null
     evento_id?: NullableIntFieldUpdateOperationsInput | number | null
     deportista_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -11880,7 +11880,7 @@ export namespace Prisma {
     posicion?: SortOrder
     valoracion_escala?: SortOrder
     valoracion_deportista?: SortOrder
-    valoracion_director?: SortOrder
+    valoracion_entrenador?: SortOrder
     evento_id?: SortOrder
     deportista_id?: SortOrder
   }
@@ -11898,7 +11898,7 @@ export namespace Prisma {
     posicion?: SortOrder
     valoracion_escala?: SortOrder
     valoracion_deportista?: SortOrder
-    valoracion_director?: SortOrder
+    valoracion_entrenador?: SortOrder
     evento_id?: SortOrder
     deportista_id?: SortOrder
   }
@@ -11909,7 +11909,7 @@ export namespace Prisma {
     posicion?: SortOrder
     valoracion_escala?: SortOrder
     valoracion_deportista?: SortOrder
-    valoracion_director?: SortOrder
+    valoracion_entrenador?: SortOrder
     evento_id?: SortOrder
     deportista_id?: SortOrder
   }
@@ -12801,7 +12801,7 @@ export namespace Prisma {
     posicion?: number | null
     valoracion_escala?: Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: string | null
-    valoracion_director?: string | null
+    valoracion_entrenador?: string | null
     events?: eventsCreateNestedOneWithoutEvents_resultadoInput
   }
 
@@ -12811,7 +12811,7 @@ export namespace Prisma {
     posicion?: number | null
     valoracion_escala?: Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: string | null
-    valoracion_director?: string | null
+    valoracion_entrenador?: string | null
     evento_id?: number | null
   }
 
@@ -12922,7 +12922,7 @@ export namespace Prisma {
     posicion?: IntNullableFilter<"events_resultado"> | number | null
     valoracion_escala?: DecimalNullableFilter<"events_resultado"> | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: StringNullableFilter<"events_resultado"> | string | null
-    valoracion_director?: StringNullableFilter<"events_resultado"> | string | null
+    valoracion_entrenador?: StringNullableFilter<"events_resultado"> | string | null
     evento_id?: IntNullableFilter<"events_resultado"> | number | null
     deportista_id?: StringNullableFilter<"events_resultado"> | string | null
   }
@@ -13089,7 +13089,7 @@ export namespace Prisma {
     posicion?: number | null
     valoracion_escala?: Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: string | null
-    valoracion_director?: string | null
+    valoracion_entrenador?: string | null
     deportistas?: deportistasCreateNestedOneWithoutEvents_resultadoInput
   }
 
@@ -13099,7 +13099,7 @@ export namespace Prisma {
     posicion?: number | null
     valoracion_escala?: Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: string | null
-    valoracion_director?: string | null
+    valoracion_entrenador?: string | null
     deportista_id?: string | null
   }
 
@@ -13402,7 +13402,7 @@ export namespace Prisma {
     posicion?: number | null
     valoracion_escala?: Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: string | null
-    valoracion_director?: string | null
+    valoracion_entrenador?: string | null
     evento_id?: number | null
   }
 
@@ -13445,7 +13445,7 @@ export namespace Prisma {
     posicion?: NullableIntFieldUpdateOperationsInput | number | null
     valoracion_escala?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: NullableStringFieldUpdateOperationsInput | string | null
-    valoracion_director?: NullableStringFieldUpdateOperationsInput | string | null
+    valoracion_entrenador?: NullableStringFieldUpdateOperationsInput | string | null
     events?: eventsUpdateOneWithoutEvents_resultadoNestedInput
   }
 
@@ -13455,7 +13455,7 @@ export namespace Prisma {
     posicion?: NullableIntFieldUpdateOperationsInput | number | null
     valoracion_escala?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: NullableStringFieldUpdateOperationsInput | string | null
-    valoracion_director?: NullableStringFieldUpdateOperationsInput | string | null
+    valoracion_entrenador?: NullableStringFieldUpdateOperationsInput | string | null
     evento_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -13465,7 +13465,7 @@ export namespace Prisma {
     posicion?: NullableIntFieldUpdateOperationsInput | number | null
     valoracion_escala?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: NullableStringFieldUpdateOperationsInput | string | null
-    valoracion_director?: NullableStringFieldUpdateOperationsInput | string | null
+    valoracion_entrenador?: NullableStringFieldUpdateOperationsInput | string | null
     evento_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -13475,7 +13475,7 @@ export namespace Prisma {
     posicion?: number | null
     valoracion_escala?: Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: string | null
-    valoracion_director?: string | null
+    valoracion_entrenador?: string | null
     deportista_id?: string | null
   }
 
@@ -13485,7 +13485,7 @@ export namespace Prisma {
     posicion?: NullableIntFieldUpdateOperationsInput | number | null
     valoracion_escala?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: NullableStringFieldUpdateOperationsInput | string | null
-    valoracion_director?: NullableStringFieldUpdateOperationsInput | string | null
+    valoracion_entrenador?: NullableStringFieldUpdateOperationsInput | string | null
     deportistas?: deportistasUpdateOneWithoutEvents_resultadoNestedInput
   }
 
@@ -13495,7 +13495,7 @@ export namespace Prisma {
     posicion?: NullableIntFieldUpdateOperationsInput | number | null
     valoracion_escala?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: NullableStringFieldUpdateOperationsInput | string | null
-    valoracion_director?: NullableStringFieldUpdateOperationsInput | string | null
+    valoracion_entrenador?: NullableStringFieldUpdateOperationsInput | string | null
     deportista_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -13505,7 +13505,7 @@ export namespace Prisma {
     posicion?: NullableIntFieldUpdateOperationsInput | number | null
     valoracion_escala?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     valoracion_deportista?: NullableStringFieldUpdateOperationsInput | string | null
-    valoracion_director?: NullableStringFieldUpdateOperationsInput | string | null
+    valoracion_entrenador?: NullableStringFieldUpdateOperationsInput | string | null
     deportista_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
