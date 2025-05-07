@@ -1,0 +1,145 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model account {
+  id                    String    @id @db.VarChar(36)
+  accountId             String    @db.Text
+  providerId            String    @db.Text
+  userId                String    @db.VarChar(36)
+  accessToken           String?   @db.Text
+  refreshToken          String?   @db.Text
+  idToken               String?   @db.Text
+  accessTokenExpiresAt  DateTime? @db.DateTime(0)
+  refreshTokenExpiresAt DateTime? @db.DateTime(0)
+  scope                 String?   @db.Text
+  password              String?   @db.Text
+  createdAt             DateTime  @db.DateTime(0)
+  updatedAt             DateTime  @db.DateTime(0)
+}
+
+model deportistas {
+  numero_licencia  String             @id @db.VarChar(50)
+  nombre           String?            @db.VarChar(100)
+  apellidos        String?            @db.VarChar(100)
+  dni              String?            @db.VarChar(20)
+  email            String?            @db.VarChar(254)
+  telefono         BigInt?
+  fecha_nacimiento DateTime?          @db.Date
+  peso             Decimal?           @db.Decimal(10, 2)
+  altura           Decimal?           @db.Decimal(10, 2)
+  ftp              Decimal?           @db.Decimal(10, 2)
+  pulso            Int?
+  user_id          String?            @db.VarChar(36)
+  user             user?              @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "deportistas_ibfk_1")
+  entrenadores     entrenadores[]
+  events_resultado events_resultado[]
+
+  @@index([user_id], map: "user_id")
+}
+
+model entrenadores {
+  id               Int          @id
+  nombre           String?      @db.VarChar(100)
+  apellidos        String?      @db.VarChar(100)
+  dni              String?      @db.VarChar(20)
+  email            String?      @db.VarChar(254)
+  telefono         BigInt?
+  fecha_nacimiento DateTime?    @db.Date
+  user_id          String?      @db.VarChar(36)
+  deportista_id    String?      @db.VarChar(50)
+  user             user?        @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "entrenadores_ibfk_1")
+  deportistas      deportistas? @relation(fields: [deportista_id], references: [numero_licencia], onDelete: Restrict, onUpdate: Restrict, map: "entrenadores_ibfk_2")
+
+  @@index([deportista_id], map: "deportista_id")
+  @@index([user_id], map: "user_id")
+}
+
+model events {
+  id               Int                @id
+  fecha            DateTime?          @db.DateTime(0)
+  lugar            String?            @db.VarChar(200)
+  categoria        events_categoria?
+  modalidad        events_modalidad?
+  descripcion      String?            @db.Text
+  events_resultado events_resultado[]
+}
+
+model events_resultado {
+  id                    Int          @id
+  tiempo                DateTime?    @db.Time(0)
+  posicion              Int?
+  valoracion_escala     Decimal?     @db.Decimal(2, 1)
+  valoracion_deportista String?      @db.Text
+  valoracion_entrenador   String?      @db.Text
+  evento_id             Int?
+  deportista_id         String?      @db.VarChar(50)
+  events                events?      @relation(fields: [evento_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "events_resultado_ibfk_1")
+  deportistas           deportistas? @relation(fields: [deportista_id], references: [numero_licencia], onDelete: Restrict, onUpdate: Restrict, map: "events_resultado_ibfk_2")
+
+  @@index([deportista_id], map: "deportista_id")
+  @@index([evento_id], map: "evento_id")
+}
+
+model session {
+  id             String   @id @db.VarChar(36)
+  expiresAt      DateTime @db.DateTime(0)
+  token          String   @unique(map: "token") @db.VarChar(255)
+  createdAt      DateTime @db.DateTime(0)
+  updatedAt      DateTime @db.DateTime(0)
+  ipAddress      String?  @db.Text
+  userAgent      String?  @db.Text
+  userId         String   @db.VarChar(36)
+  impersonatedBy String?  @db.Text
+}
+
+model user {
+  id            String         @id @db.VarChar(36)
+  name          String         @db.Text
+  email         String         @unique(map: "email") @db.VarChar(255)
+  emailVerified Int            @db.TinyInt
+  image         String?        @db.Text
+  createdAt     DateTime       @db.DateTime(0)
+  updatedAt     DateTime       @db.DateTime(0)
+  role          user_role?
+  banned        Int?           @db.TinyInt
+  banReason     String?        @db.Text
+  banExpires    DateTime?      @db.DateTime(0)
+  deportistas   deportistas[]
+  entrenadores  entrenadores[]
+}
+
+model verification {
+  id         String    @id @db.VarChar(36)
+  identifier String    @db.Text
+  value      String    @db.Text
+  expiresAt  DateTime  @db.DateTime(0)
+  createdAt  DateTime? @db.DateTime(0)
+  updatedAt  DateTime? @db.DateTime(0)
+}
+
+enum events_categoria {
+  Cadetes
+  Juveniles
+}
+
+enum events_modalidad {
+  Carretera
+  Mountain_Bike @map("Mountain-Bike")
+  Ciclocross
+  Pista
+}
+
+enum user_role {
+  admin
+  staff
+  coach
+  runner
+  user
+}
