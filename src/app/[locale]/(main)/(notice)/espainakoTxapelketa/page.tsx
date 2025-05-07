@@ -1,3 +1,4 @@
+"use client";
 import TopImage from "@/app/[locale]/components/mainPage/noticeComponents/topImageImage";
 import { useTranslations } from "next-intl";
 import NoticeContent from "../../../components/mainPage/noticeComponents/noticeContent";

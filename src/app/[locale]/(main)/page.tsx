@@ -29,9 +29,7 @@ async function fetchNotices(locale: string): Promise<NoticeResponse> {
       ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
       : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
 
-  if (!API_URL) {
-    throw new Error("API URL no definida en las variables de entorno");
-  }
+  if (!API_URL) throw new Error("API URL no definida");
 
   const response = await fetch(`${API_URL}/api/mainNotices`, {
     method: "POST",
@@ -39,11 +37,20 @@ async function fetchNotices(locale: string): Promise<NoticeResponse> {
     body: JSON.stringify({ path: "mainNotices", loc: locale }),
   });
 
-  if (!response.ok) {
-    throw new Error("Error fetching notices");
-  }
+  if (!response.ok) throw new Error("Error fetching notices");
 
   return response.json();
+}
+
+function safeTranslate(
+  t: ReturnType<typeof createTranslator>,
+  key: string
+): string {
+  try {
+    return t(key);
+  } catch {
+    return key; // fallback: devuelve la key como texto visible
+  }
 }
 
 export default async function Home() {
@@ -55,135 +62,136 @@ export default async function Home() {
       ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
       : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
 
-  // load translations from de api
   let messages: Record<string, unknown> = {};
 
   try {
     const res = await fetch(`${API_URL}/api/translations?lang=${locale}`, {
-      cache: 'no-store'
+      cache: "no-store",
     });
 
     if (!res.ok) {
       const errorText = await res.text();
-      console.error(` Error cargando traducciones (${locale}):`, errorText);
+      console.error(` Error al cargar traducciones (${locale}):`, errorText);
       throw new Error("No se pudieron cargar las traducciones");
     }
 
     messages = await res.json();
   } catch (e) {
-    console.error(" Error al cargar mensajes JSON:", e);
+    console.error("Error al parsear mensajes JSON:", e);
   }
 
-  //create translator
-  const t = createTranslator({ locale, messages, namespace: 'homePage' });
-  const tNotices = createTranslator({ locale, messages, namespace: 'noticeComponent' });
+  const t = createTranslator({ locale, messages, namespace: "homePage" });
+  const tNotices = createTranslator({
+    locale,
+    messages,
+    namespace: "noticeComponent",
+  });
 
-  // translate the notices
   const translatedNotices = notices.data.map((item) => ({
     ...item,
-    title: tNotices(item.titleKey) ?? item.titleKey,
-    category: tNotices(item.categoryKey) ?? item.categoryKey,
-    alt: tNotices(item.altKey) ?? item.altKey,
+    title: safeTranslate(tNotices, item.titleKey),
+    category: safeTranslate(tNotices, item.categoryKey),
+    alt: safeTranslate(tNotices, item.altKey),
   }));
 
   const images = [
     {
-      url: 'https://photos.txuli.com/duranguesa/Durangaldeko_3escale.webp',
+      url: "https://photos.txuli.com/duranguesa/Duranguesa_3escale.webp",
       title: t("title"),
       subtitle: t("subtitle"),
       higlightSubtitle: undefined,
     },
     {
-      url: 'https://photos.txuli.com/duranguesa/foto3.jpg',
+      url: "https://photos.txuli.com/duranguesa/foto3.jpg",
       title: t("title2"),
       subtitle: t("subtitle2"),
-      higlightSubtitle: undefined
+      higlightSubtitle: undefined,
     },
     {
-      url: 'https://photos.txuli.com/duranguesa/fotomtb.jpg',
+      url: "https://photos.txuli.com/duranguesa/fotomtb.jpg",
       title: t("title3"),
       subtitle: t("subtitle3"),
-      higlightSubtitle: undefined
+      higlightSubtitle: undefined,
+    },
+    {
+      url: "https://photos.txuli.com/duranguesa/portada1escaled.webp",
+      title: t("title4"),
+      subtitle: t("subtitle4"),
+      higlightSubtitle: undefined,
+    },
+  ];
+
+  const aboutusImages = [
+    {
+      url: 'https://photos.txuli.com/duranguesa/mainPage/foto1.jpg',
+      title: t("title"),
+      subtitle: t("subtitle"),
+      height: 300, // altura en píxeles
+    },
+    {
+      url: 'https://photos.txuli.com/duranguesa/mainPage/foto2.jpg',
+      title: t("title2"),
+      subtitle: t("subtitle2"),
+      height: 300,
+    },
+    {
+      url: 'https://photos.txuli.com/duranguesa/mainPage/foto3.jpg',
+      title: t("title3"),
+      subtitle: t("subtitle3"),
+      height: 300,
     },
     {
       url: 'https://photos.txuli.com/duranguesa/portada1escaled.webp',
       title: t("title4"),
       subtitle: t("subtitle4"),
-      higlightSubtitle: undefined
+      height: 300,
     },
   ];
 
-   const aboutusImages = [
-     {
-       url: 'https://photos.txuli.com/duranguesa/mainPage/foto1.jpg',
-       title: t("title"),
-       subtitle: t("subtitle"),
-       height: 300, // altura en píxeles
-     },
-     {
-       url: 'https://photos.txuli.com/duranguesa/mainPage/foto2.jpg',
-       title: t("title2"),
-       subtitle: t("subtitle2"),
-       height: 300,
-     },
-     {
-       url: 'https://photos.txuli.com/duranguesa/mainPage/foto3.jpg',
-       title: t("title3"),
-       subtitle: t("subtitle3"),
-       height: 300,
-     },
-     {
-       url: 'https://photos.txuli.com/duranguesa/portada1escaled.webp',
-       title: t("title4"),
-       subtitle: t("subtitle4"),
-       height: 300,
-     },
-   ];
-
   return (
-    <div >
-      {/*El carrusel de imagenes de arriba*/}
-      <Slideshow images={images} title='DURANGALDEKO BIZIKLETA ESKOLA' />
-      
+   <div >
+     {/*El carrusel de imagenes de arriba*/}
+     <Slideshow images={images} title='DURANGALDEKO BIZIKLETA ESKOLA' />
+     
 
-      <Line />
+     <Line />
 
-      <SubTitle subTitle={t("componentSubtitle")} />
+     <SubTitle subTitle={t("componentSubtitle")} />
 
 
-      {/* Carga de las noticias */}
-      <News items={translatedNotices} />
+     {/* Carga de las noticias */}
+     <News items={translatedNotices} />
 
-      {/* Boton ver mas noticias */}
-      <ButtonNotice/>
-        
-      <Line />
-      {aboutusImages.map((section, idx) => {
-        return (
-          <div key={idx} className="w-full relative" style={{ height: `${section.height}px` }}>
-            
-            {/* Foto de fondo con 50% brightness */}
-            <div style={{ backgroundImage: `url(${section.url})` }} className="absolute inset-0 bg-cover bg-center filter brightness-50"></div>
+     {/* Boton ver mas noticias */}
+     <ButtonNotice/>
+       
+     <Line />
+     {aboutusImages.map((section, idx) => {
+       return (
+         <div key={idx} className="w-full relative" style={{ height: `${section.height}px` }}>
+           
+           {/* Foto de fondo con 50% brightness */}
+           <div style={{ backgroundImage: `url(${section.url})` }} className="absolute inset-0 bg-cover bg-center filter brightness-50"></div>
 
-            {/* 
-                Degradado negro-transparente que empieza en 10% y acaba en 70% 
-                ⓘ : usa styles en vez de classname porque classname no me deja hacer degradados con porcentajes 
-            */}
-            <div className="absolute inset-0 z-5" style={{background: "linear-gradient(to right, black 10%, transparent 70%)",}}></div>
+           {/* 
+               Degradado negro-transparente que empieza en 10% y acaba en 70% 
+               ⓘ : usa styles en vez de classname porque classname no me deja hacer degradados con porcentajes 
+           */}
+           <div className="absolute inset-0 z-5" style={{background: "linear-gradient(to right, black 10%, transparent 70%)",}}></div>
 
-            <div className="absolute z-10 inset-0 flex items-center font-fredoka">
-              <div className="flex w-full p-4 justify-start ml-4">
-                <div className="w-full lg:w-1/4">
-                  <h2 className="text-3xl font-bold text-white">{section.title}</h2>  {/* texto del titulo */}
-                  <p className="mt-2 text-xl text-white">{section.subtitle}</p> {/* paragrafo */}
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      })}
+           <div className="absolute z-10 inset-0 flex items-center font-fredoka">
+             <div className="flex w-full p-4 justify-start ml-4">
+               <div className="w-full lg:w-1/4">
+                 <h2 className="text-3xl font-bold text-white">{section.title}</h2>  {/* texto del titulo */}
+                 <p className="mt-2 text-xl text-white">{section.subtitle}</p> {/* paragrafo */}
+               </div>
+             </div>
+           </div>
+         </div>
+       );
+     })}
 
-      <Line />
-    </div>
-  );
+     <Line />
+   </div>
+ );
 }
