@@ -7,8 +7,8 @@ export const runtime = 'nodejs';
 
 // Tipo de una noticia
 interface NewsItem {
-  href: string;
-  imageSrc: string;
+  slug: string;
+  image: string;
   altKey: string;
   date: string;
   titleKey: string;
@@ -29,19 +29,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'El locale no está definido' }, { status: 400 });
     }
 
-    // Cargar traducciones desde el archivo de mensajes
+    // Load translations from the message file
     const messagesPath = path.join(process.cwd(), 'messages', `${loc}.json`);
     const rawMessages = await fs.readFile(messagesPath, 'utf-8');
     const messages = JSON.parse(rawMessages);
 
-    // Crear el traductor para noticeComponent
+    
     const t = createTranslator({ locale: loc, messages, namespace: 'noticeComponent' });
 
-    // Cargar las noticias
+    // load notices from the file
     const rawNews = await fs.readFile(newsFilePath, 'utf-8');
     const newsItems: NewsItem[] = JSON.parse(rawNews);
+    
 
-    // Traducir las claves de cada noticia
+    
     const translatedNews = newsItems.map((news) => ({
       ...news,
       title: safeTranslate(news.titleKey, t),
@@ -51,6 +52,7 @@ export async function POST(req: NextRequest) {
 
     
     const result = routePath === 'mainNotices' ? translatedNews.slice(-3).reverse() : translatedNews.reverse();
+    console.log("Primer objeto en resultado final:", result[0]);
 
     return NextResponse.json({ message: 'Noticias obtenidas', data: result }, { status: 200 });
 
@@ -60,7 +62,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// Función para traducción segura con fallback a la clave original
+
 function safeTranslate(key: string, t: (k: string) => string): string {
   try {
     return t(key);

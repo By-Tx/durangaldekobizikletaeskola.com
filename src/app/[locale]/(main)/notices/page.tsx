@@ -1,21 +1,24 @@
-import { getLocale, getTranslations } from 'next-intl/server';
+
 import News from "@/app/[locale]/components/mainPage/noticeComponents/notices";
 import Title from "@/app/[locale]/components/mainPage/Titles/Title";
 import Section from "@/app/[locale]/components/main/Section";
 
+
+import { getLocale } from "next-intl/server";
+import { createTranslator } from "next-intl";
+
+
 interface Notice {
-  href: string;
-  imageSrc: string;
+  slug: string;
+  image: string;
   alt: string;
   date: string;
   title: string;
   category: string;
 }
-interface NoticeResponse {
-  data: Notice[];
-}
 
-async function fetchNotices(locale: string): Promise<NoticeResponse> {
+// Function that makes a request to the news endpoint, passing it the current language
+async function fetchNotices(locale: string): Promise<Notice[]> {
   const API_URL =
     process.env.NODE_ENV === "development"
       ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
@@ -25,30 +28,66 @@ async function fetchNotices(locale: string): Promise<NoticeResponse> {
     throw new Error("API URL no definida en las variables de entorno");
   }
 
+  // We make a POST to the endpoint with the language
   const response = await fetch(`${API_URL}/api/mainNotices`, {
     method: "POST",
     cache: "no-store",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ path: "allNotices", loc: locale }),
   });
 
   if (!response.ok) {
-    throw new Error("Error fetching notices");
+    throw new Error("Error al obtener noticias");
   }
 
-  return response.json();
+ 
+  const { data } = await response.json();
+  return data;
 }
 
-export default async function Page() {
-  const locale = await getLocale();
-  const t = await getTranslations("noticePage");
-  const response = await fetchNotices(locale);
 
+async function fetchMessages(locale: string) {
+  const API_URL =
+    process.env.NODE_ENV === "development"
+      ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
+      : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
+
+  const res = await fetch(`${API_URL}/api/translations?lang=${locale}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("No se pudieron cargar las traducciones");
+  }
+
+  return res.json();
+}
+
+
+export default async function Page() {
+  
+  const locale = await getLocale();
+
+  
+  const messages = await fetchMessages(locale);
+
+  
+  const translator = createTranslator({ locale, messages, namespace: "noticePage" });
+
+  
+  const data = await fetchNotices(locale);
+
+ 
   return (
     <div>
-      <Title title={t("title")} />
+      
+      <Title title={translator("title")} />
+      
+      
       <Section>
-        <News items={response.data} />
+        <News items={data.map(notice => ({ ...notice, image: notice.image }))} />
       </Section>
+      
     </div>
   );
 }
