@@ -8,7 +8,7 @@ import Line from "@/app/[locale]/components/main/line0m";
 export default function Page() {
     const t = useTranslations("eskolaPage");
     const images = [
-        { url: 'https://photos.txuli.com/duranguesa/esk04.jpeg' },
+        { url: 'https://photos.txuli.com/duranguesa/media/foto16.webp' },
         {
             url: 'https://photos.txuli.com/duranguesa/eskola2.jpeg'
 
