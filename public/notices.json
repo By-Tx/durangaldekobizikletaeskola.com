@@ -1,99 +1,123 @@
 [
   {
-    "href": "/bttTxapelduna",
-    "imageSrc": "https://photos.txuli.com/duranguesa/notices/ander.JPG",
+    "slug": "bttTxapelduna",
+    "image": "https://photos.txuli.com/duranguesa/notices/ander.JPG",
     "altKey": "altImage3",
     "date": "26-05-2024",
     "titleKey": "noticeTitle3",
-    "categoryKey": "category3"
+    "categoryKey": "category3",
+    "translationKey": "bttTxapeldunaPage",
+    "imagePage": "https://photos.txuli.com/duranguesa/notices/ander2.JPG"
   },
   {
-    "href": "/irrisarriNotice",
-    "imageSrc": "https://photos.txuli.com/duranguesa/notices/irrisarri.JPG",
+    "slug": "irrisarriNotice",
+    "image": "https://photos.txuli.com/duranguesa/notices/irrisarri.JPG",
     "altKey": "altImage3",
     "date": "20-10-2024",
     "titleKey": "noticeTitle2",
-    "categoryKey": "category2"
+    "categoryKey": "category2",
+    "translationKey": "irrisarriNoticePage",
+     "imagePage": "https://photos.txuli.com/duranguesa/notices/irrisarri.JPG"
   },
   {
-    "href": "/espainakoTxapelketa",
-    "imageSrc": "https://photos.txuli.com/duranguesa/notices/noticiasSeleccion.png",
+    "slug": "espainakoTxapelketa",
+    "image": "https://photos.txuli.com/duranguesa/notices/noticiasSeleccion.png",
     "altKey": "altImage3",
     "date": "12-01-2025",
     "titleKey": "noticeTitle",
-    "categoryKey": "category"
+    "categoryKey": "category",
+    "translationKey": "espainakoTxapelketaPage",
+     "imagePage": "https://photos.txuli.com/duranguesa/notices/noticiaseleccion2.jpeg"
   },
   {
-    "href": "/tenporadaAsiera",
-    "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica1.jpeg",
+    "slug": "tenporadaAsiera",
+    "image": "https://photos.txuli.com/duranguesa/notices/cronica1.jpeg",
     "altKey": "altImage4",
     "date": "1-03-2025",
     "titleKey": "noticeTitle4",
-    "categoryKey": "category4"
+    "categoryKey": "category4",
+    "translationKey": "tenporadaAsieraPage",
+     "imagePage": "https://photos.txuli.com/duranguesa/notices/noticia20252.jpeg"
   },
   {
-    "href": "/puntagaleaTeam",
-    "imageSrc": "https://photos.txuli.com/duranguesa/notices/portadaneskak.JPG",
+    "slug": "puntagaleaTeam",
+    "image": "https://photos.txuli.com/duranguesa/notices/portadaneskak.JPG",
     "altKey": "altImage3",
     "date": "6-03-2025",
     "titleKey": "noticeTitle5",
-    "categoryKey": "category4"
+    "categoryKey": "category4",
+    "translationKey": "puntagaleaTeamPage",
+     "imagePage": "https://photos.txuli.com/duranguesa/neskaPortada1.webp"
   },
   {
-    "href": "/cronica9-03-25",
-    "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica2.jpeg",
+    "slug": "cronica9-03-25",
+    "image": "https://photos.txuli.com/duranguesa/notices/cronica2.jpeg",
     "altKey": "altImage3",
     "date": "9-03-2025",
     "titleKey": "noticeTitle6",
-    "categoryKey": "category4"
+    "categoryKey": "category4",
+    "translationKey": "cronica9-03-25Page",
+    "imagePage": "https://photos.txuli.com/duranguesa/notices/cronica2b.jpeg"
   },
   {
-    "href": "/cronica15-03-25",
-    "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica3.jpeg",
+    "slug": "cronica15-03-25",
+    "image": "https://photos.txuli.com/duranguesa/notices/cronica3.jpeg",
     "altKey": "altImage3",
     "date": "15-03-2025",
     "titleKey": "noticeTitle7",
-    "categoryKey": "category5"
+    "categoryKey": "category5",
+    "translationKey": "cronica15-03-25Page",
+    "imagePage": "https://photos.txuli.com/duranguesa/notices/cronica3.jpeg"
   },
   {
-    "href": "/cronica23-03-25",
-    "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica4.jpeg",
+    "slug": "cronica23-03-25",
+    "image": "https://photos.txuli.com/duranguesa/notices/cronica4.jpeg",
     "altKey": "altImage3",
     "date": "23-03-2025",
     "titleKey": "noticeTitle8",
-    "categoryKey": "category5"
+    "categoryKey": "category5",
+    "translationKey": "cronica23-03-25Page",
+    "imagePage": "https://photos.txuli.com/duranguesa/notices/cronica4c.jpg"
   },
   {
-    "href": "/cronica29-03-25",
-    "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica5b.JPEG",
+    "slug": "cronica29-03-25",
+    "image": "https://photos.txuli.com/duranguesa/notices/cronica5b.JPEG",
     "altKey": "altImage3",
     "date": "29-03-2025",
     "titleKey": "noticeTitle9",
-    "categoryKey": "category5"
+    "categoryKey": "category5",
+    "translationKey": "cronica29-03-25Page",
+    "imagePage": "https://photos.txuli.com/duranguesa/notices/cronica5.jpeg"
   },
   {
-    "href": "/presentacion",
-    "imageSrc": "https://photos.txuli.com/duranguesa/notices/DuranguesaPresenta2red.jpg",
+    "slug": "presentacion",
+    "image": "https://photos.txuli.com/duranguesa/notices/DuranguesaPresenta2red.jpg",
     "altKey": "altImage3",
     "date": "4-04-2025",
     "titleKey": "noticeTitle10",
-    "categoryKey": "category6"
+    "categoryKey": "category6",
+    "translationKey": "presentacionPage",
+    "imagePage": "https://photos.txuli.com/duranguesa/notices/DuranguesaPresentacion.jpg"
+
   },
   {
-    "href": "/cronica05-04-25",
-    "imageSrc": "https://photos.txuli.com/duranguesa/notices/por.jpg",
+    "slug": "cronica05-04-25",
+    "image": "https://photos.txuli.com/duranguesa/notices/por.jpg",
     "altKey": "altImage3",
     "date": "5-04-2025",
     "titleKey": "noticeTitle11",
-    "categoryKey": "category5"
+    "categoryKey": "category5",
+    "translationKey": "cronica05-04-25Page",
+     "imagePage": "https://photos.txuli.com/duranguesa/notices/cronica040425.jpg"
   },
   {
-    "href": "/cronica12-04-25",
-    "imageSrc": "https://photos.txuli.com/duranguesa/notices/cronica120425v2.jpg",
+    "slug": "cronica12-04-25",
+    "image": "https://photos.txuli.com/duranguesa/notices/cronica120425v2.jpg",
     "altKey": "altImage3",
     "date": "12-04-2025",
     "titleKey": "noticeTitle12",
-    "categoryKey": "category5"
+    "categoryKey": "category5",
+    "translationKey": "cronica12-04-25Page",
+    "imagePage": "https://photos.txuli.com/duranguesa/notices/cronica120425.jpg"
   }
-  
 ]
