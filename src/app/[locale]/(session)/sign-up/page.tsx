@@ -1,5 +1,5 @@
 "use client"
-import { authClient } from "@/lib/auth-client"; //import the auth client
+import { authClient } from "@/lib/auth-client"; 
 import { useState } from 'react';
  
 export default function SignUp() {

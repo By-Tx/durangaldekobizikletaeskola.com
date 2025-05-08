@@ -154,9 +154,10 @@
     "menuComponent": {
         "home": "HASIERA",
         "eskola": "ESKOLA",
-        "clothes": "AROPA",
+        "clothes": "ARROPA",
         "form": "IZENA EMAN",
-        "contact": "KONTAKTUA"
+        "contact": "KONTAKTUA",
+        "login": " HASI SAIOA"
     },
     "cronica9-03-25Page": {
         "altImage": "Foto ",

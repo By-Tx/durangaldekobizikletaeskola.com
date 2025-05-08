@@ -26,13 +26,17 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const t = useTranslations("menuComponent");
   const toggleMenu = () => {
-    if (menuOpen) {
+    setMenuOpen(prev => {
+      const newState = !prev;
+  
       
-      setLogo(logoMenu);
-      setIsRotated(false);
-    }
-    setMenuOpen(prevState => !prevState);
+      setIsRotated(newState);
+      setLogo(newState ? logoMenuCose : logoMenu);
+  
+      return newState;
+    });
   };
+  
 
   useEffect(() => {
     const handleResize = () => {
@@ -48,7 +52,7 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full bg-gradient-to-r ${className ? className : 'bg-customblue'} shadow-md z-30 font-fredoka`}>
+    <nav className={`fixed top-0 left-0 w-screen bg-gradient-to-r ${className ? className : 'bg-customblue'} shadow-md z-30 font-fredoka`}>
 
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}
@@ -103,12 +107,12 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
         {/* Language Switch and Login */}
         {!isMobile && (
           <div className="flex items-center space-x-4">
-           {/* <Link
+           <Link
             href="/login"
             className="bg-customDarkBlue text-white px-4 py-2 rounded-lg "
           >
-            HASI SAIOA
-          </Link>  */}
+            {t("login")}
+          </Link>  
             <div className="hidden md:flex items-center space-x-2">
 
               <LocaleSwitcherSelect className={color2} />
@@ -176,13 +180,13 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
             {t("contact")}
           </Link>
             
-          {/* <Link
+          <Link
             href="/login"
             className="text-xl bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-150"
             onClick={toggleMenu}
           >
-            HASI SAIOA
-          </Link>  */}
+            {t("login")}
+          </Link>  
           <div>
           <LocaleSwitcherSelect className={color2} />
           </div>

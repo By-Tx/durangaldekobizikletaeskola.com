@@ -69,17 +69,19 @@ export default async function Home() {
   }));
 
   const images = [
-    { url: "https://photos.txuli.com/duranguesa/Duranguesa_3escale.webp", title: t("title"), subtitle: t("subtitle") },
-    { url: "https://photos.txuli.com/duranguesa/foto3.jpg", title: t("title2"), subtitle: t("subtitle2") },
-    { url: "https://photos.txuli.com/duranguesa/fotomtb.jpg", title: t("title3"), subtitle: t("subtitle3") },
-    { url: "https://photos.txuli.com/duranguesa/portada1escaled.webp", title: t("title4"), subtitle: t("subtitle4") },
+    { url: "https://photos.txuli.com/duranguesa/media/foto11.webp",},
+    { url: "https://photos.txuli.com/duranguesa/media/foto3.webp",},
+    { url: "https://photos.txuli.com/duranguesa/media/foto9_alt.webp", },
+    { url: "https://photos.txuli.com/duranguesa/media/foto7.webp",},
+    { url: "https://photos.txuli.com/duranguesa/media/foto13.webp",},
+
   ];
 
   const aboutusImages = [
-    { url: 'https://photos.txuli.com/duranguesa/mainPage/foto1.jpg', title: t("title"), subtitle: t("subtitle") },
-    { url: 'https://photos.txuli.com/duranguesa/mainPage/foto2.jpg', title: t("title2"), subtitle: t("subtitle2") },
-    { url: 'https://photos.txuli.com/duranguesa/mainPage/foto3.jpg', title: t("title3"), subtitle: t("subtitle3") },
-    { url: 'https://photos.txuli.com/duranguesa/portada1escaled.webp', title: t("title4"), subtitle: t("subtitle4") },
+    { url: 'https://photos.txuli.com/duranguesa/media/foto3.webp', title: t("title"), subtitle: t("subtitle") },
+    { url: 'https://photos.txuli.com/duranguesa/media/foto16.webp', title: t("title2"), subtitle: t("subtitle2") },
+    { url: 'https://photos.txuli.com/duranguesa/media/foto14.webp', title: t("title3"), subtitle: t("subtitle3") },
+    { url: 'https://photos.txuli.com/duranguesa/media/foto15.webp', title: t("title4"), subtitle: t("subtitle4") },
   ];
 
   return (
@@ -91,7 +93,7 @@ export default async function Home() {
       <ButtonNotice />
       <Line />
       {aboutusImages.map((section, idx) => (
-        <div key={idx} className="w-full relative" style={{ height: "300px" }}>
+        <div key={idx} className="w-full relative" style={{ height: "400px" }}>
           <div className="absolute inset-0 bg-cover bg-center filter brightness-50" style={{ backgroundImage: `url(${section.url})` }}></div>
           <div className="absolute inset-0 z-5" style={{ background: "linear-gradient(to right, black 10%, transparent 70%)" }}></div>
           <div className="absolute z-10 inset-0 flex items-center font-fredoka">

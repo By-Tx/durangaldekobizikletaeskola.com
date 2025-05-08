@@ -16,21 +16,28 @@ export default function LogInForm() {
       callbackURL: "/es/dashboard",  
       fetchOptions: {
         onSuccess() {
-          
+          console.log("Login successful");
           window.location.href = '/es/dashboard';  
         },
+          onError() {
+           
+            alert("Login failed: usuario o contraseña incorrectas" );
+
+          },
+        },
       },
-    });
+      
+    );
   }    
 
 
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-96 ">
       
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h1 className="text-2xl font-semibold text-center text-gray-900">Hasi saioa</h1>
-        <form className="mt-6" onSubmit={login}>
+        <form className="mt-6" onSubmit={(e) => { e.preventDefault(); login(); }}>
           <div className="mb-4">
             <label
               htmlFor="email"

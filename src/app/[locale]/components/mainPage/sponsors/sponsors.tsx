@@ -27,8 +27,7 @@ const SECONDARY_SPONSORS = [
 
 const HELPERS = [
     { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Iurreta.webp', link: 'https://www.iurreta.eus/eu-ES/Orriak/default.aspx', style: 'col-span-2' },
-   // { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Durango.webp', link: 'https://www.durango.eus/', style: undefined },
-    { img: 'https://photos.txuli.com/duranguesa/patrocinadores/durango.png', link: 'https://www.durango.eus/', style: undefined },
+    { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Durango.webp', link: 'https://www.durango.eus/', style: undefined },
     { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Abadiño.webp', link: 'https://www.xn--abadio-0wa.org/', style: undefined },
     { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Berrizko.webp', link: 'https://www.berriz.eus/' },
     { img: 'https://photos.txuli.com/duranguesa/sponsors/New-Elorrio.webp', link: 'https://www.elorrio.eus/eu-ES/Orriak/default.aspx', style: undefined },
@@ -60,7 +59,7 @@ const Sponsor = () => {
     const renderSecondarySponsors = () => (
         <>
 
-            <div className=" grid w-10/12 md:w-9/12 mx-auto grid-cols-3 lg:grid-cols-4  place-items-center gap-5  justify-items-center mb-6">
+            <div className=" grid w-10/12 md:w-9/12 mx-auto grid-cols-3 lg:grid-cols-4  place-items-center gap-2 sm:gap-5  justify-items-center mb-6">
                 {SECONDARY_SPONSORS.map(({ img, link, style }, idx) => (
                     <Secondsponsor key={idx} img={img} Link={link} style={style} />
                 ))}
@@ -73,7 +72,7 @@ const Sponsor = () => {
         <>
 
 
-            <div className=" bg-customDarkBlue lg:bg-transparent  rounded-lg w-8/12 mx-auto grid grid-cols-5  lg:flex lg:space-x-4 sm:gap-8 justify-center mb-20 place-items-center ">
+            <div className=" bg-customDarkBlue lg:bg-transparent  rounded-lg w-10/12 sm:w8/12 mx-auto grid grid-cols-5  lg:flex lg:space-x-4 sm:gap-8 justify-center mb-20 place-items-center ">
                 {HELPERS.map(({ img, link, style }, idx) => (
                     <Helpers key={idx} img={img} Link={link} style={style} />
                 ))}

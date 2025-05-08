@@ -2,7 +2,7 @@ import Image from "next/legacy/image";
 
 const Helpers = (props: { Link: string | undefined; img: string | undefined; style: string | undefined}) => {
     return (
-        <div className=" bg-transparent shadow-none lg:bg-customDarkBlue lg:shadow-lg h-24 w-18 md:w-full  rounded-lg   flex items-center justify-center mb-3 xl:mb-0">
+        <div className=" bg-transparent shadow-none lg:bg-customDarkBlue lg:shadow-lg h-20 sm:h-24 w-18 md:w-full  rounded-lg   flex items-center justify-center mb-3 xl:mb-0">
     <a
         href={props.Link}
         className="h-full w-full flex items-center justify-center  "
