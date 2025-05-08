@@ -4776,6 +4776,7 @@ export namespace Prisma {
 
   export type EventsMinAggregateOutputType = {
     id: number | null
+    nombre: string | null
     fecha: Date | null
     lugar: string | null
     categoria: $Enums.events_categoria | null
@@ -4785,6 +4786,7 @@ export namespace Prisma {
 
   export type EventsMaxAggregateOutputType = {
     id: number | null
+    nombre: string | null
     fecha: Date | null
     lugar: string | null
     categoria: $Enums.events_categoria | null
@@ -4794,6 +4796,7 @@ export namespace Prisma {
 
   export type EventsCountAggregateOutputType = {
     id: number
+    nombre: number
     fecha: number
     lugar: number
     categoria: number
@@ -4813,6 +4816,7 @@ export namespace Prisma {
 
   export type EventsMinAggregateInputType = {
     id?: true
+    nombre?: true
     fecha?: true
     lugar?: true
     categoria?: true
@@ -4822,6 +4826,7 @@ export namespace Prisma {
 
   export type EventsMaxAggregateInputType = {
     id?: true
+    nombre?: true
     fecha?: true
     lugar?: true
     categoria?: true
@@ -4831,6 +4836,7 @@ export namespace Prisma {
 
   export type EventsCountAggregateInputType = {
     id?: true
+    nombre?: true
     fecha?: true
     lugar?: true
     categoria?: true
@@ -4927,6 +4933,7 @@ export namespace Prisma {
 
   export type EventsGroupByOutputType = {
     id: number
+    nombre: string | null
     fecha: Date | null
     lugar: string | null
     categoria: $Enums.events_categoria | null
@@ -4955,6 +4962,7 @@ export namespace Prisma {
 
   export type eventsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    nombre?: boolean
     fecha?: boolean
     lugar?: boolean
     categoria?: boolean
@@ -4968,6 +4976,7 @@ export namespace Prisma {
 
   export type eventsSelectScalar = {
     id?: boolean
+    nombre?: boolean
     fecha?: boolean
     lugar?: boolean
     categoria?: boolean
@@ -4975,7 +4984,7 @@ export namespace Prisma {
     descripcion?: boolean
   }
 
-  export type eventsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fecha" | "lugar" | "categoria" | "modalidad" | "descripcion", ExtArgs["result"]["events"]>
+  export type eventsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "fecha" | "lugar" | "categoria" | "modalidad" | "descripcion", ExtArgs["result"]["events"]>
   export type eventsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events_resultado?: boolean | events$events_resultadoArgs<ExtArgs>
     _count?: boolean | EventsCountOutputTypeDefaultArgs<ExtArgs>
@@ -4988,6 +4997,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      nombre: string | null
       fecha: Date | null
       lugar: string | null
       categoria: $Enums.events_categoria | null
@@ -5364,6 +5374,7 @@ export namespace Prisma {
    */
   interface eventsFieldRefs {
     readonly id: FieldRef<"events", 'Int'>
+    readonly nombre: FieldRef<"events", 'String'>
     readonly fecha: FieldRef<"events", 'DateTime'>
     readonly lugar: FieldRef<"events", 'String'>
     readonly categoria: FieldRef<"events", 'events_categoria'>
@@ -9778,6 +9789,7 @@ export namespace Prisma {
 
   export const EventsScalarFieldEnum: {
     id: 'id',
+    nombre: 'nombre',
     fecha: 'fecha',
     lugar: 'lugar',
     categoria: 'categoria',
@@ -9902,6 +9914,7 @@ export namespace Prisma {
 
 
   export const eventsOrderByRelevanceFieldEnum: {
+    nombre: 'nombre',
     lugar: 'lugar',
     descripcion: 'descripcion'
   };
@@ -10299,6 +10312,7 @@ export namespace Prisma {
     OR?: eventsWhereInput[]
     NOT?: eventsWhereInput | eventsWhereInput[]
     id?: IntFilter<"events"> | number
+    nombre?: StringNullableFilter<"events"> | string | null
     fecha?: DateTimeNullableFilter<"events"> | Date | string | null
     lugar?: StringNullableFilter<"events"> | string | null
     categoria?: Enumevents_categoriaNullableFilter<"events"> | $Enums.events_categoria | null
@@ -10309,6 +10323,7 @@ export namespace Prisma {
 
   export type eventsOrderByWithRelationInput = {
     id?: SortOrder
+    nombre?: SortOrderInput | SortOrder
     fecha?: SortOrderInput | SortOrder
     lugar?: SortOrderInput | SortOrder
     categoria?: SortOrderInput | SortOrder
@@ -10323,6 +10338,7 @@ export namespace Prisma {
     AND?: eventsWhereInput | eventsWhereInput[]
     OR?: eventsWhereInput[]
     NOT?: eventsWhereInput | eventsWhereInput[]
+    nombre?: StringNullableFilter<"events"> | string | null
     fecha?: DateTimeNullableFilter<"events"> | Date | string | null
     lugar?: StringNullableFilter<"events"> | string | null
     categoria?: Enumevents_categoriaNullableFilter<"events"> | $Enums.events_categoria | null
@@ -10333,6 +10349,7 @@ export namespace Prisma {
 
   export type eventsOrderByWithAggregationInput = {
     id?: SortOrder
+    nombre?: SortOrderInput | SortOrder
     fecha?: SortOrderInput | SortOrder
     lugar?: SortOrderInput | SortOrder
     categoria?: SortOrderInput | SortOrder
@@ -10350,6 +10367,7 @@ export namespace Prisma {
     OR?: eventsScalarWhereWithAggregatesInput[]
     NOT?: eventsScalarWhereWithAggregatesInput | eventsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"events"> | number
+    nombre?: StringNullableWithAggregatesFilter<"events"> | string | null
     fecha?: DateTimeNullableWithAggregatesFilter<"events"> | Date | string | null
     lugar?: StringNullableWithAggregatesFilter<"events"> | string | null
     categoria?: Enumevents_categoriaNullableWithAggregatesFilter<"events"> | $Enums.events_categoria | null
@@ -10963,6 +10981,7 @@ export namespace Prisma {
 
   export type eventsCreateInput = {
     id: number
+    nombre?: string | null
     fecha?: Date | string | null
     lugar?: string | null
     categoria?: $Enums.events_categoria | null
@@ -10973,6 +10992,7 @@ export namespace Prisma {
 
   export type eventsUncheckedCreateInput = {
     id: number
+    nombre?: string | null
     fecha?: Date | string | null
     lugar?: string | null
     categoria?: $Enums.events_categoria | null
@@ -10983,6 +11003,7 @@ export namespace Prisma {
 
   export type eventsUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
     fecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     categoria?: NullableEnumevents_categoriaFieldUpdateOperationsInput | $Enums.events_categoria | null
@@ -10993,6 +11014,7 @@ export namespace Prisma {
 
   export type eventsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
     fecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     categoria?: NullableEnumevents_categoriaFieldUpdateOperationsInput | $Enums.events_categoria | null
@@ -11003,6 +11025,7 @@ export namespace Prisma {
 
   export type eventsCreateManyInput = {
     id: number
+    nombre?: string | null
     fecha?: Date | string | null
     lugar?: string | null
     categoria?: $Enums.events_categoria | null
@@ -11012,6 +11035,7 @@ export namespace Prisma {
 
   export type eventsUpdateManyMutationInput = {
     id?: IntFieldUpdateOperationsInput | number
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
     fecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     categoria?: NullableEnumevents_categoriaFieldUpdateOperationsInput | $Enums.events_categoria | null
@@ -11021,6 +11045,7 @@ export namespace Prisma {
 
   export type eventsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
     fecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     categoria?: NullableEnumevents_categoriaFieldUpdateOperationsInput | $Enums.events_categoria | null
@@ -11810,6 +11835,7 @@ export namespace Prisma {
 
   export type eventsCountOrderByAggregateInput = {
     id?: SortOrder
+    nombre?: SortOrder
     fecha?: SortOrder
     lugar?: SortOrder
     categoria?: SortOrder
@@ -11823,6 +11849,7 @@ export namespace Prisma {
 
   export type eventsMaxOrderByAggregateInput = {
     id?: SortOrder
+    nombre?: SortOrder
     fecha?: SortOrder
     lugar?: SortOrder
     categoria?: SortOrder
@@ -11832,6 +11859,7 @@ export namespace Prisma {
 
   export type eventsMinOrderByAggregateInput = {
     id?: SortOrder
+    nombre?: SortOrder
     fecha?: SortOrder
     lugar?: SortOrder
     categoria?: SortOrder
@@ -13131,6 +13159,7 @@ export namespace Prisma {
 
   export type eventsCreateWithoutEvents_resultadoInput = {
     id: number
+    nombre?: string | null
     fecha?: Date | string | null
     lugar?: string | null
     categoria?: $Enums.events_categoria | null
@@ -13140,6 +13169,7 @@ export namespace Prisma {
 
   export type eventsUncheckedCreateWithoutEvents_resultadoInput = {
     id: number
+    nombre?: string | null
     fecha?: Date | string | null
     lugar?: string | null
     categoria?: $Enums.events_categoria | null
@@ -13202,6 +13232,7 @@ export namespace Prisma {
 
   export type eventsUpdateWithoutEvents_resultadoInput = {
     id?: IntFieldUpdateOperationsInput | number
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
     fecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     categoria?: NullableEnumevents_categoriaFieldUpdateOperationsInput | $Enums.events_categoria | null
@@ -13211,6 +13242,7 @@ export namespace Prisma {
 
   export type eventsUncheckedUpdateWithoutEvents_resultadoInput = {
     id?: IntFieldUpdateOperationsInput | number
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
     fecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lugar?: NullableStringFieldUpdateOperationsInput | string | null
     categoria?: NullableEnumevents_categoriaFieldUpdateOperationsInput | $Enums.events_categoria | null

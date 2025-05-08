@@ -63,6 +63,7 @@ model entrenadores {
 
 model events {
   id               Int                @id
+  nombre           String?            @db.VarChar(250)
   fecha            DateTime?          @db.DateTime(0)
   lugar            String?            @db.VarChar(200)
   categoria        events_categoria?

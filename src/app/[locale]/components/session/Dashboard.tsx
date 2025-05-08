@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 interface DashboardClientProps {
     name: string;
     rol: string;
-    links: { href: string; text: string; img: string }[];
+    links: { href: string; text: string; img: string; roles: string[] }[];
 }
 
 export default function DashboardClient({ name, rol, links }: DashboardClientProps) {
@@ -30,13 +30,16 @@ export default function DashboardClient({ name, rol, links }: DashboardClientPro
         });
     };
 
+    // Filtra los links según el rol del usuario
+    const filteredLinks = links.filter(link => link.roles.includes(rol));
+
     return (
         <>
             <h2>Welcome, {name}</h2>
             <h2>Your role is {rol}</h2>
             <div className="space-y-6 flex flex-col items-center">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 justify-items-center w-1/2">
-                    {links.map(link => (
+                    {filteredLinks.map(link => (
                         <Link
                             key={link.href}
                             href={link.href}

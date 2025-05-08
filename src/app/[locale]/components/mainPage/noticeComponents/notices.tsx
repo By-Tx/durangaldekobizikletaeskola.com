@@ -18,7 +18,6 @@ interface NewsProps {
 
 
 export default function News({ items }: NewsProps) {
-  console.log(items)
   return (
     <>
     
