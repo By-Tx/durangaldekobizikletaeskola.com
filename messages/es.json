@@ -140,7 +140,8 @@
         "clothes": "ROPA",
         "contact": "CONTACTO",
         "label": "eus",
-        "localeSwitcher": "es"
+        "localeSwitcher": "es",
+        "login": "INICIAR SESIÓN"
     },
     "cronica15-03-25Page": {
         "altImage": "Foto ",
