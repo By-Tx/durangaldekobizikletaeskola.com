@@ -62,7 +62,9 @@ const config: Config = {
 
       },
       margin: {
+        27: '6.65rem',
         33: '8.25rem',
+
       }
     },
   },

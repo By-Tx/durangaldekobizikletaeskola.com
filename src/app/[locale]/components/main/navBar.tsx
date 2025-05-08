@@ -26,13 +26,17 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const t = useTranslations("menuComponent");
   const toggleMenu = () => {
-    if (menuOpen) {
+    setMenuOpen(prev => {
+      const newState = !prev;
+  
       
-      setLogo(logoMenu);
-      setIsRotated(false);
-    }
-    setMenuOpen(prevState => !prevState);
+      setIsRotated(newState);
+      setLogo(newState ? logoMenuCose : logoMenu);
+  
+      return newState;
+    });
   };
+  
 
   useEffect(() => {
     const handleResize = () => {

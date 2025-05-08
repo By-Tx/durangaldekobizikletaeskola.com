@@ -33,7 +33,7 @@ interface SlideshowProps {
 const Slides: React.FC<SlideshowProps> = ({ images = [], title }) => {
     return (
         <div className="slide-container w-full h-auto  mx-auto relative">
-            <h1 style={captionStyle} className='font-fredoka text-5xl font-semibold'>{title}</h1>
+            <h1 style={captionStyle} className='font-fredoka text-4xl sm:text-5xl font-semibold'>{title}</h1>
             <Slide
                 duration={4000}
                 transitionDuration={1000}
