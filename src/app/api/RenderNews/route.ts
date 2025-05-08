@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
             (item: { slug: string }) =>
                 item.slug.trim().toLowerCase().replace(/-/g, '') === slug.trim().toLowerCase().replace(/-/g, '')
         );
-       console.log("foundItem", foundItem);
+       
 
         return NextResponse.json({ message: 'Data read successfully', data: foundItem }, { status: 200 });
     } catch (error) {
