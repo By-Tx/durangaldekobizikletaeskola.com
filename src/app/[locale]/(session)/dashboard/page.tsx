@@ -15,52 +15,65 @@ export default async function Dashboard() {
     const name = session?.user?.name || "";
     const rol = session?.user?.role || "";
     const hdrs = await headers();
-    const locale = hdrs.get("x-next-intl-locale") || "es";
+    const locale = hdrs.get("x-next-intl-locale") || "es"
+    type Role = "admin" | "staff" | "coach" | "runner" | "user";
 
     const links = [
         {
             href: "/usuarios",
             text: "Gestión de usuarios",
-            img: "/media/dashboard/usuario.svg"
+            img: "/media/dashboard/usuario.svg",
+            roles: ["admin", "staff"],
         },
         {
             href: "/deportistas",
             text: "Gestión de deportistas",
-            img: "/media/dashboard/deportista.svg"
+            img: "/media/dashboard/deportista.svg",
+            roles: ["admin", "staff", "coach"],
         },
         {
             href: "/historial",
             text: "Historial de carreras",
-            img: "/media/dashboard/historial.svg"
+            img: "/media/dashboard/historial.svg",
+            roles: ["admin", "staff", "coach", "runner"],
         },
         {
             href: "/carreras",
             text: "Gestión de carreras",
-            img: "/media/dashboard/carrera.svg"
+            img: "/media/dashboard/carrera.svg",
+            roles: ["admin", "staff", "coach"],
         },
         {
             href: "/imageCategory",
             text: "Categorías de imágenes",
-            img: "/media/dashboard/categoria.svg"
+            img: "/media/dashboard/categoria.svg",
+            roles: ["admin", "staff", "coach"],
         },
         {
             href: "/imageCreator",
             text: "Subida de imágenes",
-            img: "/media/dashboard/imagen.svg"
+            img: "/media/dashboard/imagen.svg",
+            roles: ["admin", "staff", "coach", "runner", "user"],
         },
         {
             href: "/noticeCreator",
             text: "Crear noticias",
-            img: "/media/dashboard/noticia.svg"
+            img: "/media/dashboard/noticia.svg",
+            roles: ["admin", "staff"],
         }
     ];
 
-    const localizedLinks = links.map(link => ({
-        ...link,
-        href: `/${locale}${link.href}`
-    }));
+    // Filtra los links según el rol del usuario
+    const filteredLinks = links
+        .filter(link => link.roles.includes(rol))
+        .map(link => ({
+            href: `/${locale}${link.href}`,
+            text: link.text,
+            img: link.img,
+            roles: link.roles,
+        }));
 
     return (
-        <DashboardClient name={name} rol={rol} links={localizedLinks} />
+        <DashboardClient name={name} rol={rol} links={filteredLinks} />
     );
 }

@@ -165,6 +165,7 @@ exports.Prisma.EntrenadoresScalarFieldEnum = {
 
 exports.Prisma.EventsScalarFieldEnum = {
   id: 'id',
+  nombre: 'nombre',
   fecha: 'fecha',
   lugar: 'lugar',
   categoria: 'categoria',
@@ -259,6 +260,7 @@ exports.Prisma.entrenadoresOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.eventsOrderByRelevanceFieldEnum = {
+  nombre: 'nombre',
   lugar: 'lugar',
   descripcion: 'descripcion'
 };

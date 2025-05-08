@@ -52,7 +52,6 @@ export async function POST(req: NextRequest) {
 
     
     const result = routePath === 'mainNotices' ? translatedNews.slice(-3).reverse() : translatedNews.reverse();
-    console.log("Primer objeto en resultado final:", result[0]);
 
     return NextResponse.json({ message: 'Noticias obtenidas', data: result }, { status: 200 });
 
