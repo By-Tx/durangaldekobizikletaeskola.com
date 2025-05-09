@@ -179,3 +179,11 @@ body.scrollbar-carreras ::-webkit-scrollbar-track {
 body.scrollbar-carreras ::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
+
+body.scrollbar-carreras ::-webkit-outer-spin-button,
+body.scrollbar-carreras ::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: textfield;
+  margin: 0;
+}

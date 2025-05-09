@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useLayoutEffect, useEffect, useState } from "react";
+import { useEffect, useRef, useLayoutEffect, useState } from "react";
 
 type Carrera = {
     id: number;
@@ -9,10 +9,23 @@ type Carrera = {
     categoria: string;
     modalidad: string;
     descripcion: string;
+    participantes: {
+        participante_id: string;
+        nombre: string;
+        apellidos: string;
+        resultado_id: number;
+        tiempo: string;
+        posicion: number;
+    }[];
 };
 
-export default function RaceClient() {
-    const [carreras, setCarreras] = useState<Carrera[]>([]);
+interface RaceClientProps {
+    carreras: Carrera[];
+}
+
+export default function RaceClient({ carreras }: RaceClientProps) {
+    const [data, setData] = useState(carreras);
+    const [searchTerm, setSearchTerm] = useState("");
     const [form, setForm] = useState<Partial<Carrera>>({});
     const [editId, setEditId] = useState<number | null>(null);
     const [showForm, setShowForm] = useState(false);
@@ -21,21 +34,166 @@ export default function RaceClient() {
     const [deleteId, setDeleteId] = useState<number | null>(null);
     const firstRowRefs = useRef<(HTMLTableCellElement | null)[]>([]);
     const [colWidths, setColWidths] = useState<number[]>([]);
+    const [selectedRace, setSelectedRace] = useState<Carrera | null>(null);
+    const [athleteForm, setAthleteForm] = useState({ nombre: "", apellidos: "", tiempo: "", posicion: 0 });
+    const [searchAthleteTerm, setSearchAthleteTerm] = useState("");
+    const [filteredAthletes, setFilteredAthletes] = useState<any[]>([]);
+    const [selectedAthlete, setSelectedAthlete] = useState<any | null>(null);
 
     useLayoutEffect(() => {
         if (firstRowRefs.current.length) {
             setColWidths(firstRowRefs.current.map(td => td?.offsetWidth || 0));
         }
-    }, [carreras]);
+    }, [data]);
 
-    // Obtener carreras
-    useEffect(() => {
-        fetch("/api/races")
-            .then(res => res.json())
-            .then(data => {
-                setCarreras(data);
+    // Filtrar los datos según el término de búsqueda
+    const filteredData = data.filter(carrera =>
+        carrera.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        carrera.lugar.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        carrera.categoria.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        carrera.modalidad.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        carrera.descripcion.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Manejar cambios en el término de búsqueda
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value);
+    };
+
+    // Manejar clic en una fila de la tabla
+    const handleRowClick = (carrera: Carrera) => {
+        setSelectedRace(carrera);
+    };
+
+    // Manejar cambios en el formulario de deportistas
+    const handleAthleteFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+
+        if (name === "tiempo") {
+            const sanitizedValue = value.replace(/[^0-9]/g, "");
+            const trimmedValue = sanitizedValue.replace(/^0+/, "");
+            const limitedValue = trimmedValue.slice(0, 6);
+            const formattedTime = formatTimeInput(limitedValue);
+            setAthleteForm({ ...athleteForm, [name]: formattedTime });
+        } else {
+            setAthleteForm({ ...athleteForm, [name]: value });
+        }
+    };
+
+    // Guardar deportista en la carrera
+    const handleAddAthlete = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!selectedRace || !selectedAthlete) return;
+
+        try {
+            const response = await fetch(`/api/runners?search=maxId`);
+            const { maxId } = await response.json();
+            const newId = maxId + 1;
+            const [hours, minutes, seconds] = athleteForm.tiempo.split(":").map(Number);
+            const isoTimeString = `1970-01-01T${String(hours || 0).padStart(2, "0")}:${String(minutes || 0).padStart(2, "0")}:${String(seconds || 0).padStart(2, "0")}.000Z`;
+
+            const newParticipant = {
+                participante_id: selectedAthlete.numero_licencia,
+                nombre: selectedAthlete.nombre,
+                apellidos: selectedAthlete.apellidos,
+                resultado_id: newId,
+                tiempo: athleteForm.tiempo,
+                posicion: Number(athleteForm.posicion),
+            };
+
+            const insertParticipant = {
+                id: newId,
+                tiempo: isoTimeString,
+                posicion: Number(athleteForm.posicion),
+                carrera_id: selectedRace.id,
+                participante_id: selectedAthlete.numero_licencia,
+            };
+
+            // Realizar la solicitud POST para añadir el participante
+            const postResponse = await fetch(`/api/runners`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(insertParticipant),
             });
-    }, []);
+
+            if (!postResponse.ok) {
+                throw new Error("Error al añadir el participante a la base de datos");
+            }
+
+            // Actualizar la lista de participantes localmente
+            const updatedParticipants = [...(selectedRace.participantes || []), newParticipant]
+                .sort((a, b) => a.posicion - b.posicion);
+
+            setSelectedRace({ ...selectedRace, participantes: updatedParticipants });
+
+            // Reiniciar el formulario
+            setAthleteForm({ nombre: "", apellidos: "", tiempo: "", posicion: 0 });
+            setSelectedAthlete(null);
+        } catch (error) {
+            console.error("Error al añadir el participante:", error);
+        }
+    };
+
+    // Cancelar la acción de añadir deportista
+    const handleCancelAddAthlete = () => {
+        setAthleteForm({ nombre: "", apellidos: "", tiempo: "", posicion: 0 });
+        setSelectedAthlete(null);
+        setSearchAthleteTerm("");
+        setFilteredAthletes([]);
+    };
+
+    // Eliminar participante de la lista
+    const handleDeleteParticipant = async (index: number) => {
+        if (!selectedRace) return;
+
+        const participantToDelete = selectedRace.participantes[index];
+
+        try {
+            // Realizar la solicitud DELETE para eliminar el participante
+            const response = await fetch(`/api/runners`, {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: participantToDelete.resultado_id }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Error al eliminar el resultado de la base de datos");
+            }
+
+            // Actualizar la lista de participantes localmente
+            const updatedParticipants = selectedRace.participantes?.filter((_, i) => i !== index) || [];
+            setSelectedRace({ ...selectedRace, participantes: updatedParticipants });
+        } catch (error) {
+            console.error("Error al eliminar el resultado:", error);
+        }
+    };
+
+    // Buscar deportistas en la base de datos
+    useEffect(() => {
+        const fetchAthletes = async () => {
+            try {
+                const response = await fetch(`/api/runners?search=${searchAthleteTerm.trim()}`);
+                const athletes = await response.json();
+                setFilteredAthletes(Array.isArray(athletes) ? athletes : []);
+            } catch (error) {
+                console.error("Error al buscar deportistas:", error);
+                setFilteredAthletes([]);
+            }
+        };
+
+        fetchAthletes();
+    }, [searchAthleteTerm]);
+
+    const handleSearchAthleteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchAthleteTerm(e.target.value);
+    };
+
+    // Seleccionar deportista
+    const handleSelectAthlete = (athlete: any) => {
+        setSelectedAthlete(athlete);
+        setAthleteForm({ ...athleteForm, nombre: athlete.nombre, apellidos: athlete.apellidos });
+    };
 
     // Manejar cambios en el formulario
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -81,8 +239,8 @@ export default function RaceClient() {
                 body: JSON.stringify({ ...newForm, id: editId }),
             });
         } else {
-            const maxId = carreras.length > 0
-                ? Math.max(...carreras.map(c => Number(c.id) || 0))
+            const maxId = data.length > 0
+                ? Math.max(...data.map(c => Number(c.id) || 0))
                 : 0;
             newForm.id = maxId + 1;
 
@@ -96,7 +254,7 @@ export default function RaceClient() {
         setEditId(null);
         setShowForm(false);
         const updated = await fetch("/api/races").then(res => res.json());
-        setCarreras(updated);
+        setData(updated);
     };
 
     // Eliminar carrera
@@ -112,7 +270,7 @@ export default function RaceClient() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id: deleteId }),
             });
-            setCarreras(carreras.filter(c => c.id !== deleteId));
+            setData(data.filter(c => c.id !== deleteId));
             setShowConfirm(false);
             setDeleteId(null);
         }
@@ -124,30 +282,56 @@ export default function RaceClient() {
     };
 
     // Función para formatear la fecha
-    function formatFecha(fecha: string) {
+    function formatFecha(fecha: string): string {
         if (!fecha) return "";
-        const date = new Date(fecha);
-        if (isNaN(date.getTime())) return fecha;
-        const day = String(date.getDate()).padStart(2, "0");
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const year = date.getFullYear();
-        const hours = String(date.getHours()).padStart(2, "0");
-        const minutes = String(date.getMinutes()).padStart(2, "0");
-        return `${day}/${month}/${year} - ${hours}:${minutes}`;
+        const [datePart, timePart] = fecha.split("T");
+        if (!datePart || !timePart) return fecha;
+        const [hours, minutes] = timePart.split(":");
+        const [year, month, day] = datePart.split("-");
+        const formattedDate = `${day}/${month}/${year}`;
+
+        return `${formattedDate} - ${hours}:${minutes}`;
     }
 
-    function toInputDateTimeValue(fecha: string | undefined) {
+    function formatTiempo(tiempo: string): string {
+        if (!tiempo) return "00:00:00";
+
+        if (tiempo.includes("Z")) {
+            const timePart = tiempo.split("Z")[0];
+            return timePart.split(".")[0];
+        }
+
+        const [hours = 0, minutes = 0, seconds = 0] = tiempo.split(":").map(Number);
+        const formattedHours = String(hours || 0).padStart(2, "0");
+        const formattedMinutes = String(minutes || 0).padStart(2, "0");
+        const formattedSeconds = String(seconds || 0).padStart(2, "0");
+
+        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    }
+
+    function toInputDateTimeValue(fecha: string | undefined): string {
         if (!fecha) return "";
-        const date = new Date(fecha);
-        if (isNaN(date.getTime())) return "";
-        // Ajusta a la zona local si quieres, aquí se usa UTC para evitar desfases
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const day = String(date.getDate()).padStart(2, "0");
-        const hours = String(date.getHours()).padStart(2, "0");
-        const minutes = String(date.getMinutes()).padStart(2, "0");
+
+        const [datePart, timePart] = fecha.split("T");
+        if (!datePart || !timePart) return "";
+
+        const [year, month, day] = datePart.split("-");
+        const [hours, minutes] = timePart.split(":");
+
         return `${year}-${month}-${day}T${hours}:${minutes}`;
     }
+
+    const formatTimeInput = (value: string): string => {
+        const reversedValue = value.split("").reverse().join("");
+        const seconds = reversedValue.slice(0, 2).split("").reverse().join("");
+        const minutes = reversedValue.slice(2, 4).split("").reverse().join("");
+        const hours = reversedValue.slice(4, 6).split("").reverse().join("");
+        const formattedHours = hours.padStart(2, "0");
+        const formattedMinutes = minutes.padStart(2, "0");
+        const formattedSeconds = seconds.padStart(2, "0");
+
+        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    };
 
     return (
         <div className="p-4">
@@ -186,114 +370,300 @@ export default function RaceClient() {
                     </div>
                 </div>
             )}
-            <div className="grid grid-cols-3 items-center mb-10">
-                <div></div>
-                <h2 className="text-3xl font-bold text-white drop-shadow text-center">CARRERAS</h2>
-                <div className="flex justify-end mr-5">
+
+            {/* Mostrar información de la carrera */}
+            {!selectedRace && (
+                <>
+                    <div className="grid grid-cols-3 items-center mb-10">
+                        <div></div>
+                        <h2 className="text-3xl font-bold text-white drop-shadow text-center">CARRERAS</h2>
+                        <div className="flex justify-end mr-5">
+                            <button
+                                className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg
+                                    transition-all duration-200 ease-in-out
+                                    hover:shadow-xl hover:opacity-90
+                                    focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                                onClick={handleAdd}
+                            >
+                                Añadir carrera
+                            </button>
+                        </div>
+                    </div>
+                    <div className="flex justify-center">
+                        <div className="w-4/5">
+                            <div className="flex justify-end mb-4">
+                                <input
+                                    type="text"
+                                    placeholder="Buscar..."
+                                    value={searchTerm}
+                                    onChange={handleSearchChange}
+                                    className="w-1/5 border border-blue-400 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
+                                />
+                            </div>
+                            <div className="rounded-2xl shadow-xl backdrop-blur-md bg-white/10 border border-blue-400 pb-2 overflow-hidden">
+                                <div>
+                                    <table className="min-w-full table-auto border-collapse">
+                                        <colgroup>
+                                            {colWidths.map((w, i) => (
+                                                <col key={i} style={{ width: w ? `${w}px` : undefined }} />
+                                            ))}
+                                        </colgroup>
+                                        <thead className="bg-gray-700 text-blue-100">
+                                            <tr>
+                                                <th className="px-4 py-3 rounded-tl-2xl">Nombre</th>
+                                                <th className="px-4 py-3">Fecha</th>
+                                                <th className="px-4 py-3">Lugar</th>
+                                                <th className="px-4 py-3">Categoría</th>
+                                                <th className="px-4 py-3">Modalidad</th>
+                                                <th className="px-4 py-3">Descripción</th>
+                                                <th className="px-4 py-3">Acciones</th>
+                                                <th className="w-3 rounded-tr-2xl"></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div className="max-h-[65vh] overflow-y-scroll">
+                                    <table className="min-w-full table-auto border-collapse">
+                                        <tbody>
+                                            {filteredData.map((c, rowIdx) => (
+                                                <tr
+                                                    key={c.id}
+                                                    className="hover:bg-blue-900/20 transition cursor-pointer border-t border-blue-900/30"
+                                                    onClick={() => handleRowClick(c)}
+                                                >
+                                                    <td
+                                                        className="px-4 py-2"
+                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[0] = el; }}
+                                                    >
+                                                        {c.nombre}
+                                                    </td>
+                                                    <td
+                                                        className="px-4 py-2 text-center"
+                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[1] = el; }}
+                                                    >
+                                                        {formatFecha(c.fecha)}
+                                                    </td>
+                                                    <td
+                                                        className="px-4 py-2 text-center"
+                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[2] = el; }}
+                                                    >
+                                                        {c.lugar}
+                                                    </td>
+                                                    <td
+                                                        className="px-4 py-2 text-center"
+                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[3] = el; }}
+                                                    >
+                                                        {c.categoria}
+                                                    </td>
+                                                    <td
+                                                        className="px-4 py-2 text-center"
+                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[4] = el; }}
+                                                    >
+                                                        {c.modalidad.replace("_", "-")}
+                                                    </td>
+                                                    <td
+                                                        className="px-4 py-2"
+                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[5] = el; }}
+                                                    >
+                                                        {c.descripcion}
+                                                    </td>
+                                                    <td
+                                                        className="px-4 py-2"
+                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[6] = el; }}
+                                                    >
+                                                        <div className="flex justify-center gap-2 items-center">
+                                                            <button
+                                                                className="px-2 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold"
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    handleEdit(c);
+                                                                }}
+                                                            >
+                                                                Editar
+                                                            </button>
+                                                            <button
+                                                                className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold"
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    handleDelete(c.id);
+                                                                }}
+                                                            >
+                                                                Eliminar
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )}
+
+            {/* Mostrar detalles de la carrera seleccionada */}
+            {selectedRace && (
+                <div>
                     <button
-                        className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg
+                        className="mb-4 px-6 py-2 bg-gradient-to-r from-gray-700 to-gray-600 text-gray-200 rounded-lg font-semibold shadow-lg
                             transition-all duration-200 ease-in-out
                             hover:shadow-xl hover:opacity-90
-                            focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-                        onClick={handleAdd}
+                            focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
+                        onClick={() => {
+                            setSelectedRace(null);
+                            setSearchAthleteTerm("");
+                            setFilteredAthletes([]);
+                        }}
                     >
-                        Añadir carrera
+                        Volver
                     </button>
-                </div>
-            </div>
-            <div className="flex justify-center">
-                <div className="w-4/5 rounded-2xl shadow-xl backdrop-blur-md bg-white/10 border border-blue-400 pb-2 overflow-hidden">
-                    <div>
-                        <table className="min-w-full border-collapse" style={{ tableLayout: "auto" }}>
-                            <colgroup>
-                                {colWidths.map((w, i) => (
-                                    <col key={i} style={{ width: w ? `${w}px` : undefined }} />
-                                ))}
-                            </colgroup>
-                            <thead className="bg-gray-700 text-blue-100">
-                                <tr>
-                                    <th className="px-4 py-3 rounded-tl-2xl">Nombre</th>
-                                    <th className="px-4 py-3">Fecha</th>
-                                    <th className="px-4 py-3">Lugar</th>
-                                    <th className="px-4 py-3">Categoría</th>
-                                    <th className="px-4 py-3">Modalidad</th>
-                                    <th className="px-4 py-3">Descripción</th>
-                                    <th className="px-4 py-3">Acciones</th>
-                                    <th className="w-3 rounded-tr-2xl"></th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                    <div className="max-h-[70vh] overflow-y-scroll">
-                        <table className="min-w-full border-collapse" style={{ tableLayout: "auto" }}>
-                            <tbody>
-                                {carreras.map((c, rowIdx) => (
-                                    <tr
-                                        key={c.id}
-                                        className="hover:bg-blue-900/20 transition cursor-pointer border-t border-blue-900/30"
-                                    >
-                                        <td
-                                            className="px-4 py-2"
-                                            ref={el => { if (rowIdx === 0) firstRowRefs.current[0] = el; }}
-                                        >
-                                            {c.nombre}
-                                        </td>
-                                        <td
-                                            className="px-4 py-2 text-center"
-                                            ref={el => { if (rowIdx === 0) firstRowRefs.current[1] = el; }}
-                                        >
-                                            {formatFecha(c.fecha)}
-                                        </td>
-                                        <td
-                                            className="px-4 py-2 text-center"
-                                            ref={el => { if (rowIdx === 0) firstRowRefs.current[2] = el; }}
-                                        >
-                                            {c.lugar}
-                                        </td>
-                                        <td
-                                            className="px-4 py-2 text-center"
-                                            ref={el => { if (rowIdx === 0) firstRowRefs.current[3] = el; }}
-                                        >
-                                            {c.categoria}
-                                        </td>
-                                        <td
-                                            className="px-4 py-2 text-center"
-                                            ref={el => { if (rowIdx === 0) firstRowRefs.current[4] = el; }}
-                                        >
-                                            {c.modalidad.replace("_", "-")}
-                                        </td>
-                                        <td
-                                            className="px-4 py-2"
-                                            ref={el => { if (rowIdx === 0) firstRowRefs.current[5] = el; }}
-                                        >
-                                            {c.descripcion}
-                                        </td>
-                                        <td
-                                            className="px-4 py-2"
-                                            ref={el => { if (rowIdx === 0) firstRowRefs.current[6] = el; }}
-                                        >
-                                            <div className="flex justify-center gap-2 items-center">
-                                                <button
-                                                    className="px-2 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold"
-                                                    onClick={() => handleEdit(c)}
-                                                >
-                                                    Editar
-                                                </button>
+                    <h3 className="text-2xl font-extrabold mb-6 text-blue-400 text-center drop-shadow uppercase">
+                        {selectedRace.nombre}
+                    </h3>
+
+                    {/* Contenedor de dos columnas */}
+                    <div className="grid grid-cols-2 gap-6 items-start w-[70%] mx-auto">
+                        {/* Columna izquierda: Lista de participantes */}
+                        <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
+                            <h4 className="text-xl font-bold text-gray-300 mb-4">Participantes</h4>
+                            {selectedRace && selectedRace.participantes && selectedRace.participantes.length > 0 ? (
+                                <ul className="space-y-2 max-h-[60vh] overflow-y-auto">
+                                    {selectedRace.participantes
+                                        .sort((a, b) => a.posicion - b.posicion)
+                                        .map((participante, index) => (
+                                            <li
+                                                key={index}
+                                                className="flex justify-between items-center bg-gray-700 text-white px-4 py-2 rounded-lg shadow-lg"
+                                            >
+                                                <span>{participante.posicion}.</span>
+                                                <span>{participante.nombre} {participante.apellidos}</span>
+                                                <span>Tiempo: {formatTiempo(participante.tiempo)}</span>
                                                 <button
                                                     className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold"
-                                                    onClick={() => handleDelete(c.id)}
+                                                    onClick={() => handleDeleteParticipant(index)}
                                                 >
                                                     Eliminar
                                                 </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                            </li>
+                                        ))}
+                                </ul>
+                            ) : (
+                                <p className="text-gray-400 text-center">No hay participantes en esta carrera.</p>
+                            )}
+                        </div>
+
+                        {/* Columna derecha: Barra de búsqueda y formulario */}
+                        <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
+                            {!selectedAthlete && (
+                                <>
+                                    <h4 className="text-xl font-bold text-gray-300 mb-4">Buscar deportista</h4>
+                                    <input
+                                        type="text"
+                                        placeholder="Buscar deportista..."
+                                        value={searchAthleteTerm}
+                                        onChange={handleSearchAthleteChange}
+                                        onFocus={async () => {
+                                            if (filteredAthletes.length === 0) {
+                                                try {
+                                                    const response = await fetch(`/api/runners?search=`);
+                                                    const athletes = await response.json();
+                                                    setFilteredAthletes(athletes);
+                                                } catch (error) {
+                                                    console.error("Error al cargar la lista completa de deportistas:", error);
+                                                }
+                                            }
+                                        }}
+                                        className="w-full border border-blue-400 bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
+                                    />
+                                    <ul className="mt-4 space-y-2 max-h-[40vh] overflow-y-auto">
+                                        {Array.isArray(filteredAthletes) &&
+                                            filteredAthletes
+                                                .filter(
+                                                    (athlete) =>
+                                                        !selectedRace?.participantes.some(
+                                                            (participant) => participant.participante_id === athlete.numero_licencia
+                                                        )
+                                                )
+                                                .map((athlete) => (
+                                                    <li
+                                                        key={athlete.numero_licencia}
+                                                        className="flex justify-between items-center bg-gray-700 text-white px-4 py-2 rounded-lg shadow-lg cursor-pointer hover:bg-gray-600"
+                                                        onClick={() => handleSelectAthlete(athlete)}
+                                                    >
+                                                        {athlete.nombre} {athlete.apellidos}
+                                                    </li>
+                                                ))}
+                                    </ul>
+                                </>
+                            )}
+
+                            {selectedAthlete && (
+                                <form onSubmit={handleAddAthlete} className="space-y-4 mt-6 px-8">
+                                    <h4 className="text-xl font-bold text-gray-300 mb-4">Añadir resultado</h4>
+                                    <div>
+                                        <input type="hidden" name="numero_licencia" value={selectedAthlete.numero_licencia} />
+                                        <label className="block text-gray-400 mb-2">Nombre y apellidos</label>
+                                        <input
+                                            type="text"
+                                            value={`${selectedAthlete.nombre} ${selectedAthlete.apellidos}`}
+                                            disabled
+                                            className="w-full border border-blue-400 bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-gray-400 mb-2">Tiempo</label>
+                                        <input
+                                            type="text"
+                                            name="tiempo"
+                                            placeholder="Tiempo (hh:mm:ss)"
+                                            value={athleteForm.tiempo}
+                                            onChange={handleAthleteFormChange}
+                                            required
+                                            className="w-full border border-blue-400 bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-gray-400 mb-2">Posición</label>
+                                        <input
+                                            type="number"
+                                            name="posicion"
+                                            placeholder="Posición"
+                                            value={athleteForm.posicion}
+                                            onChange={handleAthleteFormChange}
+                                            required
+                                            min="1"
+                                            className="w-full border border-blue-400 bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
+                                        />
+                                    </div>
+                                    <div className="flex justify-end gap-4">
+                                        <button
+                                            type="submit"
+                                            className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg
+                                                       transition-all duration-200 ease-in-out
+                                                       hover:shadow-xl hover:opacity-90
+                                                       focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                                        >
+                                            Añadir
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className="px-6 py-2 bg-gradient-to-r from-gray-700 to-gray-600 text-gray-200 rounded-lg font-semibold shadow-lg
+                                                       transition-all duration-200 ease-in-out
+                                                       hover:shadow-xl hover:opacity-90
+                                                       focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
+                                            onClick={handleCancelAddAthlete}
+                                        >
+                                            Cancelar
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
 
             {/* Formulario flotante con animación */}
             {showForm && (

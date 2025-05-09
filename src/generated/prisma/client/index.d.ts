@@ -2601,7 +2601,6 @@ export namespace Prisma {
     nombre: string | null
     apellidos: string | null
     dni: string | null
-    email: string | null
     telefono: bigint | null
     fecha_nacimiento: Date | null
     peso: Decimal | null
@@ -2616,7 +2615,6 @@ export namespace Prisma {
     nombre: string | null
     apellidos: string | null
     dni: string | null
-    email: string | null
     telefono: bigint | null
     fecha_nacimiento: Date | null
     peso: Decimal | null
@@ -2631,7 +2629,6 @@ export namespace Prisma {
     nombre: number
     apellidos: number
     dni: number
-    email: number
     telefono: number
     fecha_nacimiento: number
     peso: number
@@ -2664,7 +2661,6 @@ export namespace Prisma {
     nombre?: true
     apellidos?: true
     dni?: true
-    email?: true
     telefono?: true
     fecha_nacimiento?: true
     peso?: true
@@ -2679,7 +2675,6 @@ export namespace Prisma {
     nombre?: true
     apellidos?: true
     dni?: true
-    email?: true
     telefono?: true
     fecha_nacimiento?: true
     peso?: true
@@ -2694,7 +2689,6 @@ export namespace Prisma {
     nombre?: true
     apellidos?: true
     dni?: true
-    email?: true
     telefono?: true
     fecha_nacimiento?: true
     peso?: true
@@ -2796,7 +2790,6 @@ export namespace Prisma {
     nombre: string | null
     apellidos: string | null
     dni: string | null
-    email: string | null
     telefono: bigint | null
     fecha_nacimiento: Date | null
     peso: Decimal | null
@@ -2830,7 +2823,6 @@ export namespace Prisma {
     nombre?: boolean
     apellidos?: boolean
     dni?: boolean
-    email?: boolean
     telefono?: boolean
     fecha_nacimiento?: boolean
     peso?: boolean
@@ -2851,7 +2843,6 @@ export namespace Prisma {
     nombre?: boolean
     apellidos?: boolean
     dni?: boolean
-    email?: boolean
     telefono?: boolean
     fecha_nacimiento?: boolean
     peso?: boolean
@@ -2861,7 +2852,7 @@ export namespace Prisma {
     user_id?: boolean
   }
 
-  export type deportistasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"numero_licencia" | "nombre" | "apellidos" | "dni" | "email" | "telefono" | "fecha_nacimiento" | "peso" | "altura" | "ftp" | "pulso" | "user_id", ExtArgs["result"]["deportistas"]>
+  export type deportistasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"numero_licencia" | "nombre" | "apellidos" | "dni" | "telefono" | "fecha_nacimiento" | "peso" | "altura" | "ftp" | "pulso" | "user_id", ExtArgs["result"]["deportistas"]>
   export type deportistasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | deportistas$userArgs<ExtArgs>
     entrenadores?: boolean | deportistas$entrenadoresArgs<ExtArgs>
@@ -2881,7 +2872,6 @@ export namespace Prisma {
       nombre: string | null
       apellidos: string | null
       dni: string | null
-      email: string | null
       telefono: bigint | null
       fecha_nacimiento: Date | null
       peso: Prisma.Decimal | null
@@ -3265,7 +3255,6 @@ export namespace Prisma {
     readonly nombre: FieldRef<"deportistas", 'String'>
     readonly apellidos: FieldRef<"deportistas", 'String'>
     readonly dni: FieldRef<"deportistas", 'String'>
-    readonly email: FieldRef<"deportistas", 'String'>
     readonly telefono: FieldRef<"deportistas", 'BigInt'>
     readonly fecha_nacimiento: FieldRef<"deportistas", 'DateTime'>
     readonly peso: FieldRef<"deportistas", 'Decimal'>
@@ -3728,7 +3717,6 @@ export namespace Prisma {
     nombre: string | null
     apellidos: string | null
     dni: string | null
-    email: string | null
     telefono: bigint | null
     fecha_nacimiento: Date | null
     user_id: string | null
@@ -3740,7 +3728,6 @@ export namespace Prisma {
     nombre: string | null
     apellidos: string | null
     dni: string | null
-    email: string | null
     telefono: bigint | null
     fecha_nacimiento: Date | null
     user_id: string | null
@@ -3752,7 +3739,6 @@ export namespace Prisma {
     nombre: number
     apellidos: number
     dni: number
-    email: number
     telefono: number
     fecha_nacimiento: number
     user_id: number
@@ -3776,7 +3762,6 @@ export namespace Prisma {
     nombre?: true
     apellidos?: true
     dni?: true
-    email?: true
     telefono?: true
     fecha_nacimiento?: true
     user_id?: true
@@ -3788,7 +3773,6 @@ export namespace Prisma {
     nombre?: true
     apellidos?: true
     dni?: true
-    email?: true
     telefono?: true
     fecha_nacimiento?: true
     user_id?: true
@@ -3800,7 +3784,6 @@ export namespace Prisma {
     nombre?: true
     apellidos?: true
     dni?: true
-    email?: true
     telefono?: true
     fecha_nacimiento?: true
     user_id?: true
@@ -3899,7 +3882,6 @@ export namespace Prisma {
     nombre: string | null
     apellidos: string | null
     dni: string | null
-    email: string | null
     telefono: bigint | null
     fecha_nacimiento: Date | null
     user_id: string | null
@@ -3930,7 +3912,6 @@ export namespace Prisma {
     nombre?: boolean
     apellidos?: boolean
     dni?: boolean
-    email?: boolean
     telefono?: boolean
     fecha_nacimiento?: boolean
     user_id?: boolean
@@ -3946,14 +3927,13 @@ export namespace Prisma {
     nombre?: boolean
     apellidos?: boolean
     dni?: boolean
-    email?: boolean
     telefono?: boolean
     fecha_nacimiento?: boolean
     user_id?: boolean
     deportista_id?: boolean
   }
 
-  export type entrenadoresOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "apellidos" | "dni" | "email" | "telefono" | "fecha_nacimiento" | "user_id" | "deportista_id", ExtArgs["result"]["entrenadores"]>
+  export type entrenadoresOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "apellidos" | "dni" | "telefono" | "fecha_nacimiento" | "user_id" | "deportista_id", ExtArgs["result"]["entrenadores"]>
   export type entrenadoresInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | entrenadores$userArgs<ExtArgs>
     deportistas?: boolean | entrenadores$deportistasArgs<ExtArgs>
@@ -3970,7 +3950,6 @@ export namespace Prisma {
       nombre: string | null
       apellidos: string | null
       dni: string | null
-      email: string | null
       telefono: bigint | null
       fecha_nacimiento: Date | null
       user_id: string | null
@@ -4350,7 +4329,6 @@ export namespace Prisma {
     readonly nombre: FieldRef<"entrenadores", 'String'>
     readonly apellidos: FieldRef<"entrenadores", 'String'>
     readonly dni: FieldRef<"entrenadores", 'String'>
-    readonly email: FieldRef<"entrenadores", 'String'>
     readonly telefono: FieldRef<"entrenadores", 'BigInt'>
     readonly fecha_nacimiento: FieldRef<"entrenadores", 'DateTime'>
     readonly user_id: FieldRef<"entrenadores", 'String'>
@@ -9759,7 +9737,6 @@ export namespace Prisma {
     nombre: 'nombre',
     apellidos: 'apellidos',
     dni: 'dni',
-    email: 'email',
     telefono: 'telefono',
     fecha_nacimiento: 'fecha_nacimiento',
     peso: 'peso',
@@ -9777,7 +9754,6 @@ export namespace Prisma {
     nombre: 'nombre',
     apellidos: 'apellidos',
     dni: 'dni',
-    email: 'email',
     telefono: 'telefono',
     fecha_nacimiento: 'fecha_nacimiento',
     user_id: 'user_id',
@@ -9894,7 +9870,6 @@ export namespace Prisma {
     nombre: 'nombre',
     apellidos: 'apellidos',
     dni: 'dni',
-    email: 'email',
     user_id: 'user_id'
   };
 
@@ -9905,7 +9880,6 @@ export namespace Prisma {
     nombre: 'nombre',
     apellidos: 'apellidos',
     dni: 'dni',
-    email: 'email',
     user_id: 'user_id',
     deportista_id: 'deportista_id'
   };
@@ -10135,7 +10109,6 @@ export namespace Prisma {
     nombre?: StringNullableFilter<"deportistas"> | string | null
     apellidos?: StringNullableFilter<"deportistas"> | string | null
     dni?: StringNullableFilter<"deportistas"> | string | null
-    email?: StringNullableFilter<"deportistas"> | string | null
     telefono?: BigIntNullableFilter<"deportistas"> | bigint | number | null
     fecha_nacimiento?: DateTimeNullableFilter<"deportistas"> | Date | string | null
     peso?: DecimalNullableFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
@@ -10153,7 +10126,6 @@ export namespace Prisma {
     nombre?: SortOrderInput | SortOrder
     apellidos?: SortOrderInput | SortOrder
     dni?: SortOrderInput | SortOrder
-    email?: SortOrderInput | SortOrder
     telefono?: SortOrderInput | SortOrder
     fecha_nacimiento?: SortOrderInput | SortOrder
     peso?: SortOrderInput | SortOrder
@@ -10175,7 +10147,6 @@ export namespace Prisma {
     nombre?: StringNullableFilter<"deportistas"> | string | null
     apellidos?: StringNullableFilter<"deportistas"> | string | null
     dni?: StringNullableFilter<"deportistas"> | string | null
-    email?: StringNullableFilter<"deportistas"> | string | null
     telefono?: BigIntNullableFilter<"deportistas"> | bigint | number | null
     fecha_nacimiento?: DateTimeNullableFilter<"deportistas"> | Date | string | null
     peso?: DecimalNullableFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
@@ -10193,7 +10164,6 @@ export namespace Prisma {
     nombre?: SortOrderInput | SortOrder
     apellidos?: SortOrderInput | SortOrder
     dni?: SortOrderInput | SortOrder
-    email?: SortOrderInput | SortOrder
     telefono?: SortOrderInput | SortOrder
     fecha_nacimiento?: SortOrderInput | SortOrder
     peso?: SortOrderInput | SortOrder
@@ -10216,7 +10186,6 @@ export namespace Prisma {
     nombre?: StringNullableWithAggregatesFilter<"deportistas"> | string | null
     apellidos?: StringNullableWithAggregatesFilter<"deportistas"> | string | null
     dni?: StringNullableWithAggregatesFilter<"deportistas"> | string | null
-    email?: StringNullableWithAggregatesFilter<"deportistas"> | string | null
     telefono?: BigIntNullableWithAggregatesFilter<"deportistas"> | bigint | number | null
     fecha_nacimiento?: DateTimeNullableWithAggregatesFilter<"deportistas"> | Date | string | null
     peso?: DecimalNullableWithAggregatesFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
@@ -10234,7 +10203,6 @@ export namespace Prisma {
     nombre?: StringNullableFilter<"entrenadores"> | string | null
     apellidos?: StringNullableFilter<"entrenadores"> | string | null
     dni?: StringNullableFilter<"entrenadores"> | string | null
-    email?: StringNullableFilter<"entrenadores"> | string | null
     telefono?: BigIntNullableFilter<"entrenadores"> | bigint | number | null
     fecha_nacimiento?: DateTimeNullableFilter<"entrenadores"> | Date | string | null
     user_id?: StringNullableFilter<"entrenadores"> | string | null
@@ -10248,7 +10216,6 @@ export namespace Prisma {
     nombre?: SortOrderInput | SortOrder
     apellidos?: SortOrderInput | SortOrder
     dni?: SortOrderInput | SortOrder
-    email?: SortOrderInput | SortOrder
     telefono?: SortOrderInput | SortOrder
     fecha_nacimiento?: SortOrderInput | SortOrder
     user_id?: SortOrderInput | SortOrder
@@ -10266,7 +10233,6 @@ export namespace Prisma {
     nombre?: StringNullableFilter<"entrenadores"> | string | null
     apellidos?: StringNullableFilter<"entrenadores"> | string | null
     dni?: StringNullableFilter<"entrenadores"> | string | null
-    email?: StringNullableFilter<"entrenadores"> | string | null
     telefono?: BigIntNullableFilter<"entrenadores"> | bigint | number | null
     fecha_nacimiento?: DateTimeNullableFilter<"entrenadores"> | Date | string | null
     user_id?: StringNullableFilter<"entrenadores"> | string | null
@@ -10280,7 +10246,6 @@ export namespace Prisma {
     nombre?: SortOrderInput | SortOrder
     apellidos?: SortOrderInput | SortOrder
     dni?: SortOrderInput | SortOrder
-    email?: SortOrderInput | SortOrder
     telefono?: SortOrderInput | SortOrder
     fecha_nacimiento?: SortOrderInput | SortOrder
     user_id?: SortOrderInput | SortOrder
@@ -10300,7 +10265,6 @@ export namespace Prisma {
     nombre?: StringNullableWithAggregatesFilter<"entrenadores"> | string | null
     apellidos?: StringNullableWithAggregatesFilter<"entrenadores"> | string | null
     dni?: StringNullableWithAggregatesFilter<"entrenadores"> | string | null
-    email?: StringNullableWithAggregatesFilter<"entrenadores"> | string | null
     telefono?: BigIntNullableWithAggregatesFilter<"entrenadores"> | bigint | number | null
     fecha_nacimiento?: DateTimeNullableWithAggregatesFilter<"entrenadores"> | Date | string | null
     user_id?: StringNullableWithAggregatesFilter<"entrenadores"> | string | null
@@ -10790,7 +10754,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     peso?: Decimal | DecimalJsLike | number | string | null
@@ -10807,7 +10770,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     peso?: Decimal | DecimalJsLike | number | string | null
@@ -10824,7 +10786,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -10841,7 +10802,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -10858,7 +10818,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     peso?: Decimal | DecimalJsLike | number | string | null
@@ -10873,7 +10832,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -10887,7 +10845,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -10902,7 +10859,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     user?: userCreateNestedOneWithoutEntrenadoresInput
@@ -10914,7 +10870,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     user_id?: string | null
@@ -10926,7 +10881,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: userUpdateOneWithoutEntrenadoresNestedInput
@@ -10938,7 +10892,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10950,7 +10903,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     user_id?: string | null
@@ -10962,7 +10914,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -10972,7 +10923,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11625,7 +11575,6 @@ export namespace Prisma {
     nombre?: SortOrder
     apellidos?: SortOrder
     dni?: SortOrder
-    email?: SortOrder
     telefono?: SortOrder
     fecha_nacimiento?: SortOrder
     peso?: SortOrder
@@ -11648,7 +11597,6 @@ export namespace Prisma {
     nombre?: SortOrder
     apellidos?: SortOrder
     dni?: SortOrder
-    email?: SortOrder
     telefono?: SortOrder
     fecha_nacimiento?: SortOrder
     peso?: SortOrder
@@ -11663,7 +11611,6 @@ export namespace Prisma {
     nombre?: SortOrder
     apellidos?: SortOrder
     dni?: SortOrder
-    email?: SortOrder
     telefono?: SortOrder
     fecha_nacimiento?: SortOrder
     peso?: SortOrder
@@ -11756,7 +11703,6 @@ export namespace Prisma {
     nombre?: SortOrder
     apellidos?: SortOrder
     dni?: SortOrder
-    email?: SortOrder
     telefono?: SortOrder
     fecha_nacimiento?: SortOrder
     user_id?: SortOrder
@@ -11773,7 +11719,6 @@ export namespace Prisma {
     nombre?: SortOrder
     apellidos?: SortOrder
     dni?: SortOrder
-    email?: SortOrder
     telefono?: SortOrder
     fecha_nacimiento?: SortOrder
     user_id?: SortOrder
@@ -11785,7 +11730,6 @@ export namespace Prisma {
     nombre?: SortOrder
     apellidos?: SortOrder
     dni?: SortOrder
-    email?: SortOrder
     telefono?: SortOrder
     fecha_nacimiento?: SortOrder
     user_id?: SortOrder
@@ -12796,7 +12740,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     user?: userCreateNestedOneWithoutEntrenadoresInput
@@ -12807,7 +12750,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     user_id?: string | null
@@ -12918,7 +12860,6 @@ export namespace Prisma {
     nombre?: StringNullableFilter<"entrenadores"> | string | null
     apellidos?: StringNullableFilter<"entrenadores"> | string | null
     dni?: StringNullableFilter<"entrenadores"> | string | null
-    email?: StringNullableFilter<"entrenadores"> | string | null
     telefono?: BigIntNullableFilter<"entrenadores"> | bigint | number | null
     fecha_nacimiento?: DateTimeNullableFilter<"entrenadores"> | Date | string | null
     user_id?: StringNullableFilter<"entrenadores"> | string | null
@@ -12995,7 +12936,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     peso?: Decimal | DecimalJsLike | number | string | null
@@ -13011,7 +12951,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     peso?: Decimal | DecimalJsLike | number | string | null
@@ -13084,7 +13023,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -13100,7 +13038,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -13187,7 +13124,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     peso?: Decimal | DecimalJsLike | number | string | null
@@ -13203,7 +13139,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     peso?: Decimal | DecimalJsLike | number | string | null
@@ -13266,7 +13201,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -13282,7 +13216,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -13298,7 +13231,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     peso?: Decimal | DecimalJsLike | number | string | null
@@ -13314,7 +13246,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     peso?: Decimal | DecimalJsLike | number | string | null
@@ -13340,7 +13271,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     deportistas?: deportistasCreateNestedOneWithoutEntrenadoresInput
@@ -13351,7 +13281,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     deportista_id?: string | null
@@ -13391,7 +13320,6 @@ export namespace Prisma {
     nombre?: StringNullableFilter<"deportistas"> | string | null
     apellidos?: StringNullableFilter<"deportistas"> | string | null
     dni?: StringNullableFilter<"deportistas"> | string | null
-    email?: StringNullableFilter<"deportistas"> | string | null
     telefono?: BigIntNullableFilter<"deportistas"> | bigint | number | null
     fecha_nacimiento?: DateTimeNullableFilter<"deportistas"> | Date | string | null
     peso?: DecimalNullableFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
@@ -13422,7 +13350,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     user_id?: string | null
@@ -13443,7 +13370,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: userUpdateOneWithoutEntrenadoresNestedInput
@@ -13454,7 +13380,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13465,7 +13390,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13546,7 +13470,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     peso?: Decimal | DecimalJsLike | number | string | null
@@ -13560,7 +13483,6 @@ export namespace Prisma {
     nombre?: string | null
     apellidos?: string | null
     dni?: string | null
-    email?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     deportista_id?: string | null
@@ -13571,7 +13493,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -13587,7 +13508,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -13603,7 +13523,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -13617,7 +13536,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deportistas?: deportistasUpdateOneWithoutEntrenadoresNestedInput
@@ -13628,7 +13546,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deportista_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13639,7 +13556,6 @@ export namespace Prisma {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellidos?: NullableStringFieldUpdateOperationsInput | string | null
     dni?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deportista_id?: NullableStringFieldUpdateOperationsInput | string | null
