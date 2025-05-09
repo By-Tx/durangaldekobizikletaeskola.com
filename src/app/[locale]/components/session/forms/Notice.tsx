@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef,useState } from 'react'
-
+import { API_URL } from "@/lib/config";
 
 
 export default function ClientForm() {
@@ -44,10 +44,7 @@ export default function ClientForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
-    const API_URL =
-      process.env.NODE_ENV === "development"
-        ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
-        : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
+    
   
     const imageCover = imageCoverRef.current?.files?.[0];
     const imagePage = imagePageRef.current?.files?.[0];

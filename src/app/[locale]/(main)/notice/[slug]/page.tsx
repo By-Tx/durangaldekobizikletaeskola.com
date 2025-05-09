@@ -1,14 +1,11 @@
 import NoticeTemplate from "@/app/[locale]/components/mainPage/noticeComponents/noticeTemplate";
 import { NewsProps } from "@/app/[locale]/components/mainPage/noticeComponents/noticeTemplate";
+import { API_URL } from "@/lib/config";
 
 export default async function Page(props: { params: Promise<{ slug: string; locale: string }> }) {
   const params = await props.params;
   const slug= await params.slug;
-  const API_URL =
-  process.env.NODE_ENV === "development"
-    ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
-    : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
-
+  
   const res = await fetch(`${API_URL}/api/RenderNews`,{
     cache: "no-store",
     method: "POST",

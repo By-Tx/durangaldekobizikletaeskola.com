@@ -2,7 +2,7 @@
 import News from "@/app/[locale]/components/mainPage/noticeComponents/notices";
 import Title from "@/app/[locale]/components/mainPage/Titles/Title";
 import Section from "@/app/[locale]/components/main/Section";
-
+import { API_URL } from "@/lib/config";
 
 import { getLocale } from "next-intl/server";
 import { createTranslator } from "next-intl";
@@ -47,10 +47,7 @@ async function fetchNotices(locale: string): Promise<Notice[]> {
 
 
 async function fetchMessages(locale: string) {
-  const API_URL =
-    process.env.NODE_ENV === "development"
-      ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
-      : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
+  
 
   const res = await fetch(`${API_URL}/api/translations?lang=${locale}`, {
     cache: "no-store",
