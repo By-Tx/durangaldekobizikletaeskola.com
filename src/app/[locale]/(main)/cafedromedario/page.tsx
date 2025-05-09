@@ -14,41 +14,47 @@ export default function CafeDromedario() {
 
     const slideshowImages = [
         {
-            url: 'https://photos.txuli.com/duranguesa/Duranguesa_3.jpg',
+            url: 'https://photos.txuli.com/duranguesa/media/foto11.webp',
     
         },
         {
-            url: 'https://photos.txuli.com/duranguesa/foto3.jpg',
+            url: 'https://photos.txuli.com/duranguesa/media/foto2.webp',
+
+        },
+        {
+            url: 'https://photos.txuli.com/duranguesa/media/foto8.webp',
     
         },
         {
-            url: 'https://photos.txuli.com/duranguesa/fotomtb.jpg',
+            url: 'https://photos.txuli.com/duranguesa/media/foto1.webp',
+
         },
         {
-            url: 'https://photos.txuli.com/duranguesa/foto2.jpg',
+            url: 'https://photos.txuli.com/duranguesa/media/foto13.webp',
     
         },
+
     ];
 
     const modalidadesImages = [
         {
-          url: 'https://photos.txuli.com/duranguesa/mainPage/foto1.jpg',
+          url: 'https://photos.txuli.com/duranguesa/media/foto1_alt.webp',
           title: t("sectionMtbTitle"),
           subtitle: t("sectionMtbP1"),
           subtitle2: t("sectionMtbP2"),
-          height: 250, 
+          height: 350, 
         },
         {
-          url: 'https://photos.txuli.com/duranguesa/mainPage/foto2.jpg',
-          title: "PISTA",
-          subtitle: t("sectionPistaP1"),
-          height: 250,
-        },
-        {
-          url: 'https://photos.txuli.com/duranguesa/mainPage/foto3.jpg',
+          url: 'https://photos.txuli.com/duranguesa/media/foto9_alt.webp',
           title: "CX",
           subtitle: t("sectionCXP1"),
-          height: 250,
+          height: 350,
+        },
+        { 
+          url: 'https://photos.txuli.com/duranguesa/media/foto10_alt.webp',
+          title: "PISTA",
+          subtitle: t("sectionPistaP1"),
+          height: 350,
         },
       ];
 
@@ -81,7 +87,7 @@ export default function CafeDromedario() {
                 const isEven = idx % 2 === 0;
 
                 return (
-                <div key={idx} className="relative w-full mb-10" style={{ height: `${section.height}px` }}> 
+                <div key={idx} className="relative w-full mb-7" style={{ height: `${section.height}px` }}> 
                     <div >
 
                     </div>
@@ -89,12 +95,12 @@ export default function CafeDromedario() {
                     <div 
                         style={{ 
                             backgroundImage: `url(${section.url})`, 
-                            borderRadius: isEven ? "50px 0px 0px 50px" : "0 50px 50px 0" 
+                            borderRadius: isEven ? "100px 0px 0px 100px" : "0 100px 100px 0" 
                         }} 
                         className={`absolute inset-0 bg-cover bg-center filter brightness-50 flex
                             ${isEven 
-                                ? "justify-end left-1/4 w-3/4 rounded-l-lg" 
-                                : "justify-start right-1/4 w-3/4 rounded-r-lg"
+                                ? " ml-7 rounded-l-lg" 
+                                : " mr-7 rounded-r-lg"
                             }
                         `}>
                     </div>

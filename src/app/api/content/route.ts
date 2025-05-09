@@ -1,106 +1,152 @@
-
-import fs from 'fs/promises';
-import path from 'path';
 import { NextRequest } from 'next/server';
+import fs from 'fs';
+import fsp from 'fs/promises';
+import path from 'path';
+import Busboy from 'busboy';
+import { Readable } from 'stream';
 
-export async function POST(req: NextRequest) {
-    //path the data from files
-    const filePath = path.join(process.cwd(), 'public', 'notices.json');
-    const filePathEs = path.join(process.cwd(), 'messages', 'es.json');
-    const filePathEus = path.join(process.cwd(), 'messages', 'eus.json');
-    //read the data from the request
-    const newNotice = await req.json();
+export async function POST(req: NextRequest): Promise<Response> {
+  return new Promise<Response>((resolve) => {
+    const fields: Record<string, string> = {};
+    const uploads: Record<string, string> = {};
 
-    try {
-        //read an save the data from the request
-        const jsonData = await fs.readFile(filePath, 'utf-8');
-        const jsonDataTraductionEs = await fs.readFile(filePathEs, 'utf-8');
-        const jsonDataTraductionEus = await fs.readFile(filePathEus, 'utf-8');
-        //parse data from the files
-        const dataEs = JSON.parse(jsonDataTraductionEs);
-        const dataEus = JSON.parse(jsonDataTraductionEus);
+    const busboy = Busboy({
+      headers: Object.fromEntries(req.headers),
+    });
+
+    busboy.on('file', (fieldname, file) => {
+      const safeFilename = `${Date.now()}`;
+      const destPath = `/www/wwwroot/photos.txuli.com/duranguesa/notices/${safeFilename}.webp`;
+      const writeStream = fs.createWriteStream(destPath);
+
+      file.pipe(writeStream);
+      file.on('end', () => {
+        fs.chmodSync(destPath, 0o644);
+        uploads[fieldname] = `https://photos.txuli.com/duranguesa/notices/${safeFilename}.webp`;
+      });
+    });
+
+    busboy.on('field', (fieldname, value) => {
+      fields[fieldname] = value;
+    });
+
+    busboy.on('finish', async () => {
+      try {
+        const root = process.cwd();
+        const filePath = path.join(root, 'public', 'notices.json');
+        const filePathEs = path.join(root, 'messages', 'es.json');
+        const filePathEus = path.join(root, 'messages', 'eus.json');
+
+        const [jsonData, jsonEs, jsonEus] = await Promise.all([
+          fsp.readFile(filePath, 'utf-8'),
+          fsp.readFile(filePathEs, 'utf-8'),
+          fsp.readFile(filePathEus, 'utf-8'),
+        ]);
+
         const data = JSON.parse(jsonData);
-        //select the object data from the 
+        const dataEs = JSON.parse(jsonEs);
+        const dataEus = JSON.parse(jsonEus);
+
         const noticeComponent = dataEs.noticeComponent;
         const noticeComponentEus = dataEus.noticeComponent;
 
-
-
-        //add the cover data to the file notices.json
-        const lastKey = Object.keys(dataEs.noticeComponent).pop();
-
+        const lastKey = Object.keys(noticeComponent).pop();
         const number = lastKey ? parseInt(lastKey.replace('noticeTitle', '')) + 1 : 1;
-        const newNumber= number
-        const filteredNotice = {
-            
-            date: newNotice.date,
-            href: "/cronica" + newNotice.date,
-            imageSrc: newNotice.imageSrc,
-            altKey: "altKey" + newNumber,
-            titleKey: "noticeTitle" + newNumber,
-            categoryKey: "noticeCategory" + newNumber,
+        const slug = `cronica${fields.date}`;
 
+        const filteredNotice = {
+          date: fields.date,
+          slug,
+          image: uploads['file'],
+          altKey: `altKey${number}`,
+          titleKey: `noticeTitle${number}`,
+          categoryKey: `noticeCategory${number}`,
+          imagePage: uploads['filePage'],
+          translationKey: [`${slug}Page`],
         };
-        
-        //add the translation data of cover data to the file eus.json
-        const tanslationNoticeCoverEus = {
-            ['AltImage' + newNumber]: newNotice.altKeyEus,
-            ['noticeTitle' + newNumber]: newNotice.titleKeyEus,
-            ['noticeCategory' + newNumber]: newNotice.categoryKeyEus,
-            ['date' + newNumber]: newNotice.date,
-            translation: ['cronica' + newNotice.date]
-        }
-        //add the translation data of cover data to the file es.json
-        const tanslationNoticeCoverEs = {
-            ['AltImage' + newNumber]: newNotice.altKey,
-            ['noticeTitle' + newNumber]: newNotice.titleKey,
-            ['noticeCategory' + newNumber]: newNotice.categoryKey,
-            ['date' + newNumber]: newNotice.date,
-            translation: ['cronica' + newNotice.date]
-        }
-        //add translation data info the file eus.json
-        const translationNoticeEus = {
-            ['cronica' + newNotice.date]: {
-                "title": newNotice.titleKeyEus,
-                "subtitle": newNotice.subtitleKeyEus,
-                "p1": newNotice.p1Eus,
-                "p2": newNotice.p2Eus,
-                "p3": newNotice.p3Eus,
-                "p4": newNotice.p4Eus,
-            }
-        }
-        //add translation data info the file es.json
+
         const translationNotice = {
-            ['cronica' + newNotice.date]: {
-                "title": newNotice.titleKey,
-                "subtitle": newNotice.subtitleKey,
-                "p1": newNotice.p1,
-                "p2": newNotice.p2,
-                "p3": newNotice.p3,
-                "p4": newNotice.p4,
-            }
-        }
-        
-        //add the translation data of cover data to the file es.json
-        Object.assign(noticeComponent, tanslationNoticeCoverEs);
-        Object.assign(noticeComponentEus, tanslationNoticeCoverEus);
+          [`${slug}Page`]: {
+            title: fields.titleKey,
+            subTitle: fields.subtitleKey,
+            p1: fields.p1,
+            p2: fields.p2,
+            p3: fields.p3,
+            p4: fields.p4,
+            altImage: fields.altKey,
+          },
+        };
+
+        const translationNoticeEus = {
+          [`${slug}Page`]: {
+            title: fields.titleKeyEus,
+            subTitle: fields.subtitleKeyEus,
+            p1: fields.p1Eus,
+            p2: fields.p2Eus,
+            p3: fields.p3Eus,
+            p4: fields.p4Eus,
+            altImage: fields.altKeyEus,
+          },
+        };
+
+        // sum up of the notices
+        Object.assign(noticeComponent, {
+          [`altKey${number}`]: fields.altKey,
+          [`noticeTitle${number}`]: fields.titleKey,
+          [`noticeCategory${number}`]: fields.categoryKey,
+          [`date${number}`]: fields.date,
+          translation: [slug],
+        });
+
+        Object.assign(noticeComponentEus, {
+          [`altKey${number}`]: fields.altKeyEus,
+          [`noticeTitle${number}`]: fields.titleKeyEus,
+          [`noticeCategory${number}`]: fields.categoryKeyEus,
+          [`date${number}`]: fields.date,
+          translation: [slug],
+        });
+
         Object.assign(dataEs, translationNotice);
         Object.assign(dataEus, translationNoticeEus);
-        
-        
-        // Agregar el nuevo aviso a la lista existente
+
         const updatedData = [...data, filteredNotice];
-        
-        try {
-               await fs.writeFile(filePath, JSON.stringify(updatedData, null, 2));  // save the cover data in the file
-               await fs.writeFile(filePathEs, JSON.stringify(dataEs, null, 2));
-               await fs.writeFile(filePathEus, JSON.stringify(dataEus, null, 2));
-            return new Response(JSON.stringify({ message: 'Nueva noticia agregada correctamente' }), { status: 200 });
-        } catch (err) {
-            return new Response(JSON.stringify({ message: 'Error al guardar el archivo', error: err }), { status: 500 });
+
+        await Promise.all([
+          fsp.writeFile(filePath, JSON.stringify(updatedData, null, 2)),
+          fsp.writeFile(filePathEs, JSON.stringify(dataEs, null, 2)),
+          fsp.writeFile(filePathEus, JSON.stringify(dataEus, null, 2)),
+        ]);
+
+        resolve(
+          new Response(
+            JSON.stringify({
+              message: 'Noticia creada correctamente',
+              imageUrl: uploads['file'],
+              imagePageUrl: uploads['filePage'],
+            }),
+            { status: 200, headers: { 'Content-Type': 'application/json' } }
+          )
+        );
+      } catch (error) {
+        console.error('Error al guardar los datos:', error);
+        resolve(new Response('Error interno', { status: 500 }));
+      }
+    });
+
+    
+    const reader = req.body?.getReader();
+    const nodeStream = new Readable({
+      async read() {
+        if (!reader) return this.push(null);
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          this.push(value);
         }
-    } catch (error) {
-        console.log("Error:", error);
-        return new Response(JSON.stringify({ message: 'Error al leer el archivo', error: error }), { status: 500 });
-    }
+        this.push(null);
+      },
+    });
+
+    nodeStream.pipe(busboy);
+  });
 }

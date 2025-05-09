@@ -4,8 +4,8 @@ import Section from "@/app/[locale]/components/main/Section";
 
 
 export interface NewsItem {
-  href: string;
-  imageSrc: string;
+  slug: string;
+  image: string;
   alt: string;
   date: string;
   title: string;
@@ -15,6 +15,7 @@ export interface NewsItem {
 interface NewsProps {
   items: NewsItem[];
 }
+
 
 export default function News({ items }: NewsProps) {
   return (
@@ -26,9 +27,9 @@ export default function News({ items }: NewsProps) {
             key={index}
             className="group relative h-96 w-86 hover:w-100  transition-all duration-300 ease-in-out  mx-auto mb-20 xl:mb-20 "
           >
-            <Link href={item.href} className="hover:cursor-pointer">
+            <Link key={item.slug} href={`/notice/${item.slug}`} className="hover:cursor-pointer">
               <Image
-                src={item.imageSrc}
+                src={item.image}
                 alt={item.alt}
                 width={400}
                 height={240}

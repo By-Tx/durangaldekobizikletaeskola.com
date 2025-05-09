@@ -34,10 +34,10 @@
         "p2": "El campeonato, que tuvo lugar en los paisajes escarpados de Euskadi, requería gran disciplina y esfuerzo. Ander mantuvo un rendimiento impecable desde el principio hasta el final y cruzó la meta como campeón tras una espectacular carrera.",
         "p3": "La victoria de Mendizábal no solo resalta su gran nivel, sino que también refleja un futuro prometedor para el BTT en Euskadi. Este campeonato fue una excelente ocasión para que los aficionados, familiares y amigos se unieran en torno a este deporte, y Ander recibió el reconocimiento y los aplausos de todos por su logro."
     },
-    "espainakoTxapeldunaPage": {
+    "espainakoTxapelketaPage": {
         "altImage": "Foto de Markel",
         "title": "Markel, 13º Campeonato de España",
-        "subtitle": "Markel vencedor del 13º Campeonato de España",
+        "subTitle": "Markel vencedor del 13º Campeonato de España",
         "p1": "El pasado 12 de enero se celebró el 13º Campeonato de España, y Markel fue uno de los protagonistas principales de la competición. Compitiendo con la selección de Euskadi, sus espectaculares actuaciones y habilidades recibieron una gran ovación tanto de los aficionados como de los expertos.",
         "p2": "Markel se enfrentó a rivales fuertes, pero con su estrategia y trabajo constante, logró un gran resultado. Esta victoria refuerza aún más su carrera y genera grandes expectativas de cara a los próximos desafíos.",
         "p3": "La participación de la selección de Euskadi le dio un toque especial al campeonato, destacando el esfuerzo y el alto nivel de todo el equipo. La 13ª edición del Campeonato de España ha sido otro excelente ejemplo del nivel alcanzado a lo largo de los años."
@@ -60,7 +60,7 @@
         "p3": "Durangaldeko Bizikleta Eskola y el grupo Punta Galea han destacado la importancia de este acuerdo para avanzar en igualdad dentro del ciclismo y ofrecer nuevas oportunidades a las chicas. Esa unión es un impulso fundamental para desarrollar el talento de los jóvenes y construir un proyecto sólido en el ciclismo femenino.",
         "titleRunners": "CADETES"
     },
-    "irrisarriPage": {
+    "irrisarriNoticePage": {
         "altImage": "Foto en Irrisarriland",
         "title": "Salida a Irrisarriland",
         "subTitle": "Aventura en Irrisarriland con la escuela",
@@ -68,7 +68,7 @@
         "p2": "En este día tan especial, los participantes tuvieron la oportunidad de probar tirolinas, circuitos acrobáticos, recorridos en bicicleta de montaña y pruebas de orientación. Estas actividades no solo fomentaron el trabajo en equipo y el coraje, sino que también ofrecieron un espacio perfecto para la diversión.",
         "p3": "La visita a Irrisarriland ofreció a los niños una excelente oportunidad para combinar naturaleza, deporte y amistad, dejando un montón de hermosos recuerdos."
     },
-    "2025StartPage": {
+    "tenporadaAsieraPage": {
         "altImage": "Foto de los corredores",
         "title": "Inicio temporada 2025",
         "subTitle": "Nuestros jóvenes han dado inicio a la temporada 2025 con fuerza",
@@ -140,7 +140,8 @@
         "clothes": "ROPA",
         "contact": "CONTACTO",
         "label": "eus",
-        "localeSwitcher": "es"
+        "localeSwitcher": "es",
+        "login": "INICIAR SESIÓN"
     },
     "cronica15-03-25Page": {
         "altImage": "Foto ",
@@ -181,7 +182,7 @@
         "p3": "¡Gracias a todos los que os acercasteis y, cómo no, a todos los patrocinadores! ¡Sin vosotros esto no habría sido posible!"
     },
     
-    "cronica04-04-25Page": {
+    "cronica05-04-25Page": {
         "altImage": "Foto ",
         "title": "TODOS LOS CAMINOS NOS UNEN",
         "subTitle2": "Sailkapenak",

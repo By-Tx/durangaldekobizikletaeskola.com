@@ -1,15 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef,useState } from 'react'
 
 
 
 export default function ClientForm() {
-  
-   const [formData, setFormData] = useState({
+
+  const [formData, setFormData] = useState({
     //data of the cover
-    href: '',
-    imageSrc: '',
+    slug: '',
+    imagePageUrl: '',
+    imageUrl: '',
     altKey: '',
     date: '',
     //data es language
@@ -30,7 +31,8 @@ export default function ClientForm() {
     p3Eus: '',
     p4Eus: '',
   });
-
+  const imageCoverRef = useRef<HTMLInputElement>(null);
+  const imagePageRef = useRef<HTMLInputElement>(null);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -41,31 +43,104 @@ export default function ClientForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Datos del formulario:', formData);
+  
     const API_URL =
       process.env.NODE_ENV === "development"
         ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
         : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
+  
+    const imageCover = imageCoverRef.current?.files?.[0];
+    const imagePage = imagePageRef.current?.files?.[0];
+  
+    if (!imageCover || !imagePage) {
+      alert("Debes seleccionar ambas imágenes.");
+      return;
+    }
+  
+    const formDataToSend = new FormData();
+  
+    // Archivos
+    formDataToSend.append("file", imageCover);
+    formDataToSend.append("filePage", imagePage);
+  
+    // Campos de texto
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataToSend.append(key, value);
+    });
+  
     try {
-      const response = await fetch(`${API_URL}/api/content`, {
+      const res = await fetch(`${API_URL}/api/content`, {
         method: "POST",
-        cache: "no-store",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: formDataToSend,
       });
-      const data = await response.json();
-      if (response.ok) {
-        alert(data.message);
+  
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(errText || "Error al enviar los datos");
       }
+  
+      const result = await res.json();
+      alert("Noticia creada correctamente");
+  
+      // Opcional: guardar URLs recibidas en el estado
+      setFormData(prev => ({
+        ...prev,
+        imageUrl: result.imageUrl,
+        imagePageUrl: result.imagePageUrl,
+      }));
     } catch (error) {
-      console.log("Error:", error);
+      console.error("Error:", error);
+      alert("Hubo un error al guardar la noticia");
     }
   };
+  
 
   return (
     <>
       <div className="max-w-6xl mx-auto mt-8 p-6 bg-white/45 shadow-lg rounded-lg text-black">
         <h1 className="text-2xl font-semibold mb-6 text-center text-gray-800">Crear cronica nueva</h1>
+        {/* Sección común */}
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold text-center text-gray-800 mb-4">Datos generales</h2>
+
+          {/* Fecha */}
+          <div className="mb-4">
+            <label htmlFor="date" className="block text-gray-700">Fecha:</label>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+           {/* Imagen de portada */}
+      <div className="mb-4">
+        <label className="block text-gray-700">Imagen de portada:</label>
+        <input
+          type="file"
+          name="imageCover"
+          accept="image/*"
+          ref={imageCoverRef}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+        />
+      </div>
+
+      {/* Imagen de contenido */}
+      <div className="mb-4">
+        <label className="block text-gray-700">Imagen de contenido:</label>
+        <input
+          type="file"
+          name="imagePage"
+          accept="image/*"
+          ref={imagePageRef}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+        />
+      </div>
+        </div>
+
         <div className='flex justify-between'>
           <div className='w-1/2'>
             <h2 className='text-gray-700 text-center'>EUSKERA</h2>
@@ -111,19 +186,7 @@ export default function ClientForm() {
               </section>
 
               <section>
-                {/* Date */}
-                <div>
-                  <label htmlFor="date" className="block text-gray-700">Fecha:</label>
-                  <input
-                    type="date"
-                    id="date"
-                    name="date"
-                    
-                    value={formData.date}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
+                
                 <h3 className='text-black text-l'>contenido de la pagina de la noticia</h3>
                 {/* Title */}
                 <div>
@@ -221,7 +284,7 @@ export default function ClientForm() {
                   />
                 </div>
 
-               
+
 
                 {/* Alt Text */}
                 <div>
@@ -238,19 +301,8 @@ export default function ClientForm() {
               </section>
 
               <section>
-                {/* Date */}
-                <div>
-                  <label htmlFor="date" className="block text-gray-700">Fecha:</label>
-                  <input
-                    type="date"
-                    id="date"
-                    name="date"
-                    value={formData.date}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                  <h3 className='text-black text-l'>contenido de la pagina de la noticia</h3>
+               
+                <h3 className='text-black text-l'>contenido de la pagina de la noticia</h3>
                 {/* Title */}
                 <div>
                   <label htmlFor="titleKey" className="block text-gray-700">Título:</label>
