@@ -15,8 +15,7 @@ export default async function Dashboard() {
     const name = session?.user?.name || "";
     const rol = session?.user?.role || "";
     const hdrs = await headers();
-    const locale = hdrs.get("x-next-intl-locale") || "es"
-    type Role = "admin" | "staff" | "coach" | "runner" | "user";
+    const locale = hdrs.get("x-next-intl-locale") || "es";
 
     const links = [
         {
@@ -24,6 +23,12 @@ export default async function Dashboard() {
             text: "Gestión de usuarios",
             img: "/media/dashboard/usuario.svg",
             roles: ["admin", "staff"],
+        },
+        {
+            href: "/perfil",
+            text: "Mi perfil",
+            img: "/media/dashboard/usuario.svg",
+            roles: ["coach", "runner", "user"],
         },
         {
             href: "/deportistas",
