@@ -29,7 +29,6 @@ model deportistas {
   nombre           String?            @db.VarChar(100)
   apellidos        String?            @db.VarChar(100)
   dni              String?            @db.VarChar(20)
-  email            String?            @db.VarChar(254)
   telefono         BigInt?
   fecha_nacimiento DateTime?          @db.Date
   peso             Decimal?           @db.Decimal(10, 2)
@@ -49,7 +48,6 @@ model entrenadores {
   nombre           String?      @db.VarChar(100)
   apellidos        String?      @db.VarChar(100)
   dni              String?      @db.VarChar(20)
-  email            String?      @db.VarChar(254)
   telefono         BigInt?
   fecha_nacimiento DateTime?    @db.Date
   user_id          String?      @db.VarChar(36)

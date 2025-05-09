@@ -25,7 +25,21 @@ export default async function Page() {
         redirect("/");
     }
 
-    const jugadorId = 'D009';
+    let jugadorId = null;
+
+    if (!jugadorId) {
+        // Consulta para obtener el numero_licencia del usuario actual
+        const deportista = await prisma.deportistas.findFirst({
+            where: { user_id: session.user.id },
+            select: { numero_licencia: true }
+        });
+    
+        if (!deportista?.numero_licencia) {
+            redirect("/es/dashboard");
+        }
+    
+        jugadorId = deportista.numero_licencia;
+    }
 
     // Consulta para obtener nombre y apellidos del corredor
     const deportista = await prisma.deportistas.findUnique({
