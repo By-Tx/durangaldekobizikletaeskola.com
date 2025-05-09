@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Gallery from "@/app/[locale]/components/mainPage/gallery/ItemGallery"; // Importa el componente Gallery
-
+import { API_URL } from "@/lib/config";
 export default function GalleryPage() {
   const [albumData, setAlbumData] = useState<{ src: string; link: string }[]>([]); // Usamos "src" en lugar de "image"
   const rutaActual = usePathname();
@@ -10,11 +10,7 @@ export default function GalleryPage() {
 
   useEffect(() => {
     async function fetchAlbumData() {
-      const API_URL =
-        process.env.NODE_ENV === "development"
-          ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
-          : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
-
+     
       if (!API_URL) {
         throw new Error("API URL no definida en las variables de entorno");
       }

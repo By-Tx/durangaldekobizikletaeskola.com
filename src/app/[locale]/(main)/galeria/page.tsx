@@ -1,12 +1,9 @@
  import Card from "@/app/[locale]/components/mainPage/gallery/Card";
-
+ import { API_URL } from "@/lib/config";
 
  async function fetchGalleryData() {
    try {
-     const API_URL =
-       process.env.NODE_ENV === "development"
-         ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
-         : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
+     
 
      if (!API_URL) {
        throw new Error("API URL no definida en las variables de entorno");
