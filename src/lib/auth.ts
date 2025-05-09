@@ -8,7 +8,7 @@ export const auth = betterAuth({
     
     trustedOrigins: [
         'https://durangaldekobizikletaeskola.com',
-        'http://localhost:4335',
+        'http://localhost:4225',
         
     ],
     database: createPool({
