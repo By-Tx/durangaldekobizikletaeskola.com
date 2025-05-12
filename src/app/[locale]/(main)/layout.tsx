@@ -7,7 +7,7 @@ import Footer from "../components/main/Footer";
 import { Fredoka } from "next/font/google";
 import Line from "@/app/[locale]/components/main/line";
 import { NextIntlClientProvider } from "next-intl";
-
+import { API_URL } from "@/lib/config";
 const fredoka = Fredoka({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
@@ -31,14 +31,10 @@ export default async function LocaleLayout(props: Props) {
   const { children } = props;
   const { locale } = await props.params; 
 
-  const baseUrl =
-    process.env.NODE_ENV === "development"
-      ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
-      : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
 
   let messages = {};
   try {
-    const res = await fetch(`${baseUrl}/api/translations?lang=${locale}`, {
+    const res = await fetch(`${API_URL}/api/translations?lang=${locale}`, {
       cache: "no-store",
     });
     messages = await res.json();

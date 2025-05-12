@@ -22,7 +22,6 @@ export async function POST(req: NextRequest) {
                 item.slug.trim().toLowerCase().replace(/-/g, '') === slug.trim().toLowerCase().replace(/-/g, '')
         );
        
-
         return NextResponse.json({ message: 'Data read successfully', data: foundItem }, { status: 200 });
     } catch (error) {
         console.error('Error en el endpoint /api/content:', error);

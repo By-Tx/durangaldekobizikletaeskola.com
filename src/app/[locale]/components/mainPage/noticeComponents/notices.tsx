@@ -34,6 +34,7 @@ export default function News({ items }: NewsProps) {
                 width={400}
                 height={240}
                 className="w-full h-96 object-cover rounded-t-2xl"
+                quality={60}
               />
               <div className="bg-customDarkBlue text-white text-center rounded-b-2xl pl-1 h-21">
                 <main className="ml-1 pb-2 flex flex-col justify-center">

@@ -4,10 +4,12 @@ import fsp from 'fs/promises';
 import path from 'path';
 import Busboy from 'busboy';
 import { Readable } from 'stream';
+import { url } from 'inspector';
 
 export async function POST(req: NextRequest): Promise<Response> {
   return new Promise<Response>((resolve) => {
     const fields: Record<string, string> = {};
+
     const uploads: Record<string, string> = {};
 
     const busboy = Busboy({
@@ -31,6 +33,7 @@ export async function POST(req: NextRequest): Promise<Response> {
     });
 
     busboy.on('finish', async () => {
+      console.log("📦 Campos del formulario recibidos:", fields);
       try {
         const root = process.cwd();
         const filePath = path.join(root, 'public', 'notices.json');
@@ -54,7 +57,7 @@ export async function POST(req: NextRequest): Promise<Response> {
         const number = lastKey ? parseInt(lastKey.replace('noticeTitle', '')) + 1 : 1;
         const slug = `cronica${fields.date}`;
 
-        const filteredNotice = {
+        const filteredNotice: Record<string, any> = {
           date: fields.date,
           slug,
           image: uploads['file'],
@@ -65,29 +68,56 @@ export async function POST(req: NextRequest): Promise<Response> {
           translationKey: [`${slug}Page`],
         };
 
-        const translationNotice = {
+        // Añadir links si existen
+        const links: { url: string; txt: string }[] = [];
+        for (let i = 1; i <= 5; i++) {
+          const url = fields[`url${i}`];
+          const txt = fields[`urltxt${i}`];
+          if (url) {
+            links.push({ url, txt });
+          }
+        }
+        if (links.length > 0) {
+          filteredNotice.urls = links;
+        }
+
+
+        const translationNotice: Record<string, any> = {
           [`${slug}Page`]: {
             title: fields.titleKey,
             subTitle: fields.subtitleKey,
-            p1: fields.p1,
-            p2: fields.p2,
-            p3: fields.p3,
-            p4: fields.p4,
             altImage: fields.altKey,
+            urls: "Clasificaciones",
           },
+          
         };
 
-        const translationNoticeEus = {
+
+        for (let i = 1; i <= 6; i++) {
+          const value = fields[`p${i}`];
+          if (value) {
+            translationNotice[`${slug}Page`][`p${i}`] = value;
+          }
+        }
+
+        const translationNoticeEus: Record<string, any> = {
           [`${slug}Page`]: {
             title: fields.titleKeyEus,
             subTitle: fields.subtitleKeyEus,
-            p1: fields.p1Eus,
-            p2: fields.p2Eus,
-            p3: fields.p3Eus,
-            p4: fields.p4Eus,
             altImage: fields.altKeyEus,
+            urls: "sailkapenak",
           },
+          
         };
+
+
+        for (let i = 1; i <= 6; i++) {
+          const value = fields[`p${i}Eus`];
+          if (value) {
+            translationNoticeEus[`${slug}Page`][`p${i}`] = value;
+          }
+        }
+
 
         // sum up of the notices
         Object.assign(noticeComponent, {
@@ -95,6 +125,7 @@ export async function POST(req: NextRequest): Promise<Response> {
           [`noticeTitle${number}`]: fields.titleKey,
           [`noticeCategory${number}`]: fields.categoryKey,
           [`date${number}`]: fields.date,
+
           translation: [slug],
         });
 
@@ -103,6 +134,7 @@ export async function POST(req: NextRequest): Promise<Response> {
           [`noticeTitle${number}`]: fields.titleKeyEus,
           [`noticeCategory${number}`]: fields.categoryKeyEus,
           [`date${number}`]: fields.date,
+
           translation: [slug],
         });
 
@@ -133,7 +165,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       }
     });
 
-    
+
     const reader = req.body?.getReader();
     const nodeStream = new Readable({
       async read() {

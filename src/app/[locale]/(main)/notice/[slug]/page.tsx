@@ -20,9 +20,10 @@ export default async function Page(props: { params: Promise<{ slug: string; loca
   const noticia: NewsProps = {
     translation: data.translationKey, 
     idImage: data.imagePage,
+    urls: data.urls,
     
   };
-  
+ 
 
 
   return (
