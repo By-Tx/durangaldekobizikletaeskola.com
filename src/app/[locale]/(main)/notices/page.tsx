@@ -40,14 +40,14 @@ async function fetchNotices(locale: string): Promise<Notice[]> {
     throw new Error("Error al obtener noticias");
   }
 
- 
+
   const { data } = await response.json();
   return data;
 }
 
 
 async function fetchMessages(locale: string) {
-  
+
 
   const res = await fetch(`${API_URL}/api/translations?lang=${locale}`, {
     cache: "no-store",
@@ -62,29 +62,28 @@ async function fetchMessages(locale: string) {
 
 
 export default async function Page() {
-  
+
   const locale = await getLocale();
 
-  
-  const messages = await fetchMessages(locale);
+  const [messages, data] = await Promise.all([
+    fetchMessages(locale),
+    fetchNotices(locale)
+  ]);
 
-  
   const translator = createTranslator({ locale, messages, namespace: "noticePage" });
 
-  
-  const data = await fetchNotices(locale);
 
- 
+
   return (
     <div>
-      
+
       <Title title={translator("title")} />
-      
-      
+
+
       <Section>
         <News items={data.map(notice => ({ ...notice, image: notice.image }))} />
       </Section>
-      
+
     </div>
   );
 }
