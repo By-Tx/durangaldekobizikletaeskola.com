@@ -16,7 +16,9 @@ type CarreraRaw = {
     f8: number;
 };
 
-export default async function Page() {
+export default async function Page(props: any) {
+    const { searchParams } = await props;
+
     const session = await auth.api.getSession({
         headers: await headers()
     });
@@ -25,7 +27,7 @@ export default async function Page() {
         redirect("/");
     }
 
-    let jugadorId = null;
+    let jugadorId = searchParams.numero_licencia;
 
     if (!jugadorId) {
         // Consulta para obtener el numero_licencia del usuario actual
@@ -58,20 +60,29 @@ export default async function Page() {
     // Mapea los resultados a un formato más manejable
     const historialData = carreras.map((carrera) => {
         const formatDate = (date: Date | string) => {
+            let d: Date;
             if (date instanceof Date && !isNaN(date.getTime())) {
-                return date.toLocaleDateString('es-ES');
+                d = date;
+            } else {
+                d = new Date(date);
             }
-            return String(date);
+            const day = String(d.getDate()).padStart(2, '0');
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const year = d.getFullYear();
+            return `${day}/${month}/${year}`;
         };
-
+        
         const formatTime = (date: Date | string) => {
+            let d: Date;
             if (date instanceof Date && !isNaN(date.getTime())) {
-                const hours = String(date.getHours()).padStart(2, '0');
-                const minutes = String(date.getMinutes()).padStart(2, '0');
-                return `${hours}:${minutes}`;
+                d = date;
+            } else {
+                d = new Date(date);
             }
-            const timeStr = String(date);
-            return timeStr.length >= 5 ? timeStr.slice(0, 5) : timeStr;
+            const hours = String(d.getHours()).padStart(2, '0');
+            const minutes = String(d.getMinutes()).padStart(2, '0');
+            const seconds = String(d.getSeconds()).padStart(2, '0');
+            return `${hours}:${minutes}:${seconds}`;
         };
 
         return {

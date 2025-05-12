@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface Carrera {
     fecha: string;
@@ -239,7 +239,7 @@ export default function ClientHistory({ historial, nombre, apellidos, rol }: His
                             </div>
                         ) : null}
                         {/* Respuesta del entrenador solo si existe y el rol es runner */}
-                        {rol === "runner" && localHistorial[selectedIdx].valoracion_entrenador && (
+                        {(rol === "runner" || rol === "admin" || rol === "staff") && localHistorial[selectedIdx].valoracion_entrenador && (
                             <>
                                 <div className="font-bold mb-1">Respuesta del entrenador:</div>
                                 <div className="bg-green-100 p-3 rounded">
