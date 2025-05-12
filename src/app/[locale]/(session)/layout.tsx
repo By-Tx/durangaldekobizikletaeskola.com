@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "../globals.css";
-// import LoggedNav from "./components/LoggedNav";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import NavBarS from "../components/session/NavBarS";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export const metadata: Metadata = {
     title: "GI DURANGALDEKO BZK",
@@ -17,12 +18,18 @@ export default async function dashboardLayout({
     children: React.ReactNode;
 }>) {
     const messages = await getMessages();
+
+    // Obtén la sesión y el rol del usuario
+    const session = await auth.api.getSession({
+        headers: await headers()
+    });
+    const rol = session?.user?.role || "";
+
     return (
         <NextIntlClientProvider messages={messages}>
             <html lang="es">
-
                 <body className="scrollbar-carreras">
-                    <NavBarS />
+                    <NavBarS rol={rol} />
                     <div className="fixed inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#001f5f_100%)]"></div>
                     {children}
                 </body>

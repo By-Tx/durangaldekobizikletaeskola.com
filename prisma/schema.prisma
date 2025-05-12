@@ -28,7 +28,7 @@ model deportistas {
   numero_licencia  String             @id @db.VarChar(50)
   nombre           String?            @db.VarChar(100)
   apellidos        String?            @db.VarChar(100)
-  dni              String?            @db.VarChar(20)
+  dni              String?            @unique(map: "dni") @db.VarChar(20)
   telefono         BigInt?
   fecha_nacimiento DateTime?          @db.Date
   peso             Decimal?           @db.Decimal(10, 2)
@@ -47,7 +47,7 @@ model entrenadores {
   id               Int          @id
   nombre           String?      @db.VarChar(100)
   apellidos        String?      @db.VarChar(100)
-  dni              String?      @db.VarChar(20)
+  dni              String?      @unique(map: "dni") @db.VarChar(20)
   telefono         BigInt?
   fecha_nacimiento DateTime?    @db.Date
   user_id          String?      @db.VarChar(36)
