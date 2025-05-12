@@ -1,0 +1,58 @@
+export const dashboardLinks = [
+    {
+        href: "/usuarios",
+        text: "Gestión de usuarios",
+        img: "/media/dashboard/usuario.svg",
+        roles: ["admin", "staff"],
+        short: "Usuarios",
+    },
+    {
+        href: "/perfil",
+        text: "Mi perfil",
+        img: "/media/dashboard/usuario.svg",
+        roles: ["coach", "runner", "user"],
+        short: "Perfil",
+    },
+    {
+        href: "/deportistas",
+        text: "Gestión de deportistas",
+        img: "/media/dashboard/deportista.svg",
+        roles: ["admin", "staff", "coach"],
+        short: "Deportistas",
+    },
+    {
+        href: "/historial",
+        text: "Historial de carreras",
+        img: "/media/dashboard/historial.svg",
+        roles: ["runner"],
+        short: "Historial",
+    },
+    {
+        href: "/carreras",
+        text: "Gestión de carreras",
+        img: "/media/dashboard/carrera.svg",
+        roles: ["admin", "staff", "coach"],
+        short: "Carreras",
+    },
+    {
+        href: "/imageCategory",
+        text: "Categorías de imágenes",
+        img: "/media/dashboard/categoria.svg",
+        roles: ["admin", "staff", "coach"],
+        short: "Categorías",
+    },
+    {
+        href: "/imageCreator",
+        text: "Subida de imágenes",
+        img: "/media/dashboard/imagen.svg",
+        roles: ["admin", "staff", "coach", "runner", "user"],
+        short: "Imágenes",
+    },
+    {
+        href: "/noticeCreator",
+        text: "Crear noticias",
+        img: "/media/dashboard/noticia.svg",
+        roles: ["admin", "staff"],
+        short: "Noticias",
+    }
+];

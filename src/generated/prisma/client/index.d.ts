@@ -10141,12 +10141,12 @@ export namespace Prisma {
 
   export type deportistasWhereUniqueInput = Prisma.AtLeast<{
     numero_licencia?: string
+    dni?: string
     AND?: deportistasWhereInput | deportistasWhereInput[]
     OR?: deportistasWhereInput[]
     NOT?: deportistasWhereInput | deportistasWhereInput[]
     nombre?: StringNullableFilter<"deportistas"> | string | null
     apellidos?: StringNullableFilter<"deportistas"> | string | null
-    dni?: StringNullableFilter<"deportistas"> | string | null
     telefono?: BigIntNullableFilter<"deportistas"> | bigint | number | null
     fecha_nacimiento?: DateTimeNullableFilter<"deportistas"> | Date | string | null
     peso?: DecimalNullableFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
@@ -10157,7 +10157,7 @@ export namespace Prisma {
     user?: XOR<UserNullableScalarRelationFilter, userWhereInput> | null
     entrenadores?: EntrenadoresListRelationFilter
     events_resultado?: Events_resultadoListRelationFilter
-  }, "numero_licencia">
+  }, "numero_licencia" | "dni">
 
   export type deportistasOrderByWithAggregationInput = {
     numero_licencia?: SortOrder
@@ -10227,19 +10227,19 @@ export namespace Prisma {
 
   export type entrenadoresWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    dni?: string
     AND?: entrenadoresWhereInput | entrenadoresWhereInput[]
     OR?: entrenadoresWhereInput[]
     NOT?: entrenadoresWhereInput | entrenadoresWhereInput[]
     nombre?: StringNullableFilter<"entrenadores"> | string | null
     apellidos?: StringNullableFilter<"entrenadores"> | string | null
-    dni?: StringNullableFilter<"entrenadores"> | string | null
     telefono?: BigIntNullableFilter<"entrenadores"> | bigint | number | null
     fecha_nacimiento?: DateTimeNullableFilter<"entrenadores"> | Date | string | null
     user_id?: StringNullableFilter<"entrenadores"> | string | null
     deportista_id?: StringNullableFilter<"entrenadores"> | string | null
     user?: XOR<UserNullableScalarRelationFilter, userWhereInput> | null
     deportistas?: XOR<DeportistasNullableScalarRelationFilter, deportistasWhereInput> | null
-  }, "id">
+  }, "id" | "dni">
 
   export type entrenadoresOrderByWithAggregationInput = {
     id?: SortOrder
