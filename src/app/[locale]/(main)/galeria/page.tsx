@@ -11,7 +11,7 @@
 
      const response = await fetch(`${API_URL}/api/gallery`, {
        method: "POST",
-       cache: "no-store", // Evita caché para asegurar datos frescos en cada request
+       cache: "no-store", 
      });
 
      if (!response.ok) {

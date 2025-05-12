@@ -1,57 +1,65 @@
 "use client"
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import Gallery from "@/app/[locale]/components/mainPage/gallery/ItemGallery"; // Importa el componente Gallery
-import { API_URL } from "@/lib/config";
+
+import Card from "@/app/[locale]/components/mainPage/gallery/Card";
+
 export default function GalleryPage() {
-  const [albumData, setAlbumData] = useState<{ src: string; link: string }[]>([]); // Usamos "src" en lugar de "image"
-  const rutaActual = usePathname();
-  const rutaSinIdioma =  rutaActual.split('/').slice(-2).join('/'); // Procesamos la ruta actual
+  const [albumData, setAlbumData] = useState<{ image: string; link: string; title: string; }[]>([]);
+  const currentPath = usePathname();
+  let pathWithoutLocale = currentPath.split('/').slice(-2).join('/'); // Process the current route
+  console.log("currentPath", currentPath)
+  console.log("pathWithoutLocale", pathWithoutLocale)  
 
   useEffect(() => {
     async function fetchAlbumData() {
-     
+      const API_URL =
+        process.env.NODE_ENV === "development"
+          ? process.env.NEXT_PUBLIC_API_URL_DEVELOPMENT
+          : process.env.NEXT_PUBLIC_API_URL_PRODUCTION;
+
       if (!API_URL) {
-        throw new Error("API URL no definida en las variables de entorno");
+        throw new Error("API URL not defined in environment variables");
       }
 
       try {
-        console.log(rutaSinIdioma);
-        const response = await fetch(`${API_URL}/api/category`, {
+        const response = await fetch(`${API_URL}/api/gallery/category`, {
           method: "POST",
-          cache: "no-store", // Evita caché para asegurar datos frescos en cada request
+          cache: "no-store", // Avoid caching to ensure fresh data on every request
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ album: rutaSinIdioma }),
+          body: JSON.stringify({ album: pathWithoutLocale }),
         });
 
         if (!response.ok) {
-          throw new Error("Error al obtener los datos");
+          throw new Error("Failed to fetch data");
         }
 
         const data = await response.json();
+        const subPath = currentPath.split('/').slice(4).join('/'); // Process the current route again
 
-        // Filtramos y formateamos los datos
+        // Filter and format the data
         const filteredData = data
-          .filter((item: string) => !item.includes("../")) // Filtrar elementos no deseados
+          .filter((item: string) => !item.includes("../")) // Filter out unwanted items
           .map((item: string) => ({
-            src: `https://photos.txuli.com/duranguesa/gallery/${rutaSinIdioma}/${item}`, // Cambiado de "image" a "src"
-            link: `${rutaSinIdioma}/${item.slice(0, -1)}/`, 
+            image: `https://photos.txuli.com/duranguesa/covers/${pathWithoutLocale}/${item.slice(0, -1)}.jpg`, 
+            link: `${subPath}/${item.slice(0, -1)}/`, 
+            title: item.slice(0, -1),
           }));
 
-        setAlbumData(filteredData); // Actualizamos el estado con los datos obtenidos
+        setAlbumData(filteredData); 
       } catch (error) {
-        console.error("Error al cargar los datos", error);
+        console.error("Error loading data", error);
       }
     }
 
     fetchAlbumData();
-  }, [rutaSinIdioma]); // Se ejecuta cada vez que la ruta cambia
+  }, [pathWithoutLocale]); 
 
   return (
     <div>
-      <div className="mt-20 flex  w-full">
-        {/* Pasamos albumData como imágenes al componente Gallery */}
-        <Gallery images={albumData} />
+      <div className="mt-20 flex w-full">
+        {/* Pass albumData as images to the Gallery component */}
+        <Card album={albumData} />
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { API_URL } from "@/lib/config";
 
 export default function Gallery() {
   const [albumData, setAlbumData] = useState<{ image: string; link: string; title: string; }[]>([]);
-  
+  console.log("carpeta album")
   const rutaActual = usePathname();
   const rutaSinIdioma = rutaActual.split('/').pop();
 
@@ -20,10 +20,10 @@ export default function Gallery() {
       }
 
       try {
-        // Llamada al endpoint '/category' en lugar de '/api/gallery'
-        const response = await fetch(`${API_URL}/api/category`, {
+       
+        const response = await fetch(`${API_URL}/api/gallery/category`, {
           method: "POST",
-          cache: "no-store", // Evita caché para asegurar datos frescos en cada request
+          cache: "no-store", 
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ album: rutaSinIdioma }),
         });
@@ -42,14 +42,14 @@ export default function Gallery() {
             link: `${rutaSinIdioma}/${item.slice(0, -1)}/`,
           }));
 
-        setAlbumData(filteredData); // Actualizamos el estado con los datos filtrados y mapeados
+        setAlbumData(filteredData); 
       } catch (error) {
         console.error("Error al cargar los datos", error);
       } 
     }
 
     fetchAlbumData();
-  }, [rutaSinIdioma]); // Vuelve a ejecutarse si cambia la ruta
+  }, [rutaSinIdioma]); 
 
  
   
