@@ -141,7 +141,6 @@ exports.Prisma.DeportistasScalarFieldEnum = {
   nombre: 'nombre',
   apellidos: 'apellidos',
   dni: 'dni',
-  email: 'email',
   telefono: 'telefono',
   fecha_nacimiento: 'fecha_nacimiento',
   peso: 'peso',
@@ -156,7 +155,6 @@ exports.Prisma.EntrenadoresScalarFieldEnum = {
   nombre: 'nombre',
   apellidos: 'apellidos',
   dni: 'dni',
-  email: 'email',
   telefono: 'telefono',
   fecha_nacimiento: 'fecha_nacimiento',
   user_id: 'user_id',
@@ -246,7 +244,6 @@ exports.Prisma.deportistasOrderByRelevanceFieldEnum = {
   nombre: 'nombre',
   apellidos: 'apellidos',
   dni: 'dni',
-  email: 'email',
   user_id: 'user_id'
 };
 
@@ -254,7 +251,6 @@ exports.Prisma.entrenadoresOrderByRelevanceFieldEnum = {
   nombre: 'nombre',
   apellidos: 'apellidos',
   dni: 'dni',
-  email: 'email',
   user_id: 'user_id',
   deportista_id: 'deportista_id'
 };
