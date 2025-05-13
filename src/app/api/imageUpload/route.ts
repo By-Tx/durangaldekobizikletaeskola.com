@@ -10,10 +10,10 @@ export async function POST(req: NextRequest): Promise<Response> {
 
     const busboy = Busboy({ headers: Object.fromEntries(req.headers) });
     console.log(busboy)
-    let dir = "/var/www/photos.txuli.com/duranguesa/gallery-v2";
+    let dir = "/www/wwwroot//photos.txuli.com/duranguesa/gallery-v2";
     busboy.on('field', (fieldname, value) => {
       if (fieldname === 'dir') {
-      dir = path.join('/www/wwwroot/photos.txuli.com/duranguesa/gallery-v2', value);
+      dir = value;
         if (!fs.existsSync(dir)) {
           fs.mkdirSync(dir, { recursive: true });
         }
