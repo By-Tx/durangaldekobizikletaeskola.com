@@ -13,6 +13,23 @@ interface UsersTableProps {
   users: User[];
 }
 
+function translateRole(role: string): string {
+    switch (role) {
+        case "admin":
+            return "Administrador";
+        case "staff":
+            return "Personal";
+        case "coach":
+            return "Entrenador";
+        case "runner":
+            return "Deportista";
+        case "user":
+            return "Usuario";
+        default:
+            return "Desconocido";
+    }
+}
+
 export default function UsersTable({ users }: UsersTableProps) {
   const [userList, setUserList] = useState<User[]>(users);
   const [editForm, setEditForm] = useState<User | null>(null);
@@ -136,20 +153,21 @@ export default function UsersTable({ users }: UsersTableProps) {
           className="px-4 py-2 rounded-lg bg-gray-800 border border-blue-600 w-full sm:w-64"
         >
           <option value="">Todos los roles</option>
-          <option value="coach">coach</option>
-          <option value="staff">staff</option>
-          <option value="runner">runner</option>
-          <option value="user">user</option>
+          <option value="admin">Administrador</option>
+          <option value="coach">Entrenador</option>
+          <option value="staff">Personal</option>
+          <option value="runner">Deportista</option>
+          <option value="user">Usuario</option>
         </select>
       </div>
 
      
       <div className="flex justify-center">
-        <div className="w-full sm:w-4/5 rounded-2xl shadow-xl backdrop-blur-md bg-white/10 border border-blue-400 pb-2 overflow-x-auto">
+        <div className="w-full sm:w-1/2 rounded-2xl shadow-xl backdrop-blur-md bg-white/10 border border-blue-400 pb-2 overflow-x-auto">
           <table className="min-w-full border-collapse text-sm">
             <thead className="bg-gray-700 text-blue-100">
               <tr>
-                <th className="px-4 py-3">Email</th>
+                <th className="px-4 py-3">Correo electrónico</th>
                 <th className="px-4 py-3">Nombre</th>
                 <th className="px-4 py-3">Rol</th>
                 <th className="px-4 py-3">Acciones</th>
@@ -159,11 +177,11 @@ export default function UsersTable({ users }: UsersTableProps) {
               {filteredUsers.map((u) => (
                 <tr
                   key={u.id}
-                  className="hover:bg-blue-900/20 transition cursor-pointer border-t border-blue-900/30"
+                  className="hover:bg-blue-900/20 transition border-t border-blue-900/30"
                 >
                   <td className="px-4 py-2">{u.email}</td>
-                  <td className="px-4 py-2 text-center">{u.name}</td>
-                  <td className="px-4 py-2 text-center">{u.role}</td>
+                  <td className="px-4 py-2">{u.name}</td>
+                  <td className="px-4 py-2 text-center">{translateRole(u.role)}</td>
                   <td className="px-4 py-2">
                     <div className="flex justify-center gap-2 flex-wrap">
                       <button
