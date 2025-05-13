@@ -2,6 +2,7 @@
 import { useRef, useLayoutEffect, useState } from "react";
 import Image from "next/image";
 import alert from "@/app/media/error.svg";
+import { useError } from "@/context/ErrorContext";
 
 type Deportista = {
     numero_licencia: string;
@@ -27,9 +28,11 @@ export default function RunnersClient({ deportistas }: RunnerClientProps) {
     const [editId, setEditId] = useState<string | null>(null);
     const [showForm, setShowForm] = useState(false);
     const [closing, setClosing] = useState(false);
-    const [closingError, setClosingError] = useState(false);
+  
     const [showConfirm, setShowConfirm] = useState(false);
-    const [errorMsg, setErrorMsg] = useState<string | null>(null);
+    
+    const { setError } = useError();
+
     const [deleteId, setDeleteId] = useState<string | null>(null);
     const firstRowRefs = useRef<(HTMLTableCellElement | null)[]>([]);
     const [colWidths, setColWidths] = useState<number[]>([]);
@@ -90,13 +93,7 @@ export default function RunnersClient({ deportistas }: RunnerClientProps) {
         }, 300);
     };
 
-    const handleCloseError = () => {
-        setClosingError(true);
-        setTimeout(() => {
-            setErrorMsg(null);
-            setClosingError(false);
-        }, 300);
-    };
+
 
     // Agregar o editar deportista
     const handleSubmit = async (e: React.FormEvent) => {
@@ -137,7 +134,11 @@ export default function RunnersClient({ deportistas }: RunnerClientProps) {
 
         const result = await response.json();
         if (!response.ok) {
-            setErrorMsg(result.error || "Error desconocido");
+            if (!response.ok) {
+                setError(result.error || "Error desconocido");
+                return;
+            }
+
             return;
         }
 
@@ -193,6 +194,7 @@ export default function RunnersClient({ deportistas }: RunnerClientProps) {
     }
 
     return (
+        
         <div className="p-4">
             {/* Popup de confirmación */}
             {showConfirm && (
@@ -230,31 +232,6 @@ export default function RunnersClient({ deportistas }: RunnerClientProps) {
                 </div>
             )}
 
-            {/* Popup de error */}
-            {errorMsg && (
-                <div className={`fixed inset-0 flex items-center justify-center z-[110] bg-black bg-opacity-60 ${closingError ? "animate-fade-out" : "animate-fade-in"}`}>
-                    <div className={`bg-gray-900 rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center border-4 border-red-500 relative ${closingError ? "animate-slide-down" : "animate-slide-up"}`}>
-                        <div className="flex items-center justify-center mb-4 gap-3">
-                            <Image
-                                src={alert}
-                                alt="Error"
-                                className="w-10 h-10"
-                                style={{
-                                    filter: "invert(36%) sepia(99%) saturate(2000%) hue-rotate(340deg) brightness(90%) contrast(110%)"
-                                }}
-                            />
-                            <h3 className="text-xl font-bold text-red-400 drop-shadow m-0">¡Error!</h3>
-                        </div>
-                        <p className="mb-4 text-gray-200">{errorMsg}</p>
-                        <button
-                            className="mt-2 px-5 py-2 bg-gradient-to-r from-red-700 to-red-500 text-gray-100 rounded-lg font-bold shadow transition duration-200 hover:filter hover:brightness-125"
-                            onClick={handleCloseError}
-                        >
-                            Cerrar
-                        </button>
-                    </div>
-                </div>
-            )}
 
             {/* Mostrar información de los deportistas */}
             <div className="grid grid-cols-3 items-center mb-10">

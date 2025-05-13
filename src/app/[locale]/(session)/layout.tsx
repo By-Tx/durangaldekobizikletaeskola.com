@@ -5,6 +5,8 @@ import { getMessages } from "next-intl/server";
 import NavBarS from "../components/session/NavBarS";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { ErrorProvider } from "@/context/ErrorContext";
+import GlobalErrorHandler from "@/app/[locale]/components/GlobalErrorHandler"; // ⬅️ Nuevo
 
 export const metadata: Metadata = {
     title: "GI DURANGALDEKO BZK",
@@ -29,9 +31,12 @@ export default async function dashboardLayout({
         <NextIntlClientProvider messages={messages}>
             <html lang="es">
                 <body className="scrollbar-carreras">
-                    <NavBarS rol={rol} />
-                    <div className="fixed inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#001f5f_100%)]"></div>
-                    {children}
+                    <ErrorProvider> 
+                        <NavBarS rol={rol} />
+                        <div className="fixed inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#001f5f_100%)]"></div>
+                        {children}
+                        <GlobalErrorHandler /> 
+                    </ErrorProvider>
                 </body>
             </html>
         </NextIntlClientProvider>
