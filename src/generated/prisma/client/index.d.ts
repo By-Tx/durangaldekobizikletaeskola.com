@@ -53,6 +53,11 @@ export type user = $Result.DefaultSelection<Prisma.$userPayload>
  * 
  */
 export type verification = $Result.DefaultSelection<Prisma.$verificationPayload>
+/**
+ * Model activation_codes
+ * 
+ */
+export type activation_codes = $Result.DefaultSelection<Prisma.$activation_codesPayload>
 
 /**
  * Enums
@@ -86,6 +91,17 @@ export const user_role: {
 
 export type user_role = (typeof user_role)[keyof typeof user_role]
 
+
+export const activation_codes_role: {
+  admin: 'admin',
+  staff: 'staff',
+  coach: 'coach',
+  runner: 'runner',
+  user: 'user'
+};
+
+export type activation_codes_role = (typeof activation_codes_role)[keyof typeof activation_codes_role]
+
 }
 
 export type events_categoria = $Enums.events_categoria
@@ -99,6 +115,10 @@ export const events_modalidad: typeof $Enums.events_modalidad
 export type user_role = $Enums.user_role
 
 export const user_role: typeof $Enums.user_role
+
+export type activation_codes_role = $Enums.activation_codes_role
+
+export const activation_codes_role: typeof $Enums.activation_codes_role
 
 /**
  * ##  Prisma Client ʲˢ
@@ -304,6 +324,16 @@ export class PrismaClient<
     * ```
     */
   get verification(): Prisma.verificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.activation_codes`: Exposes CRUD operations for the **activation_codes** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Activation_codes
+    * const activation_codes = await prisma.activation_codes.findMany()
+    * ```
+    */
+  get activation_codes(): Prisma.activation_codesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -751,7 +781,8 @@ export namespace Prisma {
     events_resultado: 'events_resultado',
     session: 'session',
     user: 'user',
-    verification: 'verification'
+    verification: 'verification',
+    activation_codes: 'activation_codes'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -770,7 +801,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "account" | "deportistas" | "entrenadores" | "events" | "events_resultado" | "session" | "user" | "verification"
+      modelProps: "account" | "deportistas" | "entrenadores" | "events" | "events_resultado" | "session" | "user" | "verification" | "activation_codes"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1302,6 +1333,72 @@ export namespace Prisma {
           }
         }
       }
+      activation_codes: {
+        payload: Prisma.$activation_codesPayload<ExtArgs>
+        fields: Prisma.activation_codesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.activation_codesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$activation_codesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.activation_codesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$activation_codesPayload>
+          }
+          findFirst: {
+            args: Prisma.activation_codesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$activation_codesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.activation_codesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$activation_codesPayload>
+          }
+          findMany: {
+            args: Prisma.activation_codesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$activation_codesPayload>[]
+          }
+          create: {
+            args: Prisma.activation_codesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$activation_codesPayload>
+          }
+          createMany: {
+            args: Prisma.activation_codesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.activation_codesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$activation_codesPayload>
+          }
+          update: {
+            args: Prisma.activation_codesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$activation_codesPayload>
+          }
+          deleteMany: {
+            args: Prisma.activation_codesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.activation_codesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.activation_codesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$activation_codesPayload>
+          }
+          aggregate: {
+            args: Prisma.Activation_codesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateActivation_codes>
+          }
+          groupBy: {
+            args: Prisma.activation_codesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Activation_codesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.activation_codesCountArgs<ExtArgs>
+            result: $Utils.Optional<Activation_codesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1394,6 +1491,7 @@ export namespace Prisma {
     session?: sessionOmit
     user?: userOmit
     verification?: verificationOmit
+    activation_codes?: activation_codesOmit
   }
 
   /* Types for Logging */
@@ -1488,12 +1586,10 @@ export namespace Prisma {
    */
 
   export type DeportistasCountOutputType = {
-    entrenadores: number
     events_resultado: number
   }
 
   export type DeportistasCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    entrenadores?: boolean | DeportistasCountOutputTypeCountEntrenadoresArgs
     events_resultado?: boolean | DeportistasCountOutputTypeCountEvents_resultadoArgs
   }
 
@@ -1511,15 +1607,39 @@ export namespace Prisma {
   /**
    * DeportistasCountOutputType without action
    */
-  export type DeportistasCountOutputTypeCountEntrenadoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: entrenadoresWhereInput
+  export type DeportistasCountOutputTypeCountEvents_resultadoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: events_resultadoWhereInput
+  }
+
+
+  /**
+   * Count Type EntrenadoresCountOutputType
+   */
+
+  export type EntrenadoresCountOutputType = {
+    deportistas: number
+  }
+
+  export type EntrenadoresCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    deportistas?: boolean | EntrenadoresCountOutputTypeCountDeportistasArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EntrenadoresCountOutputType without action
+   */
+  export type EntrenadoresCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EntrenadoresCountOutputType
+     */
+    select?: EntrenadoresCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * DeportistasCountOutputType without action
+   * EntrenadoresCountOutputType without action
    */
-  export type DeportistasCountOutputTypeCountEvents_resultadoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: events_resultadoWhereInput
+  export type EntrenadoresCountOutputTypeCountDeportistasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: deportistasWhereInput
   }
 
 
@@ -2586,6 +2706,7 @@ export namespace Prisma {
     altura: Decimal | null
     ftp: Decimal | null
     pulso: number | null
+    entrenador_id: number | null
   }
 
   export type DeportistasSumAggregateOutputType = {
@@ -2594,6 +2715,7 @@ export namespace Prisma {
     altura: Decimal | null
     ftp: Decimal | null
     pulso: number | null
+    entrenador_id: number | null
   }
 
   export type DeportistasMinAggregateOutputType = {
@@ -2608,6 +2730,7 @@ export namespace Prisma {
     ftp: Decimal | null
     pulso: number | null
     user_id: string | null
+    entrenador_id: number | null
   }
 
   export type DeportistasMaxAggregateOutputType = {
@@ -2622,6 +2745,7 @@ export namespace Prisma {
     ftp: Decimal | null
     pulso: number | null
     user_id: string | null
+    entrenador_id: number | null
   }
 
   export type DeportistasCountAggregateOutputType = {
@@ -2636,6 +2760,7 @@ export namespace Prisma {
     ftp: number
     pulso: number
     user_id: number
+    entrenador_id: number
     _all: number
   }
 
@@ -2646,6 +2771,7 @@ export namespace Prisma {
     altura?: true
     ftp?: true
     pulso?: true
+    entrenador_id?: true
   }
 
   export type DeportistasSumAggregateInputType = {
@@ -2654,6 +2780,7 @@ export namespace Prisma {
     altura?: true
     ftp?: true
     pulso?: true
+    entrenador_id?: true
   }
 
   export type DeportistasMinAggregateInputType = {
@@ -2668,6 +2795,7 @@ export namespace Prisma {
     ftp?: true
     pulso?: true
     user_id?: true
+    entrenador_id?: true
   }
 
   export type DeportistasMaxAggregateInputType = {
@@ -2682,6 +2810,7 @@ export namespace Prisma {
     ftp?: true
     pulso?: true
     user_id?: true
+    entrenador_id?: true
   }
 
   export type DeportistasCountAggregateInputType = {
@@ -2696,6 +2825,7 @@ export namespace Prisma {
     ftp?: true
     pulso?: true
     user_id?: true
+    entrenador_id?: true
     _all?: true
   }
 
@@ -2797,6 +2927,7 @@ export namespace Prisma {
     ftp: Decimal | null
     pulso: number | null
     user_id: string | null
+    entrenador_id: number | null
     _count: DeportistasCountAggregateOutputType | null
     _avg: DeportistasAvgAggregateOutputType | null
     _sum: DeportistasSumAggregateOutputType | null
@@ -2830,6 +2961,7 @@ export namespace Prisma {
     ftp?: boolean
     pulso?: boolean
     user_id?: boolean
+    entrenador_id?: boolean
     user?: boolean | deportistas$userArgs<ExtArgs>
     entrenadores?: boolean | deportistas$entrenadoresArgs<ExtArgs>
     events_resultado?: boolean | deportistas$events_resultadoArgs<ExtArgs>
@@ -2850,9 +2982,10 @@ export namespace Prisma {
     ftp?: boolean
     pulso?: boolean
     user_id?: boolean
+    entrenador_id?: boolean
   }
 
-  export type deportistasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"numero_licencia" | "nombre" | "apellidos" | "dni" | "telefono" | "fecha_nacimiento" | "peso" | "altura" | "ftp" | "pulso" | "user_id", ExtArgs["result"]["deportistas"]>
+  export type deportistasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"numero_licencia" | "nombre" | "apellidos" | "dni" | "telefono" | "fecha_nacimiento" | "peso" | "altura" | "ftp" | "pulso" | "user_id" | "entrenador_id", ExtArgs["result"]["deportistas"]>
   export type deportistasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | deportistas$userArgs<ExtArgs>
     entrenadores?: boolean | deportistas$entrenadoresArgs<ExtArgs>
@@ -2864,7 +2997,7 @@ export namespace Prisma {
     name: "deportistas"
     objects: {
       user: Prisma.$userPayload<ExtArgs> | null
-      entrenadores: Prisma.$entrenadoresPayload<ExtArgs>[]
+      entrenadores: Prisma.$entrenadoresPayload<ExtArgs> | null
       events_resultado: Prisma.$events_resultadoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -2879,6 +3012,7 @@ export namespace Prisma {
       ftp: Prisma.Decimal | null
       pulso: number | null
       user_id: string | null
+      entrenador_id: number | null
     }, ExtArgs["result"]["deportistas"]>
     composites: {}
   }
@@ -3220,7 +3354,7 @@ export namespace Prisma {
   export interface Prisma__deportistasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends deportistas$userArgs<ExtArgs> = {}>(args?: Subset<T, deportistas$userArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    entrenadores<T extends deportistas$entrenadoresArgs<ExtArgs> = {}>(args?: Subset<T, deportistas$entrenadoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$entrenadoresPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    entrenadores<T extends deportistas$entrenadoresArgs<ExtArgs> = {}>(args?: Subset<T, deportistas$entrenadoresArgs<ExtArgs>>): Prisma__entrenadoresClient<$Result.GetResult<Prisma.$entrenadoresPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     events_resultado<T extends deportistas$events_resultadoArgs<ExtArgs> = {}>(args?: Subset<T, deportistas$events_resultadoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$events_resultadoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3262,6 +3396,7 @@ export namespace Prisma {
     readonly ftp: FieldRef<"deportistas", 'Decimal'>
     readonly pulso: FieldRef<"deportistas", 'Int'>
     readonly user_id: FieldRef<"deportistas", 'String'>
+    readonly entrenador_id: FieldRef<"deportistas", 'Int'>
   }
     
 
@@ -3640,11 +3775,6 @@ export namespace Prisma {
      */
     include?: entrenadoresInclude<ExtArgs> | null
     where?: entrenadoresWhereInput
-    orderBy?: entrenadoresOrderByWithRelationInput | entrenadoresOrderByWithRelationInput[]
-    cursor?: entrenadoresWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: EntrenadoresScalarFieldEnum | EntrenadoresScalarFieldEnum[]
   }
 
   /**
@@ -3720,7 +3850,6 @@ export namespace Prisma {
     telefono: bigint | null
     fecha_nacimiento: Date | null
     user_id: string | null
-    deportista_id: string | null
   }
 
   export type EntrenadoresMaxAggregateOutputType = {
@@ -3731,7 +3860,6 @@ export namespace Prisma {
     telefono: bigint | null
     fecha_nacimiento: Date | null
     user_id: string | null
-    deportista_id: string | null
   }
 
   export type EntrenadoresCountAggregateOutputType = {
@@ -3742,7 +3870,6 @@ export namespace Prisma {
     telefono: number
     fecha_nacimiento: number
     user_id: number
-    deportista_id: number
     _all: number
   }
 
@@ -3765,7 +3892,6 @@ export namespace Prisma {
     telefono?: true
     fecha_nacimiento?: true
     user_id?: true
-    deportista_id?: true
   }
 
   export type EntrenadoresMaxAggregateInputType = {
@@ -3776,7 +3902,6 @@ export namespace Prisma {
     telefono?: true
     fecha_nacimiento?: true
     user_id?: true
-    deportista_id?: true
   }
 
   export type EntrenadoresCountAggregateInputType = {
@@ -3787,7 +3912,6 @@ export namespace Prisma {
     telefono?: true
     fecha_nacimiento?: true
     user_id?: true
-    deportista_id?: true
     _all?: true
   }
 
@@ -3885,7 +4009,6 @@ export namespace Prisma {
     telefono: bigint | null
     fecha_nacimiento: Date | null
     user_id: string | null
-    deportista_id: string | null
     _count: EntrenadoresCountAggregateOutputType | null
     _avg: EntrenadoresAvgAggregateOutputType | null
     _sum: EntrenadoresSumAggregateOutputType | null
@@ -3915,9 +4038,9 @@ export namespace Prisma {
     telefono?: boolean
     fecha_nacimiento?: boolean
     user_id?: boolean
-    deportista_id?: boolean
     user?: boolean | entrenadores$userArgs<ExtArgs>
     deportistas?: boolean | entrenadores$deportistasArgs<ExtArgs>
+    _count?: boolean | EntrenadoresCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["entrenadores"]>
 
 
@@ -3930,20 +4053,20 @@ export namespace Prisma {
     telefono?: boolean
     fecha_nacimiento?: boolean
     user_id?: boolean
-    deportista_id?: boolean
   }
 
-  export type entrenadoresOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "apellidos" | "dni" | "telefono" | "fecha_nacimiento" | "user_id" | "deportista_id", ExtArgs["result"]["entrenadores"]>
+  export type entrenadoresOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "apellidos" | "dni" | "telefono" | "fecha_nacimiento" | "user_id", ExtArgs["result"]["entrenadores"]>
   export type entrenadoresInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | entrenadores$userArgs<ExtArgs>
     deportistas?: boolean | entrenadores$deportistasArgs<ExtArgs>
+    _count?: boolean | EntrenadoresCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $entrenadoresPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "entrenadores"
     objects: {
       user: Prisma.$userPayload<ExtArgs> | null
-      deportistas: Prisma.$deportistasPayload<ExtArgs> | null
+      deportistas: Prisma.$deportistasPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3953,7 +4076,6 @@ export namespace Prisma {
       telefono: bigint | null
       fecha_nacimiento: Date | null
       user_id: string | null
-      deportista_id: string | null
     }, ExtArgs["result"]["entrenadores"]>
     composites: {}
   }
@@ -4295,7 +4417,7 @@ export namespace Prisma {
   export interface Prisma__entrenadoresClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends entrenadores$userArgs<ExtArgs> = {}>(args?: Subset<T, entrenadores$userArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    deportistas<T extends entrenadores$deportistasArgs<ExtArgs> = {}>(args?: Subset<T, entrenadores$deportistasArgs<ExtArgs>>): Prisma__deportistasClient<$Result.GetResult<Prisma.$deportistasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    deportistas<T extends entrenadores$deportistasArgs<ExtArgs> = {}>(args?: Subset<T, entrenadores$deportistasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$deportistasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4332,7 +4454,6 @@ export namespace Prisma {
     readonly telefono: FieldRef<"entrenadores", 'BigInt'>
     readonly fecha_nacimiento: FieldRef<"entrenadores", 'DateTime'>
     readonly user_id: FieldRef<"entrenadores", 'String'>
-    readonly deportista_id: FieldRef<"entrenadores", 'String'>
   }
     
 
@@ -4711,6 +4832,11 @@ export namespace Prisma {
      */
     include?: deportistasInclude<ExtArgs> | null
     where?: deportistasWhereInput
+    orderBy?: deportistasOrderByWithRelationInput | deportistasOrderByWithRelationInput[]
+    cursor?: deportistasWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DeportistasScalarFieldEnum | DeportistasScalarFieldEnum[]
   }
 
   /**
@@ -9700,6 +9826,926 @@ export namespace Prisma {
 
 
   /**
+   * Model activation_codes
+   */
+
+  export type AggregateActivation_codes = {
+    _count: Activation_codesCountAggregateOutputType | null
+    _avg: Activation_codesAvgAggregateOutputType | null
+    _sum: Activation_codesSumAggregateOutputType | null
+    _min: Activation_codesMinAggregateOutputType | null
+    _max: Activation_codesMaxAggregateOutputType | null
+  }
+
+  export type Activation_codesAvgAggregateOutputType = {
+    id: number | null
+    usos: number | null
+  }
+
+  export type Activation_codesSumAggregateOutputType = {
+    id: number | null
+    usos: number | null
+  }
+
+  export type Activation_codesMinAggregateOutputType = {
+    id: number | null
+    code: string | null
+    role: $Enums.activation_codes_role | null
+    expires_at: Date | null
+    usos: number | null
+  }
+
+  export type Activation_codesMaxAggregateOutputType = {
+    id: number | null
+    code: string | null
+    role: $Enums.activation_codes_role | null
+    expires_at: Date | null
+    usos: number | null
+  }
+
+  export type Activation_codesCountAggregateOutputType = {
+    id: number
+    code: number
+    role: number
+    expires_at: number
+    usos: number
+    _all: number
+  }
+
+
+  export type Activation_codesAvgAggregateInputType = {
+    id?: true
+    usos?: true
+  }
+
+  export type Activation_codesSumAggregateInputType = {
+    id?: true
+    usos?: true
+  }
+
+  export type Activation_codesMinAggregateInputType = {
+    id?: true
+    code?: true
+    role?: true
+    expires_at?: true
+    usos?: true
+  }
+
+  export type Activation_codesMaxAggregateInputType = {
+    id?: true
+    code?: true
+    role?: true
+    expires_at?: true
+    usos?: true
+  }
+
+  export type Activation_codesCountAggregateInputType = {
+    id?: true
+    code?: true
+    role?: true
+    expires_at?: true
+    usos?: true
+    _all?: true
+  }
+
+  export type Activation_codesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which activation_codes to aggregate.
+     */
+    where?: activation_codesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of activation_codes to fetch.
+     */
+    orderBy?: activation_codesOrderByWithRelationInput | activation_codesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: activation_codesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` activation_codes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` activation_codes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned activation_codes
+    **/
+    _count?: true | Activation_codesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Activation_codesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Activation_codesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Activation_codesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Activation_codesMaxAggregateInputType
+  }
+
+  export type GetActivation_codesAggregateType<T extends Activation_codesAggregateArgs> = {
+        [P in keyof T & keyof AggregateActivation_codes]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateActivation_codes[P]>
+      : GetScalarType<T[P], AggregateActivation_codes[P]>
+  }
+
+
+
+
+  export type activation_codesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: activation_codesWhereInput
+    orderBy?: activation_codesOrderByWithAggregationInput | activation_codesOrderByWithAggregationInput[]
+    by: Activation_codesScalarFieldEnum[] | Activation_codesScalarFieldEnum
+    having?: activation_codesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Activation_codesCountAggregateInputType | true
+    _avg?: Activation_codesAvgAggregateInputType
+    _sum?: Activation_codesSumAggregateInputType
+    _min?: Activation_codesMinAggregateInputType
+    _max?: Activation_codesMaxAggregateInputType
+  }
+
+  export type Activation_codesGroupByOutputType = {
+    id: number
+    code: string
+    role: $Enums.activation_codes_role | null
+    expires_at: Date | null
+    usos: number
+    _count: Activation_codesCountAggregateOutputType | null
+    _avg: Activation_codesAvgAggregateOutputType | null
+    _sum: Activation_codesSumAggregateOutputType | null
+    _min: Activation_codesMinAggregateOutputType | null
+    _max: Activation_codesMaxAggregateOutputType | null
+  }
+
+  type GetActivation_codesGroupByPayload<T extends activation_codesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Activation_codesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Activation_codesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Activation_codesGroupByOutputType[P]>
+            : GetScalarType<T[P], Activation_codesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type activation_codesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    role?: boolean
+    expires_at?: boolean
+    usos?: boolean
+  }, ExtArgs["result"]["activation_codes"]>
+
+
+
+  export type activation_codesSelectScalar = {
+    id?: boolean
+    code?: boolean
+    role?: boolean
+    expires_at?: boolean
+    usos?: boolean
+  }
+
+  export type activation_codesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "role" | "expires_at" | "usos", ExtArgs["result"]["activation_codes"]>
+
+  export type $activation_codesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "activation_codes"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      code: string
+      role: $Enums.activation_codes_role | null
+      expires_at: Date | null
+      usos: number
+    }, ExtArgs["result"]["activation_codes"]>
+    composites: {}
+  }
+
+  type activation_codesGetPayload<S extends boolean | null | undefined | activation_codesDefaultArgs> = $Result.GetResult<Prisma.$activation_codesPayload, S>
+
+  type activation_codesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<activation_codesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Activation_codesCountAggregateInputType | true
+    }
+
+  export interface activation_codesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['activation_codes'], meta: { name: 'activation_codes' } }
+    /**
+     * Find zero or one Activation_codes that matches the filter.
+     * @param {activation_codesFindUniqueArgs} args - Arguments to find a Activation_codes
+     * @example
+     * // Get one Activation_codes
+     * const activation_codes = await prisma.activation_codes.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends activation_codesFindUniqueArgs>(args: SelectSubset<T, activation_codesFindUniqueArgs<ExtArgs>>): Prisma__activation_codesClient<$Result.GetResult<Prisma.$activation_codesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Activation_codes that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {activation_codesFindUniqueOrThrowArgs} args - Arguments to find a Activation_codes
+     * @example
+     * // Get one Activation_codes
+     * const activation_codes = await prisma.activation_codes.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends activation_codesFindUniqueOrThrowArgs>(args: SelectSubset<T, activation_codesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__activation_codesClient<$Result.GetResult<Prisma.$activation_codesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Activation_codes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {activation_codesFindFirstArgs} args - Arguments to find a Activation_codes
+     * @example
+     * // Get one Activation_codes
+     * const activation_codes = await prisma.activation_codes.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends activation_codesFindFirstArgs>(args?: SelectSubset<T, activation_codesFindFirstArgs<ExtArgs>>): Prisma__activation_codesClient<$Result.GetResult<Prisma.$activation_codesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Activation_codes that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {activation_codesFindFirstOrThrowArgs} args - Arguments to find a Activation_codes
+     * @example
+     * // Get one Activation_codes
+     * const activation_codes = await prisma.activation_codes.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends activation_codesFindFirstOrThrowArgs>(args?: SelectSubset<T, activation_codesFindFirstOrThrowArgs<ExtArgs>>): Prisma__activation_codesClient<$Result.GetResult<Prisma.$activation_codesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Activation_codes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {activation_codesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Activation_codes
+     * const activation_codes = await prisma.activation_codes.findMany()
+     * 
+     * // Get first 10 Activation_codes
+     * const activation_codes = await prisma.activation_codes.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const activation_codesWithIdOnly = await prisma.activation_codes.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends activation_codesFindManyArgs>(args?: SelectSubset<T, activation_codesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$activation_codesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Activation_codes.
+     * @param {activation_codesCreateArgs} args - Arguments to create a Activation_codes.
+     * @example
+     * // Create one Activation_codes
+     * const Activation_codes = await prisma.activation_codes.create({
+     *   data: {
+     *     // ... data to create a Activation_codes
+     *   }
+     * })
+     * 
+     */
+    create<T extends activation_codesCreateArgs>(args: SelectSubset<T, activation_codesCreateArgs<ExtArgs>>): Prisma__activation_codesClient<$Result.GetResult<Prisma.$activation_codesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Activation_codes.
+     * @param {activation_codesCreateManyArgs} args - Arguments to create many Activation_codes.
+     * @example
+     * // Create many Activation_codes
+     * const activation_codes = await prisma.activation_codes.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends activation_codesCreateManyArgs>(args?: SelectSubset<T, activation_codesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Activation_codes.
+     * @param {activation_codesDeleteArgs} args - Arguments to delete one Activation_codes.
+     * @example
+     * // Delete one Activation_codes
+     * const Activation_codes = await prisma.activation_codes.delete({
+     *   where: {
+     *     // ... filter to delete one Activation_codes
+     *   }
+     * })
+     * 
+     */
+    delete<T extends activation_codesDeleteArgs>(args: SelectSubset<T, activation_codesDeleteArgs<ExtArgs>>): Prisma__activation_codesClient<$Result.GetResult<Prisma.$activation_codesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Activation_codes.
+     * @param {activation_codesUpdateArgs} args - Arguments to update one Activation_codes.
+     * @example
+     * // Update one Activation_codes
+     * const activation_codes = await prisma.activation_codes.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends activation_codesUpdateArgs>(args: SelectSubset<T, activation_codesUpdateArgs<ExtArgs>>): Prisma__activation_codesClient<$Result.GetResult<Prisma.$activation_codesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Activation_codes.
+     * @param {activation_codesDeleteManyArgs} args - Arguments to filter Activation_codes to delete.
+     * @example
+     * // Delete a few Activation_codes
+     * const { count } = await prisma.activation_codes.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends activation_codesDeleteManyArgs>(args?: SelectSubset<T, activation_codesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Activation_codes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {activation_codesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Activation_codes
+     * const activation_codes = await prisma.activation_codes.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends activation_codesUpdateManyArgs>(args: SelectSubset<T, activation_codesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Activation_codes.
+     * @param {activation_codesUpsertArgs} args - Arguments to update or create a Activation_codes.
+     * @example
+     * // Update or create a Activation_codes
+     * const activation_codes = await prisma.activation_codes.upsert({
+     *   create: {
+     *     // ... data to create a Activation_codes
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Activation_codes we want to update
+     *   }
+     * })
+     */
+    upsert<T extends activation_codesUpsertArgs>(args: SelectSubset<T, activation_codesUpsertArgs<ExtArgs>>): Prisma__activation_codesClient<$Result.GetResult<Prisma.$activation_codesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Activation_codes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {activation_codesCountArgs} args - Arguments to filter Activation_codes to count.
+     * @example
+     * // Count the number of Activation_codes
+     * const count = await prisma.activation_codes.count({
+     *   where: {
+     *     // ... the filter for the Activation_codes we want to count
+     *   }
+     * })
+    **/
+    count<T extends activation_codesCountArgs>(
+      args?: Subset<T, activation_codesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Activation_codesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Activation_codes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Activation_codesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Activation_codesAggregateArgs>(args: Subset<T, Activation_codesAggregateArgs>): Prisma.PrismaPromise<GetActivation_codesAggregateType<T>>
+
+    /**
+     * Group by Activation_codes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {activation_codesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends activation_codesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: activation_codesGroupByArgs['orderBy'] }
+        : { orderBy?: activation_codesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, activation_codesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetActivation_codesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the activation_codes model
+   */
+  readonly fields: activation_codesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for activation_codes.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__activation_codesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the activation_codes model
+   */
+  interface activation_codesFieldRefs {
+    readonly id: FieldRef<"activation_codes", 'Int'>
+    readonly code: FieldRef<"activation_codes", 'String'>
+    readonly role: FieldRef<"activation_codes", 'activation_codes_role'>
+    readonly expires_at: FieldRef<"activation_codes", 'DateTime'>
+    readonly usos: FieldRef<"activation_codes", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * activation_codes findUnique
+   */
+  export type activation_codesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the activation_codes
+     */
+    select?: activation_codesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the activation_codes
+     */
+    omit?: activation_codesOmit<ExtArgs> | null
+    /**
+     * Filter, which activation_codes to fetch.
+     */
+    where: activation_codesWhereUniqueInput
+  }
+
+  /**
+   * activation_codes findUniqueOrThrow
+   */
+  export type activation_codesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the activation_codes
+     */
+    select?: activation_codesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the activation_codes
+     */
+    omit?: activation_codesOmit<ExtArgs> | null
+    /**
+     * Filter, which activation_codes to fetch.
+     */
+    where: activation_codesWhereUniqueInput
+  }
+
+  /**
+   * activation_codes findFirst
+   */
+  export type activation_codesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the activation_codes
+     */
+    select?: activation_codesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the activation_codes
+     */
+    omit?: activation_codesOmit<ExtArgs> | null
+    /**
+     * Filter, which activation_codes to fetch.
+     */
+    where?: activation_codesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of activation_codes to fetch.
+     */
+    orderBy?: activation_codesOrderByWithRelationInput | activation_codesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for activation_codes.
+     */
+    cursor?: activation_codesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` activation_codes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` activation_codes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of activation_codes.
+     */
+    distinct?: Activation_codesScalarFieldEnum | Activation_codesScalarFieldEnum[]
+  }
+
+  /**
+   * activation_codes findFirstOrThrow
+   */
+  export type activation_codesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the activation_codes
+     */
+    select?: activation_codesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the activation_codes
+     */
+    omit?: activation_codesOmit<ExtArgs> | null
+    /**
+     * Filter, which activation_codes to fetch.
+     */
+    where?: activation_codesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of activation_codes to fetch.
+     */
+    orderBy?: activation_codesOrderByWithRelationInput | activation_codesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for activation_codes.
+     */
+    cursor?: activation_codesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` activation_codes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` activation_codes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of activation_codes.
+     */
+    distinct?: Activation_codesScalarFieldEnum | Activation_codesScalarFieldEnum[]
+  }
+
+  /**
+   * activation_codes findMany
+   */
+  export type activation_codesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the activation_codes
+     */
+    select?: activation_codesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the activation_codes
+     */
+    omit?: activation_codesOmit<ExtArgs> | null
+    /**
+     * Filter, which activation_codes to fetch.
+     */
+    where?: activation_codesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of activation_codes to fetch.
+     */
+    orderBy?: activation_codesOrderByWithRelationInput | activation_codesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing activation_codes.
+     */
+    cursor?: activation_codesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` activation_codes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` activation_codes.
+     */
+    skip?: number
+    distinct?: Activation_codesScalarFieldEnum | Activation_codesScalarFieldEnum[]
+  }
+
+  /**
+   * activation_codes create
+   */
+  export type activation_codesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the activation_codes
+     */
+    select?: activation_codesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the activation_codes
+     */
+    omit?: activation_codesOmit<ExtArgs> | null
+    /**
+     * The data needed to create a activation_codes.
+     */
+    data: XOR<activation_codesCreateInput, activation_codesUncheckedCreateInput>
+  }
+
+  /**
+   * activation_codes createMany
+   */
+  export type activation_codesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many activation_codes.
+     */
+    data: activation_codesCreateManyInput | activation_codesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * activation_codes update
+   */
+  export type activation_codesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the activation_codes
+     */
+    select?: activation_codesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the activation_codes
+     */
+    omit?: activation_codesOmit<ExtArgs> | null
+    /**
+     * The data needed to update a activation_codes.
+     */
+    data: XOR<activation_codesUpdateInput, activation_codesUncheckedUpdateInput>
+    /**
+     * Choose, which activation_codes to update.
+     */
+    where: activation_codesWhereUniqueInput
+  }
+
+  /**
+   * activation_codes updateMany
+   */
+  export type activation_codesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update activation_codes.
+     */
+    data: XOR<activation_codesUpdateManyMutationInput, activation_codesUncheckedUpdateManyInput>
+    /**
+     * Filter which activation_codes to update
+     */
+    where?: activation_codesWhereInput
+    /**
+     * Limit how many activation_codes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * activation_codes upsert
+   */
+  export type activation_codesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the activation_codes
+     */
+    select?: activation_codesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the activation_codes
+     */
+    omit?: activation_codesOmit<ExtArgs> | null
+    /**
+     * The filter to search for the activation_codes to update in case it exists.
+     */
+    where: activation_codesWhereUniqueInput
+    /**
+     * In case the activation_codes found by the `where` argument doesn't exist, create a new activation_codes with this data.
+     */
+    create: XOR<activation_codesCreateInput, activation_codesUncheckedCreateInput>
+    /**
+     * In case the activation_codes was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<activation_codesUpdateInput, activation_codesUncheckedUpdateInput>
+  }
+
+  /**
+   * activation_codes delete
+   */
+  export type activation_codesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the activation_codes
+     */
+    select?: activation_codesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the activation_codes
+     */
+    omit?: activation_codesOmit<ExtArgs> | null
+    /**
+     * Filter which activation_codes to delete.
+     */
+    where: activation_codesWhereUniqueInput
+  }
+
+  /**
+   * activation_codes deleteMany
+   */
+  export type activation_codesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which activation_codes to delete
+     */
+    where?: activation_codesWhereInput
+    /**
+     * Limit how many activation_codes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * activation_codes without action
+   */
+  export type activation_codesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the activation_codes
+     */
+    select?: activation_codesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the activation_codes
+     */
+    omit?: activation_codesOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9743,7 +10789,8 @@ export namespace Prisma {
     altura: 'altura',
     ftp: 'ftp',
     pulso: 'pulso',
-    user_id: 'user_id'
+    user_id: 'user_id',
+    entrenador_id: 'entrenador_id'
   };
 
   export type DeportistasScalarFieldEnum = (typeof DeportistasScalarFieldEnum)[keyof typeof DeportistasScalarFieldEnum]
@@ -9756,8 +10803,7 @@ export namespace Prisma {
     dni: 'dni',
     telefono: 'telefono',
     fecha_nacimiento: 'fecha_nacimiento',
-    user_id: 'user_id',
-    deportista_id: 'deportista_id'
+    user_id: 'user_id'
   };
 
   export type EntrenadoresScalarFieldEnum = (typeof EntrenadoresScalarFieldEnum)[keyof typeof EntrenadoresScalarFieldEnum]
@@ -9834,6 +10880,17 @@ export namespace Prisma {
   export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
 
 
+  export const Activation_codesScalarFieldEnum: {
+    id: 'id',
+    code: 'code',
+    role: 'role',
+    expires_at: 'expires_at',
+    usos: 'usos'
+  };
+
+  export type Activation_codesScalarFieldEnum = (typeof Activation_codesScalarFieldEnum)[keyof typeof Activation_codesScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -9880,8 +10937,7 @@ export namespace Prisma {
     nombre: 'nombre',
     apellidos: 'apellidos',
     dni: 'dni',
-    user_id: 'user_id',
-    deportista_id: 'deportista_id'
+    user_id: 'user_id'
   };
 
   export type entrenadoresOrderByRelevanceFieldEnum = (typeof entrenadoresOrderByRelevanceFieldEnum)[keyof typeof entrenadoresOrderByRelevanceFieldEnum]
@@ -9935,6 +10991,13 @@ export namespace Prisma {
   };
 
   export type verificationOrderByRelevanceFieldEnum = (typeof verificationOrderByRelevanceFieldEnum)[keyof typeof verificationOrderByRelevanceFieldEnum]
+
+
+  export const activation_codesOrderByRelevanceFieldEnum: {
+    code: 'code'
+  };
+
+  export type activation_codesOrderByRelevanceFieldEnum = (typeof activation_codesOrderByRelevanceFieldEnum)[keyof typeof activation_codesOrderByRelevanceFieldEnum]
 
 
   /**
@@ -9995,6 +11058,13 @@ export namespace Prisma {
    * Reference to a field of type 'user_role'
    */
   export type Enumuser_roleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'user_role'>
+    
+
+
+  /**
+   * Reference to a field of type 'activation_codes_role'
+   */
+  export type Enumactivation_codes_roleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'activation_codes_role'>
     
 
 
@@ -10116,8 +11186,9 @@ export namespace Prisma {
     ftp?: DecimalNullableFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
     pulso?: IntNullableFilter<"deportistas"> | number | null
     user_id?: StringNullableFilter<"deportistas"> | string | null
+    entrenador_id?: IntNullableFilter<"deportistas"> | number | null
     user?: XOR<UserNullableScalarRelationFilter, userWhereInput> | null
-    entrenadores?: EntrenadoresListRelationFilter
+    entrenadores?: XOR<EntrenadoresNullableScalarRelationFilter, entrenadoresWhereInput> | null
     events_resultado?: Events_resultadoListRelationFilter
   }
 
@@ -10133,8 +11204,9 @@ export namespace Prisma {
     ftp?: SortOrderInput | SortOrder
     pulso?: SortOrderInput | SortOrder
     user_id?: SortOrderInput | SortOrder
+    entrenador_id?: SortOrderInput | SortOrder
     user?: userOrderByWithRelationInput
-    entrenadores?: entrenadoresOrderByRelationAggregateInput
+    entrenadores?: entrenadoresOrderByWithRelationInput
     events_resultado?: events_resultadoOrderByRelationAggregateInput
     _relevance?: deportistasOrderByRelevanceInput
   }
@@ -10154,8 +11226,9 @@ export namespace Prisma {
     ftp?: DecimalNullableFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
     pulso?: IntNullableFilter<"deportistas"> | number | null
     user_id?: StringNullableFilter<"deportistas"> | string | null
+    entrenador_id?: IntNullableFilter<"deportistas"> | number | null
     user?: XOR<UserNullableScalarRelationFilter, userWhereInput> | null
-    entrenadores?: EntrenadoresListRelationFilter
+    entrenadores?: XOR<EntrenadoresNullableScalarRelationFilter, entrenadoresWhereInput> | null
     events_resultado?: Events_resultadoListRelationFilter
   }, "numero_licencia" | "dni">
 
@@ -10171,6 +11244,7 @@ export namespace Prisma {
     ftp?: SortOrderInput | SortOrder
     pulso?: SortOrderInput | SortOrder
     user_id?: SortOrderInput | SortOrder
+    entrenador_id?: SortOrderInput | SortOrder
     _count?: deportistasCountOrderByAggregateInput
     _avg?: deportistasAvgOrderByAggregateInput
     _max?: deportistasMaxOrderByAggregateInput
@@ -10193,6 +11267,7 @@ export namespace Prisma {
     ftp?: DecimalNullableWithAggregatesFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
     pulso?: IntNullableWithAggregatesFilter<"deportistas"> | number | null
     user_id?: StringNullableWithAggregatesFilter<"deportistas"> | string | null
+    entrenador_id?: IntNullableWithAggregatesFilter<"deportistas"> | number | null
   }
 
   export type entrenadoresWhereInput = {
@@ -10206,9 +11281,8 @@ export namespace Prisma {
     telefono?: BigIntNullableFilter<"entrenadores"> | bigint | number | null
     fecha_nacimiento?: DateTimeNullableFilter<"entrenadores"> | Date | string | null
     user_id?: StringNullableFilter<"entrenadores"> | string | null
-    deportista_id?: StringNullableFilter<"entrenadores"> | string | null
     user?: XOR<UserNullableScalarRelationFilter, userWhereInput> | null
-    deportistas?: XOR<DeportistasNullableScalarRelationFilter, deportistasWhereInput> | null
+    deportistas?: DeportistasListRelationFilter
   }
 
   export type entrenadoresOrderByWithRelationInput = {
@@ -10219,9 +11293,8 @@ export namespace Prisma {
     telefono?: SortOrderInput | SortOrder
     fecha_nacimiento?: SortOrderInput | SortOrder
     user_id?: SortOrderInput | SortOrder
-    deportista_id?: SortOrderInput | SortOrder
     user?: userOrderByWithRelationInput
-    deportistas?: deportistasOrderByWithRelationInput
+    deportistas?: deportistasOrderByRelationAggregateInput
     _relevance?: entrenadoresOrderByRelevanceInput
   }
 
@@ -10236,9 +11309,8 @@ export namespace Prisma {
     telefono?: BigIntNullableFilter<"entrenadores"> | bigint | number | null
     fecha_nacimiento?: DateTimeNullableFilter<"entrenadores"> | Date | string | null
     user_id?: StringNullableFilter<"entrenadores"> | string | null
-    deportista_id?: StringNullableFilter<"entrenadores"> | string | null
     user?: XOR<UserNullableScalarRelationFilter, userWhereInput> | null
-    deportistas?: XOR<DeportistasNullableScalarRelationFilter, deportistasWhereInput> | null
+    deportistas?: DeportistasListRelationFilter
   }, "id" | "dni">
 
   export type entrenadoresOrderByWithAggregationInput = {
@@ -10249,7 +11321,6 @@ export namespace Prisma {
     telefono?: SortOrderInput | SortOrder
     fecha_nacimiento?: SortOrderInput | SortOrder
     user_id?: SortOrderInput | SortOrder
-    deportista_id?: SortOrderInput | SortOrder
     _count?: entrenadoresCountOrderByAggregateInput
     _avg?: entrenadoresAvgOrderByAggregateInput
     _max?: entrenadoresMaxOrderByAggregateInput
@@ -10268,7 +11339,6 @@ export namespace Prisma {
     telefono?: BigIntNullableWithAggregatesFilter<"entrenadores"> | bigint | number | null
     fecha_nacimiento?: DateTimeNullableWithAggregatesFilter<"entrenadores"> | Date | string | null
     user_id?: StringNullableWithAggregatesFilter<"entrenadores"> | string | null
-    deportista_id?: StringNullableWithAggregatesFilter<"entrenadores"> | string | null
   }
 
   export type eventsWhereInput = {
@@ -10637,6 +11707,61 @@ export namespace Prisma {
     updatedAt?: DateTimeNullableWithAggregatesFilter<"verification"> | Date | string | null
   }
 
+  export type activation_codesWhereInput = {
+    AND?: activation_codesWhereInput | activation_codesWhereInput[]
+    OR?: activation_codesWhereInput[]
+    NOT?: activation_codesWhereInput | activation_codesWhereInput[]
+    id?: IntFilter<"activation_codes"> | number
+    code?: StringFilter<"activation_codes"> | string
+    role?: Enumactivation_codes_roleNullableFilter<"activation_codes"> | $Enums.activation_codes_role | null
+    expires_at?: DateTimeNullableFilter<"activation_codes"> | Date | string | null
+    usos?: IntFilter<"activation_codes"> | number
+  }
+
+  export type activation_codesOrderByWithRelationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    role?: SortOrderInput | SortOrder
+    expires_at?: SortOrderInput | SortOrder
+    usos?: SortOrder
+    _relevance?: activation_codesOrderByRelevanceInput
+  }
+
+  export type activation_codesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    code?: string
+    AND?: activation_codesWhereInput | activation_codesWhereInput[]
+    OR?: activation_codesWhereInput[]
+    NOT?: activation_codesWhereInput | activation_codesWhereInput[]
+    role?: Enumactivation_codes_roleNullableFilter<"activation_codes"> | $Enums.activation_codes_role | null
+    expires_at?: DateTimeNullableFilter<"activation_codes"> | Date | string | null
+    usos?: IntFilter<"activation_codes"> | number
+  }, "id" | "code">
+
+  export type activation_codesOrderByWithAggregationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    role?: SortOrderInput | SortOrder
+    expires_at?: SortOrderInput | SortOrder
+    usos?: SortOrder
+    _count?: activation_codesCountOrderByAggregateInput
+    _avg?: activation_codesAvgOrderByAggregateInput
+    _max?: activation_codesMaxOrderByAggregateInput
+    _min?: activation_codesMinOrderByAggregateInput
+    _sum?: activation_codesSumOrderByAggregateInput
+  }
+
+  export type activation_codesScalarWhereWithAggregatesInput = {
+    AND?: activation_codesScalarWhereWithAggregatesInput | activation_codesScalarWhereWithAggregatesInput[]
+    OR?: activation_codesScalarWhereWithAggregatesInput[]
+    NOT?: activation_codesScalarWhereWithAggregatesInput | activation_codesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"activation_codes"> | number
+    code?: StringWithAggregatesFilter<"activation_codes"> | string
+    role?: Enumactivation_codes_roleNullableWithAggregatesFilter<"activation_codes"> | $Enums.activation_codes_role | null
+    expires_at?: DateTimeNullableWithAggregatesFilter<"activation_codes"> | Date | string | null
+    usos?: IntWithAggregatesFilter<"activation_codes"> | number
+  }
+
   export type accountCreateInput = {
     id: string
     accountId: string
@@ -10761,7 +11886,7 @@ export namespace Prisma {
     ftp?: Decimal | DecimalJsLike | number | string | null
     pulso?: number | null
     user?: userCreateNestedOneWithoutDeportistasInput
-    entrenadores?: entrenadoresCreateNestedManyWithoutDeportistasInput
+    entrenadores?: entrenadoresCreateNestedOneWithoutDeportistasInput
     events_resultado?: events_resultadoCreateNestedManyWithoutDeportistasInput
   }
 
@@ -10777,7 +11902,7 @@ export namespace Prisma {
     ftp?: Decimal | DecimalJsLike | number | string | null
     pulso?: number | null
     user_id?: string | null
-    entrenadores?: entrenadoresUncheckedCreateNestedManyWithoutDeportistasInput
+    entrenador_id?: number | null
     events_resultado?: events_resultadoUncheckedCreateNestedManyWithoutDeportistasInput
   }
 
@@ -10793,7 +11918,7 @@ export namespace Prisma {
     ftp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     pulso?: NullableIntFieldUpdateOperationsInput | number | null
     user?: userUpdateOneWithoutDeportistasNestedInput
-    entrenadores?: entrenadoresUpdateManyWithoutDeportistasNestedInput
+    entrenadores?: entrenadoresUpdateOneWithoutDeportistasNestedInput
     events_resultado?: events_resultadoUpdateManyWithoutDeportistasNestedInput
   }
 
@@ -10809,7 +11934,7 @@ export namespace Prisma {
     ftp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     pulso?: NullableIntFieldUpdateOperationsInput | number | null
     user_id?: NullableStringFieldUpdateOperationsInput | string | null
-    entrenadores?: entrenadoresUncheckedUpdateManyWithoutDeportistasNestedInput
+    entrenador_id?: NullableIntFieldUpdateOperationsInput | number | null
     events_resultado?: events_resultadoUncheckedUpdateManyWithoutDeportistasNestedInput
   }
 
@@ -10825,6 +11950,7 @@ export namespace Prisma {
     ftp?: Decimal | DecimalJsLike | number | string | null
     pulso?: number | null
     user_id?: string | null
+    entrenador_id?: number | null
   }
 
   export type deportistasUpdateManyMutationInput = {
@@ -10852,6 +11978,7 @@ export namespace Prisma {
     ftp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     pulso?: NullableIntFieldUpdateOperationsInput | number | null
     user_id?: NullableStringFieldUpdateOperationsInput | string | null
+    entrenador_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type entrenadoresCreateInput = {
@@ -10862,7 +11989,7 @@ export namespace Prisma {
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     user?: userCreateNestedOneWithoutEntrenadoresInput
-    deportistas?: deportistasCreateNestedOneWithoutEntrenadoresInput
+    deportistas?: deportistasCreateNestedManyWithoutEntrenadoresInput
   }
 
   export type entrenadoresUncheckedCreateInput = {
@@ -10873,7 +12000,7 @@ export namespace Prisma {
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     user_id?: string | null
-    deportista_id?: string | null
+    deportistas?: deportistasUncheckedCreateNestedManyWithoutEntrenadoresInput
   }
 
   export type entrenadoresUpdateInput = {
@@ -10884,7 +12011,7 @@ export namespace Prisma {
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: userUpdateOneWithoutEntrenadoresNestedInput
-    deportistas?: deportistasUpdateOneWithoutEntrenadoresNestedInput
+    deportistas?: deportistasUpdateManyWithoutEntrenadoresNestedInput
   }
 
   export type entrenadoresUncheckedUpdateInput = {
@@ -10895,7 +12022,7 @@ export namespace Prisma {
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user_id?: NullableStringFieldUpdateOperationsInput | string | null
-    deportista_id?: NullableStringFieldUpdateOperationsInput | string | null
+    deportistas?: deportistasUncheckedUpdateManyWithoutEntrenadoresNestedInput
   }
 
   export type entrenadoresCreateManyInput = {
@@ -10906,7 +12033,6 @@ export namespace Prisma {
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
     user_id?: string | null
-    deportista_id?: string | null
   }
 
   export type entrenadoresUpdateManyMutationInput = {
@@ -10926,7 +12052,6 @@ export namespace Prisma {
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user_id?: NullableStringFieldUpdateOperationsInput | string | null
-    deportista_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type eventsCreateInput = {
@@ -11331,6 +12456,59 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type activation_codesCreateInput = {
+    code: string
+    role?: $Enums.activation_codes_role | null
+    expires_at?: Date | string | null
+    usos?: number
+  }
+
+  export type activation_codesUncheckedCreateInput = {
+    id?: number
+    code: string
+    role?: $Enums.activation_codes_role | null
+    expires_at?: Date | string | null
+    usos?: number
+  }
+
+  export type activation_codesUpdateInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    role?: NullableEnumactivation_codes_roleFieldUpdateOperationsInput | $Enums.activation_codes_role | null
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type activation_codesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    role?: NullableEnumactivation_codes_roleFieldUpdateOperationsInput | $Enums.activation_codes_role | null
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type activation_codesCreateManyInput = {
+    id?: number
+    code: string
+    role?: $Enums.activation_codes_role | null
+    expires_at?: Date | string | null
+    usos?: number
+  }
+
+  export type activation_codesUpdateManyMutationInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    role?: NullableEnumactivation_codes_roleFieldUpdateOperationsInput | $Enums.activation_codes_role | null
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type activation_codesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    role?: NullableEnumactivation_codes_roleFieldUpdateOperationsInput | $Enums.activation_codes_role | null
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos?: IntFieldUpdateOperationsInput | number
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -11544,20 +12722,15 @@ export namespace Prisma {
     isNot?: userWhereInput | null
   }
 
-  export type EntrenadoresListRelationFilter = {
-    every?: entrenadoresWhereInput
-    some?: entrenadoresWhereInput
-    none?: entrenadoresWhereInput
+  export type EntrenadoresNullableScalarRelationFilter = {
+    is?: entrenadoresWhereInput | null
+    isNot?: entrenadoresWhereInput | null
   }
 
   export type Events_resultadoListRelationFilter = {
     every?: events_resultadoWhereInput
     some?: events_resultadoWhereInput
     none?: events_resultadoWhereInput
-  }
-
-  export type entrenadoresOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type events_resultadoOrderByRelationAggregateInput = {
@@ -11582,6 +12755,7 @@ export namespace Prisma {
     ftp?: SortOrder
     pulso?: SortOrder
     user_id?: SortOrder
+    entrenador_id?: SortOrder
   }
 
   export type deportistasAvgOrderByAggregateInput = {
@@ -11590,6 +12764,7 @@ export namespace Prisma {
     altura?: SortOrder
     ftp?: SortOrder
     pulso?: SortOrder
+    entrenador_id?: SortOrder
   }
 
   export type deportistasMaxOrderByAggregateInput = {
@@ -11604,6 +12779,7 @@ export namespace Prisma {
     ftp?: SortOrder
     pulso?: SortOrder
     user_id?: SortOrder
+    entrenador_id?: SortOrder
   }
 
   export type deportistasMinOrderByAggregateInput = {
@@ -11618,6 +12794,7 @@ export namespace Prisma {
     ftp?: SortOrder
     pulso?: SortOrder
     user_id?: SortOrder
+    entrenador_id?: SortOrder
   }
 
   export type deportistasSumOrderByAggregateInput = {
@@ -11626,6 +12803,7 @@ export namespace Prisma {
     altura?: SortOrder
     ftp?: SortOrder
     pulso?: SortOrder
+    entrenador_id?: SortOrder
   }
 
   export type BigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11687,9 +12865,14 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type DeportistasNullableScalarRelationFilter = {
-    is?: deportistasWhereInput | null
-    isNot?: deportistasWhereInput | null
+  export type DeportistasListRelationFilter = {
+    every?: deportistasWhereInput
+    some?: deportistasWhereInput
+    none?: deportistasWhereInput
+  }
+
+  export type deportistasOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type entrenadoresOrderByRelevanceInput = {
@@ -11706,7 +12889,6 @@ export namespace Prisma {
     telefono?: SortOrder
     fecha_nacimiento?: SortOrder
     user_id?: SortOrder
-    deportista_id?: SortOrder
   }
 
   export type entrenadoresAvgOrderByAggregateInput = {
@@ -11722,7 +12904,6 @@ export namespace Prisma {
     telefono?: SortOrder
     fecha_nacimiento?: SortOrder
     user_id?: SortOrder
-    deportista_id?: SortOrder
   }
 
   export type entrenadoresMinOrderByAggregateInput = {
@@ -11733,7 +12914,6 @@ export namespace Prisma {
     telefono?: SortOrder
     fecha_nacimiento?: SortOrder
     user_id?: SortOrder
-    deportista_id?: SortOrder
   }
 
   export type entrenadoresSumOrderByAggregateInput = {
@@ -11840,6 +13020,11 @@ export namespace Prisma {
     isNot?: eventsWhereInput | null
   }
 
+  export type DeportistasNullableScalarRelationFilter = {
+    is?: deportistasWhereInput | null
+    isNot?: deportistasWhereInput | null
+  }
+
   export type events_resultadoOrderByRelevanceInput = {
     fields: events_resultadoOrderByRelevanceFieldEnum | events_resultadoOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -11942,13 +13127,13 @@ export namespace Prisma {
     not?: NestedEnumuser_roleNullableFilter<$PrismaModel> | $Enums.user_role | null
   }
 
-  export type DeportistasListRelationFilter = {
-    every?: deportistasWhereInput
-    some?: deportistasWhereInput
-    none?: deportistasWhereInput
+  export type EntrenadoresListRelationFilter = {
+    every?: entrenadoresWhereInput
+    some?: entrenadoresWhereInput
+    none?: entrenadoresWhereInput
   }
 
-  export type deportistasOrderByRelationAggregateInput = {
+  export type entrenadoresOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12053,6 +13238,63 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type Enumactivation_codes_roleNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.activation_codes_role | Enumactivation_codes_roleFieldRefInput<$PrismaModel> | null
+    in?: $Enums.activation_codes_role[] | null
+    notIn?: $Enums.activation_codes_role[] | null
+    not?: NestedEnumactivation_codes_roleNullableFilter<$PrismaModel> | $Enums.activation_codes_role | null
+  }
+
+  export type activation_codesOrderByRelevanceInput = {
+    fields: activation_codesOrderByRelevanceFieldEnum | activation_codesOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type activation_codesCountOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    role?: SortOrder
+    expires_at?: SortOrder
+    usos?: SortOrder
+  }
+
+  export type activation_codesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    usos?: SortOrder
+  }
+
+  export type activation_codesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    role?: SortOrder
+    expires_at?: SortOrder
+    usos?: SortOrder
+  }
+
+  export type activation_codesMinOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    role?: SortOrder
+    expires_at?: SortOrder
+    usos?: SortOrder
+  }
+
+  export type activation_codesSumOrderByAggregateInput = {
+    id?: SortOrder
+    usos?: SortOrder
+  }
+
+  export type Enumactivation_codes_roleNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.activation_codes_role | Enumactivation_codes_roleFieldRefInput<$PrismaModel> | null
+    in?: $Enums.activation_codes_role[] | null
+    notIn?: $Enums.activation_codes_role[] | null
+    not?: NestedEnumactivation_codes_roleNullableWithAggregatesFilter<$PrismaModel> | $Enums.activation_codes_role | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumactivation_codes_roleNullableFilter<$PrismaModel>
+    _max?: NestedEnumactivation_codes_roleNullableFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -12075,11 +13317,10 @@ export namespace Prisma {
     connect?: userWhereUniqueInput
   }
 
-  export type entrenadoresCreateNestedManyWithoutDeportistasInput = {
-    create?: XOR<entrenadoresCreateWithoutDeportistasInput, entrenadoresUncheckedCreateWithoutDeportistasInput> | entrenadoresCreateWithoutDeportistasInput[] | entrenadoresUncheckedCreateWithoutDeportistasInput[]
-    connectOrCreate?: entrenadoresCreateOrConnectWithoutDeportistasInput | entrenadoresCreateOrConnectWithoutDeportistasInput[]
-    createMany?: entrenadoresCreateManyDeportistasInputEnvelope
-    connect?: entrenadoresWhereUniqueInput | entrenadoresWhereUniqueInput[]
+  export type entrenadoresCreateNestedOneWithoutDeportistasInput = {
+    create?: XOR<entrenadoresCreateWithoutDeportistasInput, entrenadoresUncheckedCreateWithoutDeportistasInput>
+    connectOrCreate?: entrenadoresCreateOrConnectWithoutDeportistasInput
+    connect?: entrenadoresWhereUniqueInput
   }
 
   export type events_resultadoCreateNestedManyWithoutDeportistasInput = {
@@ -12087,13 +13328,6 @@ export namespace Prisma {
     connectOrCreate?: events_resultadoCreateOrConnectWithoutDeportistasInput | events_resultadoCreateOrConnectWithoutDeportistasInput[]
     createMany?: events_resultadoCreateManyDeportistasInputEnvelope
     connect?: events_resultadoWhereUniqueInput | events_resultadoWhereUniqueInput[]
-  }
-
-  export type entrenadoresUncheckedCreateNestedManyWithoutDeportistasInput = {
-    create?: XOR<entrenadoresCreateWithoutDeportistasInput, entrenadoresUncheckedCreateWithoutDeportistasInput> | entrenadoresCreateWithoutDeportistasInput[] | entrenadoresUncheckedCreateWithoutDeportistasInput[]
-    connectOrCreate?: entrenadoresCreateOrConnectWithoutDeportistasInput | entrenadoresCreateOrConnectWithoutDeportistasInput[]
-    createMany?: entrenadoresCreateManyDeportistasInputEnvelope
-    connect?: entrenadoresWhereUniqueInput | entrenadoresWhereUniqueInput[]
   }
 
   export type events_resultadoUncheckedCreateNestedManyWithoutDeportistasInput = {
@@ -12137,18 +13371,14 @@ export namespace Prisma {
     update?: XOR<XOR<userUpdateToOneWithWhereWithoutDeportistasInput, userUpdateWithoutDeportistasInput>, userUncheckedUpdateWithoutDeportistasInput>
   }
 
-  export type entrenadoresUpdateManyWithoutDeportistasNestedInput = {
-    create?: XOR<entrenadoresCreateWithoutDeportistasInput, entrenadoresUncheckedCreateWithoutDeportistasInput> | entrenadoresCreateWithoutDeportistasInput[] | entrenadoresUncheckedCreateWithoutDeportistasInput[]
-    connectOrCreate?: entrenadoresCreateOrConnectWithoutDeportistasInput | entrenadoresCreateOrConnectWithoutDeportistasInput[]
-    upsert?: entrenadoresUpsertWithWhereUniqueWithoutDeportistasInput | entrenadoresUpsertWithWhereUniqueWithoutDeportistasInput[]
-    createMany?: entrenadoresCreateManyDeportistasInputEnvelope
-    set?: entrenadoresWhereUniqueInput | entrenadoresWhereUniqueInput[]
-    disconnect?: entrenadoresWhereUniqueInput | entrenadoresWhereUniqueInput[]
-    delete?: entrenadoresWhereUniqueInput | entrenadoresWhereUniqueInput[]
-    connect?: entrenadoresWhereUniqueInput | entrenadoresWhereUniqueInput[]
-    update?: entrenadoresUpdateWithWhereUniqueWithoutDeportistasInput | entrenadoresUpdateWithWhereUniqueWithoutDeportistasInput[]
-    updateMany?: entrenadoresUpdateManyWithWhereWithoutDeportistasInput | entrenadoresUpdateManyWithWhereWithoutDeportistasInput[]
-    deleteMany?: entrenadoresScalarWhereInput | entrenadoresScalarWhereInput[]
+  export type entrenadoresUpdateOneWithoutDeportistasNestedInput = {
+    create?: XOR<entrenadoresCreateWithoutDeportistasInput, entrenadoresUncheckedCreateWithoutDeportistasInput>
+    connectOrCreate?: entrenadoresCreateOrConnectWithoutDeportistasInput
+    upsert?: entrenadoresUpsertWithoutDeportistasInput
+    disconnect?: entrenadoresWhereInput | boolean
+    delete?: entrenadoresWhereInput | boolean
+    connect?: entrenadoresWhereUniqueInput
+    update?: XOR<XOR<entrenadoresUpdateToOneWithWhereWithoutDeportistasInput, entrenadoresUpdateWithoutDeportistasInput>, entrenadoresUncheckedUpdateWithoutDeportistasInput>
   }
 
   export type events_resultadoUpdateManyWithoutDeportistasNestedInput = {
@@ -12163,20 +13393,6 @@ export namespace Prisma {
     update?: events_resultadoUpdateWithWhereUniqueWithoutDeportistasInput | events_resultadoUpdateWithWhereUniqueWithoutDeportistasInput[]
     updateMany?: events_resultadoUpdateManyWithWhereWithoutDeportistasInput | events_resultadoUpdateManyWithWhereWithoutDeportistasInput[]
     deleteMany?: events_resultadoScalarWhereInput | events_resultadoScalarWhereInput[]
-  }
-
-  export type entrenadoresUncheckedUpdateManyWithoutDeportistasNestedInput = {
-    create?: XOR<entrenadoresCreateWithoutDeportistasInput, entrenadoresUncheckedCreateWithoutDeportistasInput> | entrenadoresCreateWithoutDeportistasInput[] | entrenadoresUncheckedCreateWithoutDeportistasInput[]
-    connectOrCreate?: entrenadoresCreateOrConnectWithoutDeportistasInput | entrenadoresCreateOrConnectWithoutDeportistasInput[]
-    upsert?: entrenadoresUpsertWithWhereUniqueWithoutDeportistasInput | entrenadoresUpsertWithWhereUniqueWithoutDeportistasInput[]
-    createMany?: entrenadoresCreateManyDeportistasInputEnvelope
-    set?: entrenadoresWhereUniqueInput | entrenadoresWhereUniqueInput[]
-    disconnect?: entrenadoresWhereUniqueInput | entrenadoresWhereUniqueInput[]
-    delete?: entrenadoresWhereUniqueInput | entrenadoresWhereUniqueInput[]
-    connect?: entrenadoresWhereUniqueInput | entrenadoresWhereUniqueInput[]
-    update?: entrenadoresUpdateWithWhereUniqueWithoutDeportistasInput | entrenadoresUpdateWithWhereUniqueWithoutDeportistasInput[]
-    updateMany?: entrenadoresUpdateManyWithWhereWithoutDeportistasInput | entrenadoresUpdateManyWithWhereWithoutDeportistasInput[]
-    deleteMany?: entrenadoresScalarWhereInput | entrenadoresScalarWhereInput[]
   }
 
   export type events_resultadoUncheckedUpdateManyWithoutDeportistasNestedInput = {
@@ -12199,10 +13415,18 @@ export namespace Prisma {
     connect?: userWhereUniqueInput
   }
 
-  export type deportistasCreateNestedOneWithoutEntrenadoresInput = {
-    create?: XOR<deportistasCreateWithoutEntrenadoresInput, deportistasUncheckedCreateWithoutEntrenadoresInput>
-    connectOrCreate?: deportistasCreateOrConnectWithoutEntrenadoresInput
-    connect?: deportistasWhereUniqueInput
+  export type deportistasCreateNestedManyWithoutEntrenadoresInput = {
+    create?: XOR<deportistasCreateWithoutEntrenadoresInput, deportistasUncheckedCreateWithoutEntrenadoresInput> | deportistasCreateWithoutEntrenadoresInput[] | deportistasUncheckedCreateWithoutEntrenadoresInput[]
+    connectOrCreate?: deportistasCreateOrConnectWithoutEntrenadoresInput | deportistasCreateOrConnectWithoutEntrenadoresInput[]
+    createMany?: deportistasCreateManyEntrenadoresInputEnvelope
+    connect?: deportistasWhereUniqueInput | deportistasWhereUniqueInput[]
+  }
+
+  export type deportistasUncheckedCreateNestedManyWithoutEntrenadoresInput = {
+    create?: XOR<deportistasCreateWithoutEntrenadoresInput, deportistasUncheckedCreateWithoutEntrenadoresInput> | deportistasCreateWithoutEntrenadoresInput[] | deportistasUncheckedCreateWithoutEntrenadoresInput[]
+    connectOrCreate?: deportistasCreateOrConnectWithoutEntrenadoresInput | deportistasCreateOrConnectWithoutEntrenadoresInput[]
+    createMany?: deportistasCreateManyEntrenadoresInputEnvelope
+    connect?: deportistasWhereUniqueInput | deportistasWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -12223,14 +13447,32 @@ export namespace Prisma {
     update?: XOR<XOR<userUpdateToOneWithWhereWithoutEntrenadoresInput, userUpdateWithoutEntrenadoresInput>, userUncheckedUpdateWithoutEntrenadoresInput>
   }
 
-  export type deportistasUpdateOneWithoutEntrenadoresNestedInput = {
-    create?: XOR<deportistasCreateWithoutEntrenadoresInput, deportistasUncheckedCreateWithoutEntrenadoresInput>
-    connectOrCreate?: deportistasCreateOrConnectWithoutEntrenadoresInput
-    upsert?: deportistasUpsertWithoutEntrenadoresInput
-    disconnect?: deportistasWhereInput | boolean
-    delete?: deportistasWhereInput | boolean
-    connect?: deportistasWhereUniqueInput
-    update?: XOR<XOR<deportistasUpdateToOneWithWhereWithoutEntrenadoresInput, deportistasUpdateWithoutEntrenadoresInput>, deportistasUncheckedUpdateWithoutEntrenadoresInput>
+  export type deportistasUpdateManyWithoutEntrenadoresNestedInput = {
+    create?: XOR<deportistasCreateWithoutEntrenadoresInput, deportistasUncheckedCreateWithoutEntrenadoresInput> | deportistasCreateWithoutEntrenadoresInput[] | deportistasUncheckedCreateWithoutEntrenadoresInput[]
+    connectOrCreate?: deportistasCreateOrConnectWithoutEntrenadoresInput | deportistasCreateOrConnectWithoutEntrenadoresInput[]
+    upsert?: deportistasUpsertWithWhereUniqueWithoutEntrenadoresInput | deportistasUpsertWithWhereUniqueWithoutEntrenadoresInput[]
+    createMany?: deportistasCreateManyEntrenadoresInputEnvelope
+    set?: deportistasWhereUniqueInput | deportistasWhereUniqueInput[]
+    disconnect?: deportistasWhereUniqueInput | deportistasWhereUniqueInput[]
+    delete?: deportistasWhereUniqueInput | deportistasWhereUniqueInput[]
+    connect?: deportistasWhereUniqueInput | deportistasWhereUniqueInput[]
+    update?: deportistasUpdateWithWhereUniqueWithoutEntrenadoresInput | deportistasUpdateWithWhereUniqueWithoutEntrenadoresInput[]
+    updateMany?: deportistasUpdateManyWithWhereWithoutEntrenadoresInput | deportistasUpdateManyWithWhereWithoutEntrenadoresInput[]
+    deleteMany?: deportistasScalarWhereInput | deportistasScalarWhereInput[]
+  }
+
+  export type deportistasUncheckedUpdateManyWithoutEntrenadoresNestedInput = {
+    create?: XOR<deportistasCreateWithoutEntrenadoresInput, deportistasUncheckedCreateWithoutEntrenadoresInput> | deportistasCreateWithoutEntrenadoresInput[] | deportistasUncheckedCreateWithoutEntrenadoresInput[]
+    connectOrCreate?: deportistasCreateOrConnectWithoutEntrenadoresInput | deportistasCreateOrConnectWithoutEntrenadoresInput[]
+    upsert?: deportistasUpsertWithWhereUniqueWithoutEntrenadoresInput | deportistasUpsertWithWhereUniqueWithoutEntrenadoresInput[]
+    createMany?: deportistasCreateManyEntrenadoresInputEnvelope
+    set?: deportistasWhereUniqueInput | deportistasWhereUniqueInput[]
+    disconnect?: deportistasWhereUniqueInput | deportistasWhereUniqueInput[]
+    delete?: deportistasWhereUniqueInput | deportistasWhereUniqueInput[]
+    connect?: deportistasWhereUniqueInput | deportistasWhereUniqueInput[]
+    update?: deportistasUpdateWithWhereUniqueWithoutEntrenadoresInput | deportistasUpdateWithWhereUniqueWithoutEntrenadoresInput[]
+    updateMany?: deportistasUpdateManyWithWhereWithoutEntrenadoresInput | deportistasUpdateManyWithWhereWithoutEntrenadoresInput[]
+    deleteMany?: deportistasScalarWhereInput | deportistasScalarWhereInput[]
   }
 
   export type events_resultadoCreateNestedManyWithoutEventsInput = {
@@ -12401,6 +13643,10 @@ export namespace Prisma {
     update?: entrenadoresUpdateWithWhereUniqueWithoutUserInput | entrenadoresUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: entrenadoresUpdateManyWithWhereWithoutUserInput | entrenadoresUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: entrenadoresScalarWhereInput | entrenadoresScalarWhereInput[]
+  }
+
+  export type NullableEnumactivation_codes_roleFieldUpdateOperationsInput = {
+    set?: $Enums.activation_codes_role | null
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -12700,6 +13946,23 @@ export namespace Prisma {
     _max?: NestedEnumuser_roleNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumactivation_codes_roleNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.activation_codes_role | Enumactivation_codes_roleFieldRefInput<$PrismaModel> | null
+    in?: $Enums.activation_codes_role[] | null
+    notIn?: $Enums.activation_codes_role[] | null
+    not?: NestedEnumactivation_codes_roleNullableFilter<$PrismaModel> | $Enums.activation_codes_role | null
+  }
+
+  export type NestedEnumactivation_codes_roleNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.activation_codes_role | Enumactivation_codes_roleFieldRefInput<$PrismaModel> | null
+    in?: $Enums.activation_codes_role[] | null
+    notIn?: $Enums.activation_codes_role[] | null
+    not?: NestedEnumactivation_codes_roleNullableWithAggregatesFilter<$PrismaModel> | $Enums.activation_codes_role | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumactivation_codes_roleNullableFilter<$PrismaModel>
+    _max?: NestedEnumactivation_codes_roleNullableFilter<$PrismaModel>
+  }
+
   export type userCreateWithoutDeportistasInput = {
     id: string
     name: string
@@ -12758,11 +14021,6 @@ export namespace Prisma {
   export type entrenadoresCreateOrConnectWithoutDeportistasInput = {
     where: entrenadoresWhereUniqueInput
     create: XOR<entrenadoresCreateWithoutDeportistasInput, entrenadoresUncheckedCreateWithoutDeportistasInput>
-  }
-
-  export type entrenadoresCreateManyDeportistasInputEnvelope = {
-    data: entrenadoresCreateManyDeportistasInput | entrenadoresCreateManyDeportistasInput[]
-    skipDuplicates?: boolean
   }
 
   export type events_resultadoCreateWithoutDeportistasInput = {
@@ -12836,34 +14094,35 @@ export namespace Prisma {
     entrenadores?: entrenadoresUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type entrenadoresUpsertWithWhereUniqueWithoutDeportistasInput = {
-    where: entrenadoresWhereUniqueInput
+  export type entrenadoresUpsertWithoutDeportistasInput = {
     update: XOR<entrenadoresUpdateWithoutDeportistasInput, entrenadoresUncheckedUpdateWithoutDeportistasInput>
     create: XOR<entrenadoresCreateWithoutDeportistasInput, entrenadoresUncheckedCreateWithoutDeportistasInput>
+    where?: entrenadoresWhereInput
   }
 
-  export type entrenadoresUpdateWithWhereUniqueWithoutDeportistasInput = {
-    where: entrenadoresWhereUniqueInput
+  export type entrenadoresUpdateToOneWithWhereWithoutDeportistasInput = {
+    where?: entrenadoresWhereInput
     data: XOR<entrenadoresUpdateWithoutDeportistasInput, entrenadoresUncheckedUpdateWithoutDeportistasInput>
   }
 
-  export type entrenadoresUpdateManyWithWhereWithoutDeportistasInput = {
-    where: entrenadoresScalarWhereInput
-    data: XOR<entrenadoresUpdateManyMutationInput, entrenadoresUncheckedUpdateManyWithoutDeportistasInput>
+  export type entrenadoresUpdateWithoutDeportistasInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    apellidos?: NullableStringFieldUpdateOperationsInput | string | null
+    dni?: NullableStringFieldUpdateOperationsInput | string | null
+    telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user?: userUpdateOneWithoutEntrenadoresNestedInput
   }
 
-  export type entrenadoresScalarWhereInput = {
-    AND?: entrenadoresScalarWhereInput | entrenadoresScalarWhereInput[]
-    OR?: entrenadoresScalarWhereInput[]
-    NOT?: entrenadoresScalarWhereInput | entrenadoresScalarWhereInput[]
-    id?: IntFilter<"entrenadores"> | number
-    nombre?: StringNullableFilter<"entrenadores"> | string | null
-    apellidos?: StringNullableFilter<"entrenadores"> | string | null
-    dni?: StringNullableFilter<"entrenadores"> | string | null
-    telefono?: BigIntNullableFilter<"entrenadores"> | bigint | number | null
-    fecha_nacimiento?: DateTimeNullableFilter<"entrenadores"> | Date | string | null
-    user_id?: StringNullableFilter<"entrenadores"> | string | null
-    deportista_id?: StringNullableFilter<"entrenadores"> | string | null
+  export type entrenadoresUncheckedUpdateWithoutDeportistasInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    apellidos?: NullableStringFieldUpdateOperationsInput | string | null
+    dni?: NullableStringFieldUpdateOperationsInput | string | null
+    telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type events_resultadoUpsertWithWhereUniqueWithoutDeportistasInput = {
@@ -12966,6 +14225,11 @@ export namespace Prisma {
     create: XOR<deportistasCreateWithoutEntrenadoresInput, deportistasUncheckedCreateWithoutEntrenadoresInput>
   }
 
+  export type deportistasCreateManyEntrenadoresInputEnvelope = {
+    data: deportistasCreateManyEntrenadoresInput | deportistasCreateManyEntrenadoresInput[]
+    skipDuplicates?: boolean
+  }
+
   export type userUpsertWithoutEntrenadoresInput = {
     update: XOR<userUpdateWithoutEntrenadoresInput, userUncheckedUpdateWithoutEntrenadoresInput>
     create: XOR<userCreateWithoutEntrenadoresInput, userUncheckedCreateWithoutEntrenadoresInput>
@@ -13007,45 +14271,38 @@ export namespace Prisma {
     deportistas?: deportistasUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type deportistasUpsertWithoutEntrenadoresInput = {
+  export type deportistasUpsertWithWhereUniqueWithoutEntrenadoresInput = {
+    where: deportistasWhereUniqueInput
     update: XOR<deportistasUpdateWithoutEntrenadoresInput, deportistasUncheckedUpdateWithoutEntrenadoresInput>
     create: XOR<deportistasCreateWithoutEntrenadoresInput, deportistasUncheckedCreateWithoutEntrenadoresInput>
-    where?: deportistasWhereInput
   }
 
-  export type deportistasUpdateToOneWithWhereWithoutEntrenadoresInput = {
-    where?: deportistasWhereInput
+  export type deportistasUpdateWithWhereUniqueWithoutEntrenadoresInput = {
+    where: deportistasWhereUniqueInput
     data: XOR<deportistasUpdateWithoutEntrenadoresInput, deportistasUncheckedUpdateWithoutEntrenadoresInput>
   }
 
-  export type deportistasUpdateWithoutEntrenadoresInput = {
-    numero_licencia?: StringFieldUpdateOperationsInput | string
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
-    apellidos?: NullableStringFieldUpdateOperationsInput | string | null
-    dni?: NullableStringFieldUpdateOperationsInput | string | null
-    telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    altura?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    ftp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    pulso?: NullableIntFieldUpdateOperationsInput | number | null
-    user?: userUpdateOneWithoutDeportistasNestedInput
-    events_resultado?: events_resultadoUpdateManyWithoutDeportistasNestedInput
+  export type deportistasUpdateManyWithWhereWithoutEntrenadoresInput = {
+    where: deportistasScalarWhereInput
+    data: XOR<deportistasUpdateManyMutationInput, deportistasUncheckedUpdateManyWithoutEntrenadoresInput>
   }
 
-  export type deportistasUncheckedUpdateWithoutEntrenadoresInput = {
-    numero_licencia?: StringFieldUpdateOperationsInput | string
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
-    apellidos?: NullableStringFieldUpdateOperationsInput | string | null
-    dni?: NullableStringFieldUpdateOperationsInput | string | null
-    telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    altura?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    ftp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    pulso?: NullableIntFieldUpdateOperationsInput | number | null
-    user_id?: NullableStringFieldUpdateOperationsInput | string | null
-    events_resultado?: events_resultadoUncheckedUpdateManyWithoutDeportistasNestedInput
+  export type deportistasScalarWhereInput = {
+    AND?: deportistasScalarWhereInput | deportistasScalarWhereInput[]
+    OR?: deportistasScalarWhereInput[]
+    NOT?: deportistasScalarWhereInput | deportistasScalarWhereInput[]
+    numero_licencia?: StringFilter<"deportistas"> | string
+    nombre?: StringNullableFilter<"deportistas"> | string | null
+    apellidos?: StringNullableFilter<"deportistas"> | string | null
+    dni?: StringNullableFilter<"deportistas"> | string | null
+    telefono?: BigIntNullableFilter<"deportistas"> | bigint | number | null
+    fecha_nacimiento?: DateTimeNullableFilter<"deportistas"> | Date | string | null
+    peso?: DecimalNullableFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
+    altura?: DecimalNullableFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
+    ftp?: DecimalNullableFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
+    pulso?: IntNullableFilter<"deportistas"> | number | null
+    user_id?: StringNullableFilter<"deportistas"> | string | null
+    entrenador_id?: IntNullableFilter<"deportistas"> | number | null
   }
 
   export type events_resultadoCreateWithoutEventsInput = {
@@ -13131,7 +14388,7 @@ export namespace Prisma {
     ftp?: Decimal | DecimalJsLike | number | string | null
     pulso?: number | null
     user?: userCreateNestedOneWithoutDeportistasInput
-    entrenadores?: entrenadoresCreateNestedManyWithoutDeportistasInput
+    entrenadores?: entrenadoresCreateNestedOneWithoutDeportistasInput
   }
 
   export type deportistasUncheckedCreateWithoutEvents_resultadoInput = {
@@ -13146,7 +14403,7 @@ export namespace Prisma {
     ftp?: Decimal | DecimalJsLike | number | string | null
     pulso?: number | null
     user_id?: string | null
-    entrenadores?: entrenadoresUncheckedCreateNestedManyWithoutDeportistasInput
+    entrenador_id?: number | null
   }
 
   export type deportistasCreateOrConnectWithoutEvents_resultadoInput = {
@@ -13208,7 +14465,7 @@ export namespace Prisma {
     ftp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     pulso?: NullableIntFieldUpdateOperationsInput | number | null
     user?: userUpdateOneWithoutDeportistasNestedInput
-    entrenadores?: entrenadoresUpdateManyWithoutDeportistasNestedInput
+    entrenadores?: entrenadoresUpdateOneWithoutDeportistasNestedInput
   }
 
   export type deportistasUncheckedUpdateWithoutEvents_resultadoInput = {
@@ -13223,7 +14480,7 @@ export namespace Prisma {
     ftp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     pulso?: NullableIntFieldUpdateOperationsInput | number | null
     user_id?: NullableStringFieldUpdateOperationsInput | string | null
-    entrenadores?: entrenadoresUncheckedUpdateManyWithoutDeportistasNestedInput
+    entrenador_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type deportistasCreateWithoutUserInput = {
@@ -13237,7 +14494,7 @@ export namespace Prisma {
     altura?: Decimal | DecimalJsLike | number | string | null
     ftp?: Decimal | DecimalJsLike | number | string | null
     pulso?: number | null
-    entrenadores?: entrenadoresCreateNestedManyWithoutDeportistasInput
+    entrenadores?: entrenadoresCreateNestedOneWithoutDeportistasInput
     events_resultado?: events_resultadoCreateNestedManyWithoutDeportistasInput
   }
 
@@ -13252,7 +14509,7 @@ export namespace Prisma {
     altura?: Decimal | DecimalJsLike | number | string | null
     ftp?: Decimal | DecimalJsLike | number | string | null
     pulso?: number | null
-    entrenadores?: entrenadoresUncheckedCreateNestedManyWithoutDeportistasInput
+    entrenador_id?: number | null
     events_resultado?: events_resultadoUncheckedCreateNestedManyWithoutDeportistasInput
   }
 
@@ -13273,7 +14530,7 @@ export namespace Prisma {
     dni?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
-    deportistas?: deportistasCreateNestedOneWithoutEntrenadoresInput
+    deportistas?: deportistasCreateNestedManyWithoutEntrenadoresInput
   }
 
   export type entrenadoresUncheckedCreateWithoutUserInput = {
@@ -13283,7 +14540,7 @@ export namespace Prisma {
     dni?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
-    deportista_id?: string | null
+    deportistas?: deportistasUncheckedCreateNestedManyWithoutEntrenadoresInput
   }
 
   export type entrenadoresCreateOrConnectWithoutUserInput = {
@@ -13312,23 +14569,6 @@ export namespace Prisma {
     data: XOR<deportistasUpdateManyMutationInput, deportistasUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type deportistasScalarWhereInput = {
-    AND?: deportistasScalarWhereInput | deportistasScalarWhereInput[]
-    OR?: deportistasScalarWhereInput[]
-    NOT?: deportistasScalarWhereInput | deportistasScalarWhereInput[]
-    numero_licencia?: StringFilter<"deportistas"> | string
-    nombre?: StringNullableFilter<"deportistas"> | string | null
-    apellidos?: StringNullableFilter<"deportistas"> | string | null
-    dni?: StringNullableFilter<"deportistas"> | string | null
-    telefono?: BigIntNullableFilter<"deportistas"> | bigint | number | null
-    fecha_nacimiento?: DateTimeNullableFilter<"deportistas"> | Date | string | null
-    peso?: DecimalNullableFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
-    altura?: DecimalNullableFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
-    ftp?: DecimalNullableFilter<"deportistas"> | Decimal | DecimalJsLike | number | string | null
-    pulso?: IntNullableFilter<"deportistas"> | number | null
-    user_id?: StringNullableFilter<"deportistas"> | string | null
-  }
-
   export type entrenadoresUpsertWithWhereUniqueWithoutUserInput = {
     where: entrenadoresWhereUniqueInput
     update: XOR<entrenadoresUpdateWithoutUserInput, entrenadoresUncheckedUpdateWithoutUserInput>
@@ -13345,14 +14585,17 @@ export namespace Prisma {
     data: XOR<entrenadoresUpdateManyMutationInput, entrenadoresUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type entrenadoresCreateManyDeportistasInput = {
-    id: number
-    nombre?: string | null
-    apellidos?: string | null
-    dni?: string | null
-    telefono?: bigint | number | null
-    fecha_nacimiento?: Date | string | null
-    user_id?: string | null
+  export type entrenadoresScalarWhereInput = {
+    AND?: entrenadoresScalarWhereInput | entrenadoresScalarWhereInput[]
+    OR?: entrenadoresScalarWhereInput[]
+    NOT?: entrenadoresScalarWhereInput | entrenadoresScalarWhereInput[]
+    id?: IntFilter<"entrenadores"> | number
+    nombre?: StringNullableFilter<"entrenadores"> | string | null
+    apellidos?: StringNullableFilter<"entrenadores"> | string | null
+    dni?: StringNullableFilter<"entrenadores"> | string | null
+    telefono?: BigIntNullableFilter<"entrenadores"> | bigint | number | null
+    fecha_nacimiento?: DateTimeNullableFilter<"entrenadores"> | Date | string | null
+    user_id?: StringNullableFilter<"entrenadores"> | string | null
   }
 
   export type events_resultadoCreateManyDeportistasInput = {
@@ -13363,36 +14606,6 @@ export namespace Prisma {
     valoracion_deportista?: string | null
     valoracion_entrenador?: string | null
     evento_id?: number | null
-  }
-
-  export type entrenadoresUpdateWithoutDeportistasInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
-    apellidos?: NullableStringFieldUpdateOperationsInput | string | null
-    dni?: NullableStringFieldUpdateOperationsInput | string | null
-    telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    user?: userUpdateOneWithoutEntrenadoresNestedInput
-  }
-
-  export type entrenadoresUncheckedUpdateWithoutDeportistasInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
-    apellidos?: NullableStringFieldUpdateOperationsInput | string | null
-    dni?: NullableStringFieldUpdateOperationsInput | string | null
-    telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    user_id?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type entrenadoresUncheckedUpdateManyWithoutDeportistasInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
-    apellidos?: NullableStringFieldUpdateOperationsInput | string | null
-    dni?: NullableStringFieldUpdateOperationsInput | string | null
-    telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    user_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type events_resultadoUpdateWithoutDeportistasInput = {
@@ -13423,6 +14636,64 @@ export namespace Prisma {
     valoracion_deportista?: NullableStringFieldUpdateOperationsInput | string | null
     valoracion_entrenador?: NullableStringFieldUpdateOperationsInput | string | null
     evento_id?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type deportistasCreateManyEntrenadoresInput = {
+    numero_licencia: string
+    nombre?: string | null
+    apellidos?: string | null
+    dni?: string | null
+    telefono?: bigint | number | null
+    fecha_nacimiento?: Date | string | null
+    peso?: Decimal | DecimalJsLike | number | string | null
+    altura?: Decimal | DecimalJsLike | number | string | null
+    ftp?: Decimal | DecimalJsLike | number | string | null
+    pulso?: number | null
+    user_id?: string | null
+  }
+
+  export type deportistasUpdateWithoutEntrenadoresInput = {
+    numero_licencia?: StringFieldUpdateOperationsInput | string
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    apellidos?: NullableStringFieldUpdateOperationsInput | string | null
+    dni?: NullableStringFieldUpdateOperationsInput | string | null
+    telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    altura?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ftp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    pulso?: NullableIntFieldUpdateOperationsInput | number | null
+    user?: userUpdateOneWithoutDeportistasNestedInput
+    events_resultado?: events_resultadoUpdateManyWithoutDeportistasNestedInput
+  }
+
+  export type deportistasUncheckedUpdateWithoutEntrenadoresInput = {
+    numero_licencia?: StringFieldUpdateOperationsInput | string
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    apellidos?: NullableStringFieldUpdateOperationsInput | string | null
+    dni?: NullableStringFieldUpdateOperationsInput | string | null
+    telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    altura?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ftp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    pulso?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: NullableStringFieldUpdateOperationsInput | string | null
+    events_resultado?: events_resultadoUncheckedUpdateManyWithoutDeportistasNestedInput
+  }
+
+  export type deportistasUncheckedUpdateManyWithoutEntrenadoresInput = {
+    numero_licencia?: StringFieldUpdateOperationsInput | string
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    apellidos?: NullableStringFieldUpdateOperationsInput | string | null
+    dni?: NullableStringFieldUpdateOperationsInput | string | null
+    telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    peso?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    altura?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ftp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    pulso?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type events_resultadoCreateManyEventsInput = {
@@ -13476,6 +14747,7 @@ export namespace Prisma {
     altura?: Decimal | DecimalJsLike | number | string | null
     ftp?: Decimal | DecimalJsLike | number | string | null
     pulso?: number | null
+    entrenador_id?: number | null
   }
 
   export type entrenadoresCreateManyUserInput = {
@@ -13485,7 +14757,6 @@ export namespace Prisma {
     dni?: string | null
     telefono?: bigint | number | null
     fecha_nacimiento?: Date | string | null
-    deportista_id?: string | null
   }
 
   export type deportistasUpdateWithoutUserInput = {
@@ -13499,7 +14770,7 @@ export namespace Prisma {
     altura?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ftp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     pulso?: NullableIntFieldUpdateOperationsInput | number | null
-    entrenadores?: entrenadoresUpdateManyWithoutDeportistasNestedInput
+    entrenadores?: entrenadoresUpdateOneWithoutDeportistasNestedInput
     events_resultado?: events_resultadoUpdateManyWithoutDeportistasNestedInput
   }
 
@@ -13514,7 +14785,7 @@ export namespace Prisma {
     altura?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ftp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     pulso?: NullableIntFieldUpdateOperationsInput | number | null
-    entrenadores?: entrenadoresUncheckedUpdateManyWithoutDeportistasNestedInput
+    entrenador_id?: NullableIntFieldUpdateOperationsInput | number | null
     events_resultado?: events_resultadoUncheckedUpdateManyWithoutDeportistasNestedInput
   }
 
@@ -13529,6 +14800,7 @@ export namespace Prisma {
     altura?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ftp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     pulso?: NullableIntFieldUpdateOperationsInput | number | null
+    entrenador_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type entrenadoresUpdateWithoutUserInput = {
@@ -13538,7 +14810,7 @@ export namespace Prisma {
     dni?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deportistas?: deportistasUpdateOneWithoutEntrenadoresNestedInput
+    deportistas?: deportistasUpdateManyWithoutEntrenadoresNestedInput
   }
 
   export type entrenadoresUncheckedUpdateWithoutUserInput = {
@@ -13548,7 +14820,7 @@ export namespace Prisma {
     dni?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deportista_id?: NullableStringFieldUpdateOperationsInput | string | null
+    deportistas?: deportistasUncheckedUpdateManyWithoutEntrenadoresNestedInput
   }
 
   export type entrenadoresUncheckedUpdateManyWithoutUserInput = {
@@ -13558,7 +14830,6 @@ export namespace Prisma {
     dni?: NullableStringFieldUpdateOperationsInput | string | null
     telefono?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     fecha_nacimiento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    deportista_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

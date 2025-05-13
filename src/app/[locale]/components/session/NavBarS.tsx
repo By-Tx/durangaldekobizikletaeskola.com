@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/routing";
 import icon from "@/app/media/logo-wh.png";
+import iconHover from "@/app/media/logo.png";
 import Image from 'next/image';
 import { useTransition } from "react";
 import { dashboardLinks } from "@/app/[locale]/components/session/DashboardLinks";
@@ -14,6 +15,7 @@ const NavBarS = ({ rol }: { rol: string }) => {
     const [isPending, startTransition] = useTransition();
     const [menuOpen, setMenuOpen] = useState(false);
     const [isDashboardPage, setIsDashboardPage] = useState(false);
+    const [logoHover, setLogoHover] = useState(false);
 
     // Detecta si estamos en la página /dashboard
     useEffect(() => {
@@ -43,8 +45,30 @@ const NavBarS = ({ rol }: { rol: string }) => {
     return (
         <nav className="bg-customDarkBlueSession/65 rounded-2xl mx-auto mt-4 mb-4 px-4 w-11/12 max-w-6xl">
             <div className="flex h-14 items-center justify-between">
-                <Link href="/dashboard" className="flex items-center">
-                    <Image src={icon} height={30} width={30} alt="news"/>
+                <Link
+                    href="/"
+                    className="flex items-center relative w-[30px] h-[30px]"
+                    onMouseEnter={() => setLogoHover(true)}
+                    onMouseLeave={() => setLogoHover(false)}
+                >
+                    {/* Imagen normal */}
+                    <Image
+                        src={icon}
+                        height={30}
+                        width={30}
+                        alt="Página principal"
+                        className={`absolute top-0 left-0 transition-opacity duration-300 ${logoHover ? "opacity-0" : "opacity-100"}`}
+                        style={{ pointerEvents: "none" }}
+                    />
+                    {/* Imagen hover */}
+                    <Image
+                        src={iconHover}
+                        height={30}
+                        width={30}
+                        alt="Página principal hover"
+                        className={`absolute top-0 left-0 transition-opacity duration-300 ${logoHover ? "opacity-100" : "opacity-0"}`}
+                        style={{ pointerEvents: "none" }}
+                    />
                 </Link>
                 {/* Botón hamburguesa */}
                 <button
@@ -58,25 +82,36 @@ const NavBarS = ({ rol }: { rol: string }) => {
                 </button>
                 {/* Enlaces */}
                 <div className={`flex-1 justify-center items-center md:flex gap-4 ${menuOpen ? "flex flex-col absolute top-14 left-0 w-full bg-customDarkBlueSession/95 z-50 py-4" : "hidden md:flex"}`}>
+                    {rol && (
+                        <Link
+                            href="/dashboard"
+                            className="text-white font-fredoka font-semibold px-3 py-2 rounded-lg hover:text-blue-300 transition text-center"
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            Panel
+                        </Link>
+                    )}
                     {filteredLinks.map(link => (
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="text-white font-fredoka font-semibold px-3 py-2 rounded-lg hover:bg-customBlue transition text-center"
+                            className="text-white font-fredoka font-semibold px-3 py-2 rounded-lg hover:text-blue-300 transition text-center"
                             onClick={() => setMenuOpen(false)}
                         >
                             {link.short || link.text}
                         </Link>
                     ))}
                 </div>
-                <div className="hidden md:block mr-6">
-                    <button onClick={handleLogout} className="bg-customBlue text-white font-fredoka font-semibold px-4 py-2 rounded-lg" disabled={isPending}>Cerrar sesión</button>
-                </div>
+                {rol && (
+                    <div className="hidden md:block mr-6">
+                        <button onClick={handleLogout} className="bg-customBlue text-white font-fredoka font-semibold px-4 py-2 rounded-lg hover:text-blue-300 transition text-cente" disabled={isPending}>Cerrar sesión</button>
+                    </div>
+                )}
             </div>
             {/* Botón cerrar sesión en móvil */}
-            {menuOpen && (
+            {menuOpen && rol && (
                 <div className="flex md:hidden justify-center mt-2">
-                    <button onClick={handleLogout} className="bg-customBlue text-white font-fredoka font-semibold px-4 py-2 rounded-lg" disabled={isPending}>Cerrar sesión</button>
+                    <button onClick={handleLogout} className="bg-customBlue text-white font-fredoka font-semibold px-4 py-2 rounded-lg hover:text-blue-300 transition text-cente" disabled={isPending}>Cerrar sesión</button>
                 </div>
             )}
         </nav>

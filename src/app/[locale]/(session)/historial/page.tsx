@@ -17,7 +17,7 @@ type CarreraRaw = {
 };
 
 export default async function Page(props: any) {
-    const { searchParams } = await props;
+    const searchParams = await props.searchParams;
 
     const session = await auth.api.getSession({
         headers: await headers()
@@ -27,7 +27,7 @@ export default async function Page(props: any) {
         redirect("/");
     }
 
-    let jugadorId = searchParams.numero_licencia;
+    let jugadorId = searchParams?.numero_licencia;
 
     if (!jugadorId) {
         // Consulta para obtener el numero_licencia del usuario actual

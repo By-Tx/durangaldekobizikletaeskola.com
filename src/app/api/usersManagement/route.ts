@@ -14,6 +14,9 @@ export async function GET() {
                 not: "admin",
             },
         },
+        orderBy: {
+            name: "asc",
+        },
     })).map(user => ({
         ...user,
         role: user.role ?? "defaultRole", 
@@ -35,11 +38,25 @@ export async function PUT(req: NextRequest) {
 }
 //function to delete a user
 export async function DELETE(req: NextRequest) {
-    const res= await req.json();
+    const res = await req.json();
     const { id } = res;
+
+    await prisma.account.deleteMany({
+        where: { userId: id },
+    });
+
+    await prisma.deportistas.deleteMany({
+        where: { user_id: id },
+    });
+
+    await prisma.entrenadores.deleteMany({
+        where: { user_id: id },
+    });
+
     const user = await prisma.user.delete({
         where: { id },
     });
+
     if (!user) {
         return NextResponse.json({ message: 'Error al eliminar el usuario' }, { status: 500 });
     }
