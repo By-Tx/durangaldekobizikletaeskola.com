@@ -104,14 +104,14 @@ const NavBarS = ({ rol }: { rol: string }) => {
                 </div>
                 {rol && (
                     <div className="hidden md:block mr-6">
-                        <button onClick={handleLogout} className="bg-customBlue text-white font-fredoka font-semibold px-4 py-2 rounded-lg hover:text-blue-300 transition text-cente" disabled={isPending}>Cerrar sesión</button>
+                        <button onClick={handleLogout} className="bg-customBlue text-white font-fredoka font-semibold px-4 py-2 rounded-lg hover:text-blue-300 transition text-center" disabled={isPending}>Cerrar sesión</button>
                     </div>
                 )}
             </div>
             {/* Botón cerrar sesión en móvil */}
             {menuOpen && rol && (
                 <div className="flex md:hidden justify-center mt-2">
-                    <button onClick={handleLogout} className="bg-customBlue text-white font-fredoka font-semibold px-4 py-2 rounded-lg hover:text-blue-300 transition text-cente" disabled={isPending}>Cerrar sesión</button>
+                    <button onClick={handleLogout} className="bg-customBlue text-white font-fredoka font-semibold px-4 py-2 rounded-lg hover:text-blue-300 transition text-center" disabled={isPending}>Cerrar sesión</button>
                 </div>
             )}
         </nav>
