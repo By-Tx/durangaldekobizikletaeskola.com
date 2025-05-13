@@ -28,11 +28,11 @@ export async function POST(req: NextRequest) {
         const response = await fetch(url, { method: "GET" });
 
         const data = await response.text();
-        //console.log("Response Data:", data); 
+        console.log("Response Data:", data); 
 
         const regex = /<a href="([^"]+)"/g;  
         const matches = [...data.matchAll(regex)];
-        //console.log("Matches:", matches);
+        console.log("Matches:", matches);
         
         const results = matches.map(match => match[1]).filter((item: string) => !item.includes("../"));
         console.log("Results:", results);

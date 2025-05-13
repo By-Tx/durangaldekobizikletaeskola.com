@@ -6,11 +6,9 @@ import { API_URL } from "@/lib/config";
 import { useEffect } from 'react';
 
 
-export default function ClientForm({ role }: { role: string }) {
-
+export default function ClientForm() {
+    // { role }: { role: string } 
     // VARIABLES
-
-    role = "staff" // will remove later
 
     const [disabledDropdowns, setDisabledDropdowns] = useState({
         mode: true,
@@ -159,8 +157,15 @@ export default function ClientForm({ role }: { role: string }) {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
         if (files) {
-            // Convert the FileList to an array and limit the selection to 30 files
-            const newFiles = Array.from(files).slice(0, 30);
+            // Convert the FileList to an array, filter files larger than 5MB, and limit the selection to 30 files
+            const newFiles = Array.from(files)
+                .filter(file => file.size <= 5 * 1024 * 1024) // Filter files <= 5MB
+                .slice(0, 30);
+
+            if (newFiles.length < files.length) {
+                alert("Algunas imágenes no se seleccionaron porque superan el límite de 5MB.");
+            }
+
             setFormData({
                 ...formData,
                 fileUpload: (() => {
@@ -227,7 +232,7 @@ export default function ClientForm({ role }: { role: string }) {
         }
 
         const formDataToSend = new FormData();
-        formDataToSend.append('dir', `${parsedData.year}/${parsedData.mode}/${parsedData.category}/${parsedData.race}`);
+        formDataToSend.append('dir', `/www/wwwroot/photos.txuli.com/duranguesa/gallery-v2/${parsedData.year}/${parsedData.mode}/${parsedData.category}/${parsedData.race}`);
         if (formData.fileUpload) {
             Array.from(formData.fileUpload).forEach((file, index) => {
                 formDataToSend.append('file', file, file.name);
@@ -248,18 +253,6 @@ export default function ClientForm({ role }: { role: string }) {
         }
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
     return (
         <>
             <h1 className='mt-3 text-center w-full'>SUBIR IMAGENES</h1>
@@ -267,177 +260,74 @@ export default function ClientForm({ role }: { role: string }) {
                 {/* AÑO */}
                 <section className="flex my-3">
 
-                    {role === "admin" && (
-                        <>
-                            <div className=' w-1/4'>
-                                <label htmlFor="yearText" className="block text-gray-200 m-2.5 text-left  w-1/4">Año:</label>
-                            </div>
-                            <div className=' w-3/4'>
-                                <input
-                                    type="text"
-                                    id="yearText"
-                                    name="yearText"
-                                    value={formData.year}
-                                    onChange={handleChange}
+                    {/* dropdown */}
+                        <label htmlFor="year" className="block text-gray-200 m-2.5 text-left  w-1/4">AÑO:</label>
+                        <select
+                            id="year"
+                            name="year"
+                            value={formData.year}
+                            onChange={handleChange}
 
-                                    className="w-full border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700" />
+                            className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                        >
+                            <option value="">Seleccionar</option>
+                            {yearOptions.map((year) => (
+                                <option key={year} value={year}>
+                                    {year}
+                                </option>
+                            ))}
+                        </select>
 
-                            </div>
-                        </>
-                    )}
-                    {role === "staff" && (
-                        <>
-                            {/* dropdown */}
-                            <div className='w-1/2'>
-                                <label htmlFor="year" className="block text-gray-200 m-2.5 text-left  w-1/4">AÑO:</label>
-                            </div>
-                            <div className='w-1/2'>
-                                <select
-                                    id="year"
-                                    name="year"
-                                    value={formData.year}
-                                    onChange={handleChange}
-
-                                    className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
-                                >
-                                    <option value="">Seleccionar</option>
-                                    {yearOptions.map((year) => (
-                                        <option key={year} value={year}>
-                                            {year}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                        </>
-                    )}
                 </section>
 
 
                 {/* mode */}
                 <section className="flex my-3">
-                    {role === "admin" && (
-                        <>
-                            {/* dropdown */}
-                            <label htmlFor="mode" className="block text-gray-200 m-2.5 text-left  w-1/4">Modalidad:</label>
-                            <select
-                                id="mode"
-                                name="mode"
-                                value={formData.mode}
-                                onChange={handleChange}
-                                disabled={disabledDropdowns.mode}
-                                className="w-full h-auto border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
-                            >
-                                <option value="">Seleccionar</option>
-                                {modeOptions.map((mode) => (
-                                    <option key={mode} value={mode}>
-                                        {mode}
-                                    </option>
-                                ))}
-                            </select>
 
-                            {/* textbox */}
-                            <label htmlFor="modeText" className="block text-gray-200 m-2.5 text-left"> o </label>
-                            <input
-                                type="text"
-                                id="modeText"
-                                name="modeText"
-                                placeholder="Escribe aquí"
-                                onChange={handleChange}
-                                className="w-full border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
-                            />
-                        </>
-                    )}
-
-                    {role === "staff" && (
-                        <>
-                            {/* dropdown */}
-                            <div className='w-1/2'>
-                                <label htmlFor="mode" className="block text-gray-200 m-2.5 text-left  w-1/4">Modalidad:</label>
-                            </div>
-                            <div className='w-1/2'>
-                                <select
-                                    id="mode"
-                                    name="mode"
-                                    value={formData.mode}
-                                    onChange={handleChange}
-                                    disabled={disabledDropdowns.mode}
-                                    className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
-                                >
-                                    <option value="">Seleccionar</option>
-                                    {modeOptions.map((mode) => (
-                                        <option key={mode} value={mode}>
-                                            {mode}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                        </>
-                    )}
+                    {/* dropdown */}
+                        <label htmlFor="mode" className="block text-gray-200 m-2.5 text-left  w-1/4">Modalidad:</label>
+                        <select
+                            id="mode"
+                            name="mode"
+                            value={formData.mode}
+                            onChange={handleChange}
+                            disabled={disabledDropdowns.mode}
+                            className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                        >
+                            <option value="">Seleccionar</option>
+                            {modeOptions.map((mode) => (
+                                <option key={mode} value={mode}>
+                                    {mode}
+                                </option>
+                            ))}
+                        </select>
 
                 </section>
 
                 {/* category */}
                 <section className="flex my-3">
-                    {role === "admin" && (
-                        <>
-                            {/* dropdown */}
-                            <label htmlFor="category" className="block text-gray-200 m-2.5 text-left  w-1/4">Categoría:</label>
-                            <select
-                                id="category"
-                                name="category"
-                                value={formData.category}
-                                onChange={handleChange}
-                                disabled={disabledDropdowns.category}
-                                className="w-full h-auto border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
-                            >
-                                <option value="">Seleccionar</option>
-                                {categoryOptions.map((category) => (
-                                    <option key={category} value={category}>
-                                        {category}
-                                    </option>
-                                ))}
-                            </select>
 
-                            {/* textbox */}
-                            <label htmlFor="categoryText" className="block text-gray-200 m-2.5 text-left"> o </label>
-                            <input
-                                type="text"
-                                id="categoryText"
-                                name="categoryText"
-                                placeholder="Escribe aquí"
-                                onChange={handleChange}
-
-                                className="w-full border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
-                            />
-                        </>
-                    )}
-
-                    {role === "staff" && (
-                        <>
-                            {/* dropdown */}
-                            <div className='w-1/2'>
-                                <label htmlFor="category" className="block text-gray-200 m-2.5 text-left  w-1/4">Categoría:</label>
-                            </div>
-                            <div className='w-1/2'>
-                                <select
-                                    id="category"
-                                    name="category"
-                                    value={formData.category}
-                                    onChange={handleChange}
-                                    disabled={disabledDropdowns.category}
-                                    className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
-                                >
-                                    <option value="">Seleccionar</option>
-                                    {categoryOptions.map((category) => (
-                                        <option key={category} value={category}>
-                                            {category}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                        </>
-                    )}
-
+                    {/* dropdown */}
+                    
+                        <label htmlFor="category" className="block text-gray-200 m-2.5 text-left  w-1/4">Categoría:</label>
+                    
+                   
+                        <select
+                            id="category"
+                            name="category"
+                            value={formData.category}
+                            onChange={handleChange}
+                            disabled={disabledDropdowns.category}
+                            className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                        >
+                            <option value="">Seleccionar</option>
+                            {categoryOptions.map((category) => (
+                                <option key={category} value={category}>
+                                    {category}
+                                </option>
+                            ))}
+                        </select>
+                    
                 </section>
 
                 {/* race */}
@@ -462,30 +352,12 @@ export default function ClientForm({ role }: { role: string }) {
                         ))}
                     </select>
 
-                    {/* textbox */}
-                    <label htmlFor="raceText" className="block text-gray-200 m-2.5 text-left"> o </label>
-                    <input
-                        type="text"
-                        id="raceText"
-                        name="raceText"
-                        placeholder="Escribe aquí"
-                        onChange={handleChange}
-                        className="w-full border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
-                    />
-
-
-
                 </section>
-                {role === "admin" && (
-                    <section className='flex  my-3'>
-                        <p className="text-orange-400 italic text-sm ">* Para cada campo (Modalidad, Categoría y Carrera), utilice únicamente el cuadro de texto o el desplegable. En caso de usar ambos, se considerarán solo los datos ingresados manualmente. </p>
-                    </section>
-                )}
-                {role === "staff" && (
-                    <section className='flex my-3'>
-                        <p className="text-orange-400 italic text-sm ">* si deseas crear una nueva Carrera deberas dejar el desplegable sin selecionar</p>
-                    </section>
-                )}
+
+                <section className='flex my-3'>
+                    <p className="text-orange-400 italic text-sm ">* si deseas crear una nueva Carrera deberas dejar el desplegable sin selecionar</p>
+                </section>
+
                 <section className="flex my-3">
                     <div className="w-full py-2  bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <input
@@ -502,7 +374,7 @@ export default function ClientForm({ role }: { role: string }) {
                             Haz clic aquí para seleccionar imagenes
                         </label>
                         <section className='text-center '>
-                            <p className="text-orange-400 italic text-sm ">hay un limite de 30 imagenes por cada subida</p>
+                            <p className="text-orange-400 italic text-sm ">hay un limite de 30 imagenes de 5MB por cada subida</p>
                         </section>
                     </div>
                 </section>
