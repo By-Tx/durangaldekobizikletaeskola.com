@@ -1,7 +1,6 @@
 "use client";
 import { useRef, useLayoutEffect, useState } from "react";
 import Image from "next/image";
-import alert from "@/app/media/error.svg";
 import { useError } from "@/context/ErrorContext";
 
 type Deportista = {
@@ -19,20 +18,23 @@ type Deportista = {
 
 interface RunnerClientProps {
     deportistas: Deportista[];
+    rol: string;
 }
 
-export default function RunnersClient({ deportistas }: RunnerClientProps) {
+export default function RunnersClient({ deportistas, rol }: RunnerClientProps) {
     const [data, setData] = useState(deportistas);
     const [searchTerm, setSearchTerm] = useState("");
     const [form, setForm] = useState<Partial<Deportista>>({});
     const [editId, setEditId] = useState<string | null>(null);
+    const [showAddList, setShowAddList] = useState(false);
+    const [availableRunners, setAvailableRunners] = useState<Deportista[]>([]);
+    const [selectedRunners, setSelectedRunners] = useState<string[]>([]);
     const [showForm, setShowForm] = useState(false);
     const [closing, setClosing] = useState(false);
-  
+    const [loadingRunners, setLoadingRunners] = useState(false);
+    const [closingAddList, setClosingAddList] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
-    
     const { setError } = useError();
-
     const [deleteId, setDeleteId] = useState<string | null>(null);
     const firstRowRefs = useRef<(HTMLTableCellElement | null)[]>([]);
     const [colWidths, setColWidths] = useState<number[]>([]);
@@ -65,11 +67,46 @@ export default function RunnersClient({ deportistas }: RunnerClientProps) {
         setForm({ ...form, [name]: value });
     };
 
-    // Mostrar formulario para añadir
-    const handleAdd = () => {
-        setForm({});
-        setEditId(null);
-        setShowForm(true);
+    // Abrir el modal y cargar deportistas disponibles
+    const handleAdd = async () => {
+        setShowAddList(true);
+        setLoadingRunners(true);
+        const res = await fetch("/api/runner?available=true");
+        const runners = await res.json();
+        setAvailableRunners(runners);
+        setSelectedRunners([]);
+        setLoadingRunners(false);
+    };
+
+    // Seleccionar/des-seleccionar deportistas
+    const toggleSelectRunner = (numero_licencia: string) => {
+        setSelectedRunners(prev =>
+            prev.includes(numero_licencia)
+                ? prev.filter(nl => nl !== numero_licencia)
+                : [...prev, numero_licencia]
+        );
+    };
+
+    // Asignar deportistas seleccionados al entrenador
+    const handleAssignRunners = async () => {
+        await fetch("/api/runner", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ assignRunners: selectedRunners }),
+        });
+        setShowAddList(false);
+        // Refresca la lista principal
+        const updated = await fetch("/api/runner").then(res => res.json());
+        setData(updated);
+    };
+
+    // Para cerrar el modal con animación:
+    const handleCloseAddList = () => {
+        setClosingAddList(true);
+        setTimeout(() => {
+            setShowAddList(false);
+            setClosingAddList(false);
+        }, 300);
     };
 
     // Mostrar formulario para editar
@@ -194,7 +231,7 @@ export default function RunnersClient({ deportistas }: RunnerClientProps) {
     }
 
     return (
-        
+
         <div className="p-4">
             {/* Popup de confirmación */}
             {showConfirm && (
@@ -236,17 +273,21 @@ export default function RunnersClient({ deportistas }: RunnerClientProps) {
             {/* Mostrar información de los deportistas */}
             <div className="grid grid-cols-3 items-center mb-10">
                 <div></div>
-                <h2 className="text-3xl font-bold text-white drop-shadow text-center">DEPORTISTAS</h2>
+                <h2 className="text-3xl font-bold text-white drop-shadow text-center">
+                    {rol === "coach" ? "MIS DEPORTISTAS" : "DEPORTISTAS"}
+                </h2>
                 <div className="flex justify-end mr-5">
-                    <button
-                        className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg
-                            transition-all duration-200 ease-in-out
-                            hover:shadow-xl hover:opacity-90
-                            focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-                        onClick={handleAdd}
-                    >
-                        Añadir deportista
-                    </button>
+                    {rol === "coach" && (
+                        <button
+                            className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg
+                                transition-all duration-200 ease-in-out
+                                hover:shadow-xl hover:opacity-90
+                                focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                            onClick={handleAdd}
+                        >
+                            Añadir deportista
+                        </button>
+                    )}
                 </div>
             </div>
             <div className="flex justify-center">
@@ -270,7 +311,7 @@ export default function RunnersClient({ deportistas }: RunnerClientProps) {
                                 </colgroup>
                                 <thead className="bg-gray-700 text-blue-100">
                                     <tr>
-                                        <th className="px-4 py-3 rounded-tl-2xl">Número de licencia</th>
+                                        <th className="px-4 py-3 rounded-tl-2xl">Número licencia</th>
                                         <th className="px-4 py-3">Nombre</th>
                                         <th className="px-4 py-3">Apellidos</th>
                                         <th className="px-4 py-3">DNI</th>
@@ -396,10 +437,62 @@ export default function RunnersClient({ deportistas }: RunnerClientProps) {
                                     ))}
                                 </tbody>
                             </table>
+                            {filteredData.length === 0 && (
+                                <div className="text-center text-blue-300 py-8 text-lg font-semibold">
+                                    No se han encontrado deportistas
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* Modal de selección de deportistas */}
+            {showAddList && (
+                <div className={`fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 transition-opacity duration-300 ${closingAddList ? "animate-fade-out" : "animate-fade-in"}`}>
+                    <div className={`bg-gray-900 rounded-3xl shadow-2xl p-8 w-full max-w-xl relative border-2 border-blue-700 transition-all duration-300 ${closingAddList ? "animate-slide-down" : "animate-slide-up"}`}>
+                        <button
+                            className="absolute top-4 right-4 text-gray-400 hover:text-blue-400 text-2xl"
+                            onClick={handleCloseAddList}
+                            aria-label="Cerrar"
+                        >✕</button>
+                        <h3 className="text-2xl font-extrabold mb-6 text-blue-400 text-center">Selecciona deportistas para añadir</h3>
+                        <div className="max-h-80 overflow-y-auto">
+                            {loadingRunners ? (
+                                <div className="text-blue-200 text-center py-4">Cargando deportistas...</div>
+                            ) : availableRunners.length === 0 ? (
+                                <div className="text-blue-200 text-center py-4">No hay deportistas disponibles</div>
+                            ) : (
+                                availableRunners.map(runner => (
+                                    <label key={runner.numero_licencia} className="flex items-center gap-3 py-2 px-2 hover:bg-blue-900/20 rounded cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedRunners.includes(runner.numero_licencia)}
+                                            onChange={() => toggleSelectRunner(runner.numero_licencia)}
+                                        />
+                                        <span>{runner.nombre} {runner.apellidos}</span>
+                                    </label>
+                                ))
+                            )}
+                        </div>
+                        <div className="flex gap-4 mt-6 justify-end">
+                            <button
+                                className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg"
+                                onClick={handleAssignRunners}
+                                disabled={selectedRunners.length === 0 || loadingRunners}
+                            >
+                                Añadir seleccionados
+                            </button>
+                            <button
+                                className="px-6 py-2 bg-gradient-to-r from-gray-700 to-gray-600 text-gray-200 rounded-lg font-semibold shadow-lg"
+                                onClick={handleCloseAddList}
+                            >
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Formulario flotante con animación */}
             {showForm && (

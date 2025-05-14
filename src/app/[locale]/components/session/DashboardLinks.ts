@@ -54,5 +54,12 @@ export const dashboardLinks = [
         img: "/media/dashboard/noticia.svg",
         roles: ["admin", "staff"],
         short: "Noticias",
+    },
+    {
+        href: "/codigos",
+        text: "Códigos de activación",
+        img: "/media/dashboard/codigo.svg",
+        roles: ["admin", "staff"],
+        short: "Códigos",
     }
 ];
