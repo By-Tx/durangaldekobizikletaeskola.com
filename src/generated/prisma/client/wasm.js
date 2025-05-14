@@ -147,7 +147,8 @@ exports.Prisma.DeportistasScalarFieldEnum = {
   altura: 'altura',
   ftp: 'ftp',
   pulso: 'pulso',
-  user_id: 'user_id'
+  user_id: 'user_id',
+  entrenador_id: 'entrenador_id'
 };
 
 exports.Prisma.EntrenadoresScalarFieldEnum = {
@@ -157,8 +158,7 @@ exports.Prisma.EntrenadoresScalarFieldEnum = {
   dni: 'dni',
   telefono: 'telefono',
   fecha_nacimiento: 'fecha_nacimiento',
-  user_id: 'user_id',
-  deportista_id: 'deportista_id'
+  user_id: 'user_id'
 };
 
 exports.Prisma.EventsScalarFieldEnum = {
@@ -217,6 +217,14 @@ exports.Prisma.VerificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.Activation_codesScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  role: 'role',
+  expires_at: 'expires_at',
+  usos: 'usos'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -251,8 +259,7 @@ exports.Prisma.entrenadoresOrderByRelevanceFieldEnum = {
   nombre: 'nombre',
   apellidos: 'apellidos',
   dni: 'dni',
-  user_id: 'user_id',
-  deportista_id: 'deportista_id'
+  user_id: 'user_id'
 };
 
 exports.Prisma.eventsOrderByRelevanceFieldEnum = {
@@ -289,6 +296,10 @@ exports.Prisma.verificationOrderByRelevanceFieldEnum = {
   identifier: 'identifier',
   value: 'value'
 };
+
+exports.Prisma.activation_codesOrderByRelevanceFieldEnum = {
+  code: 'code'
+};
 exports.events_categoria = exports.$Enums.events_categoria = {
   Cadetes: 'Cadetes',
   Juveniles: 'Juveniles'
@@ -309,6 +320,14 @@ exports.user_role = exports.$Enums.user_role = {
   user: 'user'
 };
 
+exports.activation_codes_role = exports.$Enums.activation_codes_role = {
+  admin: 'admin',
+  staff: 'staff',
+  coach: 'coach',
+  runner: 'runner',
+  user: 'user'
+};
+
 exports.Prisma.ModelName = {
   account: 'account',
   deportistas: 'deportistas',
@@ -317,7 +336,8 @@ exports.Prisma.ModelName = {
   events_resultado: 'events_resultado',
   session: 'session',
   user: 'user',
-  verification: 'verification'
+  verification: 'verification',
+  activation_codes: 'activation_codes'
 };
 
 /**

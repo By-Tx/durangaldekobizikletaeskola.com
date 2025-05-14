@@ -1,6 +1,7 @@
 'use client';
-
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import info from "@/app/media/info.svg";
+import Image from "next/image";
 
 interface Carrera {
     fecha: string;
@@ -114,7 +115,18 @@ export default function ClientHistory({ historial, nombre, apellidos, rol }: His
                     ? "HISTORIAL DE CARRERAS"
                     : `HISTORIAL DE CARRERAS DE ${nombre} ${apellidos}`}
             </h1>
-
+            <div className="flex items-center gap-2 mb-2">
+                <Image
+                    src={info}
+                    height={25}
+                    width={25}
+                    alt="Información"
+                    style={{
+                        filter: "brightness(0.5) saturate(1.2)"
+                    }}
+                />
+                <p className="m-0 text-customDarkBlueSession italic">Haz click en una carrera para ver o agregar comentarios.</p>
+            </div>
             <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200 rounded-lg shadow overflow-hidden">
                     <thead className="bg-gray-50">

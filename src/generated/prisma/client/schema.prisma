@@ -36,26 +36,26 @@ model deportistas {
   ftp              Decimal?           @db.Decimal(10, 2)
   pulso            Int?
   user_id          String?            @db.VarChar(36)
+  entrenador_id    Int?
   user             user?              @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "deportistas_ibfk_1")
-  entrenadores     entrenadores[]
+  entrenadores     entrenadores?      @relation(fields: [entrenador_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "deportistas_ibfk_2")
   events_resultado events_resultado[]
 
+  @@index([entrenador_id], map: "entrenador_id")
   @@index([user_id], map: "user_id")
 }
 
 model entrenadores {
-  id               Int          @id
-  nombre           String?      @db.VarChar(100)
-  apellidos        String?      @db.VarChar(100)
-  dni              String?      @unique(map: "dni") @db.VarChar(20)
+  id               Int           @id
+  nombre           String?       @db.VarChar(100)
+  apellidos        String?       @db.VarChar(100)
+  dni              String?       @unique(map: "dni") @db.VarChar(20)
   telefono         BigInt?
-  fecha_nacimiento DateTime?    @db.Date
-  user_id          String?      @db.VarChar(36)
-  deportista_id    String?      @db.VarChar(50)
-  user             user?        @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "entrenadores_ibfk_1")
-  deportistas      deportistas? @relation(fields: [deportista_id], references: [numero_licencia], onDelete: Restrict, onUpdate: Restrict, map: "entrenadores_ibfk_2")
+  fecha_nacimiento DateTime?     @db.Date
+  user_id          String?       @db.VarChar(36)
+  user             user?         @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "entrenadores_ibfk_1")
+  deportistas      deportistas[]
 
-  @@index([deportista_id], map: "deportista_id")
   @@index([user_id], map: "user_id")
 }
 
@@ -123,6 +123,14 @@ model verification {
   updatedAt  DateTime? @db.DateTime(0)
 }
 
+model activation_codes {
+  id         Int                    @id @default(autoincrement())
+  code       String                 @unique
+  role       activation_codes_role?
+  expires_at DateTime?              @db.DateTime(0)
+  usos       Int                    @default(0)
+}
+
 enum events_categoria {
   Cadetes
   Juveniles
@@ -136,6 +144,14 @@ enum events_modalidad {
 }
 
 enum user_role {
+  admin
+  staff
+  coach
+  runner
+  user
+}
+
+enum activation_codes_role {
   admin
   staff
   coach
