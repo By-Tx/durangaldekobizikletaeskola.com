@@ -6,6 +6,8 @@ import News from "../components/mainPage/noticeComponents/notices";
 import SubTitle from "../components/mainPage/Titles/SubTitle";
 import Line from "@/app/[locale]/components/main/line0m";
 import ButtonNotice from '../components/mainPage/noticeComponents/Button';
+import { date } from 'better-auth';
+import { dmmfToRuntimeDataModel } from '@prisma/client/runtime/library';
 
 interface Notice {
   href: string;
@@ -17,6 +19,7 @@ interface Notice {
   titleKey: string;
   categoryKey: string;
   altKey: string;
+  dateKey: string;
 }
 
 async function fetchNotices(locale: string) {
@@ -66,6 +69,7 @@ export default async function Home() {
     title: safeTranslate(tNotices, item.titleKey),
     category: safeTranslate(tNotices, item.categoryKey),
     alt: safeTranslate(tNotices, item.altKey),
+    date: new Date(item.date).toLocaleDateString(locale),
   }));
 
   const images = [

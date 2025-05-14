@@ -1,5 +1,3 @@
-// Adaptación visual del formulario ClientForm al estilo moderno de RaceClient
-
 'use client';
 import { useRef, useState } from 'react';
 import { API_URL } from '@/lib/config';
@@ -16,11 +14,13 @@ type LinkItem = {
 export default function ClientForm() {
   const [formData, setFormData] = useState<FormFields>({
     slug: '', imagePageUrl: '', imageUrl: '', altKey: '', date: '',
-    titleKey: '', subtitleKey: '', categoryKey: '', p1: '', p2: '', p3: '', p4: '', p5: '', p6: '',
-    altKeyEus: '', titleKeyEus: '', subtitleKeyEus: '', categoryKeyEus: '', p1Eus: '', p2Eus: '', p3Eus: '', p4Eus: '', p5Eus: '', p6Eus: '',
+    titleKey: '', subtitleKey: '', categoryKey: '', p1: '', p2: '', p3: '', p4: '', p5: '', p6: '', p7: '',
+    altKeyEus: '', titleKeyEus: '', subtitleKeyEus: '', categoryKeyEus: '', p1Eus: '', p2Eus: '', p3Eus: '', p4Eus: '', p5Eus: '', p6Eus: '', p7Eus: '',
   });
 
   const [links, setLinks] = useState<LinkItem[]>([]);
+  const [imageCoverPreview, setImageCoverPreview] = useState<string | null>(null);
+  const [imagePagePreview, setImagePagePreview] = useState<string | null>(null);
 
   const imageCoverRef = useRef<HTMLInputElement>(null);
   const imagePageRef = useRef<HTMLInputElement>(null);
@@ -30,6 +30,18 @@ export default function ClientForm() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'cover' | 'page') => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (type === 'cover') setImageCoverPreview(reader.result as string);
+        else setImagePagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleLinkChange = (index: number, field: keyof LinkItem, value: string) => {
     const updatedLinks = [...links];
     updatedLinks[index][field] = value;
@@ -37,7 +49,7 @@ export default function ClientForm() {
   };
 
   const addLink = () => {
-    if (links.length >= 5) return;
+    if (links.length >= 7) return;
     setLinks([...links, { text: '', url: '' }]);
   };
 
@@ -84,15 +96,68 @@ export default function ClientForm() {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block mb-2 text-gray-300">Imagen de portada</label>
-            <input type="file" ref={imageCoverRef} className={inputClass} accept="image/*" />
+
+
+          <div className="w-full">
+            <label htmlFor="fileUploadCover" className="block text-center w-full py-2 bg-blue-600 rounded-lg text-white cursor-pointer hover:bg-blue-500">
+              Selecciona Imagen de Portada
+            </label>
+            <input
+              type="file"
+              id="fileUploadCover"
+              ref={imageCoverRef}
+              onChange={e => handleImageChange(e, 'cover')}
+              className="hidden"
+              accept="image/*"
+            />
+            {imageCoverPreview && (
+              <img
+                src={imageCoverPreview}
+                alt="Portada Preview"
+                className="mt-2 rounded-xl max-h-60 mx-auto"
+              />
+            )}
           </div>
-          <div>
-            <label className="block mb-2 text-gray-300">Imagen de contenido</label>
-            <input type="file" ref={imagePageRef} className={inputClass} accept="image/*" />
+
+
+          <div className="w-full">
+            <label htmlFor="fileUploadPage" className="block text-center w-full py-2 bg-blue-600 rounded-lg text-white cursor-pointer hover:bg-blue-500">
+              Selecciona Imagen de Contenido
+            </label>
+            <input
+              type="file"
+              id="fileUploadPage"
+              ref={imagePageRef}
+              onChange={e => handleImageChange(e, 'page')}
+              className="hidden"
+              accept="image/*"
+            />
+            {imagePagePreview && (
+              <img
+                src={imagePagePreview}
+                alt="Contenido Preview"
+                className="mt-2 rounded-xl max-h-60 mx-auto"
+              />
+            )}
           </div>
+
+
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div className="grid grid-cols-2 gap-6">
           <div>
@@ -101,10 +166,14 @@ export default function ClientForm() {
             <input placeholder="Alt img" name="altKeyEus" value={formData.altKeyEus} onChange={handleChange} className={inputClass} />
             <input placeholder="Título" name="titleKeyEus" value={formData.titleKeyEus} onChange={handleChange} className={inputClass} />
             <input placeholder="Subtítulo" name="subtitleKeyEus" value={formData.subtitleKeyEus} onChange={handleChange} className={inputClass} />
-            {["p1Eus", "p2Eus", "p3Eus", "p4Eus", "p5Eus", "p6Eus"].map(p => (
+            {["p1Eus", "p2Eus", "p3Eus", "p4Eus", "p5Eus", "p6Eus", "p7Eus"].map(p => (
               <input key={p} placeholder={`Párrafo ${p.match(/\d+/)?.[0] || ''}`} name={p} value={formData[p]} onChange={handleChange} className={inputClass} />
             ))}
           </div>
+
+
+
+
 
           <div>
             <h2 className="text-xl font-semibold text-center text-blue-300 mb-4">CASTELLANO</h2>
@@ -112,7 +181,7 @@ export default function ClientForm() {
             <input placeholder="Alt img" name="altKey" value={formData.altKey} onChange={handleChange} className={inputClass} />
             <input placeholder="Título" name="titleKey" value={formData.titleKey} onChange={handleChange} className={inputClass} />
             <input placeholder="Subtítulo" name="subtitleKey" value={formData.subtitleKey} onChange={handleChange} className={inputClass} />
-            {["p1", "p2", "p3", "p4", "p5", "p6"].map(p => (
+            {["p1", "p2", "p3", "p4", "p5", "p6", "p7"].map(p => (
               <input key={p} placeholder={`Párrafo ${p.match(/\d+/)?.[0] || ''}`} name={p} value={formData[p]} onChange={handleChange} className={inputClass} />
             ))}
           </div>
@@ -141,7 +210,7 @@ export default function ClientForm() {
               type="button"
               onClick={addLink}
               className="px-4 py-2 bg-blue-700 rounded-lg text-white font-medium hover:bg-blue-600"
-              disabled={links.length >= 5}
+              disabled={links.length >= 7}
             >
               Añadir enlace
             </button>
