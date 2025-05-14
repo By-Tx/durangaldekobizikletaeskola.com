@@ -10,26 +10,32 @@ export async function POST(req: NextRequest): Promise<Response> {
 
     const busboy = Busboy({ headers: Object.fromEntries(req.headers) });
     console.log(busboy)
+    const timestamp = Date.now();
     let dir = "/www/wwwroot//photos.txuli.com/duranguesa/gallery-v2";
+    let fileName = `${timestamp}-${Math.random().toString(36).slice(2)}.webp`;
+
     busboy.on('field', (fieldname, value) => {
+      if (fieldname === 'name') {
+        fileName = value +".webp";
+        console.log(fileName,"NOMBRE DEL ARCHIVO")
+      }
       if (fieldname === 'dir') {
       dir = value;
         if (!fs.existsSync(dir)) {
           fs.mkdirSync(dir, { recursive: true });
         }
+        
       }
     });
 
     busboy.on('file', (fieldname: string, file: NodeJS.ReadableStream, filename: string, encoding: string, mimetype: string) => {
-      const timestamp = Date.now();
-      const safeName = `${timestamp}-${Math.random().toString(36).slice(2)}.webp`;
-      const destPath = `${dir}/${safeName}`;
+      const destPath = `${dir}/${fileName}`;
       const stream = fs.createWriteStream(destPath);
-
+      console.log(destPath,"ARCHIVO QUE SE VA A SUBIR")
       file.pipe(stream);
       file.on('end', () => {
         fs.chmodSync(destPath, 0o644);
-        uploads.push(`${dir}/${safeName}`);
+        uploads.push(`${dir}/${fileName}`);
       });
     });
 

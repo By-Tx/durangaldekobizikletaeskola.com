@@ -190,12 +190,14 @@ export default function ClientForm() {
         if (mode) requestBody.mode = mode;
         if (category) requestBody.category = category;
         if (race) requestBody.race = race;
+        requestBody.dir = "gallery-v2"
 
         try {
             const response = await fetch(`${API_URL}/api/galleryv2`, {
                 method: "POST",
                 cache: "no-store",
                 body: JSON.stringify(requestBody),
+
             });
 
             if (!response.ok) {

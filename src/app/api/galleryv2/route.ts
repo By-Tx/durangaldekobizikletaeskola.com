@@ -4,20 +4,20 @@ export async function POST(req: NextRequest) {
    console.log("Request:", req);
     try {
         const body = await req.json();
-        let url = `https://photos.txuli.com/duranguesa/gallery-v2`;
+        let url = `https://photos.txuli.com/duranguesa/${body.dir}`;
         if (body.year) {
             if (body.mode) {
                 if (body.category) {
                     if (body.race) {
-                        url = `https://photos.txuli.com/duranguesa/gallery-v2/${body.year}/${body.mode}/${body.category}/${body.race}`;
+                        url = `https://photos.txuli.com/duranguesa/${body.dir}/${body.year}/${body.mode}/${body.category}/${body.race}`;
                     } else {
-                        url = `https://photos.txuli.com/duranguesa/gallery-v2/${body.year}/${body.mode}/${body.category}`;
+                        url = `https://photos.txuli.com/duranguesa/${body.dir}/${body.year}/${body.mode}/${body.category}`;
                     }
                 } else {
-                    url = `https://photos.txuli.com/duranguesa/gallery-v2/${body.year}/${body.mode}`;
+                    url = `https://photos.txuli.com/duranguesa/${body.dir}/${body.year}/${body.mode}`;
                 }
             } else {
-                url = `https://photos.txuli.com/duranguesa/gallery-v2/${body.year}`;
+                url = `https://photos.txuli.com/duranguesa/${body.dir}/${body.year}`;
             }
         }
 
