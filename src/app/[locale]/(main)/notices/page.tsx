@@ -15,6 +15,9 @@ interface Notice {
   date: string;
   title: string;
   category: string;
+  titleKey: string;
+  categoryKey: string;
+  altKey: string;
 }
 
 // Function that makes a request to the news endpoint, passing it the current language
@@ -62,28 +65,48 @@ async function fetchMessages(locale: string) {
 
 
 export default async function Page() {
-
   const locale = await getLocale();
 
   const [messages, data] = await Promise.all([
     fetchMessages(locale),
-    fetchNotices(locale)
+    fetchNotices(locale),
   ]);
 
-  const translator = createTranslator({ locale, messages, namespace: "noticePage" });
+  const tNotices = createTranslator({
+    locale,
+    messages,
+    namespace: "noticeComponent",
+  });
 
+  function safeTranslate(t: (key: string) => string, key: string): string {
+    try {
+      return t(key);
+    } catch {
+      return key;
+    }
+  }
 
+  const translatedNotices = data.map((notice) => ({
+    ...notice,
+    title: safeTranslate(tNotices, notice.titleKey),
+    category: safeTranslate(tNotices, notice.categoryKey),
+    alt: safeTranslate(tNotices, notice.altKey),
+    date: new Date(notice.date).toLocaleDateString(locale),
+  }));
+
+  const translator = createTranslator({
+    locale,
+    messages,
+    namespace: "noticePage",
+  });
 
   return (
     <div>
-
       <Title title={translator("title")} />
-
-
       <Section>
-        <News items={data.map(notice => ({ ...notice, image: notice.image }))} />
+        <News items={translatedNotices} />
       </Section>
-
     </div>
   );
 }
+
