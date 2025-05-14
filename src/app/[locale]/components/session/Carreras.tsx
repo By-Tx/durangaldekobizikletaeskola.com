@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useRef, useLayoutEffect, useState } from "react";
+import info from "@/app/media/info.svg";
+import Image from "next/image";
 
 type Carrera = {
     id: number;
@@ -391,7 +393,20 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                     </div>
                     <div className="flex justify-center">
                         <div className="w-4/5">
-                            <div className="flex justify-end mb-4">
+                            <div className="flex justify-between items-center mb-4">
+                                <div className="flex items-center">
+                                    <Image
+                                        src={info}
+                                        alt="info"
+                                        className="w-10 h-10 mr-2"
+                                        style={{
+                                            filter: "invert(83%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(90%)"
+                                        }}
+                                    />
+                                    <p className="text-gray-300 text-lg font-semibold">
+                                        Haz clic en una carrera para añadir los resultados.
+                                    </p>
+                                </div>
                                 <input
                                     type="text"
                                     placeholder="Buscar..."

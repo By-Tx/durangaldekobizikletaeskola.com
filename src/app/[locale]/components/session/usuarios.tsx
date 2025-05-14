@@ -164,7 +164,7 @@ export default function UsersTable({ users }: UsersTableProps) {
      
       <div className="flex justify-center">
         <div className="w-full sm:w-1/2 rounded-2xl shadow-xl backdrop-blur-md bg-white/10 border border-blue-400 pb-2 overflow-x-auto">
-          <table className="min-w-full border-collapse text-sm">
+          <table className="min-w-full border-collapse">
             <thead className="bg-gray-700 text-blue-100">
               <tr>
                 <th className="px-4 py-3">Correo electrónico</th>
