@@ -11,14 +11,12 @@ export default function ClientForm() {
     // VARIABLES
 
     let type = "Año"
-
     const [formData, setFormData] = useState({
         year: '',
         fileUpload: null as File | null,
     });
 
     // LOGIC 
-
 
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -54,77 +52,115 @@ export default function ClientForm() {
 
 
 
-    // async function fetchGalleryData({ year, mode, category, race }: { year?: string; mode?: string; category?: string; race?: string }) {
-    //     console.log("Fetching data with:", { year, mode, category, race });
+    async function fetchGalleryData({ year, mode, category, race }: { year?: string; mode?: string; category?: string; race?: string }) {
+        console.log("Fetching data with:", { year, mode, category, race });
 
-    //     // Create a request body by filtering out undefined values
-    //     const requestBody: any = {};
-    //     if (year) requestBody.year = year;
-    //     if (mode) requestBody.mode = mode;
-    //     if (category) requestBody.category = category;
-    //     if (race) requestBody.race = race;
+        // Create a request body by filtering out undefined values
+        const requestBody: any = {};
+        if (year) requestBody.year = year;
+        if (mode) requestBody.mode = mode;
+        if (category) requestBody.category = category;
+        if (race) requestBody.race = race;
+        requestBody.dir = "covers-v2"
 
-    //     try {
-    //         const response = await fetch(`${API_URL}/api/galleryv2`, {
-    //             method: "POST",
-    //             cache: "no-store",
-    //             body: JSON.stringify(requestBody),
-    //         });
+        try {
+            const response = await fetch(`${API_URL}/api/galleryv2`, {
+                method: "POST",
+                cache: "no-store",
+                body: JSON.stringify(requestBody),
+            });
 
-    //         if (!response.ok) {
-    //             throw new Error(`Error al obtener datos: ${response.status}`);
-    //         }
+            if (!response.ok) {
+                throw new Error(`Error al obtener datos: ${response.status}`);
+            }
 
-    //         const responseData = await response.json();
-    //         console.log("Response Data:", responseData);
+            const responseData = await response.json();
+            console.log("Response Data:", responseData);
 
-    //         return responseData.map((item: string) => item.slice(0, -1));
-    //     } catch (error) {
-    //         console.error("Fetching error:", error);
-    //         return [];
-    //     }
-    // }
+            return responseData.map((item: string) => item.slice(0, -1));
+        } catch (error) {
+            console.error("Fetching error:", error);
+            return [];
+        }
+    }
 
 
     // currently not implemented, ignore this
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-
-
-        // const parsedData = {
-        //     year: formData.yearText || formData.year,
-        //     mode: formData.modeText || formData.mode,
-        //     category: formData.categoryText || formData.category,
-        //     race: formData.raceText || formData.race,
-        //     isNewfolder: formData.isNewfolder,
-        // };
-        // if (!parsedData.year || !parsedData.mode || !parsedData.category || !parsedData.race || !formData.fileUpload) {
-        //     alert("Por favor, rellene todos los datos antes de clickar subir.");
-        //     return;
-        // }
-
-        // const formDataToSend = new FormData();
-        // formDataToSend.append('dir', `${parsedData.year}/${parsedData.mode}/${parsedData.category}/${parsedData.race}`);
-        // if (formData.fileUpload) {
-        //     Array.from(formData.fileUpload).forEach((file, index) => {
-        //         formDataToSend.append('file', file, file.name);
-        //     });
-        // }
-
-        try {
-            console.log("Submitting form data:", formData);
-            // const response = await fetch(`${API_URL}/api/imageUpload`, {
-            //     method: "POST",
-            //     body: formDataToSend,
-            // });
-            // const data = await response.json();
-            // if (response.ok) {
-            //     alert(data.message);
-            // }
-        } catch (error) {
-            console.error("Error:", error);
+        console.log("Submitting form data:", formData);
+        const basePath = "/www/wwwroot/photos.txuli.com/duranguesa/covers-v2"
+        let path = ""
+        let imageName = ""
+        let canCreateFolder = false
+        if (formData.fileUpload) {
+            canCreateFolder = true
         }
+        if (type === "Año") {
+            const existingYears = await fetchGalleryData({});
+            if (!existingYears.includes(formData.year)) {
+                console.log("album de ", type, ": ", formData.year, " no existe");
+                canCreateFolder = true;
+                path = formData.year
+                imageName = formData.year
+            }
+            else {
+                console.log("album de ", type, ": ", formData.year, " no se puede crear porque ya existe");
+                canCreateFolder = false
+            }
+
+        }
+
+
+        if (canCreateFolder) {
+            const body = JSON.stringify({
+                folder: `${basePath}${path}`
+            });
+            const formDataToSend = new FormData();
+            formDataToSend.append("dir", basePath);
+            formDataToSend.append("name", imageName);
+            if (formData.fileUpload) {
+                formDataToSend.append("file", formData.fileUpload);
+            }
+
+            try {
+                // Create Folder
+                console.log("Submitting form data:", { folder: `${basePath}${path}` });
+                const response = await fetch(`${API_URL}/api/folderCreate`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: body,
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.message);
+                } else {
+                    console.error("Error response:", data);
+                }
+
+            } catch (error) {
+                console.error("Error:", error);
+            }
+            try {
+                // Upload image
+
+                const response = await fetch(`${API_URL}/api/imageUpload`, {
+                    method: "POST",
+                    body: formDataToSend,
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.message);
+                } else {
+                    console.error("Error response:", data);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
     };
 
     return (
