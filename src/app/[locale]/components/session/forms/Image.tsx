@@ -190,7 +190,7 @@ export default function ClientForm() {
         if (mode) requestBody.mode = mode;
         if (category) requestBody.category = category;
         if (race) requestBody.race = race;
-        requestBody.dir = "gallery-v2"
+        requestBody.dir = "gallery"
 
         try {
             const response = await fetch(`${API_URL}/api/galleryv2`, {
@@ -234,7 +234,7 @@ export default function ClientForm() {
         }
 
         const formDataToSend = new FormData();
-        formDataToSend.append('dir', `/www/wwwroot/photos.txuli.com/duranguesa/gallery-v2/${parsedData.year}/${parsedData.mode}/${parsedData.category}/${parsedData.race}`);
+        formDataToSend.append('dir', `/www/wwwroot/photos.txuli.com/duranguesa/gallery/${parsedData.year}/${parsedData.mode}/${parsedData.category}/${parsedData.race}`);
         if (formData.fileUpload) {
             Array.from(formData.fileUpload).forEach((file, index) => {
                 formDataToSend.append('file', file, file.name);
