@@ -206,7 +206,7 @@ export default function ClientForm() {
             if (!existingModes.includes(formData.mode)) {
                 console.log("album de ", type, ": ", formData.mode, " no existe");
                 canCreateFolder = true;
-                path = formData.year;
+                path = "/" + formData.year;
                 folderName = formData.mode;
                 imageName = formData.mode;
             } else {
@@ -225,7 +225,7 @@ export default function ClientForm() {
             if (!existingCategories.includes(formData.category)) {
                 console.log("album de ", type, ": ", formData.category, " no existe");
                 canCreateFolder = true;
-                path = formData.year + "/" + formData.mode;
+                path =  "/" + formData.year + "/" + formData.mode;
                 folderName = formData.category;
                 imageName = formData.category;
             } else {
@@ -245,7 +245,7 @@ export default function ClientForm() {
             if (!existingRaces.includes(formData.race)) {
                 console.log("album de ", type, ": ", formData.race, " no existe");
                 canCreateFolder = true;
-                path = formData.year + "/" + formData.mode + "/" + formData.category;
+                path =  "/" + formData.year + "/" + formData.mode + "/" + formData.category;
                 folderName = formData.race;
                 imageName = formData.race;
             } else {
