@@ -34,15 +34,15 @@ export async function POST(req: NextRequest) {
     const rawMessages = await fs.readFile(messagesPath, 'utf-8');
     const messages = JSON.parse(rawMessages);
 
-    
+
     const t = createTranslator({ locale: loc, messages, namespace: 'noticeComponent' });
 
     // load notices from the file
     const rawNews = await fs.readFile(newsFilePath, 'utf-8');
     const newsItems: NewsItem[] = JSON.parse(rawNews);
-    
 
-    
+
+
     const translatedNews = newsItems.map((news) => ({
       ...news,
       title: safeTranslate(news.titleKey, t),
@@ -50,8 +50,17 @@ export async function POST(req: NextRequest) {
       alt: safeTranslate(news.altKey, t),
     }));
 
-    
-    const result = routePath === 'mainNotices' ? translatedNews.slice(-3).reverse() : translatedNews.reverse();
+
+    let result;
+
+    if (routePath === 'mainNotices') {
+      result = [...translatedNews].slice(-3).reverse();
+    } else if (routePath === 'Modify') {
+      result = [...translatedNews].slice(-6).reverse(); // sin cambios
+    } else if (routePath === 'allNotices') {
+      result = [...translatedNews].slice(-6).reverse();
+    }
+
 
     return NextResponse.json({ message: 'Noticias obtenidas', data: result }, { status: 200 });
 
