@@ -336,7 +336,7 @@ export default function RaceClient({ carreras }: RaceClientProps) {
     };
 
     return (
-        <div className="p-4">
+        <div className="p-4 font-fredoka">
             {/* Popup de confirmación */}
             {showConfirm && (
                 <div className={`fixed inset-0 bg-black bg-opacity-60 flex items-start justify-center z-50 pt-10 transition-opacity duration-300 ${closing ? "animate-fade-out" : "animate-fade-in"}`}>
@@ -376,15 +376,15 @@ export default function RaceClient({ carreras }: RaceClientProps) {
             {/* Mostrar información de la carrera */}
             {!selectedRace && (
                 <>
-                    <div className="grid grid-cols-3 items-center mb-10">
-                        <div></div>
-                        <h2 className="text-3xl font-bold text-white drop-shadow text-center">CARRERAS</h2>
-                        <div className="flex justify-end mr-5">
+                    {/* Título y botón responsive */}
+                    <div className="mb-6">
+                        <h2 className="text-3xl font-semibold text-white drop-shadow text-center mb-4">CARRERAS</h2>
+                        <div className="flex justify-end">
                             <button
                                 className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg
                                     transition-all duration-200 ease-in-out
                                     hover:shadow-xl hover:opacity-90
-                                    focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                                    focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 uppercase"
                                 onClick={handleAdd}
                             >
                                 Añadir carrera
@@ -392,18 +392,18 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                         </div>
                     </div>
                     <div className="flex justify-center">
-                        <div className="w-4/5">
-                            <div className="flex justify-between items-center mb-4">
+                        <div className="w-full md:w-4/5">
+                            <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
                                 <div className="flex items-center">
                                     <Image
                                         src={info}
                                         alt="info"
-                                        className="w-10 h-10 mr-2"
+                                        className="w-8 h-8 md:w-10 md:h-10 mr-2"
                                         style={{
                                             filter: "invert(83%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(90%)"
                                         }}
                                     />
-                                    <p className="text-gray-300 text-lg font-semibold">
+                                    <p className="text-gray-300 text-base md:text-lg font-semibold italic">
                                         Haz clic en una carrera para añadir los resultados.
                                     </p>
                                 </div>
@@ -412,33 +412,30 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                                     placeholder="Buscar..."
                                     value={searchTerm}
                                     onChange={handleSearchChange}
-                                    className="w-1/5 border border-blue-400 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
+                                    className="w-full md:w-1/5 border border-blue-400 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
                                 />
                             </div>
+                            {/* Tabla responsive: en móvil todo junto, en desktop cabecera separada */}
                             <div className="rounded-2xl shadow-xl backdrop-blur-md bg-white/10 border border-blue-400 pb-2 overflow-hidden">
-                                <div>
+                                <div className="overflow-x-auto">
                                     <table className="min-w-full table-auto border-collapse">
                                         <colgroup>
                                             {colWidths.map((w, i) => (
                                                 <col key={i} style={{ width: w ? `${w}px` : undefined }} />
                                             ))}
                                         </colgroup>
-                                        <thead className="bg-gray-700 text-blue-100">
+                                        <thead className="bg-gray-700 text-blue-100 uppercase hidden md:table-header-group">
                                             <tr>
-                                                <th className="px-4 py-3 rounded-tl-2xl">Nombre</th>
-                                                <th className="px-4 py-3">Fecha</th>
-                                                <th className="px-4 py-3">Lugar</th>
-                                                <th className="px-4 py-3">Categoría</th>
-                                                <th className="px-4 py-3">Modalidad</th>
-                                                <th className="px-4 py-3">Descripción</th>
-                                                <th className="px-4 py-3">Acciones</th>
-                                                <th className="w-3 rounded-tr-2xl"></th>
+                                                <th className="px-2 md:px-4 py-3 rounded-tl-2xl font-semibold">Nombre</th>
+                                                <th className="px-2 md:px-4 py-3 font-semibold">Fecha</th>
+                                                <th className="px-2 md:px-4 py-3 font-semibold">Lugar</th>
+                                                <th className="px-2 md:px-4 py-3 font-semibold">Categoría</th>
+                                                <th className="px-2 md:px-4 py-3 font-semibold">Modalidad</th>
+                                                <th className="px-2 md:px-4 py-3 font-semibold">Descripción</th>
+                                                <th className="px-2 md:px-4 py-3 font-semibold">Acciones</th>
+                                                <th className="w-3 rounded-tr-2xl font-semibold"></th>
                                             </tr>
                                         </thead>
-                                    </table>
-                                </div>
-                                <div className="max-h-[65vh] overflow-y-scroll">
-                                    <table className="min-w-full table-auto border-collapse">
                                         <tbody>
                                             {filteredData.map((c, rowIdx) => (
                                                 <tr
@@ -446,50 +443,82 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                                                     className="hover:bg-blue-900/20 transition cursor-pointer border-t border-blue-900/30"
                                                     onClick={() => handleRowClick(c)}
                                                 >
+                                                    {/* Vista móvil: una sola celda con toda la info */}
                                                     <td
-                                                        className="px-4 py-2"
-                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[0] = el; }}
+                                                        colSpan={8}
+                                                        className="md:hidden px-4 py-4"
                                                     >
+                                                        <div className="flex flex-col gap-2">
+                                                            <div>
+                                                                <span className="font-bold text-blue-300">Nombre: </span>
+                                                                <span>{c.nombre}</span>
+                                                            </div>
+                                                            <div>
+                                                                <span className="font-bold text-blue-300">Fecha: </span>
+                                                                <span>{formatFecha(c.fecha)}</span>
+                                                            </div>
+                                                            <div>
+                                                                <span className="font-bold text-blue-300">Lugar: </span>
+                                                                <span>{c.lugar}</span>
+                                                            </div>
+                                                            <div>
+                                                                <span className="font-bold text-blue-300">Categoría: </span>
+                                                                <span>{c.categoria}</span>
+                                                            </div>
+                                                            <div>
+                                                                <span className="font-bold text-blue-300">Modalidad: </span>
+                                                                <span>{c.modalidad.replace("_", "-")}</span>
+                                                            </div>
+                                                            <div>
+                                                                <span className="font-bold text-blue-300">Descripción: </span>
+                                                                <span>{c.descripcion}</span>
+                                                            </div>
+                                                            <div className="flex gap-2 mt-2">
+                                                                <button
+                                                                    className="px-2 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold w-full"
+                                                                    onClick={e => {
+                                                                        e.stopPropagation();
+                                                                        handleEdit(c);
+                                                                    }}
+                                                                >
+                                                                    Editar
+                                                                </button>
+                                                                <button
+                                                                    className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold w-full"
+                                                                    onClick={e => {
+                                                                        e.stopPropagation();
+                                                                        handleDelete(c.id);
+                                                                    }}
+                                                                >
+                                                                    Eliminar
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    {/* Vista escritorio: columnas normales */}
+                                                    <td className="px-2 md:px-4 py-2 hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[0] = el; }}>
                                                         {c.nombre}
                                                     </td>
-                                                    <td
-                                                        className="px-4 py-2 text-center"
-                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[1] = el; }}
-                                                    >
+                                                    <td className="px-2 md:px-4 py-2 text-center hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[1] = el; }}>
                                                         {formatFecha(c.fecha)}
                                                     </td>
-                                                    <td
-                                                        className="px-4 py-2 text-center"
-                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[2] = el; }}
-                                                    >
+                                                    <td className="px-2 md:px-4 py-2 text-center hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[2] = el; }}>
                                                         {c.lugar}
                                                     </td>
-                                                    <td
-                                                        className="px-4 py-2 text-center"
-                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[3] = el; }}
-                                                    >
+                                                    <td className="px-2 md:px-4 py-2 text-center hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[3] = el; }}>
                                                         {c.categoria}
                                                     </td>
-                                                    <td
-                                                        className="px-4 py-2 text-center"
-                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[4] = el; }}
-                                                    >
+                                                    <td className="px-2 md:px-4 py-2 text-center hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[4] = el; }}>
                                                         {c.modalidad.replace("_", "-")}
                                                     </td>
-                                                    <td
-                                                        className="px-4 py-2"
-                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[5] = el; }}
-                                                    >
+                                                    <td className="px-2 md:px-4 py-2 hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[5] = el; }}>
                                                         {c.descripcion}
                                                     </td>
-                                                    <td
-                                                        className="px-4 py-2"
-                                                        ref={el => { if (rowIdx === 0) firstRowRefs.current[6] = el; }}
-                                                    >
-                                                        <div className="flex justify-center gap-2 items-center">
+                                                    <td className="px-2 md:px-4 py-2 hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[6] = el; }}>
+                                                        <div className="flex flex-col md:flex-row justify-center gap-2 items-center">
                                                             <button
-                                                                className="px-2 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold"
-                                                                onClick={(e) => {
+                                                                className="px-2 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold w-full md:w-auto"
+                                                                onClick={e => {
                                                                     e.stopPropagation();
                                                                     handleEdit(c);
                                                                 }}
@@ -497,8 +526,8 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                                                                 Editar
                                                             </button>
                                                             <button
-                                                                className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold"
-                                                                onClick={(e) => {
+                                                                className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold w-full md:w-auto"
+                                                                onClick={e => {
                                                                     e.stopPropagation();
                                                                     handleDelete(c.id);
                                                                 }}
@@ -537,11 +566,11 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                     <h3 className="text-2xl font-extrabold mb-6 text-blue-400 text-center drop-shadow uppercase">
                         {selectedRace.nombre}
                     </h3>
-
-                    {/* Contenedor de dos columnas */}
-                    <div className="grid grid-cols-2 gap-6 items-start w-[70%] mx-auto">
+            
+                    {/* Contenedor responsive */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start w-full md:w-[70%] mx-auto">
                         {/* Columna izquierda: Lista de participantes */}
-                        <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
+                        <div className="bg-gray-800 p-4 rounded-lg shadow-lg mb-6 md:mb-0">
                             <h4 className="text-xl font-bold text-gray-300 mb-4">Participantes</h4>
                             {selectedRace && selectedRace.participantes && selectedRace.participantes.length > 0 ? (
                                 <ul className="space-y-2 max-h-[60vh] overflow-y-auto">
@@ -550,17 +579,21 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                                         .map((participante, index) => (
                                             <li
                                                 key={index}
-                                                className="flex justify-between items-center bg-gray-700 text-white px-4 py-2 rounded-lg shadow-lg"
+                                                className="flex flex-col md:flex-row md:justify-between md:items-center bg-gray-700 text-white px-4 py-2 rounded-lg shadow-lg gap-2"
                                             >
-                                                <span>{participante.posicion}.</span>
-                                                <span>{participante.nombre} {participante.apellidos}</span>
-                                                <span>Tiempo: {formatTiempo(participante.tiempo)}</span>
-                                                <button
-                                                    className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold"
-                                                    onClick={() => handleDeleteParticipant(index)}
-                                                >
-                                                    Eliminar
-                                                </button>
+                                                <div className="flex gap-2 items-center">
+                                                    <span className="font-bold">{participante.posicion}.</span>
+                                                    <span>{participante.nombre} {participante.apellidos}</span>
+                                                </div>
+                                                <div className="flex flex-col md:flex-row md:items-center gap-2">
+                                                    <span className="text-sm md:mr-4">Tiempo: {formatTiempo(participante.tiempo)}</span>
+                                                    <button
+                                                        className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold"
+                                                        onClick={() => handleDeleteParticipant(index)}
+                                                    >
+                                                        Eliminar
+                                                    </button>
+                                                </div>
                                             </li>
                                         ))}
                                 </ul>
@@ -568,7 +601,7 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                                 <p className="text-gray-400 text-center">No hay participantes en esta carrera.</p>
                             )}
                         </div>
-
+            
                         {/* Columna derecha: Barra de búsqueda y formulario */}
                         <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
                             {!selectedAthlete && (
@@ -613,10 +646,10 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                                     </ul>
                                 </>
                             )}
-
+            
                             {selectedAthlete && (
-                                <form onSubmit={handleAddAthlete} className="space-y-4 mt-6 px-8">
-                                    <h4 className="text-xl font-bold text-gray-300 mb-4">Añadir resultado</h4>
+                                <form onSubmit={handleAddAthlete} className="space-y-4 mt-6 px-0 md:px-8">
+                                    <h4 className="text-xl font-bold text-gray-300 mb-4 uppercase">Añadir resultado</h4>
                                     <div>
                                         <input type="hidden" name="numero_licencia" value={selectedAthlete.numero_licencia} />
                                         <label className="block text-gray-400 mb-2">Nombre y apellidos</label>
@@ -652,7 +685,7 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                                             className="w-full border border-blue-400 bg-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
                                         />
                                     </div>
-                                    <div className="flex justify-end gap-4">
+                                    <div className="flex flex-col md:flex-row justify-end gap-4">
                                         <button
                                             type="submit"
                                             className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg
@@ -683,7 +716,7 @@ export default function RaceClient({ carreras }: RaceClientProps) {
             {/* Formulario flotante con animación */}
             {showForm && (
                 <div className={`fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 transition-opacity ${closing ? "animate-fade-out" : "animate-fade-in"}`}>
-                    <div className={`bg-gray-900 rounded-3xl shadow-2xl p-8 w-full max-w-xl relative border-2 border-blue-700 ${closing ? "animate-slide-down" : "animate-slide-up"}`}>
+                    <div className={`bg-gray-900 rounded-3xl shadow-2xl p-8 w-[95%] md:w-full max-w-xl relative border-2 border-blue-700 ${closing ? "animate-slide-down" : "animate-slide-up"}`}>
                         <button
                             className="absolute top-4 right-4 text-gray-400 hover:text-blue-400 text-2xl transition-colors duration-200 ease-in-out"
                             onClick={handleCloseForm}

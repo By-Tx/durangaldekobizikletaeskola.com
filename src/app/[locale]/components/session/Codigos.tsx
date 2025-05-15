@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useError } from "@/context/ErrorContext";
 
 interface Code {
     id: number;
@@ -22,7 +23,7 @@ export default function Codigos() {
     const [expiredCodes, setExpiredCodes] = useState<Code[]>([]);
     const [form, setForm] = useState<{ role: string; expires_at?: string }>({ role: roles[0].value });
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+    const { setError } = useError();
     const [success, setSuccess] = useState("");
     const [generatedCode, setGeneratedCode] = useState<string | null>(null);
     const [showExpired, setShowExpired] = useState(false);
@@ -49,7 +50,6 @@ export default function Codigos() {
     };
 
     const handleDelete = async (id: number, expired = false) => {
-        setError("");
         setSuccess("");
         try {
             const res = await fetch("/api/codes", {
@@ -69,7 +69,6 @@ export default function Codigos() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        setError("");
         setSuccess("");
         setGeneratedCode(null);
         try {
@@ -92,14 +91,14 @@ export default function Codigos() {
     };
 
     return (
-        <div className="max-w-2xl mx-auto mt-10 bg-gray-900/90 p-8 rounded-2xl shadow-2xl border border-blue-700">
-            <h2 className="text-3xl font-bold mb-8 text-center text-blue-200 drop-shadow">Códigos de activación</h2>
+        <div className="w-[95%] max-w-full md:max-w-2xl mx-auto mt-10 bg-gray-900/90 p-4 sm:p-8 rounded-2xl shadow-2xl border border-blue-700 font-fredoka">
+            <h2 className="text-3xl font-semibold mb-8 text-center text-blue-200 drop-shadow uppercase">Códigos de activación</h2>
             <form onSubmit={handleSubmit} className="flex flex-col justify-end md:flex-row gap-4 mb-8">
                 <select
                     name="role"
                     value={form.role}
                     onChange={handleChange}
-                    className="rounded-lg px-4 py-2 bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none"
+                    className="rounded-lg px-4 py-2 bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none w-full md:w-auto"
                 >
                     {roles.map(r => (
                         <option key={r.value} value={r.value}>{r.label}</option>
@@ -107,7 +106,10 @@ export default function Codigos() {
                 </select>
                 <button
                     type="submit"
-                    className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-lg font-bold shadow transition-all"
+                    className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg
+                                transition-all duration-200 ease-in-out
+                                hover:shadow-xl hover:opacity-90
+                                focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 uppercase w-full md:w-auto"
                     disabled={loading}
                 >
                     {loading ? "Generando..." : "Generar"}
@@ -115,7 +117,7 @@ export default function Codigos() {
             </form>
             <div className="flex justify-end mb-4">
                 <button
-                    className="bg-gray-700 hover:bg-blue-700 text-blue-100 px-4 py-2 rounded-lg font-semibold shadow transition-all"
+                    className="bg-gray-700 hover:bg-blue-700 text-blue-100 px-4 py-2 rounded-lg font-semibold shadow transition-all uppercase"
                     onClick={() => {
                         setClosingExpired(false);
                         setShowExpired(true);
@@ -131,40 +133,74 @@ export default function Codigos() {
                     Código generado: <span className="font-bold">{generatedCode}</span>
                 </div>
             )}
-            {error && <div className="text-red-400 mb-4 text-center font-semibold">{error}</div>}
-            <table className="min-w-full table-auto border-collapse bg-gray-800 rounded-xl overflow-hidden">
-                <thead>
-                    <tr className="bg-blue-700 text-blue-100">
-                        <th className="px-4 py-2">Código</th>
-                        <th className="px-4 py-2">Rol</th>
-                        <th className="px-4 py-2">Expira</th>
-                        <th className="px-4 py-2">Usos</th>
-                        <th className="px-4 py-2">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {codes.map(code => (
-                        <tr key={code.id} className="border-b border-blue-900">
-                            <td className="px-4 py-2 text-center">{code.code}</td>
-                            <td className="px-4 py-2 text-center">{roles.find(r => r.value === code.role)?.label || code.role}</td>
-                            <td className="px-4 py-2 text-center">{code.expires_at ? new Date(code.expires_at).toLocaleDateString() : "-"}</td>
-                            <td className="px-4 py-2 text-center">{code.usos}</td>
-                            <td className="px-4 py-2 text-center">
-                                <button
-                                    onClick={() => handleDelete(code.id)}
-                                    className="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded font-semibold transition-all"
-                                    disabled={loading}
-                                >
-                                    Eliminar
-                                </button>
-                            </td>
+            <div className="rounded-xl">
+                <table className="md:min-w-[400px] w-full table-auto border-collapse bg-gray-800 rounded-xl overflow-hidden">
+                    <thead className="hidden sm:table-header-group">
+                        <tr className="bg-gray-700 text-blue-100 uppercase">
+                            <th className="px-2 sm:px-4 py-2 font-semibold">Código</th>
+                            <th className="px-2 sm:px-4 py-2 font-semibold">Rol</th>
+                            <th className="px-2 sm:px-4 py-2 font-semibold">Expira</th>
+                            <th className="px-2 sm:px-4 py-2 font-semibold">Usos</th>
+                            <th className="px-2 sm:px-4 py-2 font-semibold">Acciones</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {codes.map(code => (
+                            <tr key={code.id} className="border-b border-blue-900">
+                                {/* Vista móvil: toda la info en una celda */}
+                                <td colSpan={5} className="block sm:hidden px-4 py-4">
+                                    <div className="flex flex-col gap-2">
+                                        <div>
+                                            <span className="font-bold text-blue-300">Código: </span>
+                                            <span className="break-all">{code.code}</span>
+                                        </div>
+                                        <div>
+                                            <span className="font-bold text-blue-300">Rol: </span>
+                                            <span>{roles.find(r => r.value === code.role)?.label || code.role}</span>
+                                        </div>
+                                        <div>
+                                            <span className="font-bold text-blue-300">Expira: </span>
+                                            <span>{code.expires_at ? new Date(code.expires_at).toLocaleDateString() : "-"}</span>
+                                        </div>
+                                        <div>
+                                            <span className="font-bold text-blue-300">Usos: </span>
+                                            <span>{code.usos}</span>
+                                        </div>
+                                        <div className="flex gap-2 mt-2">
+                                            <button
+                                                onClick={() => handleDelete(code.id)}
+                                                className="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded font-semibold transition-all"
+                                                disabled={loading}
+                                                style={{ flex: "1 1 0", whiteSpace: "nowrap" }}
+                                            >
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                                {/* Vista escritorio: columnas normales */}
+                                <td className="px-2 sm:px-4 py-2 text-center break-all hidden sm:table-cell">{code.code}</td>
+                                <td className="px-2 sm:px-4 py-2 text-center hidden sm:table-cell">{roles.find(r => r.value === code.role)?.label || code.role}</td>
+                                <td className="px-2 sm:px-4 py-2 text-center hidden sm:table-cell">{code.expires_at ? new Date(code.expires_at).toLocaleDateString() : "-"}</td>
+                                <td className="px-2 sm:px-4 py-2 text-center hidden sm:table-cell">{code.usos}</td>
+                                <td className="px-2 sm:px-4 py-2 text-center hidden sm:table-cell">
+                                    <button
+                                        onClick={() => handleDelete(code.id)}
+                                        className="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded font-semibold transition-all text-xs sm:text-sm min-w-[90px] max-w-[120px]"
+                                        disabled={loading}
+                                        style={{ flex: "1 1 0", whiteSpace: "nowrap" }}
+                                    >
+                                        Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             {showExpired && (
                 <div className={`fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300 ${closingExpired ? "animate-fade-out" : "animate-fade-in"}`}>
-                    <div className={`bg-gray-900 rounded-2xl shadow-2xl p-8 w-full max-w-2xl border-2 border-blue-700 relative transition-all duration-300 ${closingExpired ? "animate-slide-down" : "animate-slide-up"}`}>
+                    <div className={`bg-gray-900 rounded-2xl shadow-2xl p-4 sm:p-8 w-[95%] max-w-full md:max-w-2xl border-2 border-blue-700 relative transition-all duration-300 ${closingExpired ? "animate-slide-down" : "animate-slide-up"}`}>
                         <button
                             className="absolute top-4 right-4 text-gray-400 hover:text-blue-400 text-2xl"
                             onClick={() => {
@@ -176,41 +212,76 @@ export default function Codigos() {
                             }}
                             aria-label="Cerrar"
                         >✕</button>
-                        <h3 className="text-2xl font-bold mb-6 text-blue-300 text-center">Códigos expirados</h3>
-                        <table className="min-w-full table-auto border-collapse bg-gray-800 rounded-xl overflow-hidden mb-4">
-                            <thead>
-                                <tr className="bg-blue-700 text-blue-100">
-                                    <th className="px-4 py-2">Código</th>
-                                    <th className="px-4 py-2">Rol</th>
-                                    <th className="px-4 py-2">Expiró</th>
-                                    <th className="px-4 py-2">Usos</th>
-                                    <th className="px-4 py-2">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {expiredCodes.length === 0 ? (
-                                    <tr>
-                                        <td colSpan={5} className="text-center text-blue-300 py-6">No hay códigos expirados</td>
+                        <h3 className="text-2xl font-semibold mb-6 text-blue-300 text-center uppercase">Códigos expirados</h3>
+                        <div className="overflow-x-auto overflow-y-auto max-h-80 rounded-xl mb-4">
+                            <table className="md:min-w-[400px] w-full table-auto border-collapse bg-gray-800 rounded-xl overflow-hidden uppercase">
+                                <thead className="hidden sm:table-header-group">
+                                    <tr className="bg-gray-700 text-blue-100">
+                                        <th className="px-2 sm:px-4 py-2 font-semibold">Código</th>
+                                        <th className="px-2 sm:px-4 py-2 font-semibold">Rol</th>
+                                        <th className="px-2 sm:px-4 py-2 font-semibold">Expiró</th>
+                                        <th className="px-2 sm:px-4 py-2 font-semibold">Usos</th>
+                                        <th className="px-2 sm:px-4 py-2 font-semibold">Acciones</th>
                                     </tr>
-                                ) : expiredCodes.map(code => (
-                                    <tr key={code.id} className="border-b border-blue-900">
-                                        <td className="px-4 py-2 text-center">{code.code}</td>
-                                        <td className="px-4 py-2 text-center">{roles.find(r => r.value === code.role)?.label || code.role}</td>
-                                        <td className="px-4 py-2 text-center">{code.expires_at ? new Date(code.expires_at).toLocaleDateString() : "-"}</td>
-                                        <td className="px-4 py-2 text-center">{code.usos}</td>
-                                        <td className="px-4 py-2 text-center">
-                                            <button
-                                                onClick={() => handleDelete(code.id, true)}
-                                                className="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded font-semibold transition-all"
-                                                disabled={loading}
-                                            >
-                                                Eliminar
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {expiredCodes.length === 0 ? (
+                                        <tr>
+                                            <td colSpan={5} className="text-center text-blue-300 py-6">No hay códigos expirados</td>
+                                        </tr>
+                                    ) : expiredCodes.map(code => (
+                                        <tr key={code.id} className="border-b border-blue-900">
+                                            {/* Vista móvil: toda la info en una celda */}
+                                            <td colSpan={5} className="block sm:hidden px-4 py-4">
+                                                <div className="flex flex-col gap-2">
+                                                    <div>
+                                                        <span className="font-bold text-blue-300">Código: </span>
+                                                        <span className="break-all">{code.code}</span>
+                                                    </div>
+                                                    <div>
+                                                        <span className="font-bold text-blue-300">Rol: </span>
+                                                        <span>{roles.find(r => r.value === code.role)?.label || code.role}</span>
+                                                    </div>
+                                                    <div>
+                                                        <span className="font-bold text-blue-300">Expiró: </span>
+                                                        <span>{code.expires_at ? new Date(code.expires_at).toLocaleDateString() : "-"}</span>
+                                                    </div>
+                                                    <div>
+                                                        <span className="font-bold text-blue-300">Usos: </span>
+                                                        <span>{code.usos}</span>
+                                                    </div>
+                                                    <div className="flex gap-2 mt-2">
+                                                        <button
+                                                            onClick={() => handleDelete(code.id, true)}
+                                                            className="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded font-semibold transition-all"
+                                                            disabled={loading}
+                                                            style={{ flex: "1 1 0", whiteSpace: "nowrap" }}
+                                                        >
+                                                            Eliminar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            {/* Vista escritorio: columnas normales */}
+                                            <td className="px-2 sm:px-4 py-2 text-center break-all hidden sm:table-cell">{code.code}</td>
+                                            <td className="px-2 sm:px-4 py-2 text-center hidden sm:table-cell">{roles.find(r => r.value === code.role)?.label || code.role}</td>
+                                            <td className="px-2 sm:px-4 py-2 text-center hidden sm:table-cell">{code.expires_at ? new Date(code.expires_at).toLocaleDateString() : "-"}</td>
+                                            <td className="px-2 sm:px-4 py-2 text-center hidden sm:table-cell">{code.usos}</td>
+                                            <td className="px-2 sm:px-4 py-2 text-center hidden sm:table-cell">
+                                                <button
+                                                    onClick={() => handleDelete(code.id, true)}
+                                                    className="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded font-semibold transition-all text-xs sm:text-sm min-w-[90px] max-w-[120px]"
+                                                    disabled={loading}
+                                                    style={{ flex: "1 1 0", whiteSpace: "nowrap" }}
+                                                >
+                                                    Eliminar
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             )}

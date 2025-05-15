@@ -43,15 +43,14 @@ const NavBarS = ({ rol }: { rol: string }) => {
     if (isDashboardPage) return <div style={{ height: 40 }} />;
 
     return (
-        <nav className="bg-customDarkBlueSession/65 rounded-2xl mx-auto mt-4 mb-4 px-4 w-11/12 max-w-6xl">
-            <div className="flex h-14 items-center justify-between">
+        <nav className="bg-customDarkBlueSession/65 rounded-2xl mx-auto mt-4 mb-4 px-2 sm:px-4 w-[96%] max-w-6xl">
+            <div className="flex h-14 items-center justify-between relative text-white font-fredoka uppercase px-2 py-2 rounded-lg text-xl md:text-base">
                 <Link
                     href="/"
                     className="flex items-center relative w-[30px] h-[30px]"
                     onMouseEnter={() => setLogoHover(true)}
                     onMouseLeave={() => setLogoHover(false)}
                 >
-                    {/* Imagen normal */}
                     <Image
                         src={icon}
                         height={30}
@@ -60,7 +59,6 @@ const NavBarS = ({ rol }: { rol: string }) => {
                         className={`absolute top-0 left-0 transition-opacity duration-300 ${logoHover ? "opacity-0" : "opacity-100"}`}
                         style={{ pointerEvents: "none" }}
                     />
-                    {/* Imagen hover */}
                     <Image
                         src={iconHover}
                         height={30}
@@ -72,7 +70,7 @@ const NavBarS = ({ rol }: { rol: string }) => {
                 </Link>
                 {/* Botón hamburguesa */}
                 <button
-                    className="md:hidden flex flex-col justify-center items-center"
+                    className={`xl:hidden flex flex-col justify-center items-center z-50 ${menuOpen ? "fixed top-9 right-6" : ""}`}
                     onClick={() => setMenuOpen(!menuOpen)}
                     aria-label="Abrir menú"
                 >
@@ -81,39 +79,50 @@ const NavBarS = ({ rol }: { rol: string }) => {
                     <span className={`block w-6 h-0.5 bg-white transition-all ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}></span>
                 </button>
                 {/* Enlaces */}
-                <div className={`flex-1 justify-center items-center md:flex gap-4 ${menuOpen ? "flex flex-col absolute top-14 left-0 w-full bg-customDarkBlueSession/95 z-50 py-4" : "hidden md:flex"}`}>
+                <div className={`flex-1 justify-center items-center xl:flex gap-2 ${menuOpen ? "flex flex-col fixed inset-0 left-0 w-full bg-customDarkBlueSession/95 z-40 py-3 px-2 space-y-1" : "hidden xl:flex"}`}>
                     {rol && (
                         <Link
                             href="/dashboard"
-                            className="text-white font-fredoka font-semibold px-3 py-2 rounded-lg hover:text-blue-300 transition text-center"
+                            className="hover:text-blue-300 transition text-center tracking-wide px-2 py-2"
                             onClick={() => setMenuOpen(false)}
                         >
-                            Panel
+                            PANEL
                         </Link>
                     )}
                     {filteredLinks.map(link => (
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="text-white font-fredoka font-semibold px-3 py-2 rounded-lg hover:text-blue-300 transition text-center"
+                            className="hover:text-blue-300 transition text-center tracking-wide px-2 py-2"
                             onClick={() => setMenuOpen(false)}
                         >
-                            {link.short || link.text}
+                            {(link.short || link.text).toUpperCase()}
                         </Link>
                     ))}
+                    {/* Botón cerrar sesión en menú móvil */}
+                    {menuOpen && rol && (
+                        <button
+                            onClick={handleLogout}
+                            className="bg-customBlue! hover:text-red-300 transition text-center w-full mt-2 tracking-wide px-4 py-2 rounded-lg"
+                            disabled={isPending}
+                        >
+                            CERRAR SESIÓN
+                        </button>
+                    )}
                 </div>
+                {/* Botón cerrar sesión en escritorio */}
                 {rol && (
-                    <div className="hidden md:block mr-6">
-                        <button onClick={handleLogout} className="bg-customBlue text-white font-fredoka font-semibold px-4 py-2 rounded-lg hover:text-blue-300 transition text-center" disabled={isPending}>Cerrar sesión</button>
+                    <div className="hidden xl:block mr-2">
+                        <button
+                            onClick={handleLogout}
+                            className="bg-customBlue hover:text-red-300 transition text-center tracking-wide"
+                            disabled={isPending}
+                        >
+                            CERRAR SESIÓN
+                        </button>
                     </div>
                 )}
             </div>
-            {/* Botón cerrar sesión en móvil */}
-            {menuOpen && rol && (
-                <div className="flex md:hidden justify-center mt-2">
-                    <button onClick={handleLogout} className="bg-customBlue text-white font-fredoka font-semibold px-4 py-2 rounded-lg hover:text-blue-300 transition text-center" disabled={isPending}>Cerrar sesión</button>
-                </div>
-            )}
         </nav>
     );
 };

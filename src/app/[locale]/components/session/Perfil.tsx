@@ -45,8 +45,8 @@ export default function Perfil({ user }: PerfilProps) {
     };
 
     return (
-        <div className="max-w-xl mx-auto mt-10 bg-gray-900/90 p-8 rounded-2xl shadow-2xl border border-blue-700">
-            <h2 className="text-3xl font-bold mb-8 text-center text-blue-200 drop-shadow">Mi perfil</h2>
+        <div className="w-[95%] md:w-full max-w-xl mx-auto mt-10 bg-gray-900/90 p-8 rounded-2xl shadow-2xl border border-blue-700 font-fredoka">
+            <h2 className="text-3xl font-semibold mb-8 text-center text-blue-200 drop-shadow uppercase">Mi perfil</h2>
             {success && <div className="text-green-400 mb-4 text-center font-semibold">{success}</div>}
             {error && <div className="text-red-400 mb-4 text-center font-semibold">{error}</div>}
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -93,14 +93,14 @@ export default function Perfil({ user }: PerfilProps) {
                     <div className="flex gap-4 justify-end mt-8">
                         <button
                             type="submit"
-                            className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-lg font-bold shadow transition disabled:opacity-60"
+                            className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold shadow transition disabled:opacity-60 uppercase"
                             disabled={loading}
                         >
                             {loading ? "Guardando..." : "Guardar"}
                         </button>
                         <button
                             type="button"
-                            className="bg-gray-600 hover:bg-gray-500 text-white px-6 py-2 rounded-lg font-bold shadow transition"
+                            className="bg-gray-600 hover:bg-gray-500 text-white px-6 py-2 rounded-lg font-semibold shadow transition uppercase"
                             onClick={() => {
                                 setForm(user);
                                 setEditMode(false);
@@ -116,7 +116,7 @@ export default function Perfil({ user }: PerfilProps) {
                 <div className="flex justify-end mt-8">
                     <button
                         type="button"
-                        className="bg-blue-700 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-bold shadow transition"
+                        className="bg-blue-700 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold shadow transition uppercase"
                         onClick={() => setEditMode(true)}
                     >
                         Editar perfil

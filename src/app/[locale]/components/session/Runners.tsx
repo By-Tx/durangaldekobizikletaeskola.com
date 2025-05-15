@@ -232,7 +232,7 @@ export default function RunnersClient({ deportistas, rol }: RunnerClientProps) {
 
     return (
 
-        <div className="p-4">
+        <div className="p-4 font-fredoka">
             {/* Popup de confirmación */}
             {showConfirm && (
                 <div className={`fixed inset-0 bg-black bg-opacity-60 flex items-start justify-center z-50 pt-10 transition-opacity duration-300 ${closing ? "animate-fade-out" : "animate-fade-in"}`}>
@@ -271,13 +271,13 @@ export default function RunnersClient({ deportistas, rol }: RunnerClientProps) {
 
 
             {/* Mostrar información de los deportistas */}
-            <div className="grid grid-cols-3 items-center mb-10">
-                <div></div>
-                <h2 className="text-3xl font-bold text-white drop-shadow text-center">
+            {/* Título y botón responsive */}
+            <div className="mb-8">
+                <h2 className="text-3xl font-semibold text-white drop-shadow text-center mb-4">
                     {rol === "coach" ? "MIS DEPORTISTAS" : "DEPORTISTAS"}
                 </h2>
-                <div className="flex justify-end mr-5">
-                    {rol === "coach" && (
+                {rol === "coach" && (
+                    <div className="flex justify-center md:justify-end mb-4">
                         <button
                             className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg
                                 transition-all duration-200 ease-in-out
@@ -287,122 +287,88 @@ export default function RunnersClient({ deportistas, rol }: RunnerClientProps) {
                         >
                             Añadir deportista
                         </button>
-                    )}
-                </div>
+                    </div>
+                )}
             </div>
             <div className="flex justify-center">
-                <div className="w-4/5">
-                    <div className="flex justify-end mb-4">
+                <div className="w-full md:w-4/5">
+                    <div className="flex flex-col md:flex-row md:justify-end mb-4 gap-2">
                         <input
                             type="text"
                             placeholder="Buscar..."
                             value={searchTerm}
                             onChange={handleSearchChange}
-                            className="w-1/5 border border-blue-400 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
+                            className="w-full md:w-1/5 border border-blue-400 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
                         />
                     </div>
-                    <div className="rounded-2xl shadow-xl backdrop-blur-md bg-white/10 border border-blue-400 pb-2 overflow-hidden">
-                        <div>
-                            <table className="min-w-full table-auto border-collapse">
-                                <colgroup>
-                                    {colWidths.map((w, i) => (
-                                        <col key={i} style={{ width: w ? `${w}px` : undefined }} />
-                                    ))}
-                                </colgroup>
-                                <thead className="bg-gray-700 text-blue-100">
-                                    <tr>
-                                        <th className="px-4 py-3 rounded-tl-2xl">Número licencia</th>
-                                        <th className="px-4 py-3">Nombre</th>
-                                        <th className="px-4 py-3">Apellidos</th>
-                                        <th className="px-4 py-3">DNI</th>
-                                        <th className="px-4 py-3">Teléfono</th>
-                                        <th className="px-4 py-3">Fecha de nacimiento</th>
-                                        <th className="px-4 py-3">Peso</th>
-                                        <th className="px-4 py-3">Altura</th>
-                                        <th className="px-4 py-3">FTP</th>
-                                        <th className="px-4 py-3">Pulso</th>
-                                        <th className="px-4 py-3">Acciones</th>
-                                        <th className="w-3 rounded-tr-2xl"></th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                        <div className="max-h-[60vh] overflow-y-scroll">
-                            <table className="min-w-full table-auto border-collapse">
-                                <tbody>
-                                    {filteredData.map((d, rowIdx) => (
-                                        <tr
-                                            key={d.numero_licencia}
-                                            className="hover:bg-blue-900/20 transition border-t border-blue-900/30"
-                                        >
-                                            <td
-                                                className="px-4 py-2"
-                                                ref={el => { if (rowIdx === 0) firstRowRefs.current[0] = el; }}
-                                            >
-                                                {d.numero_licencia}
-                                            </td>
-                                            <td
-                                                className="px-4 py-2"
-                                                ref={el => { if (rowIdx === 0) firstRowRefs.current[1] = el; }}
-                                            >
-                                                {d.nombre}
-                                            </td>
-                                            <td
-                                                className="px-4 py-2"
-                                                ref={el => { if (rowIdx === 0) firstRowRefs.current[2] = el; }}
-                                            >
-                                                {d.apellidos}
-                                            </td>
-                                            <td
-                                                className="px-4 py-2 text-center"
-                                                ref={el => { if (rowIdx === 0) firstRowRefs.current[3] = el; }}
-                                            >
-                                                {d.dni}
-                                            </td>
-                                            <td
-                                                className="px-4 py-2 text-center"
-                                                ref={el => { if (rowIdx === 0) firstRowRefs.current[4] = el; }}
-                                            >
-                                                {formatTelefono(d.telefono)}
-                                            </td>
-                                            <td
-                                                className="px-4 py-2 text-center"
-                                                ref={el => { if (rowIdx === 0) firstRowRefs.current[5] = el; }}
-                                            >
-                                                {formatFecha(d.fecha_nacimiento)}
-                                            </td>
-                                            <td
-                                                className="px-4 py-2 text-center"
-                                                ref={el => { if (rowIdx === 0) firstRowRefs.current[6] = el; }}
-                                            >
-                                                {d.peso}kg
-                                            </td>
-                                            <td
-                                                className="px-4 py-2 text-center"
-                                                ref={el => { if (rowIdx === 0) firstRowRefs.current[7] = el; }}
-                                            >
-                                                {(typeof d.altura === "number"
-                                                    ? d.altura.toFixed(2)
-                                                    : d.altura
-                                                )}m
-                                            </td>
-                                            <td
-                                                className="px-4 py-2 text-center"
-                                                ref={el => { if (rowIdx === 0) firstRowRefs.current[8] = el; }}
-                                            >
-                                                {d.ftp}
-                                            </td>
-                                            <td
-                                                className="px-4 py-2 text-center"
-                                                ref={el => { if (rowIdx === 0) firstRowRefs.current[9] = el; }}
-                                            >
-                                                {d.pulso}ppm
-                                            </td>
-                                            <td
-                                                className="px-4 py-2"
-                                                ref={el => { if (rowIdx === 0) firstRowRefs.current[10] = el; }}
-                                            >
-                                                <div className="flex justify-center gap-2 items-center">
+                    <div className="rounded-2xl shadow-xl backdrop-blur-md bg-white/10 border border-blue-400 pb-2 overflow-x-auto">
+                        <table className="md:min-w-[800px] w-full table-auto border-collapse">
+                            <thead className="bg-gray-700 text-blue-100 uppercase hidden md:table-header-group">
+                                <tr>
+                                    <th className="px-4 py-3 rounded-tl-2xl font-semibold">Número licencia</th>
+                                    <th className="px-4 py-3 font-semibold">Nombre</th>
+                                    <th className="px-4 py-3 font-semibold">Apellidos</th>
+                                    <th className="px-4 py-3 font-semibold">DNI</th>
+                                    <th className="px-4 py-3 font-semibold">Teléfono</th>
+                                    <th className="px-4 py-3 font-semibold">Fecha de nacimiento</th>
+                                    <th className="px-4 py-3 font-semibold">Peso</th>
+                                    <th className="px-4 py-3 font-semibold">Altura</th>
+                                    <th className="px-4 py-3 font-semibold">FTP</th>
+                                    <th className="px-4 py-3 font-semibold">Pulso</th>
+                                    <th className="px-4 py-3 font-semibold">Acciones</th>
+                                    <th className="w-3 rounded-tr-2xl font-semibold"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredData.map((d, rowIdx) => (
+                                    <tr
+                                        key={d.numero_licencia}
+                                        className="hover:bg-blue-900/20 transition border-t border-blue-900/30"
+                                    >
+                                        {/* Vista móvil: toda la info en una celda */}
+                                        <td colSpan={12} className="block md:hidden px-4 py-4">
+                                            <div className="flex flex-col gap-2">
+                                                <div>
+                                                    <span className="font-bold text-blue-300">Licencia: </span>
+                                                    <span>{d.numero_licencia}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="font-bold text-blue-300">Nombre: </span>
+                                                    <span>{d.nombre}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="font-bold text-blue-300">Apellidos: </span>
+                                                    <span>{d.apellidos}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="font-bold text-blue-300">DNI: </span>
+                                                    <span>{d.dni}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="font-bold text-blue-300">Teléfono: </span>
+                                                    <span>{formatTelefono(d.telefono)}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="font-bold text-blue-300">Fecha nacimiento: </span>
+                                                    <span>{formatFecha(d.fecha_nacimiento)}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="font-bold text-blue-300">Peso: </span>
+                                                    <span>{d.peso}kg</span>
+                                                </div>
+                                                <div>
+                                                    <span className="font-bold text-blue-300">Altura: </span>
+                                                    <span>{typeof d.altura === "number" ? d.altura.toFixed(2) : d.altura}m</span>
+                                                </div>
+                                                <div>
+                                                    <span className="font-bold text-blue-300">FTP: </span>
+                                                    <span>{d.ftp}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="font-bold text-blue-300">Pulso: </span>
+                                                    <span>{d.pulso}ppm</span>
+                                                </div>
+                                                <div className="flex gap-2 mt-2">
                                                     <Image
                                                         src="/media/dashboard/historial.svg"
                                                         alt="Historial"
@@ -414,7 +380,7 @@ export default function RunnersClient({ deportistas, rol }: RunnerClientProps) {
                                                         }}
                                                     />
                                                     <button
-                                                        className="px-2 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold"
+                                                        className="px-2 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold w-full"
                                                         onClick={(e) => {
                                                             e.stopPropagation();
                                                             handleEdit(d);
@@ -423,7 +389,7 @@ export default function RunnersClient({ deportistas, rol }: RunnerClientProps) {
                                                         Editar
                                                     </button>
                                                     <button
-                                                        className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold"
+                                                        className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold w-full"
                                                         onClick={(e) => {
                                                             e.stopPropagation();
                                                             handleDelete(d.numero_licencia);
@@ -432,17 +398,60 @@ export default function RunnersClient({ deportistas, rol }: RunnerClientProps) {
                                                         Eliminar
                                                     </button>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                            {filteredData.length === 0 && (
-                                <div className="text-center text-blue-300 py-8 text-lg font-semibold">
-                                    No se han encontrado deportistas
-                                </div>
-                            )}
-                        </div>
+                                            </div>
+                                        </td>
+                                        {/* Vista escritorio: columnas normales */}
+                                        <td className="px-4 py-2 hidden md:table-cell">{d.numero_licencia}</td>
+                                        <td className="px-4 py-2 hidden md:table-cell">{d.nombre}</td>
+                                        <td className="px-4 py-2 hidden md:table-cell">{d.apellidos}</td>
+                                        <td className="px-4 py-2 text-center hidden md:table-cell">{d.dni}</td>
+                                        <td className="px-4 py-2 text-center text-nowrap hidden md:table-cell">{formatTelefono(d.telefono)}</td>
+                                        <td className="px-4 py-2 text-center hidden md:table-cell">{formatFecha(d.fecha_nacimiento)}</td>
+                                        <td className="px-4 py-2 text-center hidden md:table-cell">{d.peso}kg</td>
+                                        <td className="px-4 py-2 text-center hidden md:table-cell">{typeof d.altura === "number" ? d.altura.toFixed(2) : d.altura}m</td>
+                                        <td className="px-4 py-2 text-center hidden md:table-cell">{d.ftp}</td>
+                                        <td className="px-4 py-2 text-center hidden md:table-cell">{d.pulso}ppm</td>
+                                        <td className="px-4 py-2 hidden md:table-cell">
+                                            <div className="flex justify-center gap-2 items-center">
+                                                <Image
+                                                    src="/media/dashboard/historial.svg"
+                                                    alt="Historial"
+                                                    width={30}
+                                                    height={30}
+                                                    className="cursor-pointer invert hover:scale-110 transition-transform duration-200"
+                                                    onClick={() => {
+                                                        window.location.href = `/es/historial?numero_licencia=${d.numero_licencia}`;
+                                                    }}
+                                                />
+                                                <button
+                                                    className="px-2 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleEdit(d);
+                                                    }}
+                                                >
+                                                    Editar
+                                                </button>
+                                                <button
+                                                    className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleDelete(d.numero_licencia);
+                                                    }}
+                                                >
+                                                    Eliminar
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        {filteredData.length === 0 && (
+                            <div className="text-center text-blue-300 py-8 text-lg font-semibold">
+                                No se han encontrado deportistas
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -497,7 +506,7 @@ export default function RunnersClient({ deportistas, rol }: RunnerClientProps) {
             {/* Formulario flotante con animación */}
             {showForm && (
                 <div className={`fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 transition-opacity ${closing ? "animate-fade-out" : "animate-fade-in"}`}>
-                    <div className={`bg-gray-900 rounded-3xl shadow-2xl p-8 w-full max-w-xl relative border-2 border-blue-700 ${closing ? "animate-slide-down" : "animate-slide-up"}`}>
+                    <div className={`bg-gray-900 rounded-3xl shadow-2xl p-8 w-[95%] md:w-full max-w-xl relative border-2 border-blue-700 ${closing ? "animate-slide-down" : "animate-slide-up"}`}>
                         <button
                             className="absolute top-4 right-4 text-gray-400 hover:text-blue-400 text-2xl transition-colors duration-200 ease-in-out"
                             onClick={handleCloseForm}

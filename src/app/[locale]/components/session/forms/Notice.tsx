@@ -96,68 +96,78 @@ export default function ClientForm() {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-
-
-          <div className="w-full">
-            <label htmlFor="fileUploadCover" className="block text-center w-full py-2 bg-blue-600 rounded-lg text-white cursor-pointer hover:bg-blue-500">
-              Selecciona Imagen de Portada
-            </label>
+          <div>
+            <label className="block mb-2 text-gray-300">Imagen de portada</label>
             <input
               type="file"
-              id="fileUploadCover"
               ref={imageCoverRef}
-              onChange={e => handleImageChange(e, 'cover')}
-              className="hidden"
-              accept="image/*"
+              accept=".jpg,.jpeg,.png,.webp,.gif,.bmp"
+              className="block w-full text-sm text-blue-100
+								   file:mr-4 file:py-2 file:px-6
+								   file:rounded-lg file:border-0
+								   file:bg-gradient-to-r file:from-blue-700 file:to-blue-500
+								   file:text-white file:font-semibold
+								   file:shadow-lg file:uppercase file:tracking-wide
+								   hover:file:opacity-90 hover:file:shadow-xl
+								   transition file:transition file:duration-200
+								   bg-gray-800 border border-blue-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400 mb-4 file:cursor-pointer"
             />
-            {imageCoverPreview && (
-              <img
-                src={imageCoverPreview}
-                alt="Portada Preview"
-                className="mt-2 rounded-xl max-h-60 mx-auto"
-              />
-            )}
           </div>
-
-
-          <div className="w-full">
-            <label htmlFor="fileUploadPage" className="block text-center w-full py-2 bg-blue-600 rounded-lg text-white cursor-pointer hover:bg-blue-500">
-              Selecciona Imagen de Contenido
-            </label>
+          <div>
+            <label className="block mb-2 text-gray-300">Imagen de contenido</label>
             <input
               type="file"
-              id="fileUploadPage"
               ref={imagePageRef}
-              onChange={e => handleImageChange(e, 'page')}
-              className="hidden"
-              accept="image/*"
+              accept=".jpg,.jpeg,.png,.webp,.gif,.bmp"
+              className="block w-full text-sm text-blue-100
+								   file:mr-4 file:py-2 file:px-4
+								   file:rounded-lg file:border-0
+								   file:bg-gradient-to-r file:from-blue-700 file:to-blue-500
+								   file:text-white file:font-semibold
+								   file:shadow-lg file:uppercase file:tracking-wide
+								   hover:file:opacity-90 hover:file:shadow-xl
+								   transition file:transition file:duration-200
+								   bg-gray-800 border border-blue-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400 mb-4 file:cursor-pointer"
             />
-            {imagePagePreview && (
-              <img
-                src={imagePagePreview}
-                alt="Contenido Preview"
-                className="mt-2 rounded-xl max-h-60 mx-auto"
-              />
-            )}
           </div>
-
-
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block mb-2 text-gray-300">Imagen de portada</label>
+            <input
+              type="file"
+              ref={imageCoverRef}
+              accept=".jpg,.jpeg,.png,.webp,.gif,.bmp"
+              className="block w-full text-sm text-blue-100
+								   file:mr-4 file:py-2 file:px-6
+								   file:rounded-lg file:border-0
+								   file:bg-gradient-to-r file:from-blue-700 file:to-blue-500
+								   file:text-white file:font-semibold
+								   file:shadow-lg file:uppercase file:tracking-wide
+								   hover:file:opacity-90 hover:file:shadow-xl
+								   transition file:transition file:duration-200
+								   bg-gray-800 border border-blue-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400 mb-4 file:cursor-pointer"
+            />
+          </div>
+          <div>
+            <label className="block mb-2 text-gray-300">Imagen de contenido</label>
+            <input
+              type="file"
+              ref={imagePageRef}
+              accept=".jpg,.jpeg,.png,.webp,.gif,.bmp"
+              className="block w-full text-sm text-blue-100
+								   file:mr-4 file:py-2 file:px-4
+								   file:rounded-lg file:border-0
+								   file:bg-gradient-to-r file:from-blue-700 file:to-blue-500
+								   file:text-white file:font-semibold
+								   file:shadow-lg file:uppercase file:tracking-wide
+								   hover:file:opacity-90 hover:file:shadow-xl
+								   transition file:transition file:duration-200
+								   bg-gray-800 border border-blue-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400 mb-4 file:cursor-pointer"
+            />
+          </div>
+        </div>
 
         <div className="grid grid-cols-2 gap-6">
           <div>
@@ -170,10 +180,6 @@ export default function ClientForm() {
               <input key={p} placeholder={`Párrafo ${p.match(/\d+/)?.[0] || ''}`} name={p} value={formData[p]} onChange={handleChange} className={inputClass} />
             ))}
           </div>
-
-
-
-
 
           <div>
             <h2 className="text-xl font-semibold text-center text-blue-300 mb-4">CASTELLANO</h2>
@@ -209,8 +215,8 @@ export default function ClientForm() {
             <button
               type="button"
               onClick={addLink}
-              className="px-4 py-2 bg-blue-700 rounded-lg text-white font-medium hover:bg-blue-600"
-              disabled={links.length >= 7}
+              className="px-5 py-2 bg-gradient-to-r from-blue-700 to-blue-500 rounded-xl text-white font-semibold shadow-md uppercase tracking-wide transition hover:opacity-90 hover:shadow-xl"
+              disabled={links.length >= 5}
             >
               Añadir enlace
             </button>
@@ -218,7 +224,7 @@ export default function ClientForm() {
         </div>
 
         <div className="pt-6 text-center">
-          <button type="submit" className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg transition hover:opacity-90 hover:shadow-xl">
+          <button type="submit" className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg transition hover:opacity-90 hover:shadow-xl uppercase">
             Crear Crónica
           </button>
         </div>
