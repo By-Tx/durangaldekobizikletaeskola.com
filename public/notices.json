@@ -17,7 +17,7 @@
     "titleKey": "noticeTitle2",
     "categoryKey": "category2",
     "translationKey": "irrisarriNoticePage",
-     "imagePage": "https://photos.txuli.com/duranguesa/notices/irrisarri.JPG"
+    "imagePage": "https://photos.txuli.com/duranguesa/notices/irrisarri.JPG"
   },
   {
     "slug": "espainakoTxapelketa",
@@ -27,7 +27,7 @@
     "titleKey": "noticeTitle",
     "categoryKey": "category",
     "translationKey": "espainakoTxapelketaPage",
-     "imagePage": "https://photos.txuli.com/duranguesa/notices/noticiaseleccion2.jpeg"
+    "imagePage": "https://photos.txuli.com/duranguesa/notices/noticiaseleccion2.jpeg"
   },
   {
     "slug": "tenporadaAsiera",
@@ -37,7 +37,7 @@
     "titleKey": "noticeTitle4",
     "categoryKey": "category4",
     "translationKey": "tenporadaAsieraPage",
-     "imagePage": "https://photos.txuli.com/duranguesa/notices/noticia20252.jpeg"
+    "imagePage": "https://photos.txuli.com/duranguesa/notices/noticia20252.jpeg"
   },
   {
     "slug": "puntagaleaTeam",
@@ -47,7 +47,7 @@
     "titleKey": "noticeTitle5",
     "categoryKey": "category4",
     "translationKey": "puntagaleaTeamPage",
-     "imagePage": "https://photos.txuli.com/duranguesa/neskaPortada1.webp"
+    "imagePage": "https://photos.txuli.com/duranguesa/neskaPortada1.webp"
   },
   {
     "slug": "cronica9-03-25",
@@ -98,7 +98,6 @@
     "categoryKey": "category6",
     "translationKey": "presentacionPage",
     "imagePage": "https://photos.txuli.com/duranguesa/notices/DuranguesaPresentacion.jpg"
-
   },
   {
     "slug": "cronica05-04-25",
@@ -108,7 +107,7 @@
     "titleKey": "noticeTitle11",
     "categoryKey": "category5",
     "translationKey": "cronica05-04-25Page",
-     "imagePage": "https://photos.txuli.com/duranguesa/notices/cronica040425.jpg"
+    "imagePage": "https://photos.txuli.com/duranguesa/notices/cronica040425.jpg"
   },
   {
     "slug": "cronica12-04-25",
@@ -119,5 +118,69 @@
     "categoryKey": "category5",
     "translationKey": "cronica12-04-25Page",
     "imagePage": "https://photos.txuli.com/duranguesa/notices/cronica120425.jpg"
+  },
+  {
+    "date": "2025-05-02",
+    "slug": "cronica2025-05-02",
+    "image": "https://photos.txuli.com/duranguesa/notices/1747174788686.webp",
+    "altKey": "altKey13",
+    "titleKey": "noticeTitle13",
+    "categoryKey": "noticeCategory13",
+    "imagePage": "https://photos.txuli.com/duranguesa/notices/1747174788687.webp",
+    "translationKey": [
+      "cronica2025-05-02Page"
+    ],
+    "urls": [
+      {
+        "url": "XXXVIII ELKARTU NAHI SARIA - Wiclax - Resultados - 75,5 km",
+        "txt": "Zegama Juniorrak"
+      },
+      {
+        "url": "doc_680ceb8a3bc820.48627974_clasificaciones.pdf",
+        "txt": "Aiara Kadeteak"
+      },
+      {
+        "url": "VIII. TROFEO C.C. EIBARRES - Wiclax - Resultados - 68 km",
+        "txt": "Eibar Kadeteak"
+      },
+      {
+        "url": "LI GURUTZ DEUNAREN TXI LASTERKETA - Wiclax - Resultados - 58,5 km",
+        "txt": "Segura Kadeteak"
+      },
+      {
+        "url": "250501-ACTA-KB-ORDUNA-Junior.pdf",
+        "txt": "Orduna Juniorrak"
+      }
+    ]
+  },
+  {
+    "date": "2025-05-12",
+    "slug": "cronica2025-05-12",
+    "image": "https://photos.txuli.com/duranguesa/notices/1747175171296.webp",
+    "altKey": "altKeyNaN",
+    "titleKey": "noticeTitleNaN",
+    "categoryKey": "noticeCategoryNaN",
+    "imagePage": "https://photos.txuli.com/duranguesa/notices/1747175171297.webp",
+    "translationKey": [
+      "cronica2025-05-12Page"
+    ],
+    "urls": [
+      {
+        "url": "202505120838480.Clasif. completa BTT OIARTZUN 10-05-2025.pdf",
+        "txt": "OPEN EUSKADI OIARTZUN MTB"
+      },
+      {
+        "url": "31757 XLIII TROFEO SAN ISIDRO",
+        "txt": "JUNIOR KARRANTZA"
+      },
+      {
+        "url": "ClasificacionMuskizJunior20251.pdf",
+        "txt": "JUNIOR MUSKIZ"
+      },
+      {
+        "url": "ClasificacionesMuskizCadete20251.pdf",
+        "txt": "KADETE MUSKIZ"
+      }
+    ]
   }
 ]

@@ -4,12 +4,10 @@ import fsp from 'fs/promises';
 import path from 'path';
 import Busboy from 'busboy';
 import { Readable } from 'stream';
-import { url } from 'inspector';
 
 export async function POST(req: NextRequest): Promise<Response> {
   return new Promise<Response>((resolve) => {
     const fields: Record<string, string> = {};
-
     const uploads: Record<string, string> = {};
 
     const busboy = Busboy({
@@ -33,7 +31,6 @@ export async function POST(req: NextRequest): Promise<Response> {
     });
 
     busboy.on('finish', async () => {
-      console.log("📦 Campos del formulario recibidos:", fields);
       try {
         const root = process.cwd();
         const filePath = path.join(root, 'public', 'notices.json');
@@ -53,8 +50,13 @@ export async function POST(req: NextRequest): Promise<Response> {
         const noticeComponent = dataEs.noticeComponent;
         const noticeComponentEus = dataEus.noticeComponent;
 
-        const lastKey = Object.keys(noticeComponent).pop();
-        const number = lastKey ? parseInt(lastKey.replace('noticeTitle', '')) + 1 : 1;
+        // get the number of the last notice
+        const titleKeys = Object.keys(noticeComponent).filter(key => key.startsWith('noticeTitle'));
+        const numbers = titleKeys
+          .map(key => parseInt(key.replace('noticeTitle', '')))
+          .filter(num => !isNaN(num));
+        const number = numbers.length > 0 ? Math.max(...numbers) + 1 : 1;
+
         const slug = `cronica${fields.date}`;
 
         const filteredNotice: Record<string, any> = {
@@ -68,7 +70,7 @@ export async function POST(req: NextRequest): Promise<Response> {
           translationKey: [`${slug}Page`],
         };
 
-        // Añadir links si existen
+        // add urls 
         const links: { url: string; txt: string }[] = [];
         for (let i = 1; i <= 5; i++) {
           const url = fields[`url${i}`];
@@ -81,7 +83,7 @@ export async function POST(req: NextRequest): Promise<Response> {
           filteredNotice.urls = links;
         }
 
-
+        // ES translations
         const translationNotice: Record<string, any> = {
           [`${slug}Page`]: {
             title: fields.titleKey,
@@ -89,17 +91,16 @@ export async function POST(req: NextRequest): Promise<Response> {
             altImage: fields.altKey,
             urls: "Clasificaciones",
           },
-          
         };
 
-
-        for (let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 7; i++) {
           const value = fields[`p${i}`];
           if (value) {
             translationNotice[`${slug}Page`][`p${i}`] = value;
           }
         }
 
+        //EUS translations
         const translationNoticeEus: Record<string, any> = {
           [`${slug}Page`]: {
             title: fields.titleKeyEus,
@@ -107,37 +108,34 @@ export async function POST(req: NextRequest): Promise<Response> {
             altImage: fields.altKeyEus,
             urls: "sailkapenak",
           },
-          
         };
 
-
-        for (let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 7; i++) {
           const value = fields[`p${i}Eus`];
           if (value) {
             translationNoticeEus[`${slug}Page`][`p${i}`] = value;
           }
         }
 
-
-        // sum up of the notices
+        // assingn keys to the object ES
         Object.assign(noticeComponent, {
           [`altKey${number}`]: fields.altKey,
           [`noticeTitle${number}`]: fields.titleKey,
           [`noticeCategory${number}`]: fields.categoryKey,
           [`date${number}`]: fields.date,
-
           translation: [slug],
         });
 
+        // assingn keys to the object EUS
         Object.assign(noticeComponentEus, {
           [`altKey${number}`]: fields.altKeyEus,
           [`noticeTitle${number}`]: fields.titleKeyEus,
           [`noticeCategory${number}`]: fields.categoryKeyEus,
           [`date${number}`]: fields.date,
-
           translation: [slug],
         });
 
+        // save the new object to the file
         Object.assign(dataEs, translationNotice);
         Object.assign(dataEus, translationNoticeEus);
 
@@ -165,7 +163,8 @@ export async function POST(req: NextRequest): Promise<Response> {
       }
     });
 
-
+    // adapt the request body to a ReadableStream
+    // to be compatible with busboy
     const reader = req.body?.getReader();
     const nodeStream = new Readable({
       async read() {

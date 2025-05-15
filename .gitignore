@@ -36,6 +36,3 @@ yarn-error.log*
 next-env.d.ts
 .env
 
-package.json
-src/lib/auth-client.ts
-src/lib/auth.ts
