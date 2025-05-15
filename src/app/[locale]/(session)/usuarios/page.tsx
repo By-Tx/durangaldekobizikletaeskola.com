@@ -1,4 +1,4 @@
-import UsersTable from "../../components/session/usuarios";
+import UsersTable from "../../components/session/Usuarios";
 import { API_URL } from "@/lib/config";
 
 async function getUsers() {

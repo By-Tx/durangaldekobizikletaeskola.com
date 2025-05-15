@@ -1,4 +1,3 @@
-// app/[locale]/page.tsx
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
@@ -6,13 +5,9 @@ import NoticeContent from "../../components/session/forms/Notice";
 import DropdownClient from "../../components/session/drowpdown";
 import NoticeEditor from "../../components/session/NoticeEditor";
 
-type Props = {
-  searchParams: {
-    option?: string;
-  };
-};
+export default async function Page(props: any) {
+  const searchParams = props.searchParams as { option?: string } | undefined;
 
-export default async function Page({ searchParams }: Props) {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -21,7 +16,7 @@ export default async function Page({ searchParams }: Props) {
     redirect("/");
   }
 
-  const selected = searchParams.option;
+  const selected = searchParams?.option;
 
   const renderContent = () => {
     switch (selected) {

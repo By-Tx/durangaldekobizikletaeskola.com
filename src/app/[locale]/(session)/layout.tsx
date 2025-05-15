@@ -6,7 +6,14 @@ import NavBarS from "../components/session/NavBarS";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { ErrorProvider } from "@/context/ErrorContext";
-import GlobalErrorHandler from "@/app/[locale]/components/GlobalErrorHandler"; // ⬅️ Nuevo
+import GlobalErrorHandler from "@/app/[locale]/components/GlobalErrorHandler";
+import { Fredoka } from "next/font/google";
+
+const fredoka = Fredoka({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
     title: "GI DURANGALDEKO BZK",
@@ -33,7 +40,7 @@ export default async function dashboardLayout({
                 <body className="scrollbar-carreras">
                     <ErrorProvider> 
                         <NavBarS rol={rol} />
-                        <div className="fixed inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#001f5f_100%)]"></div>
+                        <div className={`${fredoka} fixed inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#001f5f_100%)]`}></div>
                         {children}
                         <GlobalErrorHandler /> 
                     </ErrorProvider>

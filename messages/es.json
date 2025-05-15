@@ -140,7 +140,8 @@
     "contact": "CONTACTO",
     "label": "eus",
     "localeSwitcher": "es",
-    "login": "INICIAR SESIÓN"
+    "login": "INICIAR SESIÓN",
+    "dashboard": "PANEL DE CONTROL"
   },
   "cronica15-03-25Page": {
     "altImage": "Foto ",

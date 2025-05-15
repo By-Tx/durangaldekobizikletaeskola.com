@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import React, { useState, useEffect } from "react";
+import { auth } from "../auth/client";
 import Image from "next/legacy/image";
 import LocaleSwitcherSelect from './LocaleSwitcherSelect';
 import imageLogo from "@/app/media/DURANGOALDEKO.png";
@@ -24,6 +25,7 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
     const [isMobile, setIsMobile] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const t = useTranslations("menuComponent");
+    const { data: session } = auth.useSession();
 
     const toggleMenu = () => {
         setMenuOpen(prev => {
@@ -107,12 +109,21 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
                 {/* Language Switch and Login */}
                 {!isMobile && (
                     <div className="flex items-center space-x-4">
-                        <Link
-                            href="/login"
-                            className="bg-customDarkBlue text-white px-4 py-2 rounded-lg "
-                        >
-                            {t("login")}
-                        </Link>
+                        {session ? (
+                            <Link
+                                href="/dashboard"
+                                className="bg-customDarkBlue text-white px-4 py-2 rounded-lg"
+                            >
+                                {t("dashboard")}
+                            </Link>
+                        ) : (
+                            <Link
+                                href="/login"
+                                className="bg-customDarkBlue text-white px-4 py-2 rounded-lg "
+                            >
+                                {t("login")}
+                            </Link>
+                        )}
                         <div className="hidden md:flex items-center space-x-2">
                             <LocaleSwitcherSelect className={color2} />
                         </div>
@@ -176,13 +187,23 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
                         {t("contact")}
                     </Link>
 
-                    <Link
-                        href="/login"
-                        className="text-xl bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-150"
-                        onClick={toggleMenu}
-                    >
-                        {t("login")}
-                    </Link>
+                    {session ? (
+                        <Link
+                            href="/dashboard"
+                            className="text-xl bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-150"
+                            onClick={toggleMenu}
+                        >
+                            {session.user?.name ?? session.user?.email ?? "Usuario"}
+                        </Link>
+                    ) : (
+                        <Link
+                            href="/login"
+                            className="text-xl bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-150"
+                            onClick={toggleMenu}
+                        >
+                            {t("login")}
+                        </Link>
+                    )}
                     <div>
                         <LocaleSwitcherSelect className={color2} />
                     </div>
