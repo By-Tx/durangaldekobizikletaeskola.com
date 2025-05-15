@@ -51,35 +51,71 @@ export default function DashboardClient({ name, rol, links }: DashboardClientPro
     const filteredLinks = links.filter(link => link.roles.includes(rol));
 
     return (
-        <>
-            <h2 className="text-3xl font-extrabold text-white drop-shadow-md ml-4">
-                ¡Bienvenido/a, {name}!
-            </h2>
-            <h2 className="text-xl font-semibold text-gray-300 ml-4">
-                Nivel de permisos: <span className="text-blue-400">{translateRole(rol)}</span>
-            </h2>
+        <div className="p-4 font-fredoka">
+            <h1 className="text-4xl font-extrabold text-blue-300 drop-shadow-md ml-4 mb-4 sm:mb-2 uppercase tracking-wide text-center">
+                PANEL DE CONTROL
+            </h1>
+            <div className="mb-6 sm:mb-0">
+                <h2 className="text-lg sm:text-3xl font-extrabold text-white drop-shadow-md ml-4">
+                    ¡Bienvenido/a, {name}!
+                </h2>
+                <h2 className="text-base sm:text-xl font-semibold text-gray-300 ml-4">
+                    Nivel de permisos: <span className="text-blue-400">{translateRole(rol)}</span>
+                </h2>
+            </div>
             <div className="space-y-6 flex flex-col items-center">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 justify-items-center w-full max-w-4xl">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-6 mt-8 justify-items-center w-full max-w-4xl uppercase">
                     {filteredLinks.map(link => (
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="flex items-center bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 transition-all duration-200 ease-in-out hover:opacity-90 border border-gray-300 rounded-xl px-6 py-4 shadow-md hover:shadow-lg w-full max-w-sm"
+                            className="
+                                flex flex-col items-center justify-center
+                                bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800
+                                transition-all duration-200 ease-in-out hover:opacity-90
+                                border border-gray-300 rounded-xl
+                                w-full max-w-xs aspect-square
+                                md:aspect-auto md:max-w-sm md:flex-row md:items-center md:px-6 md:py-4 md:justify-start
+                                px-4 py-6
+                                shadow-md hover:shadow-lg
+                            "
                         >
-                            <Image src={link.img} alt={link.text} width={64} height={64} className="w-14 h-14 mr-6" />
-                            <span className="text-lg font-bold">{link.text}</span>
+                            <Image
+                                src={link.img}
+                                alt={link.text}
+                                width={64}
+                                height={64}
+                                className="w-16 h-16 mb-2 md:mb-0 md:mr-6"
+                            />
+                            <span className="text-base font-bold text-center md:text-left md:text-lg">{link.text}</span>
                         </Link>
                     ))}
                     <button
                         onClick={handleLogout}
-                        className="flex items-center bg-gradient-to-r from-red-100 to-red-200 text-red-800 transition-all duration-300 ease-in-out hover:saturate-150 border border-red-300 rounded-xl px-6 py-4 shadow-md hover:shadow-lg w-full max-w-sm"
+                        className="
+                            flex flex-col items-center justify-center
+                            bg-gradient-to-r from-red-100 to-red-200 text-red-800
+                            transition-all duration-300 ease-in-out hover:saturate-150
+                            border border-red-300 rounded-xl
+                            w-full max-w-xs aspect-square
+                            md:aspect-auto md:max-w-sm md:flex-row md:items-center md:px-6 md:py-4 md:justify-start
+                            px-4 py-6
+                            shadow-md hover:shadow-lg
+                            uppercase
+                        "
                         disabled={isPending}
                     >
-                        <Image src="/media/dashboard/logout.svg" alt="Cerrar sesión" width={64} height={64} className="w-14 h-14 mr-6" />
-                        <span className="text-lg font-bold">Cerrar sesión</span>
+                        <Image
+                            src="/media/dashboard/logout.svg"
+                            alt="Cerrar sesión"
+                            width={64}
+                            height={64}
+                            className="w-16 h-16 mb-2 md:mb-0 md:mr-6"
+                        />
+                        <span className="text-base font-bold text-center md:text-left md:text-lg">Cerrar sesión</span>
                     </button>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
