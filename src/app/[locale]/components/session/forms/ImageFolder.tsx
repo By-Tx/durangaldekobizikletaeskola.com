@@ -143,7 +143,7 @@ export default function ClientForm() {
         if (mode) requestBody.mode = mode;
         if (category) requestBody.category = category;
         if (race) requestBody.race = race;
-        requestBody.dir = "covers-v2"
+        requestBody.dir = "covers"
 
         try {
             const response = await fetch(`${API_URL}/api/galleryv2`, {
@@ -260,10 +260,10 @@ export default function ClientForm() {
         console.log("FOLDERNAME", folderName)
         if (canCreateFolder) {
             const bodyCovers = JSON.stringify({
-                folder: `${basePath + "covers-v2/" + path}/${folderName}`
+                folder: `${basePath + "covers" + path}/${folderName}`
             });
             const formDataToSend = new FormData();
-            formDataToSend.append("dir", basePath + "gallery-v2/" + path);
+            formDataToSend.append("dir", basePath + "covers" + path);
             formDataToSend.append("name", imageName);
             if (formData.fileUpload) {
                 formDataToSend.append("file", formData.fileUpload);
@@ -271,7 +271,7 @@ export default function ClientForm() {
 
             try {
                 // Create Folder
-                console.log("Submitting form data:", { folder: `${basePath + "gallery-v2/" + path}/${folderName}` });
+                console.log("Submitting form data:", { folder: `${basePath + "gallery" + path}/${folderName}` });
                 const response = await fetch(`${API_URL}/api/folderCreate`, {
                     method: "POST",
                     headers: {
@@ -290,11 +290,11 @@ export default function ClientForm() {
                 console.error("Error:", error);
             }
             const bodyGallery = JSON.stringify({
-                folder: `${basePath + "covers-v2/" + path}/${folderName}`
+                folder: `${basePath + "gallery" + path}/${folderName}`
             });
             try {
                 // Create Folder
-                console.log("Submitting form data:", { folder: `${basePath + "gallery-v2/" + path}/${folderName}` });
+                console.log("Submitting form data:", { folder: `${basePath + "gallery/" + path}/${folderName}` });
                 const response = await fetch(`${API_URL}/api/folderCreate`, {
                     method: "POST",
                     headers: {
@@ -312,10 +312,6 @@ export default function ClientForm() {
             } catch (error) {
                 console.error("Error:", error);
             }
-
-
-
-
 
             try {
                 // Upload image
