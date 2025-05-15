@@ -10,22 +10,104 @@ export default function ClientForm() {
     // { role }: { role: string } 
     // VARIABLES
 
-    let type = "Año"
-    const [formData, setFormData] = useState({
-        year: '',
-        fileUpload: null as File | null,
+    const [type, setType] = useState("Año");
+    const [disabledDropdowns, setDisabledDropdowns] = useState({
+        mode: true,
+        category: true,
+        race: true,
     });
 
+    const [formData, setFormData] = useState({
+        year: '',
+        mode: '',
+        category: '',
+        race: '',
+
+        fileUpload: null as File | null,
+    });
+    const [yearOptions, setYearOptions] = useState<string[]>([]);
+    const [modeOptions, setModeOptions] = useState<string[]>([]);
+    const [categoryOptions, setCategoryOptions] = useState<string[]>([]);
     // LOGIC 
 
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
+        // disable logic
+        if (name === "year" && value === "") {
+            setDisabledDropdowns(prev => ({
+                mode: true,
+                category: true,
+                race: true,
+            }));
+        } else if (name === "mode" && value === "") {
+            setDisabledDropdowns(prev => ({
+                mode: false,
+                category: true,
+                race: true,
+            }));
+        } else if (name === "category" && value === "") {
+            setDisabledDropdowns(prev => ({
+                mode: false,
+                category: false,
+                race: true,
+            }));
+        }
 
+        if (name === "year" && value != "") {
+            setDisabledDropdowns(prev => ({
+                mode: false,
+                category: true,
+                race: true,
+            }));
+        } else if (name === "mode" && value != "") {
+            setDisabledDropdowns(prev => ({
+                mode: false,
+                category: false,
+                race: true,
+            }));
+        } else if (name === "category" && value != "") {
+            setDisabledDropdowns(prev => ({
+                mode: false,
+                category: false,
+                race: false,
+            }));
+        }
+        // Data fetching logic
+        setFormData(prev => ({ ...prev, [name]: value }));
+        console.log("Change :", name, value);
 
         try {
-            console.log("Change :", name, value);
-            setFormData(prev => ({ ...prev, [name]: value }));
+            if (name === "year") {
+                const yearNumber = parseInt(value, 10);
+                if (isNaN(yearNumber) || yearNumber < 2000 || yearNumber > 2999) {
+                    console.log("Invalid year. Please enter a year between 2000 and 2999.");
+                    return;
+                }
 
+                const modes = await fetchGalleryData({ year: value });
+                setModeOptions(modes);
+
+                // Reset lower fields
+                setFormData(prev => ({
+                    ...prev,
+                    mode: "",
+                    category: "",
+                    race: ""
+                }));
+                setCategoryOptions([]);
+
+            } else if (name === "mode") {
+                const categories = await fetchGalleryData({ year: formData.year, mode: value });
+                setCategoryOptions(categories);
+
+                // Reset lower fields
+                setFormData(prev => ({
+                    ...prev,
+                    category: "",
+                    race: ""
+                }));
+
+            }
 
         } catch (error) {
             console.error("Error in handleChange:", error);
@@ -88,36 +170,100 @@ export default function ClientForm() {
     // currently not implemented, ignore this
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Submitting form data:", formData);
-        const basePath = "/www/wwwroot/photos.txuli.com/duranguesa/covers-v2"
+        console.log(" Submitting form data: album de ", type, ": ", formData);
+        const basePath = "/www/wwwroot/photos.txuli.com/duranguesa/"
         let path = ""
+        let folderName = ""
         let imageName = ""
         let canCreateFolder = false
         if (formData.fileUpload) {
             canCreateFolder = true
         }
         if (type === "Año") {
+            if (!formData.year || !formData.fileUpload) {
+                console.warn("Por favor, completa todos los campos y selecciona una imagen de portada.");
+                return;
+            }
             const existingYears = await fetchGalleryData({});
             if (!existingYears.includes(formData.year)) {
                 console.log("album de ", type, ": ", formData.year, " no existe");
                 canCreateFolder = true;
-                path = formData.year
-                imageName = formData.year
-            }
-            else {
+                path = "";
+                folderName = formData.year;
+                imageName = formData.year;
+            } else {
                 console.log("album de ", type, ": ", formData.year, " no se puede crear porque ya existe");
-                canCreateFolder = false
+                canCreateFolder = false;
             }
-
+        } else if (type === "Modalidad") {
+            if (!formData.year || !formData.mode || !formData.fileUpload) {
+                console.warn("Por favor, completa todos los campos y selecciona una imagen de portada.");
+                return;
+            }
+            const existingModes = await fetchGalleryData({
+                year: formData.year
+            });
+            if (!existingModes.includes(formData.mode)) {
+                console.log("album de ", type, ": ", formData.mode, " no existe");
+                canCreateFolder = true;
+                path = formData.year;
+                folderName = formData.mode;
+                imageName = formData.mode;
+            } else {
+                console.log("album de ", type, ": ", formData.mode, " no se puede crear porque ya existe");
+                canCreateFolder = false;
+            }
+        } else if (type === "Categoria") {
+            if (!formData.year || !formData.mode || !formData.category || !formData.fileUpload) {
+                console.warn("Por favor, completa todos los campos y selecciona una imagen de portada.");
+                return;
+            }
+            const existingCategories = await fetchGalleryData({
+                year: formData.year,
+                mode: formData.mode
+            });
+            if (!existingCategories.includes(formData.category)) {
+                console.log("album de ", type, ": ", formData.category, " no existe");
+                canCreateFolder = true;
+                path = formData.year + "/" + formData.mode;
+                folderName = formData.category;
+                imageName = formData.category;
+            } else {
+                console.log("album de ", type, ": ", formData.category, " no se puede crear porque ya existe");
+                canCreateFolder = false;
+            }
+        } else if (type === "Carrera") {
+            if (!formData.year || !formData.mode || !formData.category || !formData.race || !formData.fileUpload) {
+                console.warn("Por favor, completa todos los campos y selecciona una imagen de portada.");
+                return;
+            }
+            const existingRaces = await fetchGalleryData({
+                year: formData.year,
+                mode: formData.mode,
+                category: formData.category
+            });
+            if (!existingRaces.includes(formData.race)) {
+                console.log("album de ", type, ": ", formData.race, " no existe");
+                canCreateFolder = true;
+                path = formData.year + "/" + formData.mode + "/" + formData.category;
+                folderName = formData.race;
+                imageName = formData.race;
+            } else {
+                console.log("album de ", type, ": ", formData.race, " no se puede crear porque ya existe");
+                canCreateFolder = false;
+            }
+        } else {
+            canCreateFolder = false;
         }
 
 
+        console.log("FOLDERNAME", folderName)
         if (canCreateFolder) {
-            const body = JSON.stringify({
-                folder: `${basePath}${path}`
+            const bodyCovers = JSON.stringify({
+                folder: `${basePath + "covers-v2/" + path}/${folderName}`
             });
             const formDataToSend = new FormData();
-            formDataToSend.append("dir", basePath);
+            formDataToSend.append("dir", basePath + "gallery-v2/" + path);
             formDataToSend.append("name", imageName);
             if (formData.fileUpload) {
                 formDataToSend.append("file", formData.fileUpload);
@@ -125,13 +271,13 @@ export default function ClientForm() {
 
             try {
                 // Create Folder
-                console.log("Submitting form data:", { folder: `${basePath}${path}` });
+                console.log("Submitting form data:", { folder: `${basePath + "gallery-v2/" + path}/${folderName}` });
                 const response = await fetch(`${API_URL}/api/folderCreate`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: body,
+                    body: bodyCovers,
                 });
                 const data = await response.json();
                 if (response.ok) {
@@ -143,6 +289,34 @@ export default function ClientForm() {
             } catch (error) {
                 console.error("Error:", error);
             }
+            const bodyGallery = JSON.stringify({
+                folder: `${basePath + "covers-v2/" + path}/${folderName}`
+            });
+            try {
+                // Create Folder
+                console.log("Submitting form data:", { folder: `${basePath + "gallery-v2/" + path}/${folderName}` });
+                const response = await fetch(`${API_URL}/api/folderCreate`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: bodyGallery,
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.message);
+                } else {
+                    console.error("Error response:", data);
+                }
+
+            } catch (error) {
+                console.error("Error:", error);
+            }
+
+
+
+
+
             try {
                 // Upload image
 
@@ -159,30 +333,218 @@ export default function ClientForm() {
             } catch (error) {
                 console.error("Error:", error);
             }
+        } else {
+            console.warn("No se puede crear");
         }
 
     };
+
+    function handleButton(event: React.MouseEvent<HTMLButtonElement, MouseEvent>, data: string): void {
+        event.preventDefault();
+        setType(data);
+        setFormData(prev => ({
+            ...prev,
+            year: '',
+            mode: '',
+            category: '',
+            race: '',
+        }));
+        setDisabledDropdowns({
+            mode: true,
+            category: true,
+            race: true,
+        });
+        console.log("Button clicked, type set to:", type);
+    }
+
+
+    useEffect(() => {
+        if (type === "Modalidad" || type === "Categoria" || type === "Carrera") {
+            const loadYears = async () => {
+                const years = await fetchGalleryData({});
+                setYearOptions(years);
+            };
+            loadYears();
+        }
+    }, [type]);
 
     return (
         <>
             <h1 className='mt-3 text-center w-full'>CREAR ALBUM</h1>
             <form onSubmit={handleSubmit} className="w-full mx-auto px-2 sm:px-4 md:px-24 lg:px-52 xl:px-[33%]">
-                {/* AÑO */}
-                <section className="flex my-3">
-
-                    {/* textbox */}
-                    <label htmlFor="year" className="block text-gray-200 m-2.5 text-left w-1/4">AÑO:</label>
-                    <input
-                        type="text"
-                        id="year"
-                        name="year"
-                        value={formData.year}
-                        onChange={handleChange}
-                        placeholder="Escribe el año"
-                        className="w-full border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
-                    />
-
+                seleciona que apartado quieres crear
+                <section className="flex justify-center mx-auto my-3 space-x-2">
+                    <button
+                        type="button"
+                        onClick={(event) => handleButton(event, "Año")}
+                        className="py-2 px-6 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        Año
+                    </button>
+                    <button
+                        type="button"
+                        onClick={(event) => handleButton(event, "Modalidad")}
+                        className="py-2 px-6 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        Modalidad
+                    </button>
+                    <button
+                        type="button"
+                        onClick={(event) => handleButton(event, "Categoria")}
+                        className="py-2 px-6 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        Categoria
+                    </button>
+                    <button
+                        type="button"
+                        onClick={(event) => handleButton(event, "Carrera")}
+                        className="py-2 px-6 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        Carrera
+                    </button>
                 </section>
+                {/* LOAD DROPDOWNS IF NECESARY */}
+                {type === "Modalidad" || type === "Categoria" || type === "Carrera" ? (
+                    <>                         {/* AÑO */}
+                        <section className="flex my-3">
+
+                            {/* dropdown */}
+                            <label htmlFor="year" className="block text-gray-200 m-2.5 text-left  w-1/4">Año:</label>
+                            <select
+                                id="year"
+                                name="year"
+                                value={formData.year}
+                                onChange={handleChange}
+                                className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                            >
+                                <option value="">Seleccionar</option>
+                                {yearOptions.map((year) => (
+                                    <option key={year} value={year}>
+                                        {year}
+                                    </option>
+                                ))}
+                            </select>
+
+                        </section>
+                    </>
+
+                ) : null}
+                {type === "Categoria" || type === "Carrera" ? (
+                    <>                         {/* MODALIDAD */}
+                        <section className="flex my-3">
+
+                            {/* dropdown */}
+                            <label htmlFor="mode" className="block text-gray-200 m-2.5 text-left  w-1/4">Modalidad:</label>
+                            <select
+                                id="mode"
+                                name="mode"
+                                value={formData.mode}
+                                onChange={handleChange}
+                                disabled={disabledDropdowns.mode}
+                                className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                            >
+                                <option value="">Seleccionar</option>
+                                {modeOptions.map((mode) => (
+                                    <option key={mode} value={mode}>
+                                        {mode}
+                                    </option>
+                                ))}
+                            </select>
+
+                        </section>
+                    </>
+
+                ) : null}
+                {type === "Carrera" ? (
+                    <>
+                        {/* Categoria */}
+                        <section className="flex my-3">
+
+                            {/* dropdown */}
+                            <label htmlFor="category" className="block text-gray-200 m-2.5 text-left  w-1/4">Categoria:</label>
+                            <select
+                                id="category"
+                                name="category"
+                                value={formData.category}
+                                onChange={handleChange}
+                                disabled={disabledDropdowns.category}
+                                className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                            >
+                                <option value="">Seleccionar</option>
+                                {categoryOptions.map((category) => (
+                                    <option key={category} value={category}>
+                                        {category}
+                                    </option>
+                                ))}
+                            </select>
+
+                        </section>
+                    </>
+                ) : null}
+                {/* LOAD TEXTBOXES */}
+                {type === "Año" ? (
+                    <section className="flex my-3">
+                        <label htmlFor="year" className="block text-gray-200 m-2.5 text-left w-1/4">AÑO:</label>
+                        <input
+                            type="text"
+                            id="year"
+                            name="year"
+                            value={formData.year}
+                            onChange={handleChange}
+                            placeholder="Escribe el año"
+                            className="w-full border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                        />
+                    </section>
+                ) : null}
+
+                {type === "Modalidad" ? (
+                    <section className="flex my-3">
+                        <label htmlFor="mode" className="block text-gray-200 m-2.5 text-left w-1/4">Modalidad:</label>
+                        <input
+                            type="text"
+                            id="mode"
+                            name="mode"
+                            value={formData.mode}
+                            onChange={handleChange}
+                            placeholder="Escribe la modalidad"
+                            disabled={disabledDropdowns.mode}
+                            className="w-full border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                        />
+                    </section>
+                ) : null}
+
+                {type === "Categoria" ? (
+                    <section className="flex my-3">
+                        <label htmlFor="category" className="block text-gray-200 m-2.5 text-left w-1/4">Categoría:</label>
+                        <input
+                            type="text"
+                            id="category"
+                            name="category"
+                            value={formData.category}
+                            onChange={handleChange}
+                            placeholder="Escribe la categoría"
+                            disabled={disabledDropdowns.category}
+                            className="w-full border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                        />
+                    </section>
+                ) : null}
+
+                {type === "Carrera" ? (
+                    <section className="flex my-3">
+                        <label htmlFor="race" className="block text-gray-200 m-2.5 text-left w-1/4">Carrera:</label>
+                        <input
+                            type="text"
+                            id="race"
+                            name="race"
+                            value={formData.race}
+                            onChange={handleChange}
+                            placeholder="Escribe el nombre de la carrera"
+                            disabled={disabledDropdowns.race}
+                            className="w-full border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                        />
+                    </section>
+                ) : null}
+
 
                 <section className="flex my-3">
                     <div className="w-full py-2  bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
