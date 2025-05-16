@@ -193,7 +193,7 @@ export default function ClientForm() {
         requestBody.dir = "gallery"
 
         try {
-            const response = await fetch(`${API_URL}/api/galleryv2`, {
+            const response = await fetch(`${API_URL}/api/galleryManager`, {
                 method: "POST",
                 cache: "no-store",
                 body: JSON.stringify(requestBody),
@@ -242,17 +242,21 @@ export default function ClientForm() {
         }
 
         try {
-            const response = await fetch(`${API_URL}/api/imageUpload`, {
+            const response = await fetch(`${API_URL}/api/galleryManager/uploadImages`, {
                 method: "POST",
                 body: formDataToSend,
             });
-            const data = await response.json();
+            const message = await response.text(); // <-- read plain text
             if (response.ok) {
-                alert(data.message);
+                alert(message); // Show success message
+            } else {
+                alert(`Error: ${message}`); // Show error message
             }
         } catch (error) {
-            console.log("Error:", error);
+            console.error("Error:", error);
+            alert("Ocurrió un error al subir las imágenes.");
         }
+
     };
 
     return (
@@ -263,22 +267,22 @@ export default function ClientForm() {
                 <section className="flex my-3">
 
                     {/* dropdown */}
-                        <label htmlFor="year" className="block text-gray-200 m-2.5 text-left  w-1/4">AÑO:</label>
-                        <select
-                            id="year"
-                            name="year"
-                            value={formData.year}
-                            onChange={handleChange}
+                    <label htmlFor="year" className="block text-gray-200 m-2.5 text-left  w-1/4">AÑO:</label>
+                    <select
+                        id="year"
+                        name="year"
+                        value={formData.year}
+                        onChange={handleChange}
 
-                            className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
-                        >
-                            <option value="">Seleccionar</option>
-                            {yearOptions.map((year) => (
-                                <option key={year} value={year}>
-                                    {year}
-                                </option>
-                            ))}
-                        </select>
+                        className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                    >
+                        <option value="">Seleccionar</option>
+                        {yearOptions.map((year) => (
+                            <option key={year} value={year}>
+                                {year}
+                            </option>
+                        ))}
+                    </select>
 
                 </section>
 
@@ -287,22 +291,22 @@ export default function ClientForm() {
                 <section className="flex my-3">
 
                     {/* dropdown */}
-                        <label htmlFor="mode" className="block text-gray-200 m-2.5 text-left  w-1/4">Modalidad:</label>
-                        <select
-                            id="mode"
-                            name="mode"
-                            value={formData.mode}
-                            onChange={handleChange}
-                            disabled={disabledDropdowns.mode}
-                            className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
-                        >
-                            <option value="">Seleccionar</option>
-                            {modeOptions.map((mode) => (
-                                <option key={mode} value={mode}>
-                                    {mode}
-                                </option>
-                            ))}
-                        </select>
+                    <label htmlFor="mode" className="block text-gray-200 m-2.5 text-left  w-1/4">Modalidad:</label>
+                    <select
+                        id="mode"
+                        name="mode"
+                        value={formData.mode}
+                        onChange={handleChange}
+                        disabled={disabledDropdowns.mode}
+                        className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                    >
+                        <option value="">Seleccionar</option>
+                        {modeOptions.map((mode) => (
+                            <option key={mode} value={mode}>
+                                {mode}
+                            </option>
+                        ))}
+                    </select>
 
                 </section>
 
@@ -310,26 +314,26 @@ export default function ClientForm() {
                 <section className="flex my-3">
 
                     {/* dropdown */}
-                    
-                        <label htmlFor="category" className="block text-gray-200 m-2.5 text-left  w-1/4">Categoría:</label>
-                    
-                   
-                        <select
-                            id="category"
-                            name="category"
-                            value={formData.category}
-                            onChange={handleChange}
-                            disabled={disabledDropdowns.category}
-                            className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
-                        >
-                            <option value="">Seleccionar</option>
-                            {categoryOptions.map((category) => (
-                                <option key={category} value={category}>
-                                    {category}
-                                </option>
-                            ))}
-                        </select>
-                    
+
+                    <label htmlFor="category" className="block text-gray-200 m-2.5 text-left  w-1/4">Categoría:</label>
+
+
+                    <select
+                        id="category"
+                        name="category"
+                        value={formData.category}
+                        onChange={handleChange}
+                        disabled={disabledDropdowns.category}
+                        className="w-full  border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                    >
+                        <option value="">Seleccionar</option>
+                        {categoryOptions.map((category) => (
+                            <option key={category} value={category}>
+                                {category}
+                            </option>
+                        ))}
+                    </select>
+
                 </section>
 
                 {/* race */}
