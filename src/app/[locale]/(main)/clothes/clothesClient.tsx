@@ -124,7 +124,7 @@ export default function ClothesClient({ t, item, itemSchool, tallas }: ClothesCl
 
                     try {
                         // Envío del formulario a la API
-                        const res = await fetch("/api/sendEmailClothes", {
+                        const res = await fetch("/api/mails/sendEmailClothes", {
                             method: "POST",
                             body: JSON.stringify(payload),
                             headers: {

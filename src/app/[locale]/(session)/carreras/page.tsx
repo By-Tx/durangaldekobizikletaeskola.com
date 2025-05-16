@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import prisma from "@/lib/prisma";
-import RaceClient from "@/app/[locale]/components/session/Carreras";
+import RaceClient from "@/app/[locale]/components/session/races/Carreras";
 
 export default async function Race() {
     const session = await auth.api.getSession({
