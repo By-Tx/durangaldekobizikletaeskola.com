@@ -146,7 +146,7 @@ export default function ClientForm() {
         requestBody.dir = "covers"
 
         try {
-            const response = await fetch(`${API_URL}/api/galleryv2`, {
+            const response = await fetch(`${API_URL}/api/galleryManager`, {
                 method: "POST",
                 cache: "no-store",
                 body: JSON.stringify(requestBody),
@@ -170,95 +170,103 @@ export default function ClientForm() {
     // currently not implemented, ignore this
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(" Submitting form data: album de ", type, ": ", formData);
+        console.log(" Submitting form data: Album de ", type, ": ", formData);
         const basePath = "/www/wwwroot/photos.txuli.com/duranguesa/"
         let path = ""
         let folderName = ""
         let imageName = ""
         let canCreateFolder = false
+        let errorMsg = ""
+
+        // IF theres a file, it can create a folder
         if (formData.fileUpload) {
             canCreateFolder = true
         }
-        if (type === "Año") {
+        canCreateFolder = false;
+        errorMsg = "Por favor, completa todos los campos y selecciona una imagen de portada.";
+
+        if (type === "Año") { // Verification of AÑO
             if (!formData.year || !formData.fileUpload) {
-                console.warn("Por favor, completa todos los campos y selecciona una imagen de portada.");
-                return;
-            }
-            const existingYears = await fetchGalleryData({});
-            if (!existingYears.includes(formData.year)) {
-                console.log("album de ", type, ": ", formData.year, " no existe");
-                canCreateFolder = true;
-                path = "";
-                folderName = formData.year;
-                imageName = formData.year;
-            } else {
-                console.log("album de ", type, ": ", formData.year, " no se puede crear porque ya existe");
+                errorMsg = "Por favor, completa todos los campos y selecciona una imagen de portada.";
                 canCreateFolder = false;
+            } else {
+                const existingYears = await fetchGalleryData({});
+                if (!existingYears.includes(formData.year)) {
+                    canCreateFolder = true;
+                    path = "";
+                    folderName = formData.year;
+                    imageName = formData.year;
+                } else {
+                    errorMsg = `Album de ${type}: ${formData.year} no se puede crear porque ya existe.`;
+                    canCreateFolder = false;
+                }
             }
-        } else if (type === "Modalidad") {
+        } else if (type === "Modalidad") { // Verification of Modalidad
             if (!formData.year || !formData.mode || !formData.fileUpload) {
-                console.warn("Por favor, completa todos los campos y selecciona una imagen de portada.");
-                return;
-            }
-            const existingModes = await fetchGalleryData({
-                year: formData.year
-            });
-            if (!existingModes.includes(formData.mode)) {
-                console.log("album de ", type, ": ", formData.mode, " no existe");
-                canCreateFolder = true;
-                path = "/" + formData.year;
-                folderName = formData.mode;
-                imageName = formData.mode;
-            } else {
-                console.log("album de ", type, ": ", formData.mode, " no se puede crear porque ya existe");
+                errorMsg = "Por favor, completa todos los campos y selecciona una imagen de portada.";
                 canCreateFolder = false;
+            } else {
+                const existingModes = await fetchGalleryData({ year: formData.year });
+                if (!existingModes.includes(formData.mode)) {
+                    canCreateFolder = true;
+                    path = "/" + formData.year;
+                    folderName = formData.mode;
+                    imageName = formData.mode;
+                } else {
+                    errorMsg = `Album de ${type}: ${formData.mode} no se puede crear porque ya existe.`;
+                    canCreateFolder = false;
+                }
             }
-        } else if (type === "Categoria") {
+        } else if (type === "Categoria") { // Verification of Categoria
             if (!formData.year || !formData.mode || !formData.category || !formData.fileUpload) {
-                console.warn("Por favor, completa todos los campos y selecciona una imagen de portada.");
-                return;
-            }
-            const existingCategories = await fetchGalleryData({
-                year: formData.year,
-                mode: formData.mode
-            });
-            if (!existingCategories.includes(formData.category)) {
-                console.log("album de ", type, ": ", formData.category, " no existe");
-                canCreateFolder = true;
-                path =  "/" + formData.year + "/" + formData.mode;
-                folderName = formData.category;
-                imageName = formData.category;
-            } else {
-                console.log("album de ", type, ": ", formData.category, " no se puede crear porque ya existe");
+                errorMsg = "Por favor, completa todos los campos y selecciona una imagen de portada.";
                 canCreateFolder = false;
+            } else {
+                const existingCategories = await fetchGalleryData({
+                    year: formData.year,
+                    mode: formData.mode
+                });
+                if (!existingCategories.includes(formData.category)) {
+                    canCreateFolder = true;
+                    path = "/" + formData.year + "/" + formData.mode;
+                    folderName = formData.category;
+                    imageName = formData.category;
+                } else {
+                    errorMsg = `Album de ${type}: ${formData.category} no se puede crear porque ya existe.`;
+                    canCreateFolder = false;
+                }
             }
-        } else if (type === "Carrera") {
+        } else if (type === "Carrera") { // Verification of Carrera
             if (!formData.year || !formData.mode || !formData.category || !formData.race || !formData.fileUpload) {
-                console.warn("Por favor, completa todos los campos y selecciona una imagen de portada.");
-                return;
-            }
-            const existingRaces = await fetchGalleryData({
-                year: formData.year,
-                mode: formData.mode,
-                category: formData.category
-            });
-            if (!existingRaces.includes(formData.race)) {
-                console.log("album de ", type, ": ", formData.race, " no existe");
-                canCreateFolder = true;
-                path =  "/" + formData.year + "/" + formData.mode + "/" + formData.category;
-                folderName = formData.race;
-                imageName = formData.race;
-            } else {
-                console.log("album de ", type, ": ", formData.race, " no se puede crear porque ya existe");
+                errorMsg = "Por favor, completa todos los campos y selecciona una imagen de portada.";
                 canCreateFolder = false;
+            } else {
+                const existingRaces = await fetchGalleryData({
+                    year: formData.year,
+                    mode: formData.mode,
+                    category: formData.category
+                });
+                if (!existingRaces.includes(formData.race)) {
+                    canCreateFolder = true;
+                    path = "/" + formData.year + "/" + formData.mode + "/" + formData.category;
+                    folderName = formData.race;
+                    imageName = formData.race;
+                } else {
+                    errorMsg = `Album de ${type}: ${formData.race} no se puede crear porque ya existe.`;
+                    canCreateFolder = false;
+                }
             }
         } else {
+            // Optional: handle unknown type
             canCreateFolder = false;
+            errorMsg = "Tipo de álbum no reconocido.";
         }
 
+        console.log("ARE YOU HERE ???????")
+        console.log(canCreateFolder, "can create folder");
 
-        console.log("FOLDERNAME", folderName)
         if (canCreateFolder) {
+            // Folder and Thumbnail IMG Creation 
             const bodyCovers = JSON.stringify({
                 folder: `${basePath + "covers" + path}/${folderName}`
             });
@@ -269,10 +277,17 @@ export default function ClientForm() {
                 formDataToSend.append("file", formData.fileUpload);
             }
 
+            let imageUploadSuccess = false;
+            let folderCreationSuccess = false;
+            let folder2CreationSuccess = false;
+
+            // API CALLS
+
+            // CREATE FOLDER 1 (/covers)
             try {
                 // Create Folder
                 console.log("Submitting form data:", { folder: `${basePath + "gallery" + path}/${folderName}` });
-                const response = await fetch(`${API_URL}/api/folderCreate`, {
+                const response = await fetch(`${API_URL}/api/galleryManager/createFolder`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -281,7 +296,8 @@ export default function ClientForm() {
                 });
                 const data = await response.json();
                 if (response.ok) {
-                    alert(data.message);
+                    folderCreationSuccess = true;
+
                 } else {
                     console.error("Error response:", data);
                 }
@@ -289,13 +305,18 @@ export default function ClientForm() {
             } catch (error) {
                 console.error("Error:", error);
             }
+
+            // Change Path for gallery
             const bodyGallery = JSON.stringify({
                 folder: `${basePath + "gallery" + path}/${folderName}`
             });
+
+            // CREATE FOLDER 2 (/gallery)
+
             try {
                 // Create Folder
                 console.log("Submitting form data:", { folder: `${basePath + "gallery/" + path}/${folderName}` });
-                const response = await fetch(`${API_URL}/api/folderCreate`, {
+                const response = await fetch(`${API_URL}/api/galleryManager/createFolder`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -304,7 +325,7 @@ export default function ClientForm() {
                 });
                 const data = await response.json();
                 if (response.ok) {
-                    alert(data.message);
+                    folder2CreationSuccess = true;
                 } else {
                     console.error("Error response:", data);
                 }
@@ -313,24 +334,32 @@ export default function ClientForm() {
                 console.error("Error:", error);
             }
 
+            // UPLOAD IMAGE to (/covers/...)
             try {
                 // Upload image
 
-                const response = await fetch(`${API_URL}/api/imageUpload`, {
+                const response = await fetch(`${API_URL}/api/galleryManager/uploadImages`, {
                     method: "POST",
                     body: formDataToSend,
                 });
                 const data = await response.json();
                 if (response.ok) {
-                    alert(data.message);
+                    imageUploadSuccess = true;
                 } else {
                     console.error("Error response:", data);
                 }
             } catch (error) {
                 console.error("Error:", error);
             }
+            if (imageUploadSuccess && folderCreationSuccess && folder2CreationSuccess) {
+                alert(`Álbum de ${type}: ${folderName} creado correctamente.`);
+            } else {
+                alert("Error interno al crear el álbum.");
+            }
+
+
         } else {
-            console.warn("No se puede crear");
+            alert(errorMsg);
         }
 
     };
