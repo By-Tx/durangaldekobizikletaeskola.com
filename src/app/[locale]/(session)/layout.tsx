@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "../globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import NavBarS from "../components/session/NavBarS";
+import NavBarS from "../components/session/layout/NavBarS";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { ErrorProvider } from "@/context/ErrorContext";
-import GlobalErrorHandler from "@/app/[locale]/components/GlobalErrorHandler";
+import GlobalErrorHandler from "@/app/[locale]/components/handler/GlobalErrorHandler";
 import { Fredoka } from "next/font/google";
 
 const fredoka = Fredoka({

@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import prisma from "@/lib/prisma";
-import Perfil from "@/app/[locale]/components/session/Perfil";
+import Perfil from "@/app/[locale]/components/session/dashboard/Perfil";
 
 export default async function PerfilPage() {
     const session = await auth.api.getSession({

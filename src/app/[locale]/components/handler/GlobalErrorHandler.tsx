@@ -1,5 +1,5 @@
 "use client";
-import ErrorAlert from "./ErrorAlert";
+import ErrorAlert from "../session/ui/ErrorAlert";
 import { useError } from "@/context/ErrorContext";
 
 export default function GlobalErrorHandler() {

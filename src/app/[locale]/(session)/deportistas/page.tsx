@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import prisma from "@/lib/prisma";
-import RunnersClient from "@/app/[locale]/components/session/Runners";
+import RunnersClient from "@/app/[locale]/components/session/dashboard/Runners";
 import { Decimal } from "@prisma/client/runtime/library";
 
 export default async function Runners() {
