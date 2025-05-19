@@ -6,7 +6,7 @@ export default async function Page(props: { params: Promise<{ slug: string; loca
   const params = await props.params;
   const slug= await params.slug;
   
-  const res = await fetch(`${API_URL}/api/RenderNews`,{
+  const res = await fetch(`${API_URL}/api/notices/RenderNews`,{
     cache: "no-store",
     method: "POST",
     body: JSON.stringify({slug: slug}),

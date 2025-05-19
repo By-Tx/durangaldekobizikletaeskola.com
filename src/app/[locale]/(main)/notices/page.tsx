@@ -32,7 +32,7 @@ async function fetchNotices(locale: string): Promise<Notice[]> {
   }
 
   // We make a POST to the endpoint with the language
-  const response = await fetch(`${API_URL}/api/mainNotices`, {
+  const response = await fetch(`${API_URL}/api/notices/mainNotices`, {
     method: "POST",
     cache: "no-store",
     headers: { "Content-Type": "application/json" },

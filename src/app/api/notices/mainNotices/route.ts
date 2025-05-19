@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
     } else if (routePath === 'Modify') {
       result = [...translatedNews].slice(-6).reverse(); // sin cambios
     } else if (routePath === 'allNotices') {
-      result = [...translatedNews].slice(-6).reverse();
+      result = [...translatedNews].reverse();
     }
 
 
