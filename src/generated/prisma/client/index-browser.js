@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.7.0
- * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+ * Prisma Client JS version: 6.8.2
+ * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
  */
 Prisma.prismaVersion = {
-  client: "6.7.0",
-  engine: "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed"
+  client: "6.8.2",
+  engine: "2060c79ba17c6bb9f5823312b6f6b7f4a845738e"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -182,6 +182,12 @@ exports.Prisma.Events_resultadoScalarFieldEnum = {
   deportista_id: 'deportista_id'
 };
 
+exports.Prisma.Listado_escuelasScalarFieldEnum = {
+  carrera_id: 'carrera_id',
+  dorsal: 'dorsal',
+  nombre: 'nombre'
+};
+
 exports.Prisma.SessionScalarFieldEnum = {
   id: 'id',
   expiresAt: 'expiresAt',
@@ -280,6 +286,11 @@ exports.Prisma.events_resultadoOrderByRelevanceFieldEnum = {
   deportista_id: 'deportista_id'
 };
 
+exports.Prisma.listado_escuelasOrderByRelevanceFieldEnum = {
+  dorsal: 'dorsal',
+  nombre: 'nombre'
+};
+
 exports.Prisma.sessionOrderByRelevanceFieldEnum = {
   id: 'id',
   token: 'token',
@@ -328,6 +339,7 @@ exports.user_role = exports.$Enums.user_role = {
   admin: 'admin',
   staff: 'staff',
   coach: 'coach',
+  instructor: 'instructor',
   runner: 'runner',
   user: 'user',
   instructor: 'instructor'
@@ -337,6 +349,7 @@ exports.activation_codes_role = exports.$Enums.activation_codes_role = {
   admin: 'admin',
   staff: 'staff',
   coach: 'coach',
+  instructor: 'instructor',
   runner: 'runner',
   user: 'user',
   instructor: 'instructor'
@@ -348,6 +361,7 @@ exports.Prisma.ModelName = {
   entrenadores: 'entrenadores',
   events: 'events',
   events_resultado: 'events_resultado',
+  listado_escuelas: 'listado_escuelas',
   session: 'session',
   user: 'user',
   verification: 'verification',

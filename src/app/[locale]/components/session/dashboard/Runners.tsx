@@ -1,7 +1,7 @@
 "use client";
-import { useRef, useLayoutEffect, useState } from "react";
-import Image from "next/image";
+import { useState } from "react";
 import { useError } from "@/context/ErrorContext";
+import Table from "@/app/[locale]/components/Table";
 
 type Deportista = {
     numero_licencia: string;
@@ -36,14 +36,6 @@ export default function RunnersClient({ deportistas, rol }: RunnerClientProps) {
     const [showConfirm, setShowConfirm] = useState(false);
     const { setError } = useError();
     const [deleteId, setDeleteId] = useState<string | null>(null);
-    const firstRowRefs = useRef<(HTMLTableCellElement | null)[]>([]);
-    const [colWidths, setColWidths] = useState<number[]>([]);
-
-    useLayoutEffect(() => {
-        if (firstRowRefs.current.length) {
-            setColWidths(firstRowRefs.current.map(td => td?.offsetWidth || 0));
-        }
-    }, [data]);
 
     // Filtrar los datos según el término de búsqueda
     const filteredData = data.filter(deportista =>
@@ -301,158 +293,25 @@ export default function RunnersClient({ deportistas, rol }: RunnerClientProps) {
                             className="w-full md:w-1/5 border border-blue-400 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
                         />
                     </div>
-                    <div className="rounded-2xl shadow-xl backdrop-blur-md bg-white/10 border border-blue-400 pb-2 overflow-x-auto">
-                        <table className="md:min-w-[800px] w-full table-auto border-collapse">
-                            <thead className="bg-gray-700 text-blue-100 uppercase hidden md:table-header-group">
-                                <tr>
-                                    <th className="px-4 py-3 rounded-tl-2xl font-semibold">Número licencia</th>
-                                    <th className="px-4 py-3 font-semibold">Nombre</th>
-                                    <th className="px-4 py-3 font-semibold">Apellidos</th>
-                                    <th className="px-4 py-3 font-semibold">DNI</th>
-                                    <th className="px-4 py-3 font-semibold">Teléfono</th>
-                                    <th className="px-4 py-3 font-semibold">Fecha de nacimiento</th>
-                                    <th className="px-4 py-3 font-semibold">Peso</th>
-                                    <th className="px-4 py-3 font-semibold">Altura</th>
-                                    <th className="px-4 py-3 font-semibold">FTP</th>
-                                    <th className="px-4 py-3 font-semibold">Pulso</th>
-                                    <th className="px-4 py-3 font-semibold">Acciones</th>
-                                    <th className="w-3 rounded-tr-2xl font-semibold"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {filteredData.map((d, rowIdx) => (
-                                    <tr
-                                        key={d.numero_licencia}
-                                        className="hover:bg-blue-900/20 transition border-t border-blue-900/30"
-                                    >
-                                        {/* Vista móvil: toda la info en una celda */}
-                                        <td colSpan={12} className="block md:hidden px-4 py-4">
-                                            <div className="flex flex-col gap-2">
-                                                <div>
-                                                    <span className="font-bold text-blue-300">Licencia: </span>
-                                                    <span>{d.numero_licencia}</span>
-                                                </div>
-                                                <div>
-                                                    <span className="font-bold text-blue-300">Nombre: </span>
-                                                    <span>{d.nombre}</span>
-                                                </div>
-                                                <div>
-                                                    <span className="font-bold text-blue-300">Apellidos: </span>
-                                                    <span>{d.apellidos}</span>
-                                                </div>
-                                                <div>
-                                                    <span className="font-bold text-blue-300">DNI: </span>
-                                                    <span>{d.dni}</span>
-                                                </div>
-                                                <div>
-                                                    <span className="font-bold text-blue-300">Teléfono: </span>
-                                                    <span>{formatTelefono(d.telefono)}</span>
-                                                </div>
-                                                <div>
-                                                    <span className="font-bold text-blue-300">Fecha nacimiento: </span>
-                                                    <span>{formatFecha(d.fecha_nacimiento)}</span>
-                                                </div>
-                                                <div>
-                                                    <span className="font-bold text-blue-300">Peso: </span>
-                                                    <span>{d.peso}kg</span>
-                                                </div>
-                                                <div>
-                                                    <span className="font-bold text-blue-300">Altura: </span>
-                                                    <span>{typeof d.altura === "number" ? d.altura.toFixed(2) : d.altura}m</span>
-                                                </div>
-                                                <div>
-                                                    <span className="font-bold text-blue-300">FTP: </span>
-                                                    <span>{d.ftp}</span>
-                                                </div>
-                                                <div>
-                                                    <span className="font-bold text-blue-300">Pulso: </span>
-                                                    <span>{d.pulso}ppm</span>
-                                                </div>
-                                                <div className="flex gap-2 mt-2">
-                                                    <Image
-                                                        src="/media/dashboard/historial.svg"
-                                                        alt="Historial"
-                                                        width={30}
-                                                        height={30}
-                                                        className="cursor-pointer invert hover:scale-110 transition-transform duration-200"
-                                                        onClick={() => {
-                                                            window.location.href = `/es/historial?numero_licencia=${d.numero_licencia}`;
-                                                        }}
-                                                    />
-                                                    <button
-                                                        className="px-2 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold w-full"
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            handleEdit(d);
-                                                        }}
-                                                    >
-                                                        Editar
-                                                    </button>
-                                                    <button
-                                                        className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold w-full"
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            handleDelete(d.numero_licencia);
-                                                        }}
-                                                    >
-                                                        Eliminar
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        {/* Vista escritorio: columnas normales */}
-                                        <td className="px-4 py-2 hidden md:table-cell">{d.numero_licencia}</td>
-                                        <td className="px-4 py-2 hidden md:table-cell">{d.nombre}</td>
-                                        <td className="px-4 py-2 hidden md:table-cell">{d.apellidos}</td>
-                                        <td className="px-4 py-2 text-center hidden md:table-cell">{d.dni}</td>
-                                        <td className="px-4 py-2 text-center text-nowrap hidden md:table-cell">{formatTelefono(d.telefono)}</td>
-                                        <td className="px-4 py-2 text-center hidden md:table-cell">{formatFecha(d.fecha_nacimiento)}</td>
-                                        <td className="px-4 py-2 text-center hidden md:table-cell">{d.peso}kg</td>
-                                        <td className="px-4 py-2 text-center hidden md:table-cell">{typeof d.altura === "number" ? d.altura.toFixed(2) : d.altura}m</td>
-                                        <td className="px-4 py-2 text-center hidden md:table-cell">{d.ftp}</td>
-                                        <td className="px-4 py-2 text-center hidden md:table-cell">{d.pulso}ppm</td>
-                                        <td className="px-4 py-2 hidden md:table-cell">
-                                            <div className="flex justify-center gap-2 items-center">
-                                                <Image
-                                                    src="/media/dashboard/historial.svg"
-                                                    alt="Historial"
-                                                    width={30}
-                                                    height={30}
-                                                    className="cursor-pointer invert hover:scale-110 transition-transform duration-200"
-                                                    onClick={() => {
-                                                        window.location.href = `/es/historial?numero_licencia=${d.numero_licencia}`;
-                                                    }}
-                                                />
-                                                <button
-                                                    className="px-2 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        handleEdit(d);
-                                                    }}
-                                                >
-                                                    Editar
-                                                </button>
-                                                <button
-                                                    className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        handleDelete(d.numero_licencia);
-                                                    }}
-                                                >
-                                                    Eliminar
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        {filteredData.length === 0 && (
-                            <div className="text-center text-blue-300 py-8 text-lg font-semibold">
-                                No se han encontrado deportistas
-                            </div>
-                        )}
-                    </div>
+                    <Table
+                        columns={[
+                            { name: "Número de licencia", key: "numero_licencia" },
+                            { name: "Nombre", key: "nombre" },
+                            { name: "Apellidos", key: "apellidos" },
+                            { name: "DNI", key: "dni" },
+                            { name: "Fecha de nacimiento", key: "fecha_nacimiento" },
+                            { name: "Peso", key: "peso" },
+                            { name: "Altura", key: "altura" },
+                            { name: "FTP", key: "ftp" },
+                            { name: "Pulso", key: "pulso" },
+                        ]}
+                        data={filteredData}
+                        colWidths={[200, 150, 150, 125, 225, 150, 100, 100, 100]}
+                        onHistorial={() => { }}
+                        onEdit={handleEdit}
+                        onDelete={handleDelete}
+                        formatFecha={formatFecha}
+                    />
                 </div>
             </div>
 
