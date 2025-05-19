@@ -31,7 +31,7 @@ export default function Page() {
         e.preventDefault();
 
         // Enviar los datos al endpoint de la API
-        const response = await fetch("/api/sendEmail", {
+        const response = await fetch("/api/mails/sendEmail", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

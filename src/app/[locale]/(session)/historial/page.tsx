@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import HistorialContent from "@/app/[locale]/components/session/Historial";
+import HistorialContent from "@/app/[locale]/components/session/dashboard/Historial";
 import prisma from "@/lib/prisma";
 
 type CarreraRaw = {

@@ -2,7 +2,7 @@ import { API_URL } from "@/lib/config";
 import NoticeEditorClient from "./NoticeEditorClient";
 
 export default async function NoticeEditor() {
-  const res = await fetch(`${API_URL}/api/mainNotices`, {
+  const res = await fetch(`${API_URL}/api/notices/mainNotices`, {
     method: "POST",
     body: JSON.stringify({ path: "Modify", loc: "es" }),
     headers: { "Content-Type": "application/json" },

@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
-import CodigosClient from "@/app/[locale]/components/session/Codigos";
+import CodigosClient from "@/app/[locale]/components/session/dashboard/Codigos";
 
 export default async function Codigos() {
     const session = await auth.api.getSession({
