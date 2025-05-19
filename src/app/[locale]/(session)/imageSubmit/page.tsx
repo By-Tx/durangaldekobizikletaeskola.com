@@ -2,7 +2,7 @@
 import { auth } from "@/lib/auth";
 import { redirect } from '@/i18n/routing';
 import { headers } from "next/headers";
-import ImageContent from "../../components/session/forms/Image";
+import ImageContent from "../../components/session/dashboard/Image";
 
 export default async function Page() {
   const session = await auth.api.getSession({

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image';
 import { API_URL } from "@/lib/config";
 import { useEffect } from 'react';
+import { useError } from "@/context/ErrorContext";
 
 
 export default function ClientForm() {
@@ -16,6 +17,7 @@ export default function ClientForm() {
         category: true,
         race: true,
     });
+    const { setError } = useError();
 
     const [formData, setFormData] = useState({
         year: '',
@@ -119,7 +121,7 @@ export default function ClientForm() {
             const file = files[0];
 
             if (file.size > 5 * 1024 * 1024) { // Check if the file exceeds 5MB
-                alert("La imagen no se seleccionó porque supera el límite de 5MB.");
+                setError("La imagen no se seleccionó porque supera el límite de 5MB.");
                 return;
             }
 
@@ -354,12 +356,12 @@ export default function ClientForm() {
             if (imageUploadSuccess && folderCreationSuccess && folder2CreationSuccess) {
                 alert(`Álbum de ${type}: ${folderName} creado correctamente.`);
             } else {
-                alert("Error interno al crear el álbum.");
+                setError("Error interno al crear el álbum.");
             }
 
 
         } else {
-            alert(errorMsg);
+            setError(errorMsg);
         }
 
     };
