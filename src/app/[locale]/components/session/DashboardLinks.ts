@@ -35,14 +35,14 @@ export const dashboardLinks = [
         short: "Carreras",
     },
     {
-        href: "/imageCategory",
-        text: "Categorías de imágenes",
+        href: "/imageFolders",
+        text: "Categorías de galeria",
         img: "/media/dashboard/categoria.svg",
         roles: ["admin", "staff", "coach"],
         short: "Categorías",
     },
     {
-        href: "/imageCreator",
+        href: "/imageSubmit",
         text: "Subida de imágenes",
         img: "/media/dashboard/imagen.svg",
         roles: ["admin", "staff", "coach", "runner", "user"],

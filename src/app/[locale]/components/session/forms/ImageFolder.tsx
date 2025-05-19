@@ -395,9 +395,10 @@ export default function ClientForm() {
 
     return (
         <>
-            <h1 className='mt-3 text-center w-full'>CREAR ALBUM</h1>
-            <form onSubmit={handleSubmit} className="w-full mx-auto px-2 sm:px-4 md:px-24 lg:px-52 xl:px-[33%]">
-                seleciona que apartado quieres crear
+            <h2 className="text-3xl font-semibold text-white drop-shadow text-center mb-4 uppercase font-fredoka">Categorías de galeria</h2>
+
+            <form onSubmit={handleSubmit} className="w-full mx-auto px-2 sm:px-4 md:px-24 lg:px-52 xl:px-[33%] font-fredoka">
+                <p className='text-center'>Seleciona que apartado quieres crear</p> 
                 <section className="flex justify-center mx-auto my-3 space-x-2">
                     <button
                         type="button"

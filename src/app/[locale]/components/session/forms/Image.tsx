@@ -261,8 +261,9 @@ export default function ClientForm() {
 
     return (
         <>
-            <h1 className='mt-3 text-center w-full'>SUBIR IMAGENES</h1>
-            <form onSubmit={handleSubmit} className="w-full mx-auto px-2 sm:px-4 md:px-24 lg:px-52 xl:px-[28%]">
+            <h2 className="text-3xl font-semibold text-white drop-shadow text-center mb-4 uppercase font-fredoka">Subida de imágenes</h2>
+
+            <form onSubmit={handleSubmit} className="w-full mx-auto px-2 sm:px-4 md:px-24 lg:px-52 xl:px-[28%] font-fredoka">
                 {/* AÑO */}
                 <section className="flex my-3">
 
