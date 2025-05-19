@@ -58,6 +58,11 @@ export type verification = $Result.DefaultSelection<Prisma.$verificationPayload>
  * 
  */
 export type activation_codes = $Result.DefaultSelection<Prisma.$activation_codesPayload>
+/**
+ * Model ListadoEscuelas
+ * 
+ */
+export type ListadoEscuelas = $Result.DefaultSelection<Prisma.$ListadoEscuelasPayload>
 
 /**
  * Enums
@@ -65,7 +70,8 @@ export type activation_codes = $Result.DefaultSelection<Prisma.$activation_codes
 export namespace $Enums {
   export const events_categoria: {
   Cadetes: 'Cadetes',
-  Juveniles: 'Juveniles'
+  Juveniles: 'Juveniles',
+  Escuela: 'Escuela'
 };
 
 export type events_categoria = (typeof events_categoria)[keyof typeof events_categoria]
@@ -86,7 +92,8 @@ export const user_role: {
   staff: 'staff',
   coach: 'coach',
   runner: 'runner',
-  user: 'user'
+  user: 'user',
+  instructor: 'instructor'
 };
 
 export type user_role = (typeof user_role)[keyof typeof user_role]
@@ -97,7 +104,8 @@ export const activation_codes_role: {
   staff: 'staff',
   coach: 'coach',
   runner: 'runner',
-  user: 'user'
+  user: 'user',
+  instructor: 'instructor'
 };
 
 export type activation_codes_role = (typeof activation_codes_role)[keyof typeof activation_codes_role]
@@ -334,6 +342,16 @@ export class PrismaClient<
     * ```
     */
   get activation_codes(): Prisma.activation_codesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.listadoEscuelas`: Exposes CRUD operations for the **ListadoEscuelas** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ListadoEscuelas
+    * const listadoEscuelas = await prisma.listadoEscuelas.findMany()
+    * ```
+    */
+  get listadoEscuelas(): Prisma.ListadoEscuelasDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -782,7 +800,8 @@ export namespace Prisma {
     session: 'session',
     user: 'user',
     verification: 'verification',
-    activation_codes: 'activation_codes'
+    activation_codes: 'activation_codes',
+    ListadoEscuelas: 'ListadoEscuelas'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -801,7 +820,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "account" | "deportistas" | "entrenadores" | "events" | "events_resultado" | "session" | "user" | "verification" | "activation_codes"
+      modelProps: "account" | "deportistas" | "entrenadores" | "events" | "events_resultado" | "session" | "user" | "verification" | "activation_codes" | "listadoEscuelas"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1399,6 +1418,72 @@ export namespace Prisma {
           }
         }
       }
+      ListadoEscuelas: {
+        payload: Prisma.$ListadoEscuelasPayload<ExtArgs>
+        fields: Prisma.ListadoEscuelasFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ListadoEscuelasFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ListadoEscuelasPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ListadoEscuelasFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ListadoEscuelasPayload>
+          }
+          findFirst: {
+            args: Prisma.ListadoEscuelasFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ListadoEscuelasPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ListadoEscuelasFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ListadoEscuelasPayload>
+          }
+          findMany: {
+            args: Prisma.ListadoEscuelasFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ListadoEscuelasPayload>[]
+          }
+          create: {
+            args: Prisma.ListadoEscuelasCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ListadoEscuelasPayload>
+          }
+          createMany: {
+            args: Prisma.ListadoEscuelasCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ListadoEscuelasDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ListadoEscuelasPayload>
+          }
+          update: {
+            args: Prisma.ListadoEscuelasUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ListadoEscuelasPayload>
+          }
+          deleteMany: {
+            args: Prisma.ListadoEscuelasDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ListadoEscuelasUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ListadoEscuelasUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ListadoEscuelasPayload>
+          }
+          aggregate: {
+            args: Prisma.ListadoEscuelasAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateListadoEscuelas>
+          }
+          groupBy: {
+            args: Prisma.ListadoEscuelasGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ListadoEscuelasGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ListadoEscuelasCountArgs<ExtArgs>
+            result: $Utils.Optional<ListadoEscuelasCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1492,6 +1577,7 @@ export namespace Prisma {
     user?: userOmit
     verification?: verificationOmit
     activation_codes?: activation_codesOmit
+    listadoEscuelas?: ListadoEscuelasOmit
   }
 
   /* Types for Logging */
@@ -1649,10 +1735,12 @@ export namespace Prisma {
 
   export type EventsCountOutputType = {
     events_resultado: number
+    ListadoEscuelas: number
   }
 
   export type EventsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events_resultado?: boolean | EventsCountOutputTypeCountEvents_resultadoArgs
+    ListadoEscuelas?: boolean | EventsCountOutputTypeCountListadoEscuelasArgs
   }
 
   // Custom InputTypes
@@ -1671,6 +1759,13 @@ export namespace Prisma {
    */
   export type EventsCountOutputTypeCountEvents_resultadoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: events_resultadoWhereInput
+  }
+
+  /**
+   * EventsCountOutputType without action
+   */
+  export type EventsCountOutputTypeCountListadoEscuelasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ListadoEscuelasWhereInput
   }
 
 
@@ -5073,6 +5168,7 @@ export namespace Prisma {
     modalidad?: boolean
     descripcion?: boolean
     events_resultado?: boolean | events$events_resultadoArgs<ExtArgs>
+    ListadoEscuelas?: boolean | events$ListadoEscuelasArgs<ExtArgs>
     _count?: boolean | EventsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["events"]>
 
@@ -5091,6 +5187,7 @@ export namespace Prisma {
   export type eventsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "fecha" | "lugar" | "categoria" | "modalidad" | "descripcion", ExtArgs["result"]["events"]>
   export type eventsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events_resultado?: boolean | events$events_resultadoArgs<ExtArgs>
+    ListadoEscuelas?: boolean | events$ListadoEscuelasArgs<ExtArgs>
     _count?: boolean | EventsCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -5098,6 +5195,7 @@ export namespace Prisma {
     name: "events"
     objects: {
       events_resultado: Prisma.$events_resultadoPayload<ExtArgs>[]
+      ListadoEscuelas: Prisma.$ListadoEscuelasPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5448,6 +5546,7 @@ export namespace Prisma {
   export interface Prisma__eventsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     events_resultado<T extends events$events_resultadoArgs<ExtArgs> = {}>(args?: Subset<T, events$events_resultadoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$events_resultadoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ListadoEscuelas<T extends events$ListadoEscuelasArgs<ExtArgs> = {}>(args?: Subset<T, events$ListadoEscuelasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ListadoEscuelasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5848,6 +5947,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Events_resultadoScalarFieldEnum | Events_resultadoScalarFieldEnum[]
+  }
+
+  /**
+   * events.ListadoEscuelas
+   */
+  export type events$ListadoEscuelasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ListadoEscuelas
+     */
+    select?: ListadoEscuelasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ListadoEscuelas
+     */
+    omit?: ListadoEscuelasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListadoEscuelasInclude<ExtArgs> | null
+    where?: ListadoEscuelasWhereInput
+    orderBy?: ListadoEscuelasOrderByWithRelationInput | ListadoEscuelasOrderByWithRelationInput[]
+    cursor?: ListadoEscuelasWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ListadoEscuelasScalarFieldEnum | ListadoEscuelasScalarFieldEnum[]
   }
 
   /**
@@ -10746,6 +10869,947 @@ export namespace Prisma {
 
 
   /**
+   * Model ListadoEscuelas
+   */
+
+  export type AggregateListadoEscuelas = {
+    _count: ListadoEscuelasCountAggregateOutputType | null
+    _avg: ListadoEscuelasAvgAggregateOutputType | null
+    _sum: ListadoEscuelasSumAggregateOutputType | null
+    _min: ListadoEscuelasMinAggregateOutputType | null
+    _max: ListadoEscuelasMaxAggregateOutputType | null
+  }
+
+  export type ListadoEscuelasAvgAggregateOutputType = {
+    idCarrera: number | null
+  }
+
+  export type ListadoEscuelasSumAggregateOutputType = {
+    idCarrera: number | null
+  }
+
+  export type ListadoEscuelasMinAggregateOutputType = {
+    idCarrera: number | null
+    dorsal: string | null
+    nombre: string | null
+  }
+
+  export type ListadoEscuelasMaxAggregateOutputType = {
+    idCarrera: number | null
+    dorsal: string | null
+    nombre: string | null
+  }
+
+  export type ListadoEscuelasCountAggregateOutputType = {
+    idCarrera: number
+    dorsal: number
+    nombre: number
+    _all: number
+  }
+
+
+  export type ListadoEscuelasAvgAggregateInputType = {
+    idCarrera?: true
+  }
+
+  export type ListadoEscuelasSumAggregateInputType = {
+    idCarrera?: true
+  }
+
+  export type ListadoEscuelasMinAggregateInputType = {
+    idCarrera?: true
+    dorsal?: true
+    nombre?: true
+  }
+
+  export type ListadoEscuelasMaxAggregateInputType = {
+    idCarrera?: true
+    dorsal?: true
+    nombre?: true
+  }
+
+  export type ListadoEscuelasCountAggregateInputType = {
+    idCarrera?: true
+    dorsal?: true
+    nombre?: true
+    _all?: true
+  }
+
+  export type ListadoEscuelasAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ListadoEscuelas to aggregate.
+     */
+    where?: ListadoEscuelasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ListadoEscuelas to fetch.
+     */
+    orderBy?: ListadoEscuelasOrderByWithRelationInput | ListadoEscuelasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ListadoEscuelasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ListadoEscuelas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ListadoEscuelas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ListadoEscuelas
+    **/
+    _count?: true | ListadoEscuelasCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ListadoEscuelasAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ListadoEscuelasSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ListadoEscuelasMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ListadoEscuelasMaxAggregateInputType
+  }
+
+  export type GetListadoEscuelasAggregateType<T extends ListadoEscuelasAggregateArgs> = {
+        [P in keyof T & keyof AggregateListadoEscuelas]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateListadoEscuelas[P]>
+      : GetScalarType<T[P], AggregateListadoEscuelas[P]>
+  }
+
+
+
+
+  export type ListadoEscuelasGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ListadoEscuelasWhereInput
+    orderBy?: ListadoEscuelasOrderByWithAggregationInput | ListadoEscuelasOrderByWithAggregationInput[]
+    by: ListadoEscuelasScalarFieldEnum[] | ListadoEscuelasScalarFieldEnum
+    having?: ListadoEscuelasScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ListadoEscuelasCountAggregateInputType | true
+    _avg?: ListadoEscuelasAvgAggregateInputType
+    _sum?: ListadoEscuelasSumAggregateInputType
+    _min?: ListadoEscuelasMinAggregateInputType
+    _max?: ListadoEscuelasMaxAggregateInputType
+  }
+
+  export type ListadoEscuelasGroupByOutputType = {
+    idCarrera: number
+    dorsal: string
+    nombre: string
+    _count: ListadoEscuelasCountAggregateOutputType | null
+    _avg: ListadoEscuelasAvgAggregateOutputType | null
+    _sum: ListadoEscuelasSumAggregateOutputType | null
+    _min: ListadoEscuelasMinAggregateOutputType | null
+    _max: ListadoEscuelasMaxAggregateOutputType | null
+  }
+
+  type GetListadoEscuelasGroupByPayload<T extends ListadoEscuelasGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ListadoEscuelasGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ListadoEscuelasGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ListadoEscuelasGroupByOutputType[P]>
+            : GetScalarType<T[P], ListadoEscuelasGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ListadoEscuelasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    idCarrera?: boolean
+    dorsal?: boolean
+    nombre?: boolean
+    events?: boolean | eventsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["listadoEscuelas"]>
+
+
+
+  export type ListadoEscuelasSelectScalar = {
+    idCarrera?: boolean
+    dorsal?: boolean
+    nombre?: boolean
+  }
+
+  export type ListadoEscuelasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"idCarrera" | "dorsal" | "nombre", ExtArgs["result"]["listadoEscuelas"]>
+  export type ListadoEscuelasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    events?: boolean | eventsDefaultArgs<ExtArgs>
+  }
+
+  export type $ListadoEscuelasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ListadoEscuelas"
+    objects: {
+      events: Prisma.$eventsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      idCarrera: number
+      dorsal: string
+      nombre: string
+    }, ExtArgs["result"]["listadoEscuelas"]>
+    composites: {}
+  }
+
+  type ListadoEscuelasGetPayload<S extends boolean | null | undefined | ListadoEscuelasDefaultArgs> = $Result.GetResult<Prisma.$ListadoEscuelasPayload, S>
+
+  type ListadoEscuelasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ListadoEscuelasFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ListadoEscuelasCountAggregateInputType | true
+    }
+
+  export interface ListadoEscuelasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ListadoEscuelas'], meta: { name: 'ListadoEscuelas' } }
+    /**
+     * Find zero or one ListadoEscuelas that matches the filter.
+     * @param {ListadoEscuelasFindUniqueArgs} args - Arguments to find a ListadoEscuelas
+     * @example
+     * // Get one ListadoEscuelas
+     * const listadoEscuelas = await prisma.listadoEscuelas.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ListadoEscuelasFindUniqueArgs>(args: SelectSubset<T, ListadoEscuelasFindUniqueArgs<ExtArgs>>): Prisma__ListadoEscuelasClient<$Result.GetResult<Prisma.$ListadoEscuelasPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ListadoEscuelas that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ListadoEscuelasFindUniqueOrThrowArgs} args - Arguments to find a ListadoEscuelas
+     * @example
+     * // Get one ListadoEscuelas
+     * const listadoEscuelas = await prisma.listadoEscuelas.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ListadoEscuelasFindUniqueOrThrowArgs>(args: SelectSubset<T, ListadoEscuelasFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ListadoEscuelasClient<$Result.GetResult<Prisma.$ListadoEscuelasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ListadoEscuelas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ListadoEscuelasFindFirstArgs} args - Arguments to find a ListadoEscuelas
+     * @example
+     * // Get one ListadoEscuelas
+     * const listadoEscuelas = await prisma.listadoEscuelas.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ListadoEscuelasFindFirstArgs>(args?: SelectSubset<T, ListadoEscuelasFindFirstArgs<ExtArgs>>): Prisma__ListadoEscuelasClient<$Result.GetResult<Prisma.$ListadoEscuelasPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ListadoEscuelas that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ListadoEscuelasFindFirstOrThrowArgs} args - Arguments to find a ListadoEscuelas
+     * @example
+     * // Get one ListadoEscuelas
+     * const listadoEscuelas = await prisma.listadoEscuelas.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ListadoEscuelasFindFirstOrThrowArgs>(args?: SelectSubset<T, ListadoEscuelasFindFirstOrThrowArgs<ExtArgs>>): Prisma__ListadoEscuelasClient<$Result.GetResult<Prisma.$ListadoEscuelasPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ListadoEscuelas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ListadoEscuelasFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ListadoEscuelas
+     * const listadoEscuelas = await prisma.listadoEscuelas.findMany()
+     * 
+     * // Get first 10 ListadoEscuelas
+     * const listadoEscuelas = await prisma.listadoEscuelas.findMany({ take: 10 })
+     * 
+     * // Only select the `idCarrera`
+     * const listadoEscuelasWithIdCarreraOnly = await prisma.listadoEscuelas.findMany({ select: { idCarrera: true } })
+     * 
+     */
+    findMany<T extends ListadoEscuelasFindManyArgs>(args?: SelectSubset<T, ListadoEscuelasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ListadoEscuelasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ListadoEscuelas.
+     * @param {ListadoEscuelasCreateArgs} args - Arguments to create a ListadoEscuelas.
+     * @example
+     * // Create one ListadoEscuelas
+     * const ListadoEscuelas = await prisma.listadoEscuelas.create({
+     *   data: {
+     *     // ... data to create a ListadoEscuelas
+     *   }
+     * })
+     * 
+     */
+    create<T extends ListadoEscuelasCreateArgs>(args: SelectSubset<T, ListadoEscuelasCreateArgs<ExtArgs>>): Prisma__ListadoEscuelasClient<$Result.GetResult<Prisma.$ListadoEscuelasPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ListadoEscuelas.
+     * @param {ListadoEscuelasCreateManyArgs} args - Arguments to create many ListadoEscuelas.
+     * @example
+     * // Create many ListadoEscuelas
+     * const listadoEscuelas = await prisma.listadoEscuelas.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ListadoEscuelasCreateManyArgs>(args?: SelectSubset<T, ListadoEscuelasCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ListadoEscuelas.
+     * @param {ListadoEscuelasDeleteArgs} args - Arguments to delete one ListadoEscuelas.
+     * @example
+     * // Delete one ListadoEscuelas
+     * const ListadoEscuelas = await prisma.listadoEscuelas.delete({
+     *   where: {
+     *     // ... filter to delete one ListadoEscuelas
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ListadoEscuelasDeleteArgs>(args: SelectSubset<T, ListadoEscuelasDeleteArgs<ExtArgs>>): Prisma__ListadoEscuelasClient<$Result.GetResult<Prisma.$ListadoEscuelasPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ListadoEscuelas.
+     * @param {ListadoEscuelasUpdateArgs} args - Arguments to update one ListadoEscuelas.
+     * @example
+     * // Update one ListadoEscuelas
+     * const listadoEscuelas = await prisma.listadoEscuelas.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ListadoEscuelasUpdateArgs>(args: SelectSubset<T, ListadoEscuelasUpdateArgs<ExtArgs>>): Prisma__ListadoEscuelasClient<$Result.GetResult<Prisma.$ListadoEscuelasPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ListadoEscuelas.
+     * @param {ListadoEscuelasDeleteManyArgs} args - Arguments to filter ListadoEscuelas to delete.
+     * @example
+     * // Delete a few ListadoEscuelas
+     * const { count } = await prisma.listadoEscuelas.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ListadoEscuelasDeleteManyArgs>(args?: SelectSubset<T, ListadoEscuelasDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ListadoEscuelas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ListadoEscuelasUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ListadoEscuelas
+     * const listadoEscuelas = await prisma.listadoEscuelas.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ListadoEscuelasUpdateManyArgs>(args: SelectSubset<T, ListadoEscuelasUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ListadoEscuelas.
+     * @param {ListadoEscuelasUpsertArgs} args - Arguments to update or create a ListadoEscuelas.
+     * @example
+     * // Update or create a ListadoEscuelas
+     * const listadoEscuelas = await prisma.listadoEscuelas.upsert({
+     *   create: {
+     *     // ... data to create a ListadoEscuelas
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ListadoEscuelas we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ListadoEscuelasUpsertArgs>(args: SelectSubset<T, ListadoEscuelasUpsertArgs<ExtArgs>>): Prisma__ListadoEscuelasClient<$Result.GetResult<Prisma.$ListadoEscuelasPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ListadoEscuelas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ListadoEscuelasCountArgs} args - Arguments to filter ListadoEscuelas to count.
+     * @example
+     * // Count the number of ListadoEscuelas
+     * const count = await prisma.listadoEscuelas.count({
+     *   where: {
+     *     // ... the filter for the ListadoEscuelas we want to count
+     *   }
+     * })
+    **/
+    count<T extends ListadoEscuelasCountArgs>(
+      args?: Subset<T, ListadoEscuelasCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ListadoEscuelasCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ListadoEscuelas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ListadoEscuelasAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ListadoEscuelasAggregateArgs>(args: Subset<T, ListadoEscuelasAggregateArgs>): Prisma.PrismaPromise<GetListadoEscuelasAggregateType<T>>
+
+    /**
+     * Group by ListadoEscuelas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ListadoEscuelasGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ListadoEscuelasGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ListadoEscuelasGroupByArgs['orderBy'] }
+        : { orderBy?: ListadoEscuelasGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ListadoEscuelasGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetListadoEscuelasGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ListadoEscuelas model
+   */
+  readonly fields: ListadoEscuelasFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ListadoEscuelas.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ListadoEscuelasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    events<T extends eventsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, eventsDefaultArgs<ExtArgs>>): Prisma__eventsClient<$Result.GetResult<Prisma.$eventsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ListadoEscuelas model
+   */
+  interface ListadoEscuelasFieldRefs {
+    readonly idCarrera: FieldRef<"ListadoEscuelas", 'Int'>
+    readonly dorsal: FieldRef<"ListadoEscuelas", 'String'>
+    readonly nombre: FieldRef<"ListadoEscuelas", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ListadoEscuelas findUnique
+   */
+  export type ListadoEscuelasFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ListadoEscuelas
+     */
+    select?: ListadoEscuelasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ListadoEscuelas
+     */
+    omit?: ListadoEscuelasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListadoEscuelasInclude<ExtArgs> | null
+    /**
+     * Filter, which ListadoEscuelas to fetch.
+     */
+    where: ListadoEscuelasWhereUniqueInput
+  }
+
+  /**
+   * ListadoEscuelas findUniqueOrThrow
+   */
+  export type ListadoEscuelasFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ListadoEscuelas
+     */
+    select?: ListadoEscuelasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ListadoEscuelas
+     */
+    omit?: ListadoEscuelasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListadoEscuelasInclude<ExtArgs> | null
+    /**
+     * Filter, which ListadoEscuelas to fetch.
+     */
+    where: ListadoEscuelasWhereUniqueInput
+  }
+
+  /**
+   * ListadoEscuelas findFirst
+   */
+  export type ListadoEscuelasFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ListadoEscuelas
+     */
+    select?: ListadoEscuelasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ListadoEscuelas
+     */
+    omit?: ListadoEscuelasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListadoEscuelasInclude<ExtArgs> | null
+    /**
+     * Filter, which ListadoEscuelas to fetch.
+     */
+    where?: ListadoEscuelasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ListadoEscuelas to fetch.
+     */
+    orderBy?: ListadoEscuelasOrderByWithRelationInput | ListadoEscuelasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ListadoEscuelas.
+     */
+    cursor?: ListadoEscuelasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ListadoEscuelas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ListadoEscuelas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ListadoEscuelas.
+     */
+    distinct?: ListadoEscuelasScalarFieldEnum | ListadoEscuelasScalarFieldEnum[]
+  }
+
+  /**
+   * ListadoEscuelas findFirstOrThrow
+   */
+  export type ListadoEscuelasFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ListadoEscuelas
+     */
+    select?: ListadoEscuelasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ListadoEscuelas
+     */
+    omit?: ListadoEscuelasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListadoEscuelasInclude<ExtArgs> | null
+    /**
+     * Filter, which ListadoEscuelas to fetch.
+     */
+    where?: ListadoEscuelasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ListadoEscuelas to fetch.
+     */
+    orderBy?: ListadoEscuelasOrderByWithRelationInput | ListadoEscuelasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ListadoEscuelas.
+     */
+    cursor?: ListadoEscuelasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ListadoEscuelas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ListadoEscuelas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ListadoEscuelas.
+     */
+    distinct?: ListadoEscuelasScalarFieldEnum | ListadoEscuelasScalarFieldEnum[]
+  }
+
+  /**
+   * ListadoEscuelas findMany
+   */
+  export type ListadoEscuelasFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ListadoEscuelas
+     */
+    select?: ListadoEscuelasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ListadoEscuelas
+     */
+    omit?: ListadoEscuelasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListadoEscuelasInclude<ExtArgs> | null
+    /**
+     * Filter, which ListadoEscuelas to fetch.
+     */
+    where?: ListadoEscuelasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ListadoEscuelas to fetch.
+     */
+    orderBy?: ListadoEscuelasOrderByWithRelationInput | ListadoEscuelasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ListadoEscuelas.
+     */
+    cursor?: ListadoEscuelasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ListadoEscuelas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ListadoEscuelas.
+     */
+    skip?: number
+    distinct?: ListadoEscuelasScalarFieldEnum | ListadoEscuelasScalarFieldEnum[]
+  }
+
+  /**
+   * ListadoEscuelas create
+   */
+  export type ListadoEscuelasCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ListadoEscuelas
+     */
+    select?: ListadoEscuelasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ListadoEscuelas
+     */
+    omit?: ListadoEscuelasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListadoEscuelasInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ListadoEscuelas.
+     */
+    data: XOR<ListadoEscuelasCreateInput, ListadoEscuelasUncheckedCreateInput>
+  }
+
+  /**
+   * ListadoEscuelas createMany
+   */
+  export type ListadoEscuelasCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ListadoEscuelas.
+     */
+    data: ListadoEscuelasCreateManyInput | ListadoEscuelasCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ListadoEscuelas update
+   */
+  export type ListadoEscuelasUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ListadoEscuelas
+     */
+    select?: ListadoEscuelasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ListadoEscuelas
+     */
+    omit?: ListadoEscuelasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListadoEscuelasInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ListadoEscuelas.
+     */
+    data: XOR<ListadoEscuelasUpdateInput, ListadoEscuelasUncheckedUpdateInput>
+    /**
+     * Choose, which ListadoEscuelas to update.
+     */
+    where: ListadoEscuelasWhereUniqueInput
+  }
+
+  /**
+   * ListadoEscuelas updateMany
+   */
+  export type ListadoEscuelasUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ListadoEscuelas.
+     */
+    data: XOR<ListadoEscuelasUpdateManyMutationInput, ListadoEscuelasUncheckedUpdateManyInput>
+    /**
+     * Filter which ListadoEscuelas to update
+     */
+    where?: ListadoEscuelasWhereInput
+    /**
+     * Limit how many ListadoEscuelas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ListadoEscuelas upsert
+   */
+  export type ListadoEscuelasUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ListadoEscuelas
+     */
+    select?: ListadoEscuelasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ListadoEscuelas
+     */
+    omit?: ListadoEscuelasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListadoEscuelasInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ListadoEscuelas to update in case it exists.
+     */
+    where: ListadoEscuelasWhereUniqueInput
+    /**
+     * In case the ListadoEscuelas found by the `where` argument doesn't exist, create a new ListadoEscuelas with this data.
+     */
+    create: XOR<ListadoEscuelasCreateInput, ListadoEscuelasUncheckedCreateInput>
+    /**
+     * In case the ListadoEscuelas was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ListadoEscuelasUpdateInput, ListadoEscuelasUncheckedUpdateInput>
+  }
+
+  /**
+   * ListadoEscuelas delete
+   */
+  export type ListadoEscuelasDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ListadoEscuelas
+     */
+    select?: ListadoEscuelasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ListadoEscuelas
+     */
+    omit?: ListadoEscuelasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListadoEscuelasInclude<ExtArgs> | null
+    /**
+     * Filter which ListadoEscuelas to delete.
+     */
+    where: ListadoEscuelasWhereUniqueInput
+  }
+
+  /**
+   * ListadoEscuelas deleteMany
+   */
+  export type ListadoEscuelasDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ListadoEscuelas to delete
+     */
+    where?: ListadoEscuelasWhereInput
+    /**
+     * Limit how many ListadoEscuelas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ListadoEscuelas without action
+   */
+  export type ListadoEscuelasDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ListadoEscuelas
+     */
+    select?: ListadoEscuelasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ListadoEscuelas
+     */
+    omit?: ListadoEscuelasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ListadoEscuelasInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -10891,6 +11955,15 @@ export namespace Prisma {
   export type Activation_codesScalarFieldEnum = (typeof Activation_codesScalarFieldEnum)[keyof typeof Activation_codesScalarFieldEnum]
 
 
+  export const ListadoEscuelasScalarFieldEnum: {
+    idCarrera: 'idCarrera',
+    dorsal: 'dorsal',
+    nombre: 'nombre'
+  };
+
+  export type ListadoEscuelasScalarFieldEnum = (typeof ListadoEscuelasScalarFieldEnum)[keyof typeof ListadoEscuelasScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -10998,6 +12071,14 @@ export namespace Prisma {
   };
 
   export type activation_codesOrderByRelevanceFieldEnum = (typeof activation_codesOrderByRelevanceFieldEnum)[keyof typeof activation_codesOrderByRelevanceFieldEnum]
+
+
+  export const ListadoEscuelasOrderByRelevanceFieldEnum: {
+    dorsal: 'dorsal',
+    nombre: 'nombre'
+  };
+
+  export type ListadoEscuelasOrderByRelevanceFieldEnum = (typeof ListadoEscuelasOrderByRelevanceFieldEnum)[keyof typeof ListadoEscuelasOrderByRelevanceFieldEnum]
 
 
   /**
@@ -11353,6 +12434,7 @@ export namespace Prisma {
     modalidad?: Enumevents_modalidadNullableFilter<"events"> | $Enums.events_modalidad | null
     descripcion?: StringNullableFilter<"events"> | string | null
     events_resultado?: Events_resultadoListRelationFilter
+    ListadoEscuelas?: ListadoEscuelasListRelationFilter
   }
 
   export type eventsOrderByWithRelationInput = {
@@ -11364,6 +12446,7 @@ export namespace Prisma {
     modalidad?: SortOrderInput | SortOrder
     descripcion?: SortOrderInput | SortOrder
     events_resultado?: events_resultadoOrderByRelationAggregateInput
+    ListadoEscuelas?: ListadoEscuelasOrderByRelationAggregateInput
     _relevance?: eventsOrderByRelevanceInput
   }
 
@@ -11379,6 +12462,7 @@ export namespace Prisma {
     modalidad?: Enumevents_modalidadNullableFilter<"events"> | $Enums.events_modalidad | null
     descripcion?: StringNullableFilter<"events"> | string | null
     events_resultado?: Events_resultadoListRelationFilter
+    ListadoEscuelas?: ListadoEscuelasListRelationFilter
   }, "id">
 
   export type eventsOrderByWithAggregationInput = {
@@ -11762,6 +12846,55 @@ export namespace Prisma {
     usos?: IntWithAggregatesFilter<"activation_codes"> | number
   }
 
+  export type ListadoEscuelasWhereInput = {
+    AND?: ListadoEscuelasWhereInput | ListadoEscuelasWhereInput[]
+    OR?: ListadoEscuelasWhereInput[]
+    NOT?: ListadoEscuelasWhereInput | ListadoEscuelasWhereInput[]
+    idCarrera?: IntFilter<"ListadoEscuelas"> | number
+    dorsal?: StringFilter<"ListadoEscuelas"> | string
+    nombre?: StringFilter<"ListadoEscuelas"> | string
+    events?: XOR<EventsScalarRelationFilter, eventsWhereInput>
+  }
+
+  export type ListadoEscuelasOrderByWithRelationInput = {
+    idCarrera?: SortOrder
+    dorsal?: SortOrder
+    nombre?: SortOrder
+    events?: eventsOrderByWithRelationInput
+    _relevance?: ListadoEscuelasOrderByRelevanceInput
+  }
+
+  export type ListadoEscuelasWhereUniqueInput = Prisma.AtLeast<{
+    idCarrera_dorsal?: ListadoEscuelasIdCarreraDorsalCompoundUniqueInput
+    AND?: ListadoEscuelasWhereInput | ListadoEscuelasWhereInput[]
+    OR?: ListadoEscuelasWhereInput[]
+    NOT?: ListadoEscuelasWhereInput | ListadoEscuelasWhereInput[]
+    idCarrera?: IntFilter<"ListadoEscuelas"> | number
+    dorsal?: StringFilter<"ListadoEscuelas"> | string
+    nombre?: StringFilter<"ListadoEscuelas"> | string
+    events?: XOR<EventsScalarRelationFilter, eventsWhereInput>
+  }, "idCarrera_dorsal">
+
+  export type ListadoEscuelasOrderByWithAggregationInput = {
+    idCarrera?: SortOrder
+    dorsal?: SortOrder
+    nombre?: SortOrder
+    _count?: ListadoEscuelasCountOrderByAggregateInput
+    _avg?: ListadoEscuelasAvgOrderByAggregateInput
+    _max?: ListadoEscuelasMaxOrderByAggregateInput
+    _min?: ListadoEscuelasMinOrderByAggregateInput
+    _sum?: ListadoEscuelasSumOrderByAggregateInput
+  }
+
+  export type ListadoEscuelasScalarWhereWithAggregatesInput = {
+    AND?: ListadoEscuelasScalarWhereWithAggregatesInput | ListadoEscuelasScalarWhereWithAggregatesInput[]
+    OR?: ListadoEscuelasScalarWhereWithAggregatesInput[]
+    NOT?: ListadoEscuelasScalarWhereWithAggregatesInput | ListadoEscuelasScalarWhereWithAggregatesInput[]
+    idCarrera?: IntWithAggregatesFilter<"ListadoEscuelas"> | number
+    dorsal?: StringWithAggregatesFilter<"ListadoEscuelas"> | string
+    nombre?: StringWithAggregatesFilter<"ListadoEscuelas"> | string
+  }
+
   export type accountCreateInput = {
     id: string
     accountId: string
@@ -12063,6 +13196,7 @@ export namespace Prisma {
     modalidad?: $Enums.events_modalidad | null
     descripcion?: string | null
     events_resultado?: events_resultadoCreateNestedManyWithoutEventsInput
+    ListadoEscuelas?: ListadoEscuelasCreateNestedManyWithoutEventsInput
   }
 
   export type eventsUncheckedCreateInput = {
@@ -12074,6 +13208,7 @@ export namespace Prisma {
     modalidad?: $Enums.events_modalidad | null
     descripcion?: string | null
     events_resultado?: events_resultadoUncheckedCreateNestedManyWithoutEventsInput
+    ListadoEscuelas?: ListadoEscuelasUncheckedCreateNestedManyWithoutEventsInput
   }
 
   export type eventsUpdateInput = {
@@ -12085,6 +13220,7 @@ export namespace Prisma {
     modalidad?: NullableEnumevents_modalidadFieldUpdateOperationsInput | $Enums.events_modalidad | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     events_resultado?: events_resultadoUpdateManyWithoutEventsNestedInput
+    ListadoEscuelas?: ListadoEscuelasUpdateManyWithoutEventsNestedInput
   }
 
   export type eventsUncheckedUpdateInput = {
@@ -12096,6 +13232,7 @@ export namespace Prisma {
     modalidad?: NullableEnumevents_modalidadFieldUpdateOperationsInput | $Enums.events_modalidad | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     events_resultado?: events_resultadoUncheckedUpdateManyWithoutEventsNestedInput
+    ListadoEscuelas?: ListadoEscuelasUncheckedUpdateManyWithoutEventsNestedInput
   }
 
   export type eventsCreateManyInput = {
@@ -12507,6 +13644,47 @@ export namespace Prisma {
     role?: NullableEnumactivation_codes_roleFieldUpdateOperationsInput | $Enums.activation_codes_role | null
     expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usos?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ListadoEscuelasCreateInput = {
+    dorsal: string
+    nombre: string
+    events: eventsCreateNestedOneWithoutListadoEscuelasInput
+  }
+
+  export type ListadoEscuelasUncheckedCreateInput = {
+    idCarrera: number
+    dorsal: string
+    nombre: string
+  }
+
+  export type ListadoEscuelasUpdateInput = {
+    dorsal?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+    events?: eventsUpdateOneRequiredWithoutListadoEscuelasNestedInput
+  }
+
+  export type ListadoEscuelasUncheckedUpdateInput = {
+    idCarrera?: IntFieldUpdateOperationsInput | number
+    dorsal?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ListadoEscuelasCreateManyInput = {
+    idCarrera: number
+    dorsal: string
+    nombre: string
+  }
+
+  export type ListadoEscuelasUpdateManyMutationInput = {
+    dorsal?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ListadoEscuelasUncheckedUpdateManyInput = {
+    idCarrera?: IntFieldUpdateOperationsInput | number
+    dorsal?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -12951,6 +14129,16 @@ export namespace Prisma {
     not?: NestedEnumevents_modalidadNullableFilter<$PrismaModel> | $Enums.events_modalidad | null
   }
 
+  export type ListadoEscuelasListRelationFilter = {
+    every?: ListadoEscuelasWhereInput
+    some?: ListadoEscuelasWhereInput
+    none?: ListadoEscuelasWhereInput
+  }
+
+  export type ListadoEscuelasOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type eventsOrderByRelevanceInput = {
     fields: eventsOrderByRelevanceFieldEnum | eventsOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -13295,6 +14483,48 @@ export namespace Prisma {
     _max?: NestedEnumactivation_codes_roleNullableFilter<$PrismaModel>
   }
 
+  export type EventsScalarRelationFilter = {
+    is?: eventsWhereInput
+    isNot?: eventsWhereInput
+  }
+
+  export type ListadoEscuelasOrderByRelevanceInput = {
+    fields: ListadoEscuelasOrderByRelevanceFieldEnum | ListadoEscuelasOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ListadoEscuelasIdCarreraDorsalCompoundUniqueInput = {
+    idCarrera: number
+    dorsal: string
+  }
+
+  export type ListadoEscuelasCountOrderByAggregateInput = {
+    idCarrera?: SortOrder
+    dorsal?: SortOrder
+    nombre?: SortOrder
+  }
+
+  export type ListadoEscuelasAvgOrderByAggregateInput = {
+    idCarrera?: SortOrder
+  }
+
+  export type ListadoEscuelasMaxOrderByAggregateInput = {
+    idCarrera?: SortOrder
+    dorsal?: SortOrder
+    nombre?: SortOrder
+  }
+
+  export type ListadoEscuelasMinOrderByAggregateInput = {
+    idCarrera?: SortOrder
+    dorsal?: SortOrder
+    nombre?: SortOrder
+  }
+
+  export type ListadoEscuelasSumOrderByAggregateInput = {
+    idCarrera?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -13482,11 +14712,25 @@ export namespace Prisma {
     connect?: events_resultadoWhereUniqueInput | events_resultadoWhereUniqueInput[]
   }
 
+  export type ListadoEscuelasCreateNestedManyWithoutEventsInput = {
+    create?: XOR<ListadoEscuelasCreateWithoutEventsInput, ListadoEscuelasUncheckedCreateWithoutEventsInput> | ListadoEscuelasCreateWithoutEventsInput[] | ListadoEscuelasUncheckedCreateWithoutEventsInput[]
+    connectOrCreate?: ListadoEscuelasCreateOrConnectWithoutEventsInput | ListadoEscuelasCreateOrConnectWithoutEventsInput[]
+    createMany?: ListadoEscuelasCreateManyEventsInputEnvelope
+    connect?: ListadoEscuelasWhereUniqueInput | ListadoEscuelasWhereUniqueInput[]
+  }
+
   export type events_resultadoUncheckedCreateNestedManyWithoutEventsInput = {
     create?: XOR<events_resultadoCreateWithoutEventsInput, events_resultadoUncheckedCreateWithoutEventsInput> | events_resultadoCreateWithoutEventsInput[] | events_resultadoUncheckedCreateWithoutEventsInput[]
     connectOrCreate?: events_resultadoCreateOrConnectWithoutEventsInput | events_resultadoCreateOrConnectWithoutEventsInput[]
     createMany?: events_resultadoCreateManyEventsInputEnvelope
     connect?: events_resultadoWhereUniqueInput | events_resultadoWhereUniqueInput[]
+  }
+
+  export type ListadoEscuelasUncheckedCreateNestedManyWithoutEventsInput = {
+    create?: XOR<ListadoEscuelasCreateWithoutEventsInput, ListadoEscuelasUncheckedCreateWithoutEventsInput> | ListadoEscuelasCreateWithoutEventsInput[] | ListadoEscuelasUncheckedCreateWithoutEventsInput[]
+    connectOrCreate?: ListadoEscuelasCreateOrConnectWithoutEventsInput | ListadoEscuelasCreateOrConnectWithoutEventsInput[]
+    createMany?: ListadoEscuelasCreateManyEventsInputEnvelope
+    connect?: ListadoEscuelasWhereUniqueInput | ListadoEscuelasWhereUniqueInput[]
   }
 
   export type NullableEnumevents_categoriaFieldUpdateOperationsInput = {
@@ -13511,6 +14755,20 @@ export namespace Prisma {
     deleteMany?: events_resultadoScalarWhereInput | events_resultadoScalarWhereInput[]
   }
 
+  export type ListadoEscuelasUpdateManyWithoutEventsNestedInput = {
+    create?: XOR<ListadoEscuelasCreateWithoutEventsInput, ListadoEscuelasUncheckedCreateWithoutEventsInput> | ListadoEscuelasCreateWithoutEventsInput[] | ListadoEscuelasUncheckedCreateWithoutEventsInput[]
+    connectOrCreate?: ListadoEscuelasCreateOrConnectWithoutEventsInput | ListadoEscuelasCreateOrConnectWithoutEventsInput[]
+    upsert?: ListadoEscuelasUpsertWithWhereUniqueWithoutEventsInput | ListadoEscuelasUpsertWithWhereUniqueWithoutEventsInput[]
+    createMany?: ListadoEscuelasCreateManyEventsInputEnvelope
+    set?: ListadoEscuelasWhereUniqueInput | ListadoEscuelasWhereUniqueInput[]
+    disconnect?: ListadoEscuelasWhereUniqueInput | ListadoEscuelasWhereUniqueInput[]
+    delete?: ListadoEscuelasWhereUniqueInput | ListadoEscuelasWhereUniqueInput[]
+    connect?: ListadoEscuelasWhereUniqueInput | ListadoEscuelasWhereUniqueInput[]
+    update?: ListadoEscuelasUpdateWithWhereUniqueWithoutEventsInput | ListadoEscuelasUpdateWithWhereUniqueWithoutEventsInput[]
+    updateMany?: ListadoEscuelasUpdateManyWithWhereWithoutEventsInput | ListadoEscuelasUpdateManyWithWhereWithoutEventsInput[]
+    deleteMany?: ListadoEscuelasScalarWhereInput | ListadoEscuelasScalarWhereInput[]
+  }
+
   export type events_resultadoUncheckedUpdateManyWithoutEventsNestedInput = {
     create?: XOR<events_resultadoCreateWithoutEventsInput, events_resultadoUncheckedCreateWithoutEventsInput> | events_resultadoCreateWithoutEventsInput[] | events_resultadoUncheckedCreateWithoutEventsInput[]
     connectOrCreate?: events_resultadoCreateOrConnectWithoutEventsInput | events_resultadoCreateOrConnectWithoutEventsInput[]
@@ -13523,6 +14781,20 @@ export namespace Prisma {
     update?: events_resultadoUpdateWithWhereUniqueWithoutEventsInput | events_resultadoUpdateWithWhereUniqueWithoutEventsInput[]
     updateMany?: events_resultadoUpdateManyWithWhereWithoutEventsInput | events_resultadoUpdateManyWithWhereWithoutEventsInput[]
     deleteMany?: events_resultadoScalarWhereInput | events_resultadoScalarWhereInput[]
+  }
+
+  export type ListadoEscuelasUncheckedUpdateManyWithoutEventsNestedInput = {
+    create?: XOR<ListadoEscuelasCreateWithoutEventsInput, ListadoEscuelasUncheckedCreateWithoutEventsInput> | ListadoEscuelasCreateWithoutEventsInput[] | ListadoEscuelasUncheckedCreateWithoutEventsInput[]
+    connectOrCreate?: ListadoEscuelasCreateOrConnectWithoutEventsInput | ListadoEscuelasCreateOrConnectWithoutEventsInput[]
+    upsert?: ListadoEscuelasUpsertWithWhereUniqueWithoutEventsInput | ListadoEscuelasUpsertWithWhereUniqueWithoutEventsInput[]
+    createMany?: ListadoEscuelasCreateManyEventsInputEnvelope
+    set?: ListadoEscuelasWhereUniqueInput | ListadoEscuelasWhereUniqueInput[]
+    disconnect?: ListadoEscuelasWhereUniqueInput | ListadoEscuelasWhereUniqueInput[]
+    delete?: ListadoEscuelasWhereUniqueInput | ListadoEscuelasWhereUniqueInput[]
+    connect?: ListadoEscuelasWhereUniqueInput | ListadoEscuelasWhereUniqueInput[]
+    update?: ListadoEscuelasUpdateWithWhereUniqueWithoutEventsInput | ListadoEscuelasUpdateWithWhereUniqueWithoutEventsInput[]
+    updateMany?: ListadoEscuelasUpdateManyWithWhereWithoutEventsInput | ListadoEscuelasUpdateManyWithWhereWithoutEventsInput[]
+    deleteMany?: ListadoEscuelasScalarWhereInput | ListadoEscuelasScalarWhereInput[]
   }
 
   export type eventsCreateNestedOneWithoutEvents_resultadoInput = {
@@ -13647,6 +14919,20 @@ export namespace Prisma {
 
   export type NullableEnumactivation_codes_roleFieldUpdateOperationsInput = {
     set?: $Enums.activation_codes_role | null
+  }
+
+  export type eventsCreateNestedOneWithoutListadoEscuelasInput = {
+    create?: XOR<eventsCreateWithoutListadoEscuelasInput, eventsUncheckedCreateWithoutListadoEscuelasInput>
+    connectOrCreate?: eventsCreateOrConnectWithoutListadoEscuelasInput
+    connect?: eventsWhereUniqueInput
+  }
+
+  export type eventsUpdateOneRequiredWithoutListadoEscuelasNestedInput = {
+    create?: XOR<eventsCreateWithoutListadoEscuelasInput, eventsUncheckedCreateWithoutListadoEscuelasInput>
+    connectOrCreate?: eventsCreateOrConnectWithoutListadoEscuelasInput
+    upsert?: eventsUpsertWithoutListadoEscuelasInput
+    connect?: eventsWhereUniqueInput
+    update?: XOR<XOR<eventsUpdateToOneWithWhereWithoutListadoEscuelasInput, eventsUpdateWithoutListadoEscuelasInput>, eventsUncheckedUpdateWithoutListadoEscuelasInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -14335,6 +15621,26 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ListadoEscuelasCreateWithoutEventsInput = {
+    dorsal: string
+    nombre: string
+  }
+
+  export type ListadoEscuelasUncheckedCreateWithoutEventsInput = {
+    dorsal: string
+    nombre: string
+  }
+
+  export type ListadoEscuelasCreateOrConnectWithoutEventsInput = {
+    where: ListadoEscuelasWhereUniqueInput
+    create: XOR<ListadoEscuelasCreateWithoutEventsInput, ListadoEscuelasUncheckedCreateWithoutEventsInput>
+  }
+
+  export type ListadoEscuelasCreateManyEventsInputEnvelope = {
+    data: ListadoEscuelasCreateManyEventsInput | ListadoEscuelasCreateManyEventsInput[]
+    skipDuplicates?: boolean
+  }
+
   export type events_resultadoUpsertWithWhereUniqueWithoutEventsInput = {
     where: events_resultadoWhereUniqueInput
     update: XOR<events_resultadoUpdateWithoutEventsInput, events_resultadoUncheckedUpdateWithoutEventsInput>
@@ -14351,6 +15657,31 @@ export namespace Prisma {
     data: XOR<events_resultadoUpdateManyMutationInput, events_resultadoUncheckedUpdateManyWithoutEventsInput>
   }
 
+  export type ListadoEscuelasUpsertWithWhereUniqueWithoutEventsInput = {
+    where: ListadoEscuelasWhereUniqueInput
+    update: XOR<ListadoEscuelasUpdateWithoutEventsInput, ListadoEscuelasUncheckedUpdateWithoutEventsInput>
+    create: XOR<ListadoEscuelasCreateWithoutEventsInput, ListadoEscuelasUncheckedCreateWithoutEventsInput>
+  }
+
+  export type ListadoEscuelasUpdateWithWhereUniqueWithoutEventsInput = {
+    where: ListadoEscuelasWhereUniqueInput
+    data: XOR<ListadoEscuelasUpdateWithoutEventsInput, ListadoEscuelasUncheckedUpdateWithoutEventsInput>
+  }
+
+  export type ListadoEscuelasUpdateManyWithWhereWithoutEventsInput = {
+    where: ListadoEscuelasScalarWhereInput
+    data: XOR<ListadoEscuelasUpdateManyMutationInput, ListadoEscuelasUncheckedUpdateManyWithoutEventsInput>
+  }
+
+  export type ListadoEscuelasScalarWhereInput = {
+    AND?: ListadoEscuelasScalarWhereInput | ListadoEscuelasScalarWhereInput[]
+    OR?: ListadoEscuelasScalarWhereInput[]
+    NOT?: ListadoEscuelasScalarWhereInput | ListadoEscuelasScalarWhereInput[]
+    idCarrera?: IntFilter<"ListadoEscuelas"> | number
+    dorsal?: StringFilter<"ListadoEscuelas"> | string
+    nombre?: StringFilter<"ListadoEscuelas"> | string
+  }
+
   export type eventsCreateWithoutEvents_resultadoInput = {
     id: number
     nombre?: string | null
@@ -14359,6 +15690,7 @@ export namespace Prisma {
     categoria?: $Enums.events_categoria | null
     modalidad?: $Enums.events_modalidad | null
     descripcion?: string | null
+    ListadoEscuelas?: ListadoEscuelasCreateNestedManyWithoutEventsInput
   }
 
   export type eventsUncheckedCreateWithoutEvents_resultadoInput = {
@@ -14369,6 +15701,7 @@ export namespace Prisma {
     categoria?: $Enums.events_categoria | null
     modalidad?: $Enums.events_modalidad | null
     descripcion?: string | null
+    ListadoEscuelas?: ListadoEscuelasUncheckedCreateNestedManyWithoutEventsInput
   }
 
   export type eventsCreateOrConnectWithoutEvents_resultadoInput = {
@@ -14430,6 +15763,7 @@ export namespace Prisma {
     categoria?: NullableEnumevents_categoriaFieldUpdateOperationsInput | $Enums.events_categoria | null
     modalidad?: NullableEnumevents_modalidadFieldUpdateOperationsInput | $Enums.events_modalidad | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
+    ListadoEscuelas?: ListadoEscuelasUpdateManyWithoutEventsNestedInput
   }
 
   export type eventsUncheckedUpdateWithoutEvents_resultadoInput = {
@@ -14440,6 +15774,7 @@ export namespace Prisma {
     categoria?: NullableEnumevents_categoriaFieldUpdateOperationsInput | $Enums.events_categoria | null
     modalidad?: NullableEnumevents_modalidadFieldUpdateOperationsInput | $Enums.events_modalidad | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
+    ListadoEscuelas?: ListadoEscuelasUncheckedUpdateManyWithoutEventsNestedInput
   }
 
   export type deportistasUpsertWithoutEvents_resultadoInput = {
@@ -14598,6 +15933,66 @@ export namespace Prisma {
     user_id?: StringNullableFilter<"entrenadores"> | string | null
   }
 
+  export type eventsCreateWithoutListadoEscuelasInput = {
+    id: number
+    nombre?: string | null
+    fecha?: Date | string | null
+    lugar?: string | null
+    categoria?: $Enums.events_categoria | null
+    modalidad?: $Enums.events_modalidad | null
+    descripcion?: string | null
+    events_resultado?: events_resultadoCreateNestedManyWithoutEventsInput
+  }
+
+  export type eventsUncheckedCreateWithoutListadoEscuelasInput = {
+    id: number
+    nombre?: string | null
+    fecha?: Date | string | null
+    lugar?: string | null
+    categoria?: $Enums.events_categoria | null
+    modalidad?: $Enums.events_modalidad | null
+    descripcion?: string | null
+    events_resultado?: events_resultadoUncheckedCreateNestedManyWithoutEventsInput
+  }
+
+  export type eventsCreateOrConnectWithoutListadoEscuelasInput = {
+    where: eventsWhereUniqueInput
+    create: XOR<eventsCreateWithoutListadoEscuelasInput, eventsUncheckedCreateWithoutListadoEscuelasInput>
+  }
+
+  export type eventsUpsertWithoutListadoEscuelasInput = {
+    update: XOR<eventsUpdateWithoutListadoEscuelasInput, eventsUncheckedUpdateWithoutListadoEscuelasInput>
+    create: XOR<eventsCreateWithoutListadoEscuelasInput, eventsUncheckedCreateWithoutListadoEscuelasInput>
+    where?: eventsWhereInput
+  }
+
+  export type eventsUpdateToOneWithWhereWithoutListadoEscuelasInput = {
+    where?: eventsWhereInput
+    data: XOR<eventsUpdateWithoutListadoEscuelasInput, eventsUncheckedUpdateWithoutListadoEscuelasInput>
+  }
+
+  export type eventsUpdateWithoutListadoEscuelasInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    fecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lugar?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: NullableEnumevents_categoriaFieldUpdateOperationsInput | $Enums.events_categoria | null
+    modalidad?: NullableEnumevents_modalidadFieldUpdateOperationsInput | $Enums.events_modalidad | null
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
+    events_resultado?: events_resultadoUpdateManyWithoutEventsNestedInput
+  }
+
+  export type eventsUncheckedUpdateWithoutListadoEscuelasInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    fecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lugar?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: NullableEnumevents_categoriaFieldUpdateOperationsInput | $Enums.events_categoria | null
+    modalidad?: NullableEnumevents_modalidadFieldUpdateOperationsInput | $Enums.events_modalidad | null
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
+    events_resultado?: events_resultadoUncheckedUpdateManyWithoutEventsNestedInput
+  }
+
   export type events_resultadoCreateManyDeportistasInput = {
     id: number
     tiempo?: Date | string | null
@@ -14706,6 +16101,11 @@ export namespace Prisma {
     deportista_id?: string | null
   }
 
+  export type ListadoEscuelasCreateManyEventsInput = {
+    dorsal: string
+    nombre: string
+  }
+
   export type events_resultadoUpdateWithoutEventsInput = {
     id?: IntFieldUpdateOperationsInput | number
     tiempo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -14734,6 +16134,21 @@ export namespace Prisma {
     valoracion_deportista?: NullableStringFieldUpdateOperationsInput | string | null
     valoracion_entrenador?: NullableStringFieldUpdateOperationsInput | string | null
     deportista_id?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ListadoEscuelasUpdateWithoutEventsInput = {
+    dorsal?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ListadoEscuelasUncheckedUpdateWithoutEventsInput = {
+    dorsal?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ListadoEscuelasUncheckedUpdateManyWithoutEventsInput = {
+    dorsal?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
   }
 
   export type deportistasCreateManyUserInput = {
