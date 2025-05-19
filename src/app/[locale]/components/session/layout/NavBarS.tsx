@@ -43,7 +43,7 @@ const NavBarS = ({ rol }: { rol: string }) => {
     if (isDashboardPage) return <div style={{ height: 40 }} />;
 
     return (
-        <nav className="bg-customDarkBlueSession/65 rounded-2xl mx-auto mt-4 mb-4 px-2 sm:px-4 w-[96%] max-w-6xl">
+        <nav className="bg-customDarkBlueSession/65 rounded-b-2xl mx-auto  mb-4 px-2 sm:px-4 w-full">
             <div className="flex h-14 items-center justify-between relative text-white font-fredoka uppercase px-2 py-2 rounded-lg text-xl md:text-base">
                 <Link
                     href="/"
