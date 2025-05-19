@@ -1,6 +1,7 @@
 'use client';
 import { useRef, useState } from 'react';
 import { API_URL } from '@/lib/config';
+import { useError } from "@/context/ErrorContext";
 
 type FormFields = {
   [key: string]: string;
@@ -21,6 +22,7 @@ export default function ClientForm() {
   const [links, setLinks] = useState<LinkItem[]>([]);
   const [imageCoverPreview, setImageCoverPreview] = useState<string | null>(null);
   const [imagePagePreview, setImagePagePreview] = useState<string | null>(null);
+  const { setError } = useError();
 
   const imageCoverRef = useRef<HTMLInputElement>(null);
   const imagePageRef = useRef<HTMLInputElement>(null);
@@ -57,7 +59,7 @@ export default function ClientForm() {
     e.preventDefault();
     const imageCover = imageCoverRef.current?.files?.[0];
     const imagePage = imagePageRef.current?.files?.[0];
-    if (!imageCover || !imagePage) return alert("Debes seleccionar ambas imágenes.");
+    if (!imageCover || !imagePage) return setError("Debes seleccionar ambas imágenes.");
 
     const formDataToSend = new FormData();
     formDataToSend.append("file", imageCover);
@@ -80,7 +82,7 @@ export default function ClientForm() {
       setFormData(prev => ({ ...prev, imageUrl: result.imageUrl, imagePageUrl: result.imagePageUrl }));
     } catch (error) {
       console.error("Error:", error);
-      alert("Hubo un error al guardar la noticia");
+      setError("Hubo un error al guardar la noticia");
     }
   };
 

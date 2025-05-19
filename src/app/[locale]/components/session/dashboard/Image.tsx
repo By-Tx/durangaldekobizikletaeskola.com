@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image';
 import { API_URL } from "@/lib/config";
 import { useEffect } from 'react';
+import { useError } from "@/context/ErrorContext";
 
 
 export default function ClientForm() {
@@ -15,6 +16,8 @@ export default function ClientForm() {
         category: true,
         race: true,
     });
+    const { setError } = useError();
+
 
     type FormFields = {
         year: string;
@@ -163,7 +166,7 @@ export default function ClientForm() {
                 .slice(0, 30);
 
             if (newFiles.length < files.length) {
-                alert("Algunas imágenes no se seleccionaron porque superan el límite de 5MB.");
+                setError("Algunas imágenes no se seleccionaron porque superan el límite de 5MB.");
             }
 
             setFormData({
@@ -229,7 +232,7 @@ export default function ClientForm() {
             isNewfolder: formData.isNewfolder,
         };
         if (!parsedData.year || !parsedData.mode || !parsedData.category || !parsedData.race || !formData.fileUpload) {
-            alert("Por favor, rellene todos los datos antes de clickar subir.");
+            setError("Por favor, rellene todos los datos antes de clickar subir.");
             return;
         }
 
@@ -250,11 +253,11 @@ export default function ClientForm() {
             if (response.ok) {
                 alert(message); // Show success message
             } else {
-                alert(`Error: ${message}`); // Show error message
+                setError(` ${message}`); // Show error message
             }
         } catch (error) {
             console.error("Error:", error);
-            alert("Ocurrió un error al subir las imágenes.");
+            setError("Ocurrió un error al subir las imágenes.");
         }
 
     };

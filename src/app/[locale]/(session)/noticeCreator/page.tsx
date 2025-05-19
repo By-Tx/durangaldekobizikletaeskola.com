@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
-import NoticeContent from "../../components/session/forms/Notice";
+import NoticeContent from "../../components/session/dashboard/Notice";
 import DropdownClient from "../../components/session/ui/drowpdown";
 import NoticeEditor from "../../components/session/notices/NoticeEditor";
 
