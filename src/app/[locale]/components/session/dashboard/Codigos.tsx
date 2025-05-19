@@ -1,13 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useError } from "@/context/ErrorContext";
+import Table from "@/app/[locale]/components/Table";
 
-interface Code {
+interface Codigo {
     id: number;
     code: string;
     role: string;
     expires_at: string | null;
     usos: number;
+}
+
+interface CodeClientProps {
+    codigos: Codigo[];
 }
 
 const roles = [
@@ -18,9 +23,26 @@ const roles = [
     { value: "user", label: "Usuario" },
 ];
 
-export default function Codigos() {
-    const [codes, setCodes] = useState<Code[]>([]);
-    const [expiredCodes, setExpiredCodes] = useState<Code[]>([]);
+function translateRole(role: string): string {
+    switch (role) {
+        case "admin":
+            return "Administrador";
+        case "staff":
+            return "Personal";
+        case "coach":
+            return "Entrenador";
+        case "runner":
+            return "Deportista";
+        case "user":
+            return "Usuario";
+        default:
+            return "Desconocido";
+    }
+}
+
+export default function Codigos({ codigos }: CodeClientProps) {
+    const [codes, setCodes] = useState<Codigo[]>(codigos);
+    const [expiredCodes, setExpiredCodes] = useState<Codigo[]>([]);
     const [form, setForm] = useState<{ role: string; expires_at?: string }>({ role: roles[0].value });
     const [loading, setLoading] = useState(false);
     const { setError } = useError();
@@ -40,10 +62,6 @@ export default function Codigos() {
         const data = await res.json();
         setExpiredCodes(data);
     };
-
-    useEffect(() => {
-        fetchCodes();
-    }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -90,9 +108,20 @@ export default function Codigos() {
         }
     };
 
+    // Función para formatear la fecha
+    function formatFecha(fecha: string): string {
+        if (!fecha) return "";
+        const [datePart, timePart] = fecha.split("T");
+        if (!datePart || !timePart) return fecha;
+        const [year, month, day] = datePart.split("-");
+        const formattedDate = `${day}/${month}/${year}`;
+
+        return `${formattedDate}`;
+    }
+
     return (
         <div className="w-[95%] max-w-full md:max-w-2xl mx-auto mt-10 bg-gray-900/90 p-4 sm:p-8 rounded-2xl shadow-2xl border border-blue-700 font-fredoka">
-            <h2 className="text-3xl font-semibold mb-8 text-center text-blue-200 drop-shadow uppercase">Códigos de activación</h2>
+            <h2 className="text-3xl font-semibold mb-8 text-center text-blue-200 drop-shadow uppercase">Códigos de acti vación</h2>
             <form onSubmit={handleSubmit} className="flex flex-col justify-end md:flex-row gap-4 mb-8">
                 <select
                     name="role"
@@ -133,71 +162,21 @@ export default function Codigos() {
                     Código generado: <span className="font-bold">{generatedCode}</span>
                 </div>
             )}
-            <div className="rounded-xl">
-                <table className="md:min-w-[400px] w-full table-auto border-collapse bg-gray-800 rounded-xl overflow-hidden">
-                    <thead className="hidden sm:table-header-group">
-                        <tr className="bg-gray-700 text-blue-100 uppercase">
-                            <th className="px-2 sm:px-4 py-2 font-semibold">Código</th>
-                            <th className="px-2 sm:px-4 py-2 font-semibold">Rol</th>
-                            <th className="px-2 sm:px-4 py-2 font-semibold">Expira</th>
-                            <th className="px-2 sm:px-4 py-2 font-semibold">Usos</th>
-                            <th className="px-2 sm:px-4 py-2 font-semibold">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {codes.map(code => (
-                            <tr key={code.id} className="border-b border-blue-900">
-                                {/* Vista móvil: toda la info en una celda */}
-                                <td colSpan={5} className="block sm:hidden px-4 py-4">
-                                    <div className="flex flex-col gap-2">
-                                        <div>
-                                            <span className="font-bold text-blue-300">Código: </span>
-                                            <span className="break-all">{code.code}</span>
-                                        </div>
-                                        <div>
-                                            <span className="font-bold text-blue-300">Rol: </span>
-                                            <span>{roles.find(r => r.value === code.role)?.label || code.role}</span>
-                                        </div>
-                                        <div>
-                                            <span className="font-bold text-blue-300">Expira: </span>
-                                            <span>{code.expires_at ? new Date(code.expires_at).toLocaleDateString() : "-"}</span>
-                                        </div>
-                                        <div>
-                                            <span className="font-bold text-blue-300">Usos: </span>
-                                            <span>{code.usos}</span>
-                                        </div>
-                                        <div className="flex gap-2 mt-2">
-                                            <button
-                                                onClick={() => handleDelete(code.id)}
-                                                className="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded font-semibold transition-all"
-                                                disabled={loading}
-                                                style={{ flex: "1 1 0", whiteSpace: "nowrap" }}
-                                            >
-                                                Eliminar
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                {/* Vista escritorio: columnas normales */}
-                                <td className="px-2 sm:px-4 py-2 text-center break-all hidden sm:table-cell">{code.code}</td>
-                                <td className="px-2 sm:px-4 py-2 text-center hidden sm:table-cell">{roles.find(r => r.value === code.role)?.label || code.role}</td>
-                                <td className="px-2 sm:px-4 py-2 text-center hidden sm:table-cell">{code.expires_at ? new Date(code.expires_at).toLocaleDateString() : "-"}</td>
-                                <td className="px-2 sm:px-4 py-2 text-center hidden sm:table-cell">{code.usos}</td>
-                                <td className="px-2 sm:px-4 py-2 text-center hidden sm:table-cell">
-                                    <button
-                                        onClick={() => handleDelete(code.id)}
-                                        className="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded font-semibold transition-all text-xs sm:text-sm min-w-[90px] max-w-[120px]"
-                                        disabled={loading}
-                                        style={{ flex: "1 1 0", whiteSpace: "nowrap" }}
-                                    >
-                                        Eliminar
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+
+            <Table
+                columns={[
+                    { name: "Código", key: "code" },
+                    { name: "Rol", key: "role" },
+                    { name: "Expira", key: "expires_at" },
+                    { name: "Usos", key: "usos" },
+                ]}
+                data={codes}
+                colWidths={[110, 130, 120, 80, 100]}
+                onDelete={handleDelete}
+                translateRole={translateRole}
+                formatFecha={formatFecha}
+            />
+
             {showExpired && (
                 <div className={`fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300 ${closingExpired ? "animate-fade-out" : "animate-fade-in"}`}>
                     <div className={`bg-gray-900 rounded-2xl shadow-2xl p-4 sm:p-8 w-[95%] max-w-full md:max-w-2xl border-2 border-blue-700 relative transition-all duration-300 ${closingExpired ? "animate-slide-down" : "animate-slide-up"}`}>
