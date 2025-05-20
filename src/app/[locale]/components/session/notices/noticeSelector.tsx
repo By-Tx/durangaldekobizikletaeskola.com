@@ -23,7 +23,6 @@ interface NewsSelectorProps {
 export default function NewsSelector({
   items,
   onSelect,
-  onEdit,
   selectedSlug,
 }: NewsSelectorProps) {
   const [localSelection, setLocalSelection] = useState<string | null>(selectedSlug || null);
@@ -57,7 +56,7 @@ export default function NewsSelector({
       {items.map((item) => (
         <div
           key={item.slug}
-          className={`group relative w-72 min-h-72 transition-all duration-200 cursor-pointer mx-auto border rounded-2xl overflow-hidden ${
+          className={`group relative w-72 transition-all duration-200 cursor-pointer mx-auto border rounded-2xl overflow-hidden ${
             item.slug === localSelection
               ? 'ring-2 ring-blue-500 border-blue-300'
               : 'hover:shadow-md'
@@ -87,7 +86,7 @@ export default function NewsSelector({
               e.stopPropagation(); // evita que dispare la selección
               handleEdit(item.slug);
             }}
-            className="absolute top-2 right-2 bg-white text-gray-700 hover:bg-gray-200 p-1.5 rounded-full shadow"
+            className="absolute top-2 right-2 bg-white text-gray-700 hover:bg-gray-200 transition-all p-1.5 font-semibold rounded-full shadow uppercase"
             title="Editar noticia"
           >
            editar

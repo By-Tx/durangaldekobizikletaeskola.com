@@ -112,14 +112,14 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
                         {session ? (
                             <Link
                                 href="/dashboard"
-                                className="bg-customDarkBlue text-white px-4 py-2 rounded-lg"
+                                className={`text-white px-4 py-2 rounded-lg ${color2 ? color2 : "bg-customDarkBlue"}`}
                             >
                                 {t("dashboard")}
                             </Link>
                         ) : (
                             <Link
                                 href="/login"
-                                className="bg-customDarkBlue text-white px-4 py-2 rounded-lg "
+                                className={`text-white px-4 py-2 rounded-lg ${color2 ? color2 : "bg-customDarkBlue"}`}
                             >
                                 {t("login")}
                             </Link>
@@ -190,15 +190,15 @@ const NavBar: React.FC<nProps> = ({ className = "", color2 = "" }) => {
                     {session ? (
                         <Link
                             href="/dashboard"
-                            className="text-xl bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-150"
+                            className={`text-xl px-6 py-2 rounded-lg transition duration-150 ${color2 ? color2 : "bg-blue-600"}`}
                             onClick={toggleMenu}
                         >
-                            {session.user?.name ?? session.user?.email ?? "Usuario"}
+                            {t("dashboard")}
                         </Link>
                     ) : (
                         <Link
                             href="/login"
-                            className="text-xl bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-150"
+                            className={`text-xl px-6 py-2 rounded-lg transition duration-150 ${color2 ? color2 : "bg-blue-600"}`}
                             onClick={toggleMenu}
                         >
                             {t("login")}
