@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { API_URL } from "@/lib/config";
+import Table from "@/app/[locale]/components/Table";
 
 interface User {
     id: string;
@@ -33,18 +34,15 @@ function translateRole(role: string): string {
 export default function UsersTable({ users }: UsersTableProps) {
     const [userList, setUserList] = useState<User[]>(users);
     const [editForm, setEditForm] = useState<User | null>(null);
-    const [editId, setEditId] = useState<string | null>(null);
     const [showForm, setShowForm] = useState(false);
     const [closing, setClosing] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const [deleteId, setDeleteId] = useState<string | null>(null);
-
     const [searchTerm, setSearchTerm] = useState("");
     const [filterRole, setFilterRole] = useState("");
 
     const handleEditClick = (user: User) => {
         setEditForm(user);
-        setEditId(user.id);
         setShowForm(true);
         setClosing(false);
     };
@@ -77,7 +75,6 @@ export default function UsersTable({ users }: UsersTableProps) {
             setShowForm(false);
             setClosing(false);
             setEditForm(null);
-            setEditId(null);
         }, 300);
     };
 
@@ -137,7 +134,7 @@ export default function UsersTable({ users }: UsersTableProps) {
                 <h2 className="text-3xl font-semibold text-white text-center">USUARIOS</h2>
                 <div className="hidden sm:block"></div>
             </div>
-            
+
             {/* filters */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 text-white">
                 <input
@@ -160,90 +157,21 @@ export default function UsersTable({ users }: UsersTableProps) {
                     <option value="user">Usuario</option>
                 </select>
             </div>
-            
+
             <div className="flex justify-center">
-                <div className="w-full sm:w-11/12 md:w-3/4 lg:w-1/2 rounded-2xl shadow-xl backdrop-blur-md bg-white/10 border border-blue-400 pb-2 overflow-x-auto">
-                    <table className="md:min-w-[400px] w-full border-collapse">
-                        <thead className="bg-gray-700 text-blue-100 uppercase hidden sm:table-header-group">
-                            <tr>
-                                <th className="px-4 py-3 font-semibold">Correo electrónico</th>
-                                <th className="px-4 py-3 font-semibold">Nombre</th>
-                                <th className="px-4 py-3 font-semibold">Rol</th>
-                                <th className="px-4 py-3 font-semibold">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredUsers.map((u) => (
-                                <tr
-                                    key={u.id}
-                                    className="hover:bg-blue-900/20 transition border-t border-blue-900/30"
-                                >
-                                    {/* Vista móvil: toda la info en una celda */}
-                                    <td colSpan={4} className="block sm:hidden px-4 py-4">
-                                        <div className="flex flex-col gap-2">
-                                            <div>
-                                                <span className="font-bold text-blue-300">Correo: </span>
-                                                <span>{u.email}</span>
-                                            </div>
-                                            <div>
-                                                <span className="font-bold text-blue-300">Nombre: </span>
-                                                <span>{u.name}</span>
-                                            </div>
-                                            <div>
-                                                <span className="font-bold text-blue-300">Rol: </span>
-                                                <span>{translateRole(u.role)}</span>
-                                            </div>
-                                            <div className="flex gap-2 mt-2">
-                                                <button
-                                                    className="px-3 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold"
-                                                    style={{ flex: "1 1 0", whiteSpace: "nowrap" }}
-                                                    onClick={() => handleEditClick(u)}
-                                                >
-                                                    Editar
-                                                </button>
-                                                <button
-                                                    className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold"
-                                                    style={{ flex: "1 1 0", whiteSpace: "nowrap" }}
-                                                    onClick={() => handleDeleteClick(u.id)}
-                                                >
-                                                    Eliminar
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    {/* Vista escritorio: columnas normales */}
-                                    <td className="px-4 py-2 hidden sm:table-cell">{u.email}</td>
-                                    <td className="px-4 py-2 hidden sm:table-cell">{u.name}</td>
-                                    <td className="px-4 py-2 text-center hidden sm:table-cell">{translateRole(u.role)}</td>
-                                    <td className="px-4 py-2 hidden sm:table-cell">
-                                        <div className="flex justify-center gap-2 flex-wrap">
-                                            <button
-                                                className="px-3 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold"
-                                                style={{ flex: "1 1 0", whiteSpace: "nowrap" }}
-                                                onClick={() => handleEditClick(u)}
-                                            >
-                                                Editar
-                                            </button>
-                                            <button
-                                                className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold"
-                                                style={{ flex: "1 1 0", whiteSpace: "nowrap" }}
-                                                onClick={() => handleDeleteClick(u.id)}
-                                            >
-                                                Eliminar
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                            {filteredUsers.length === 0 && (
-                                <tr>
-                                    <td colSpan={4} className="text-center text-gray-300 py-6">
-                                        No se encontraron usuarios.
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
+                <div className="w-full sm:w-11/12 md:w-3/4 lg:w-1/2">
+                    <Table
+                        columns={[
+                            { name: "Correo electrónico", key: "email" },
+                            { name: "Nombre", key: "name" },
+                            { name: "Rol", key: "role" },
+                        ]}
+                        data={filteredUsers}
+                        colWidths={[300, 250, 200]}
+                        onEdit={handleEditClick}
+                        onDelete={handleDeleteClick}
+                        translateRole={translateRole}
+                    />
                 </div>
             </div>
 
