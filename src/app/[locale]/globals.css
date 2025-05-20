@@ -187,3 +187,7 @@ body.scrollbar-carreras ::-webkit-inner-spin-button {
   -moz-appearance: textfield;
   margin: 0;
 }
+
+.filter-blue-300 {
+  filter: invert(61%) sepia(98%) saturate(748%) hue-rotate(176deg) brightness(97%) contrast(92%);
+}

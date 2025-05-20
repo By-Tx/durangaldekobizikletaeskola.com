@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useError } from "@/context/ErrorContext";
-import Table from "@/app/[locale]/components/Table";
+import Table from "@/app/[locale]/components/session/ui/Table";
 
 type Deportista = {
     numero_licencia: string;

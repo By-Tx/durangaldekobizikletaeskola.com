@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { API_URL } from "@/lib/config";
-import Table from "@/app/[locale]/components/Table";
+import Table from "@/app/[locale]/components/session/ui/Table";
 
 interface User {
     id: string;
