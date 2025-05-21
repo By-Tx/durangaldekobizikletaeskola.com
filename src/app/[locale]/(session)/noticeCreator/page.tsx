@@ -16,7 +16,7 @@ export default async function Page(props: any) {
         redirect("/");
     }
 
-    const selected = searchParams?.option;
+    const selected = await  searchParams?.option;
 
     const renderContent = () => {
         switch (selected) {
