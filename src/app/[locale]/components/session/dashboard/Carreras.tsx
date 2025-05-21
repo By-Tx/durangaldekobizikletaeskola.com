@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import info from "@/app/media/info.svg";
 import Image from "next/image";
-import Table from "@/app/[locale]/components/Table";
+import Table from "@/app/[locale]/components/session/ui/Table";
 
 type Carrera = {
     id: number;

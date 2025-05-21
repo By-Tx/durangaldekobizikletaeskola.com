@@ -1,75 +1,85 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const options = [
-  { label: 'Editar Noticias', value: 'EditNotices' },
-  { label: 'Crear Noticia', value: 'CreateNotices' },
+    { label: 'Editar Noticias', value: 'EditNotices' },
+    { label: 'Crear Noticia', value: 'CreateNotices' },
 ];
 
-export default function DropdownClient() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const selected = searchParams.get('option');
+export default function ToggleClient() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const selected = searchParams.get('option');
 
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+    const trackRef = useRef<HTMLDivElement>(null);
+    const [offset, setOffset] = useState(0);
 
-  const handleSelect = (value: string) => {
-    const params = new URLSearchParams(searchParams);
-    params.set('option', value);
-    router.push(`?${params.toString()}`);
-    setIsOpen(false);
-  };
+    // Calcula el desplazamiento dinámico
+    useEffect(() => {
+        if (trackRef.current) {
+            const trackWidth = trackRef.current.offsetWidth;
+            const knobWidth = 32;
+            const padding = 4;
+            setOffset(trackWidth - knobWidth - padding * 2);
+        }
+    }, []);
 
-  // Redirige automáticamente a la opción por defecto si no hay selección
-  useEffect(() => {
-    if (!selected) {
-      const params = new URLSearchParams(searchParams);
-      params.set('option', 'EditNotices');
-      router.replace(`?${params.toString()}`); // reemplaza en el historial
-    }
-  }, [selected, router, searchParams]);
+    useEffect(() => {
+        if (!selected) {
+            const params = new URLSearchParams(searchParams);
+            params.set('option', 'EditNotices');
+            router.replace(`?${params.toString()}`);
+        }
+    }, [selected, router, searchParams]);
 
-  // Cierra el dropdown al hacer clic fuera
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
+    const selectedIdx = options.findIndex(opt => opt.value === selected) ?? 0;
+    const handleClick = (idx: number) => {
+        if (options[idx].value !== selected) {
+            const params = new URLSearchParams(searchParams);
+            params.set('option', options[idx].value);
+            router.push(`?${params.toString()}`);
+        }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+
+    const handleToggle = () => {
+        const nextIdx = selectedIdx === 0 ? 1 : 0;
+        handleClick(nextIdx);
     };
-  }, []);
 
-  return (
-    <div className="relative inline-block text-left" ref={dropdownRef}>
-      <button
-        onClick={() => setIsOpen((prev) => !prev)}
-        className="inline-flex justify-center w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
-      >
-        {options.find(o => o.value === selected)?.label || 'Selecciona una opción'}
-        <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 20 20" stroke="currentColor">
-          <path d="M7 7l3-3 3 3M7 13l3 3 3-3" />
-        </svg>
-      </button>
-
-      {isOpen && (
-        <div className="absolute z-10 mt-2 w-56 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-          {options.map((option) => (
+    return (
+        <div className="flex justify-start items-center gap-6 select-none">
             <button
-              key={option.value}
-              onClick={() => handleSelect(option.value)}
-              className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                className={`font-semibold px-3 text-base md:text-lg uppercase transition-colors duration-200 
+                ${selected === options[0].value ? "text-blue-400" : "text-gray-300 hover:text-blue-300"}`}
+                onClick={() => handleClick(0)}
             >
-              {option.label}
+                {options[0].label}
             </button>
-          ))}
+            <div
+                ref={trackRef}
+                className="relative w-20 h-10 bg-gray-800 border-2 border-blue-900 rounded-full flex items-center shadow-lg cursor-pointer transition-colors duration-300"
+                onClick={handleToggle}
+                aria-label="Cambiar modo"
+                tabIndex={0}
+                role="switch"
+                aria-checked={selectedIdx === 1}
+            >
+                <div
+                    className="absolute left-0.5 top-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-300 rounded-full shadow-xl transition-transform duration-300"
+                    style={{
+                        transform: `translateX(${selectedIdx === 0 ? 0 : offset}px) translateY(-50%)`,
+                    }}
+                />
+            </div>
+            <button
+                className={`font-semibold px-3 text-base md:text-lg uppercase transition-colors duration-200 
+                ${selected === options[1].value ? "text-blue-400" : "text-gray-300 hover:text-blue-300"}`}
+                onClick={() => handleClick(1)}
+            >
+                {options[1].label}
+            </button>
         </div>
-      )}
-    </div>
-  );
+    );
 }
