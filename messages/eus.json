@@ -1,20 +1,23 @@
 {
-    "homePage": {
-      "title": "2014AN SORTUTAKO TXIRRINDULARITZA ESKOLA",
-      "subtitle": "2014an sortutako eskola, Abadiño, Elorrio eta Durangoko txirrindulari elkarteen elkarlanaren emaitza",
-      "title2": "PROIEKTU SENDO BAT SORTZEKO GOGOA",
-      "subtitle2": "Urtez urteko lanak erreferentziazko kirol talde baten bihurtu gaitu eskualdean, eta bere horretan jarraituko dugu denboran zutik jarrai dadin, taldea gure inguruan errotu eta hedatzeko.",
-      "title3": "HELBURUA",
-      "subtitle3": "Txirrindularitzaren bitartez gazteei trebatu, haiek hezitze prozesuaz goza dezaten eta kirol honen diziplina ezberdinetan lehiatzeko prestatuz",
-      "title4": "BALOREAK",
-      "subtitle4": "Talde lana, ahalegina, konpromezua eta laguntasuna dira gure oinarri. Hauen bidez, elkarrekin helburuak lortzen ditugu eta bidean indarra hartzen dugu.",
-      "componentSubtitle": "ALBISTEAK"
-    },
-    "noticePage": {
-      "title": "ALBISTE GUZTIAK",
-      "button": "ALBISTE GEHIAGO"
-    },
-    "noticeComponent": {
+  "homePage": {
+    "title": "2014AN SORTUTAKO TXIRRINDULARITZA ESKOLA",
+    "subtitle": "2014an sortutako eskola, Abadiño, Elorrio eta Durangoko txirrindulari elkarteen elkarlanaren emaitza",
+    "title2": "PROIEKTU SENDO BAT SORTZEKO GOGOA",
+    "subtitle2": "Urtez urteko lanak erreferentziazko kirol talde baten bihurtu gaitu eskualdean, eta bere horretan jarraituko dugu denboran zutik jarrai dadin, taldea gure inguruan errotu eta hedatzeko.",
+    "title3": "HELBURUA",
+    "subtitle3": "Txirrindularitzaren bitartez gazteei trebatu, haiek hezitze prozesuaz goza dezaten eta kirol honen diziplina ezberdinetan lehiatzeko prestatuz",
+    "title4": "BALOREAK",
+    "subtitle4": "Talde lana, ahalegina, konpromezua eta laguntasuna dira gure oinarri. Hauen bidez, elkarrekin helburuak lortzen ditugu eta bidean indarra hartzen dugu.",
+    "componentSubtitle": "ALBISTEAK"
+  },
+  "noticePage": {
+    "title": "ALBISTE GUZTIAK",
+    "button": "ALBISTE GEHIAGO"
+  },
+   "footer":{
+    "terms": "Erabilera Baldintzak"
+  },
+  "noticeComponent": {
     "noticeTitle": "Markel, 13º Espainiako Txapelketan",
     "altImage": "Markelen argazkia descenso baten",
     "category": "KADETE",
@@ -55,10 +58,10 @@
     "translation": [
       "cronica2025-05-12"
     ],
-    "altKeyNaN": "",
-    "noticeTitleNaN": "BERE HORRETAN JARRAITZEN DUGU ",
-    "noticeCategoryNaN": "JUNIOR  & KADETE & ESKOLAK",
-    "dateNaN": "2025-05-12"
+    "altKey14": "",
+    "noticeTitle14": "BERE HORRETAN JARRAITZEN DUGU ",
+    "noticeCategory14": "JUNIOR  & KADETE & ESKOLAK",
+    "date14": "2025-05-12"
   },
   "bttTxapeldunaPage": {
     "altImage": "Anderren argazkia",
@@ -115,17 +118,18 @@
   },
   "dromPage": {
     "title": "CAFE DROMEDARIO-FLOTAMET",
-    "sectionRoadP1": "Eskolatik Kadete mailara egiten dute salto eta gauzak serio jartzen hasten dira. Konpetizioa ikasketekin batera uztartu behar dituzte helburu nagusienetariko bat konpetizioan hezitzea izanez eta urtetik urtera aurrera pausu bat emonez. Hori bai, eskoletan moduan, talden eta lagunen arteanbizikletaz eta heziketa prozesuaz disfrutatzea da, eta bizikleta bizitza osorako kirol bat izan daiten motibazioa sustatzea da.",
-    "sectionRoadP2": " Gazteek modalitate desberdinetan parte hartzen dute, udako egutegian errepidean eta mendi bizikletan eta neguko egutegian pista eta ziklokrosean.",
-    "sectionRoadP3": "  Errepidean, Bizkaiko zein Euskal Herriko txapelketa garrantzitsuenetan parte hartzen dute gure gazteek, horietatik at, Txuma, Bizkaiko, Gipuzkoako eta zein Kantabriako Itzulia ere lehiatzen dute.",
-    "subtitleRunnersRoad": "ERREPIDEA",
-    "componentRunner1Title": "JUNIORRAK",
-    "componentRunner2Title": "KADETEAK",
+    "sectionP1": "Gazteek eskola mailatik kadete mailara salto egiten dute, eta gauzak serio jartzen hasten dira. Lehiaketak eta ikasketak uztartu behar dituzte, konpetizioan heztea helburu nagusienetako bat izanik, eta urtetik urtera aurrerapauso bat emanez. Hori bai, eskoletan bezala, lagun artean eta taldean bizikletaz eta heziketa prozesuaz gozatzea da garrantzitsuena, eta bizikleta bizitza osorako kirol bat izateko motibazioa sustatzea.",
+    "sectionP2": "Junior mailan, txirrindularitzaren lehiaketa maila handiagoa da, eta gazteek pauso garrantzitsua ematen dute kirol eta heziketa arloan. Probak gogorragoak eta luzeagoak izaten dira, eta kanpoko lasterketetan parte hartzeko aukera izaten dute, Euskal Herritik kanpo ere.",
+    "sectionP3": "Lehiaketa eta ikasketak uztartzea funtsezkoa izaten jarraitzen du, eta talde-giro ona eta lagunartea ezinbestekoak dira bide horretan. Helburu nagusia txirrindulari moduan eta pertsona moduan hazten jarraitzea da, bizikletarekiko pasioa galdu gabe.",
+    "sectionP4": "Gazteei onena emateko, titulatutako eta maila bakoitzerako prest dagoen staff bat dugu, eguneroko lanari balioa ematen diona. Taldeak modalitate desberdinetan parte hartzen du, gazteei ahalik eta aukera zabalena emanez.",
+   
+    "sectionRoadTitle": "ERREPIDEA",
     "sectionMtbTitle": "MTB",
-    "sectionMtbP1": " 2022. urtean Durangaldeko Bizikleta Eskolak Mendi Bizikletako talde bat sortzeko eta bultzatzeko esfortzua egin zuen modalitate hau indartzeko eta gazteei beste aukera bat emateko, aukera zabalago bat sortuz.",
-    "sectionMtbP2": "  Egutegiaren barruan, Green Seriesak (UCI C2 mailan dagoena eta Bizkaian ospatzen dena), Superprestigio, Bizkaiko eta Euskadiko Txapelketak lehiatzen dituzte.",
-    "sectionPistaP1": "Neguko egutegian taldeak ere pistan ere jarduten da kadete eta junior kategorietan. Berrizko belodromoa gure eskualdean daukagula aprobetxatuz, entrenamenduak egiten ditugu astean zehar, eta Anoetan antolatzen diren probetan ere parte hartzen dogu. Bertan, trebetasun desberdinak garatzen dituzte gazteak.",
-    "sectionCXP1": "Neguko egutegian ere Ziklokrosseko egutegia egiten dugu. Teknika oso garrantzitsua dan modalitatea da hau, eta hori lantzeko helburu argia dugu, teknika entrenamendu bereziak antolatuz. Euskal Herriko proba garrantzitsuenetan hartzen dugu parte, ETXF eta BTxF-ko sailkapenean."
+
+    "sectionRoadP1":"Egutegiaren zati handiena hartzen duen modalitatea da, eta talde-lana, diziplina eta esfortzua dira oinarriak. Gure taldeak Euskal Herriko egun bakarreko probetan eta inguruko itzuli garrantzitsuenetan parte hartzen du: Txuma, Bizkaiko Itzulia, Gipuzkoako Itzulia, Vuelta a Cantabria eta beste hainbat.",
+    "sectionMtbP1": "2022an sortu zen MTB taldea, modalitate hau bultzatzeko esfortzua eginez, gazteei aukera zabalagoa eskaintzeko helburuarekin. Gure gazteek Green Series, Superprestigio, Bizkaiko eta Euskadiko Txapelketak lehiatzen dituzte.",
+    "sectionPistaP1": "Ziklokroseko denboraldiarekin batera, neguko egutegiaren barruan, Pistan ere lehiatzen gara. Berrizko belodromoa erabiltzen dugu entrenatzeko, gure eskualdean daukagun baliabidea aprobetxatuz. Asteburuetan, berriz, Anoetako belodromoan antolatzen diren probetan lehiatzen gara. Bertan, trebetasun desberdinak garatzen dituzte gure gazteek",
+    "sectionCXP1": "Neguko egutegian, Ziklokrosean lehiatzen gara Euskal Herriko proba garrantzitsuenetan eta Espainiako Kopako proba batzuetan. Teknika oso garrantzitsua den modalitatea izanik, hori lantzea da helburu, entrenamendu bereziak antolatuz."
   },
   "eskolaPage": {
     "title": "ESKOLA",

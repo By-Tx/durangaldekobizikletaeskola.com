@@ -10,6 +10,9 @@
     "subtitle4": "El trabajo en equipo, el esfuerzo, el compromiso y la amistad son nuestros pilares. A través de estos, logramos metas juntos y ganamos fuerza en el camino.",
     "componentSubtitle": "NOTICIAS"
   },
+  "footer":{
+    "terms": "Términos y condiciones"
+  },
   "noticePage": {
     "title": "TODAS LAS NOTICIAS",
     "button": "VER MÁS"
@@ -79,17 +82,19 @@
   },
   "dromPage": {
     "title": "CAFE DROMEDARIO-FLOTAMET",
-    "sectionRoadP1": "Desde la escuela hasta la categoría cadete, todo se pone más serio. Los jóvenes deben combinar la competición con los estudios, siendo uno de los objetivos principales formarlos como competidores, mientras dan un paso hacia adelante cada año. Sin embargo, como en la escuela, el disfrute del ciclismo, el trabajo en equipo y la formación continua son esenciales, y la motivación para hacer del ciclismo un deporte para toda la vida es clave.",
-    "sectionRoadP2": "Los jóvenes participan en diversas modalidades, compitiendo en carretera y mountain bike en verano, y en pista y ciclocross en invierno.",
-    "sectionRoadP3": "En carretera, nuestros jóvenes compiten en los campeonatos más importantes de Bizkaia y Euskal Herria, además de participar en vueltas como la de Txuma, Bizkaia, Gipuzkoa y Cantabria.",
-    "subtitleRunnersRoad": "CARRETERA",
-    "componentRunner1Title": "JUNIOR",
-    "componentRunner2Title": "CADETE",
+    "sectionP1": "Los más jóvenes dan el salto desde la categoría escolar a la de cadete, y comienzan a tomarse las cosas en serio. Deben compaginar las competiciones con los estudios, siendo uno de los principales objetivos formarse en la competición y dar un paso adelante año tras año. Eso sí, al igual que en la escuela, lo más importante es disfrutar en grupo y con los amigos de la bicicleta y del proceso formativo, y fomentar la motivación para que la bicicleta sea un deporte para toda la vida.",
+    "sectionP2": "En la categoría junior, el nivel competitivo del ciclismo es más alto, y los jóvenes dan un paso importante tanto en el ámbito deportivo como en el formativo. Las pruebas son más duras y largas, y tienen la oportunidad de participar en carreras fuera de Euskal Herria. Compaginar competición y estudios sigue siendo fundamental, y un buen ambiente de equipo y la amistad son imprescindibles en este camino. El principal objetivo es seguir creciendo como ciclista y persona, sin perder la pasión por la bicicleta.",
+    "sectionP3": "Para ofrecer lo mejor a los jóvenes, contamos con un staff titulado y preparado para cada categoría, que valora el trabajo diario.",
+    "sectionP4": "El equipo participa en distintas modalidades, ofreciendo a los jóvenes la mayor variedad de opciones posible:",
+    
+    "sectionRoadTitle": "CARRETERA",
     "sectionMtbTitle": "MTB",
-    "sectionMtbP1": "En 2022, las Escuelas de Ciclismo de Durangaldea hicieron un esfuerzo para crear y fomentar un equipo de Mountain Bike, con el objetivo de fortalecer esta modalidad y ofrecer a los jóvenes una opción adicional, creando más oportunidades.",
-    "sectionMtbP2": "Dentro del calendario, los jóvenes compiten en eventos como las Green Series (de nivel UCI C2 y celebradas en Bizkaia), el Superprestigio, y los campeonatos de Bizkaia y Euskadi.",
-    "sectionPistaP1": "En invierno, el equipo también compite en pista en categorías cadete y junior. Aprovechando que tenemos el velódromo de Berriz en nuestra comarca, realizamos entrenamientos semanales, además de participar en competiciones organizadas en Anoeta. Aquí, los jóvenes desarrollan diversas habilidades.",
-    "sectionCXP1": "En invierno también seguimos el calendario de ciclocross. Esta modalidad, que es muy técnica, tiene como objetivo claro mejorar esas habilidades mediante entrenamientos específicos. Participamos en las pruebas más importantes de Euskadi, en los rankings de ETXF y FEBICI."
+
+    "sectionRoadP1":"Es la modalidad que abarca la mayor parte del calendario, y se basa en el trabajo en equipo, la disciplina y el esfuerzo. Nuestro equipo participa en pruebas de un día por todo Euskal Herria, así como en las vueltas más importantes de la zona: Txuma, Vuelta a Bizkaia, Vuelta a Gipuzkoa, Vuelta a Cantabria y otras más.",
+    "sectionMtbP1": "El equipo de MTB se creó en 2022 con el objetivo de impulsar esta modalidad y ofrecer a los jóvenes una opción más amplia. Nuestros jóvenes compiten en Green Series, Superprestigio, Campeonatos de Bizkaia y Euskadi.",
+    "sectionPistaP1": "Junto con el ciclocross, en el calendario invernal también competimos en pista. Entrenamos en el velódromo de Berriz, aprovechando este recurso de nuestra comarca. Los fines de semana participamos en pruebas organizadas en el velódromo de Anoeta, donde nuestros jóvenes desarrollan distintas habilidades.",
+    "sectionCXP1": "En el calendario de invierno competimos en ciclocross en las pruebas más importantes de Euskal Herria y también en algunas pruebas de la Copa de España. Al ser una modalidad en la que la técnica es muy importante, nuestro objetivo es trabajarla con entrenamientos específicos."
+  
   },
   "eskolaPage": {
     "title": "ESCUELA",
@@ -243,10 +248,10 @@
     "translation": [
       "cronica2025-05-12"
     ],
-    "altKeyNaN": "",
-    "noticeTitleNaN": "SEGUIMOS EN ESA DINÁMICA",
-    "noticeCategoryNaN": "JUNIOR  & CADETE & ESCUELAS",
-    "dateNaN": "2025-05-12"
+    "altKey14": "",
+    "noticeTitle14": "SEGUIMOS EN ESA DINÁMICA",
+    "noticeCategory14": "JUNIOR  & CADETE & ESCUELAS",
+    "date14": "2025-05-12"
   },
   "shopPage": {
     "title": "Ropa",

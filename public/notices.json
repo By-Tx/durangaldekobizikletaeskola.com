@@ -129,58 +129,20 @@
     "imagePage": "https://photos.txuli.com/duranguesa/notices/1747174788687.webp",
     "translationKey": [
       "cronica2025-05-02Page"
-    ],
-    "urls": [
-      {
-        "url": "XXXVIII ELKARTU NAHI SARIA - Wiclax - Resultados - 75,5 km",
-        "txt": "Zegama Juniorrak"
-      },
-      {
-        "url": "doc_680ceb8a3bc820.48627974_clasificaciones.pdf",
-        "txt": "Aiara Kadeteak"
-      },
-      {
-        "url": "VIII. TROFEO C.C. EIBARRES - Wiclax - Resultados - 68 km",
-        "txt": "Eibar Kadeteak"
-      },
-      {
-        "url": "LI GURUTZ DEUNAREN TXI LASTERKETA - Wiclax - Resultados - 58,5 km",
-        "txt": "Segura Kadeteak"
-      },
-      {
-        "url": "250501-ACTA-KB-ORDUNA-Junior.pdf",
-        "txt": "Orduna Juniorrak"
-      }
     ]
+    
   },
   {
     "date": "2025-05-12",
     "slug": "cronica2025-05-12",
     "image": "https://photos.txuli.com/duranguesa/notices/1747175171296.webp",
-    "altKey": "altKeyNaN",
-    "titleKey": "noticeTitleNaN",
-    "categoryKey": "noticeCategoryNaN",
+    "altKey": "altKey14",
+    "titleKey": "noticeTitle14",
+    "categoryKey": "noticeCategory14",
     "imagePage": "https://photos.txuli.com/duranguesa/notices/1747175171297.webp",
     "translationKey": [
       "cronica2025-05-12Page"
-    ],
-    "urls": [
-      {
-        "url": "202505120838480.Clasif. completa BTT OIARTZUN 10-05-2025.pdf",
-        "txt": "OPEN EUSKADI OIARTZUN MTB"
-      },
-      {
-        "url": "31757 XLIII TROFEO SAN ISIDRO",
-        "txt": "JUNIOR KARRANTZA"
-      },
-      {
-        "url": "ClasificacionMuskizJunior20251.pdf",
-        "txt": "JUNIOR MUSKIZ"
-      },
-      {
-        "url": "ClasificacionesMuskizCadete20251.pdf",
-        "txt": "KADETE MUSKIZ"
-      }
     ]
+    
   }
 ]

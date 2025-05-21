@@ -24,7 +24,7 @@
        .filter((item: string) => !item.includes("../"))
        .map((item: string) => ({
         
-         image: `https://photos.txuli.com/duranguesa/covers/${item.slice(0, -1)}.jpg`,
+         image: `https://photos.txuli.com/duranguesa/covers/${item.slice(0, -1)}.webp`,
          title: item.slice(0, -1),
          link: `/galeria/${item.slice(0, -1)}`,
        }));
