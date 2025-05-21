@@ -364,9 +364,6 @@ export default function ClientForm() {
 
                 </section>
 
-                <section className='flex my-3'>
-                    <p className="text-orange-400 italic text-sm ">* si deseas crear una nueva Carrera deberas dejar el desplegable sin selecionar</p>
-                </section>
 
                 <section className="flex my-3">
                     <div className="w-full py-2  bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
