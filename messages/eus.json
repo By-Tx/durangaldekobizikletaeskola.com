@@ -14,6 +14,9 @@
     "title": "ALBISTE GUZTIAK",
     "button": "ALBISTE GEHIAGO"
   },
+   "footer":{
+    "terms": "Erabilera Baldintzak"
+  },
   "noticeComponent": {
     "noticeTitle": "Markel, 13º Espainiako Txapelketan",
     "altImage": "Markelen argazkia descenso baten",

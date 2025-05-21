@@ -10,6 +10,9 @@
     "subtitle4": "El trabajo en equipo, el esfuerzo, el compromiso y la amistad son nuestros pilares. A través de estos, logramos metas juntos y ganamos fuerza en el camino.",
     "componentSubtitle": "NOTICIAS"
   },
+  "footer":{
+    "terms": "Términos y condiciones"
+  },
   "noticePage": {
     "title": "TODAS LAS NOTICIAS",
     "button": "VER MÁS"
