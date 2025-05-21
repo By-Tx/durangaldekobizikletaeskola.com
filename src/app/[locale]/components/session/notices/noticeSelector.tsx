@@ -170,11 +170,12 @@ const handleSubmit = async (e: React.FormEvent) => {
                 Editar noticia
               </h3>
               {/* Selector de idioma */}
-              <div className="flex absolute top-4 left-4 z-10">
+              <div className="absolute top-4 left-4 z-10 flex flex-col sm:flex-row gap-2 sm:gap-0">
+
                 {['eus', 'es'].map((lng) => (
                   <div
                     key={lng}
-                    className={`text-white px-4 py-2 cursor-pointer transition-colors duration-300 ${locale === lng ? 'bg-blue-500' : 'bg-gray-700'} ${lng === 'eus' ? 'rounded-l-md' : 'rounded-r-md'}`}
+                    className={`text-white px-4 py-2 cursor-pointer transition-colors duration-300 ${locale === lng ? 'bg-blue-500' : 'bg-gray-700'} ${lng === 'eus' ? 'md:rounded-l-md rounded-md' : 'md:rounded-l-md rounded-md'}`}
                     onClick={() => setLocale(lng as 'es' | 'eus')}
                   >
                     {lng}
