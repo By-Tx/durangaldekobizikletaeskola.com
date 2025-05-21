@@ -4,8 +4,14 @@ import comment from "@/app/media/session/comment.svg";
 import awaiting from "@/app/media/session/awaiting.svg";
 import done from "@/app/media/session/done.svg";
 
+type TableColumn = {
+    name: string;
+    key: string;
+    renderCell?: (row: any) => React.ReactNode;
+};
+
 type TableProps = {
-    columns: { name: string; key: string }[];
+    columns: TableColumn[];
     data: any[];
     colWidths?: number[];
     onRowClick?: (row: any) => void;
@@ -81,7 +87,7 @@ const Table: React.FC<TableProps> = ({
                         <tbody>
                             {data.map((row, rowIdx) => (
                                 <tr
-                                    key={row.id ?? row.numero_licencia ?? row.evento_id}
+                                    key={row.id ?? row.numero_licencia ?? row.evento_id ?? row.dorsal}
                                     className="hover:bg-blue-900/20 transition cursor-pointer border-t border-blue-900/30"
                                     onClick={() => onRowClick?.(row)}
                                 >
@@ -93,13 +99,15 @@ const Table: React.FC<TableProps> = ({
                                                 if (rowIdx === 0) firstRowRefs.current[i] = el;
                                             }}
                                         >
-                                            {col.key === "role"
-                                                ? translateRole(row[col.key])
-                                                : (col.key === "fecha" || col.key === "fecha_nacimiento" || col.key === "expires_at")
-                                                    ? formatFecha(row[col.key])
-                                                    : (row[col.key] !== null && row[col.key] !== undefined
-                                                        ? row[col.key].toString().replace("_", "-")
-                                                        : "")}
+                                            {typeof col.renderCell === "function"
+                                                ? col.renderCell(row)
+                                                : col.key === "role"
+                                                    ? translateRole(row[col.key])
+                                                    : (col.key === "fecha" || col.key === "fecha_nacimiento" || col.key === "expires_at")
+                                                        ? formatFecha(row[col.key])
+                                                        : (row[col.key] !== null && row[col.key] !== undefined
+                                                            ? row[col.key].toString().replace("_", "-")
+                                                            : "")}
                                         </td>
                                     ))}
                                     {showActions && (
@@ -204,7 +212,7 @@ const Table: React.FC<TableProps> = ({
                     <tbody>
                         {data.map((row) => (
                             <tr
-                                key={row.id ?? row.numero_licencia ?? row.evento_id}
+                                key={row.id ?? row.numero_licencia ?? row.evento_id ?? row.dorsal}
                                 className="hover:bg-blue-900/20 transition cursor-pointer border-t border-blue-900/30"
                                 onClick={() => onRowClick?.(row)}
                             >

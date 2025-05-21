@@ -7056,56 +7056,70 @@ export namespace Prisma {
 
   export type Listado_escuelasAvgAggregateOutputType = {
     carrera_id: number | null
+    dorsal: number | null
+    confirmado: number | null
   }
 
   export type Listado_escuelasSumAggregateOutputType = {
     carrera_id: number | null
+    dorsal: number | null
+    confirmado: number | null
   }
 
   export type Listado_escuelasMinAggregateOutputType = {
     carrera_id: number | null
-    dorsal: string | null
-    nombre: string | null
+    dorsal: number | null
+    nombre_apellido: string | null
+    confirmado: number | null
   }
 
   export type Listado_escuelasMaxAggregateOutputType = {
     carrera_id: number | null
-    dorsal: string | null
-    nombre: string | null
+    dorsal: number | null
+    nombre_apellido: string | null
+    confirmado: number | null
   }
 
   export type Listado_escuelasCountAggregateOutputType = {
     carrera_id: number
     dorsal: number
-    nombre: number
+    nombre_apellido: number
+    confirmado: number
     _all: number
   }
 
 
   export type Listado_escuelasAvgAggregateInputType = {
     carrera_id?: true
+    dorsal?: true
+    confirmado?: true
   }
 
   export type Listado_escuelasSumAggregateInputType = {
     carrera_id?: true
+    dorsal?: true
+    confirmado?: true
   }
 
   export type Listado_escuelasMinAggregateInputType = {
     carrera_id?: true
     dorsal?: true
-    nombre?: true
+    nombre_apellido?: true
+    confirmado?: true
   }
 
   export type Listado_escuelasMaxAggregateInputType = {
     carrera_id?: true
     dorsal?: true
-    nombre?: true
+    nombre_apellido?: true
+    confirmado?: true
   }
 
   export type Listado_escuelasCountAggregateInputType = {
     carrera_id?: true
     dorsal?: true
-    nombre?: true
+    nombre_apellido?: true
+    confirmado?: true
     _all?: true
   }
 
@@ -7197,8 +7211,9 @@ export namespace Prisma {
 
   export type Listado_escuelasGroupByOutputType = {
     carrera_id: number
-    dorsal: string
-    nombre: string
+    dorsal: number
+    nombre_apellido: string | null
+    confirmado: number | null
     _count: Listado_escuelasCountAggregateOutputType | null
     _avg: Listado_escuelasAvgAggregateOutputType | null
     _sum: Listado_escuelasSumAggregateOutputType | null
@@ -7223,7 +7238,8 @@ export namespace Prisma {
   export type listado_escuelasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     carrera_id?: boolean
     dorsal?: boolean
-    nombre?: boolean
+    nombre_apellido?: boolean
+    confirmado?: boolean
     events?: boolean | eventsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["listado_escuelas"]>
 
@@ -7232,10 +7248,11 @@ export namespace Prisma {
   export type listado_escuelasSelectScalar = {
     carrera_id?: boolean
     dorsal?: boolean
-    nombre?: boolean
+    nombre_apellido?: boolean
+    confirmado?: boolean
   }
 
-  export type listado_escuelasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"carrera_id" | "dorsal" | "nombre", ExtArgs["result"]["listado_escuelas"]>
+  export type listado_escuelasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"carrera_id" | "dorsal" | "nombre_apellido" | "confirmado", ExtArgs["result"]["listado_escuelas"]>
   export type listado_escuelasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | eventsDefaultArgs<ExtArgs>
   }
@@ -7247,8 +7264,9 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       carrera_id: number
-      dorsal: string
-      nombre: string
+      dorsal: number
+      nombre_apellido: string | null
+      confirmado: number | null
     }, ExtArgs["result"]["listado_escuelas"]>
     composites: {}
   }
@@ -7620,8 +7638,9 @@ export namespace Prisma {
    */
   interface listado_escuelasFieldRefs {
     readonly carrera_id: FieldRef<"listado_escuelas", 'Int'>
-    readonly dorsal: FieldRef<"listado_escuelas", 'String'>
-    readonly nombre: FieldRef<"listado_escuelas", 'String'>
+    readonly dorsal: FieldRef<"listado_escuelas", 'Int'>
+    readonly nombre_apellido: FieldRef<"listado_escuelas", 'String'>
+    readonly confirmado: FieldRef<"listado_escuelas", 'Int'>
   }
     
 
@@ -11903,7 +11922,8 @@ export namespace Prisma {
   export const Listado_escuelasScalarFieldEnum: {
     carrera_id: 'carrera_id',
     dorsal: 'dorsal',
-    nombre: 'nombre'
+    nombre_apellido: 'nombre_apellido',
+    confirmado: 'confirmado'
   };
 
   export type Listado_escuelasScalarFieldEnum = (typeof Listado_escuelasScalarFieldEnum)[keyof typeof Listado_escuelasScalarFieldEnum]
@@ -12035,8 +12055,7 @@ export namespace Prisma {
 
 
   export const listado_escuelasOrderByRelevanceFieldEnum: {
-    dorsal: 'dorsal',
-    nombre: 'nombre'
+    nombre_apellido: 'nombre_apellido'
   };
 
   export type listado_escuelasOrderByRelevanceFieldEnum = (typeof listado_escuelasOrderByRelevanceFieldEnum)[keyof typeof listado_escuelasOrderByRelevanceFieldEnum]
@@ -12574,15 +12593,17 @@ export namespace Prisma {
     OR?: listado_escuelasWhereInput[]
     NOT?: listado_escuelasWhereInput | listado_escuelasWhereInput[]
     carrera_id?: IntFilter<"listado_escuelas"> | number
-    dorsal?: StringFilter<"listado_escuelas"> | string
-    nombre?: StringFilter<"listado_escuelas"> | string
+    dorsal?: IntFilter<"listado_escuelas"> | number
+    nombre_apellido?: StringNullableFilter<"listado_escuelas"> | string | null
+    confirmado?: IntNullableFilter<"listado_escuelas"> | number | null
     events?: XOR<EventsScalarRelationFilter, eventsWhereInput>
   }
 
   export type listado_escuelasOrderByWithRelationInput = {
     carrera_id?: SortOrder
     dorsal?: SortOrder
-    nombre?: SortOrder
+    nombre_apellido?: SortOrderInput | SortOrder
+    confirmado?: SortOrderInput | SortOrder
     events?: eventsOrderByWithRelationInput
     _relevance?: listado_escuelasOrderByRelevanceInput
   }
@@ -12593,15 +12614,17 @@ export namespace Prisma {
     OR?: listado_escuelasWhereInput[]
     NOT?: listado_escuelasWhereInput | listado_escuelasWhereInput[]
     carrera_id?: IntFilter<"listado_escuelas"> | number
-    dorsal?: StringFilter<"listado_escuelas"> | string
-    nombre?: StringFilter<"listado_escuelas"> | string
+    dorsal?: IntFilter<"listado_escuelas"> | number
+    nombre_apellido?: StringNullableFilter<"listado_escuelas"> | string | null
+    confirmado?: IntNullableFilter<"listado_escuelas"> | number | null
     events?: XOR<EventsScalarRelationFilter, eventsWhereInput>
   }, "carrera_id_dorsal">
 
   export type listado_escuelasOrderByWithAggregationInput = {
     carrera_id?: SortOrder
     dorsal?: SortOrder
-    nombre?: SortOrder
+    nombre_apellido?: SortOrderInput | SortOrder
+    confirmado?: SortOrderInput | SortOrder
     _count?: listado_escuelasCountOrderByAggregateInput
     _avg?: listado_escuelasAvgOrderByAggregateInput
     _max?: listado_escuelasMaxOrderByAggregateInput
@@ -12614,8 +12637,9 @@ export namespace Prisma {
     OR?: listado_escuelasScalarWhereWithAggregatesInput[]
     NOT?: listado_escuelasScalarWhereWithAggregatesInput | listado_escuelasScalarWhereWithAggregatesInput[]
     carrera_id?: IntWithAggregatesFilter<"listado_escuelas"> | number
-    dorsal?: StringWithAggregatesFilter<"listado_escuelas"> | string
-    nombre?: StringWithAggregatesFilter<"listado_escuelas"> | string
+    dorsal?: IntWithAggregatesFilter<"listado_escuelas"> | number
+    nombre_apellido?: StringNullableWithAggregatesFilter<"listado_escuelas"> | string | null
+    confirmado?: IntNullableWithAggregatesFilter<"listado_escuelas"> | number | null
   }
 
   export type sessionWhereInput = {
@@ -13341,44 +13365,51 @@ export namespace Prisma {
   }
 
   export type listado_escuelasCreateInput = {
-    dorsal: string
-    nombre: string
+    dorsal: number
+    nombre_apellido?: string | null
+    confirmado?: number | null
     events: eventsCreateNestedOneWithoutListado_escuelasInput
   }
 
   export type listado_escuelasUncheckedCreateInput = {
     carrera_id: number
-    dorsal: string
-    nombre: string
+    dorsal: number
+    nombre_apellido?: string | null
+    confirmado?: number | null
   }
 
   export type listado_escuelasUpdateInput = {
-    dorsal?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
+    dorsal?: IntFieldUpdateOperationsInput | number
+    nombre_apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    confirmado?: NullableIntFieldUpdateOperationsInput | number | null
     events?: eventsUpdateOneRequiredWithoutListado_escuelasNestedInput
   }
 
   export type listado_escuelasUncheckedUpdateInput = {
     carrera_id?: IntFieldUpdateOperationsInput | number
-    dorsal?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
+    dorsal?: IntFieldUpdateOperationsInput | number
+    nombre_apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    confirmado?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type listado_escuelasCreateManyInput = {
     carrera_id: number
-    dorsal: string
-    nombre: string
+    dorsal: number
+    nombre_apellido?: string | null
+    confirmado?: number | null
   }
 
   export type listado_escuelasUpdateManyMutationInput = {
-    dorsal?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
+    dorsal?: IntFieldUpdateOperationsInput | number
+    nombre_apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    confirmado?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type listado_escuelasUncheckedUpdateManyInput = {
     carrera_id?: IntFieldUpdateOperationsInput | number
-    dorsal?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
+    dorsal?: IntFieldUpdateOperationsInput | number
+    nombre_apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    confirmado?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type sessionCreateInput = {
@@ -14279,33 +14310,40 @@ export namespace Prisma {
 
   export type listado_escuelasCarrera_idDorsalCompoundUniqueInput = {
     carrera_id: number
-    dorsal: string
+    dorsal: number
   }
 
   export type listado_escuelasCountOrderByAggregateInput = {
     carrera_id?: SortOrder
     dorsal?: SortOrder
-    nombre?: SortOrder
+    nombre_apellido?: SortOrder
+    confirmado?: SortOrder
   }
 
   export type listado_escuelasAvgOrderByAggregateInput = {
     carrera_id?: SortOrder
+    dorsal?: SortOrder
+    confirmado?: SortOrder
   }
 
   export type listado_escuelasMaxOrderByAggregateInput = {
     carrera_id?: SortOrder
     dorsal?: SortOrder
-    nombre?: SortOrder
+    nombre_apellido?: SortOrder
+    confirmado?: SortOrder
   }
 
   export type listado_escuelasMinOrderByAggregateInput = {
     carrera_id?: SortOrder
     dorsal?: SortOrder
-    nombre?: SortOrder
+    nombre_apellido?: SortOrder
+    confirmado?: SortOrder
   }
 
   export type listado_escuelasSumOrderByAggregateInput = {
     carrera_id?: SortOrder
+    dorsal?: SortOrder
+    confirmado?: SortOrder
   }
 
   export type sessionOrderByRelevanceInput = {
@@ -15622,13 +15660,15 @@ export namespace Prisma {
   }
 
   export type listado_escuelasCreateWithoutEventsInput = {
-    dorsal: string
-    nombre: string
+    dorsal: number
+    nombre_apellido?: string | null
+    confirmado?: number | null
   }
 
   export type listado_escuelasUncheckedCreateWithoutEventsInput = {
-    dorsal: string
-    nombre: string
+    dorsal: number
+    nombre_apellido?: string | null
+    confirmado?: number | null
   }
 
   export type listado_escuelasCreateOrConnectWithoutEventsInput = {
@@ -15678,8 +15718,9 @@ export namespace Prisma {
     OR?: listado_escuelasScalarWhereInput[]
     NOT?: listado_escuelasScalarWhereInput | listado_escuelasScalarWhereInput[]
     carrera_id?: IntFilter<"listado_escuelas"> | number
-    dorsal?: StringFilter<"listado_escuelas"> | string
-    nombre?: StringFilter<"listado_escuelas"> | string
+    dorsal?: IntFilter<"listado_escuelas"> | number
+    nombre_apellido?: StringNullableFilter<"listado_escuelas"> | string | null
+    confirmado?: IntNullableFilter<"listado_escuelas"> | number | null
   }
 
   export type eventsCreateWithoutEvents_resultadoInput = {
@@ -16102,8 +16143,9 @@ export namespace Prisma {
   }
 
   export type listado_escuelasCreateManyEventsInput = {
-    dorsal: string
-    nombre: string
+    dorsal: number
+    nombre_apellido?: string | null
+    confirmado?: number | null
   }
 
   export type events_resultadoUpdateWithoutEventsInput = {
@@ -16137,18 +16179,21 @@ export namespace Prisma {
   }
 
   export type listado_escuelasUpdateWithoutEventsInput = {
-    dorsal?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
+    dorsal?: IntFieldUpdateOperationsInput | number
+    nombre_apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    confirmado?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type listado_escuelasUncheckedUpdateWithoutEventsInput = {
-    dorsal?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
+    dorsal?: IntFieldUpdateOperationsInput | number
+    nombre_apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    confirmado?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type listado_escuelasUncheckedUpdateManyWithoutEventsInput = {
-    dorsal?: StringFieldUpdateOperationsInput | string
-    nombre?: StringFieldUpdateOperationsInput | string
+    dorsal?: IntFieldUpdateOperationsInput | number
+    nombre_apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    confirmado?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type deportistasCreateManyUserInput = {

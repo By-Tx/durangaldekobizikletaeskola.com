@@ -88,12 +88,14 @@ model events_resultado {
 }
 
 model listado_escuelas {
-  carrera_id Int
-  dorsal     String  @db.Char(4)
-  nombre     String  @db.VarChar(100)
-  events     events  @relation(fields: [carrera_id], references: [id], onDelete: Cascade, onUpdate: Cascade, map: "listado_escuelas_ibfk_1")
+  carrera_id      Int
+  dorsal          Int
+  nombre_apellido String? @db.VarChar(100)
+  confirmado      Int?    @db.TinyInt
+  events          events  @relation(fields: [carrera_id], references: [id], onDelete: Cascade, onUpdate: Cascade, map: "listado_escuelas_ibfk_1")
 
   @@id([carrera_id, dorsal])
+  @@map("listado_escuelas")
 }
 
 model session {

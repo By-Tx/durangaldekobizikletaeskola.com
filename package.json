@@ -17,16 +17,19 @@
   },
   "dependencies": {
     "@better-auth/cli": "^1.2.7",
+    "@pdf-lib/fontkit": "^1.1.1",
     "@prisma/client": "^6.7.0",
     "better-auth": "1.2",
     "busboy": "^1.6.0",
     "dotenv": "^16.5.0",
+    "file-saver": "^2.0.5",
     "formidable": "^3.5.4",
     "mysql2": "^3.14.1",
     "next": "^15.3.2",
     "next-intl": "^4.1.0",
     "next-sitemap": "^4.2.3",
     "nodemailer": "^7.0.2",
+    "pdf-lib": "^1.17.1",
     "react": "^19",
     "react-dom": "^19",
     "react-slideshow-image": "^4.3.2",
@@ -35,6 +38,7 @@
   "devDependencies": {
     "@types/busboy": "^1.5.4",
     "@types/estree": "^1.0.7",
+    "@types/file-saver": "^2.0.7",
     "@types/formidable": "^3.4.5",
     "@types/json-schema": "^7.0.15",
     "@types/node": "^22.15.15",
@@ -54,4 +58,3 @@
     "typescript": "^5.8.3"
   }
 }
-

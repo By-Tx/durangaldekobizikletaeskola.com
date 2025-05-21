@@ -185,7 +185,8 @@ exports.Prisma.Events_resultadoScalarFieldEnum = {
 exports.Prisma.Listado_escuelasScalarFieldEnum = {
   carrera_id: 'carrera_id',
   dorsal: 'dorsal',
-  nombre: 'nombre'
+  nombre_apellido: 'nombre_apellido',
+  confirmado: 'confirmado'
 };
 
 exports.Prisma.SessionScalarFieldEnum = {
@@ -229,12 +230,6 @@ exports.Prisma.Activation_codesScalarFieldEnum = {
   role: 'role',
   expires_at: 'expires_at',
   usos: 'usos'
-};
-
-exports.Prisma.ListadoEscuelasScalarFieldEnum = {
-  idCarrera: 'idCarrera',
-  dorsal: 'dorsal',
-  nombre: 'nombre'
 };
 
 exports.Prisma.SortOrder = {
@@ -287,8 +282,7 @@ exports.Prisma.events_resultadoOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.listado_escuelasOrderByRelevanceFieldEnum = {
-  dorsal: 'dorsal',
-  nombre: 'nombre'
+  nombre_apellido: 'nombre_apellido'
 };
 
 exports.Prisma.sessionOrderByRelevanceFieldEnum = {
@@ -317,11 +311,6 @@ exports.Prisma.verificationOrderByRelevanceFieldEnum = {
 exports.Prisma.activation_codesOrderByRelevanceFieldEnum = {
   code: 'code'
 };
-
-exports.Prisma.ListadoEscuelasOrderByRelevanceFieldEnum = {
-  dorsal: 'dorsal',
-  nombre: 'nombre'
-};
 exports.events_categoria = exports.$Enums.events_categoria = {
   Cadetes: 'Cadetes',
   Juveniles: 'Juveniles',
@@ -341,8 +330,7 @@ exports.user_role = exports.$Enums.user_role = {
   coach: 'coach',
   instructor: 'instructor',
   runner: 'runner',
-  user: 'user',
-  instructor: 'instructor'
+  user: 'user'
 };
 
 exports.activation_codes_role = exports.$Enums.activation_codes_role = {
@@ -351,8 +339,7 @@ exports.activation_codes_role = exports.$Enums.activation_codes_role = {
   coach: 'coach',
   instructor: 'instructor',
   runner: 'runner',
-  user: 'user',
-  instructor: 'instructor'
+  user: 'user'
 };
 
 exports.Prisma.ModelName = {
@@ -365,8 +352,7 @@ exports.Prisma.ModelName = {
   session: 'session',
   user: 'user',
   verification: 'verification',
-  activation_codes: 'activation_codes',
-  ListadoEscuelas: 'ListadoEscuelas'
+  activation_codes: 'activation_codes'
 };
 
 /**
