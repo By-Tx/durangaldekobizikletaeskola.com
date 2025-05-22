@@ -47,7 +47,9 @@ function translateRole(role: string): string {
 export default function Codigos({ codigos, rol }: CodeClientProps) {
     const [codes, setCodes] = useState<Codigo[]>(codigos);
     const [expiredCodes, setExpiredCodes] = useState<Codigo[]>([]);
-    const [form, setForm] = useState<{ role: string; expires_at?: string }>({ role: roles[0].value });
+    const [form, setForm] = useState<{ role: string; expires_at?: string }>({
+        role: rol === "admin" ? roles[0].value : "staff",
+    });
     const [loading, setLoading] = useState(false);
     const { setError } = useError();
     const [success, setSuccess] = useState("");
