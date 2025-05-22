@@ -6,7 +6,7 @@ import Table from "@/app/[locale]/components/session/ui/Table";
 import { useError } from "@/context/ErrorContext";
 import back from "@/app/media/session/back.svg";
 import download from "@/app/media/session/download.svg";
-import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import { PDFDocument, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
 import { saveAs } from 'file-saver';
 
@@ -52,7 +52,9 @@ export default function RaceClient({ carreras, rol }: RaceClientProps) {
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [inscritos, setInscritos] = useState<any[]>([]);
     const { setError } = useError();
-    const scholarship = rol === "instructor" || rol === "user";
+    const scholarship = rol === "user" || rol === "instructor";
+    const parent = rol === "user";
+    const instructor = rol === "instructor";
 
     // Filtrar los datos según el término de búsqueda
     const filteredData = data.filter(carrera =>
@@ -600,7 +602,7 @@ export default function RaceClient({ carreras, rol }: RaceClientProps) {
             )}
 
             {/* Mostrar información de la carrera */}
-            {(!selectedRace || scholarship) && (
+            {(!selectedRace || parent) && (
                 <>
                     {/* Título y botón responsive */}
                     <div className="mb-6">
@@ -637,7 +639,12 @@ export default function RaceClient({ carreras, rol }: RaceClientProps) {
                                         }}
                                     />
                                     <p className="text-gray-300 text-base md:text-lg font-semibold italic">
-                                        {!scholarship ? "Haz clic en una carrera para añadir los resultados." : "Haz clic en una carrera para inscribir un deportista."}
+                                        {instructor
+                                            ? "Haz clic en una carrera para ver la lista de deportistas inscritos."
+                                            : !parent
+                                                ? "Haz clic en una carrera para añadir los resultados."
+                                                : "Haz clic en una carrera para inscribir a un deportista."
+                                        }
                                     </p>
                                 </div>
                                 <input
@@ -659,7 +666,7 @@ export default function RaceClient({ carreras, rol }: RaceClientProps) {
                                 ]}
                                 data={filteredData}
                                 colWidths={[225, 250, 150, 150, 150, 300]}
-                                onRowClick={scholarship ? handleSignUp : handleRowClick}
+                                onRowClick={(parent) ? handleSignUp : handleRowClick}
                                 onEdit={scholarship ? undefined : handleEdit}
                                 onDelete={scholarship ? undefined : handleDelete}
                                 formatFecha={formatFecha}
@@ -836,7 +843,7 @@ export default function RaceClient({ carreras, rol }: RaceClientProps) {
                 </div>
             )}
 
-            {selectedRace?.categoria === "Escuela" && !scholarship && (
+            {selectedRace?.categoria === "Escuela" && !parent && (
                 <div className="mt-8">
                     <button
                         className="mb-4 px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-600 text-gray-200 rounded-lg font-semibold shadow-lg

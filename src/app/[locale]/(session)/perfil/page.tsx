@@ -13,6 +13,12 @@ export default async function PerfilPage() {
         redirect("/");
     }
 
+    const rol = session?.user?.role || "";
+
+    if (rol !== "coach" && rol !== "instructor" && rol !== "runner" && rol !== "user") {
+        redirect("/es/dashboard");
+    }
+
     // Obtener datos del usuario desde la BD
     const user = await prisma.user.findUnique({
         where: { id: session.user.id },

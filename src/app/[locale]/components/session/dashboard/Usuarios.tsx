@@ -22,6 +22,8 @@ function translateRole(role: string): string {
             return "Personal";
         case "coach":
             return "Entrenador";
+        case "instructor":
+            return "Monitor";
         case "runner":
             return "Deportista";
         case "user":
@@ -151,8 +153,9 @@ export default function UsersTable({ users }: UsersTableProps) {
                 >
                     <option value="">Todos los roles</option>
                     <option value="admin">Administrador</option>
-                    <option value="coach">Entrenador</option>
                     <option value="staff">Personal</option>
+                    <option value="coach">Entrenador</option>
+                    <option value="instructor">Monitor</option>
                     <option value="runner">Deportista</option>
                     <option value="user">Usuario</option>
                 </select>
@@ -214,8 +217,9 @@ export default function UsersTable({ users }: UsersTableProps) {
                                 className="w-full border border-blue-700 bg-gray-800 px-4 py-2 rounded-lg"
                             >
                                 <option value="admin">Administrador</option>
-                                <option value="coach">Entrenador</option>
                                 <option value="staff">Personal</option>
+                                <option value="coach">Entrenador</option>
+                                <option value="instructor">Monitor</option>
                                 <option value="runner">Deportista</option>
                                 <option value="user">Usuario</option>
                             </select>

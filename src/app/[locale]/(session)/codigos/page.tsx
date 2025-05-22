@@ -13,6 +13,12 @@ export default async function Codigos() {
         redirect("/");
     }
 
+    const rol = session?.user?.role || "";
+
+    if (rol !== "admin" && rol !== "staff") {
+        redirect("/es/dashboard");
+    }
+
     type Codigos = {
         id: number;
         code: string;
