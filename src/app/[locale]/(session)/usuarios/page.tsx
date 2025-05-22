@@ -28,11 +28,11 @@ async function getUsers() {
     }
 
     const data = await res.json();
-    return data;
+    return { users: data, rol };
 }
 
 export default async function UsersPage() {
-    const users = await getUsers();
+    const { users, rol } = await getUsers();
 
-    return <UsersTable users={users} />;
+    return <UsersTable users={users} currentUserRole={rol} />;
 }

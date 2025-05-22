@@ -628,49 +628,57 @@ export default function RaceClient({ carreras, rol }: RaceClientProps) {
                     </div>
                     <div className="flex justify-center">
                         <div className="w-full md:w-4/5">
-                            <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
-                                <div className="flex items-center">
-                                    <Image
-                                        src={info}
-                                        alt="info"
-                                        className="w-8 h-8 md:w-10 md:h-10 mr-2"
-                                        style={{
-                                            filter: "invert(83%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(90%)"
-                                        }}
-                                    />
-                                    <p className="text-gray-300 text-base md:text-lg font-semibold italic">
-                                        {instructor
-                                            ? "Haz clic en una carrera para ver la lista de deportistas inscritos."
-                                            : !parent
-                                                ? "Haz clic en una carrera para añadir los resultados."
-                                                : "Haz clic en una carrera para inscribir a un deportista."
-                                        }
-                                    </p>
+                            {filteredData.length === 0 ? (
+                                <div className="text-center text-gray-400 text-lg">
+                                    No existe ninguna carrera
                                 </div>
-                                <input
-                                    type="text"
-                                    placeholder="Buscar..."
-                                    value={searchTerm}
-                                    onChange={handleSearchChange}
-                                    className="w-full md:w-1/5 border border-blue-400 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
-                                />
-                            </div>
-                            <Table
-                                columns={[
-                                    { name: "Nombre", key: "nombre" },
-                                    { name: "Fecha", key: "fecha" },
-                                    { name: "Lugar", key: "lugar" },
-                                    { name: "Categoría", key: "categoria" },
-                                    { name: "Modalidad", key: "modalidad" },
-                                    { name: "Descripción", key: "descripcion" },
-                                ]}
-                                data={filteredData}
-                                colWidths={[225, 250, 150, 150, 150, 300]}
-                                onRowClick={(parent) ? handleSignUp : handleRowClick}
-                                onEdit={scholarship ? undefined : handleEdit}
-                                onDelete={scholarship ? undefined : handleDelete}
-                                formatFecha={formatFecha}
-                            />
+                            ) : (
+                                <>
+                                    <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
+                                        <div className="flex items-center">
+                                            <Image
+                                                src={info}
+                                                alt="info"
+                                                className="w-8 h-8 md:w-10 md:h-10 mr-2"
+                                                style={{
+                                                    filter: "invert(83%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(90%)"
+                                                }}
+                                            />
+                                            <p className="text-gray-300 text-base md:text-lg font-semibold italic">
+                                                {instructor
+                                                    ? "Haz clic en una carrera para ver la lista de deportistas inscritos."
+                                                    : !parent
+                                                        ? "Haz clic en una carrera para añadir los resultados."
+                                                        : "Haz clic en una carrera para inscribir a un deportista."
+                                                }
+                                            </p>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Buscar..."
+                                            value={searchTerm}
+                                            onChange={handleSearchChange}
+                                            className="w-full md:w-1/5 border border-blue-400 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
+                                        />
+                                    </div>
+                                    <Table
+                                        columns={[
+                                            { name: "Nombre", key: "nombre" },
+                                            { name: "Fecha", key: "fecha" },
+                                            { name: "Lugar", key: "lugar" },
+                                            { name: "Categoría", key: "categoria" },
+                                            { name: "Modalidad", key: "modalidad" },
+                                            { name: "Descripción", key: "descripcion" },
+                                        ]}
+                                        data={filteredData}
+                                        colWidths={[225, 250, 150, 150, 150, 300]}
+                                        onRowClick={(parent) ? handleSignUp : handleRowClick}
+                                        onEdit={scholarship ? undefined : handleEdit}
+                                        onDelete={scholarship ? undefined : handleDelete}
+                                        formatFecha={formatFecha}
+                                    />
+                                </>
+                            )}
                         </div>
                     </div>
                 </>

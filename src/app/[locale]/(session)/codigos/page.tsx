@@ -48,5 +48,5 @@ export default async function Codigos() {
         usos: Number(codigo.usos) || 0,
     }));
 
-    return <CodigosClient codigos={codigos} />;
+    return <CodigosClient codigos={codigos} rol={rol} />;
 }

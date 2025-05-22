@@ -12,6 +12,7 @@ interface User {
 
 interface UsersTableProps {
     users: User[];
+    currentUserRole: string;
 }
 
 function translateRole(role: string): string {
@@ -33,7 +34,7 @@ function translateRole(role: string): string {
     }
 }
 
-export default function UsersTable({ users }: UsersTableProps) {
+export default function UsersTable({ users, currentUserRole }: UsersTableProps) {
     const [userList, setUserList] = useState<User[]>(users);
     const [editForm, setEditForm] = useState<User | null>(null);
     const [showForm, setShowForm] = useState(false);
@@ -101,7 +102,8 @@ export default function UsersTable({ users }: UsersTableProps) {
     const filteredUsers = userList.filter(
         (u) =>
             u.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-            (filterRole === "" || u.role === filterRole)
+            (filterRole === "" || u.role === filterRole) &&
+            (currentUserRole === "admin" || u.role !== "admin")
     );
 
     return (
@@ -137,46 +139,54 @@ export default function UsersTable({ users }: UsersTableProps) {
                 <div className="hidden sm:block"></div>
             </div>
 
-            {/* filters */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 text-white">
-                <input
-                    type="text"
-                    placeholder="Buscar por nombre..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="px-4 py-2 rounded-lg bg-gray-800 border border-blue-600 w-full sm:w-64"
-                />
-                <select
-                    value={filterRole}
-                    onChange={(e) => setFilterRole(e.target.value)}
-                    className="px-4 py-2 rounded-lg bg-gray-800 border border-blue-600 w-full sm:w-64"
-                >
-                    <option value="">Todos los roles</option>
-                    <option value="admin">Administrador</option>
-                    <option value="staff">Personal</option>
-                    <option value="coach">Entrenador</option>
-                    <option value="instructor">Monitor</option>
-                    <option value="runner">Deportista</option>
-                    <option value="user">Usuario</option>
-                </select>
-            </div>
-
-            <div className="flex justify-center">
-                <div className="w-full sm:w-11/12 md:w-3/4 lg:w-1/2">
-                    <Table
-                        columns={[
-                            { name: "Correo electrónico", key: "email" },
-                            { name: "Nombre", key: "name" },
-                            { name: "Rol", key: "role" },
-                        ]}
-                        data={filteredUsers}
-                        colWidths={[300, 250, 200]}
-                        onEdit={handleEditClick}
-                        onDelete={handleDeleteClick}
-                        translateRole={translateRole}
-                    />
+            {filteredUsers.length === 0 ? (
+                <div className="text-center text-gray-400 text-lg">
+                    No existe ningún usuario
                 </div>
-            </div>
+            ) : (
+                <>
+                    {/* filters */}
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 text-white">
+                        <input
+                            type="text"
+                            placeholder="Buscar por nombre..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="px-4 py-2 rounded-lg bg-gray-800 border border-blue-600 w-full sm:w-64"
+                        />
+                        <select
+                            value={filterRole}
+                            onChange={(e) => setFilterRole(e.target.value)}
+                            className="px-4 py-2 rounded-lg bg-gray-800 border border-blue-600 w-full sm:w-64"
+                        >
+                            <option value="">Todos los roles</option>
+                            <option value="admin" hidden={filterRole === "admin" && currentUserRole !== "admin"}>Administrador</option>
+                            <option value="staff">Personal</option>
+                            <option value="coach">Entrenador</option>
+                            <option value="instructor">Monitor</option>
+                            <option value="runner">Deportista</option>
+                            <option value="user">Usuario</option>
+                        </select>
+                    </div>
+
+                    <div className="flex justify-center">
+                        <div className="w-full sm:w-11/12 md:w-3/4 lg:w-1/2">
+                            <Table
+                                columns={[
+                                    { name: "Correo electrónico", key: "email" },
+                                    { name: "Nombre", key: "name" },
+                                    { name: "Rol", key: "role" },
+                                ]}
+                                data={filteredUsers}
+                                colWidths={[300, 250, 200]}
+                                onEdit={handleEditClick}
+                                onDelete={handleDeleteClick}
+                                translateRole={translateRole}
+                            />
+                        </div>
+                    </div>
+                </>
+            )}
 
             {showForm && editForm && (
                 <div className={`fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 transition-opacity ${closing ? "animate-fade-out" : "animate-fade-in"}`}>
