@@ -378,8 +378,8 @@ export default function ClientForm() {
                     />
                     <label htmlFor="fileUpload" className="w-full">
 
-                        <div className="w-full py-2  bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <p className='cursor-pointer text-center block'> Haz clic aquí para seleccionar imagenes</p>
+                        <div className=" cursor-pointer w-full py-2  bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <p className=' text-center block'> Haz clic aquí para seleccionar imagenes</p>
                             <section className='text-center '>
                                 <p className="text-orange-400 italic text-sm ">hay un limite de 30 imagenes de 5MB por cada subida</p>
                             </section>
