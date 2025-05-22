@@ -284,34 +284,42 @@ export default function RunnersClient({ deportistas, rol }: RunnerClientProps) {
             </div>
             <div className="flex justify-center">
                 <div className="w-full md:w-4/5">
-                    <div className="flex flex-col md:flex-row md:justify-end mb-4 gap-2">
-                        <input
-                            type="text"
-                            placeholder="Buscar..."
-                            value={searchTerm}
-                            onChange={handleSearchChange}
-                            className="w-full md:w-1/5 border border-blue-400 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
-                        />
-                    </div>
-                    <Table
-                        columns={[
-                            { name: "Número de licencia", key: "numero_licencia" },
-                            { name: "Nombre", key: "nombre" },
-                            { name: "Apellidos", key: "apellidos" },
-                            { name: "DNI", key: "dni" },
-                            { name: "Fecha de nacimiento", key: "fecha_nacimiento" },
-                            { name: "Peso", key: "peso" },
-                            { name: "Altura", key: "altura" },
-                            { name: "FTP", key: "ftp" },
-                            { name: "Pulso", key: "pulso" },
-                        ]}
-                        data={filteredData}
-                        colWidths={[200, 150, 150, 125, 225, 150, 100, 100, 100]}
-                        onHistorial={() => { }}
-                        onEdit={handleEdit}
-                        onDelete={handleDelete}
-                        formatFecha={formatFecha}
-                    />
+                    {filteredData.length === 0 ? (
+                        <div className="text-center text-gray-400 text-lg">
+                            No existe ningún deportista
+                        </div>
+                    ) : (
+                        <>
+                            <div className="flex flex-col md:flex-row md:justify-end mb-4 gap-2">
+                                <input
+                                    type="text"
+                                    placeholder="Buscar..."
+                                    value={searchTerm}
+                                    onChange={handleSearchChange}
+                                    className="w-full md:w-1/5 border border-blue-400 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
+                                />
+                            </div>
+                            <Table
+                                columns={[
+                                    { name: "Número de licencia", key: "numero_licencia" },
+                                    { name: "Nombre", key: "nombre" },
+                                    { name: "Apellidos", key: "apellidos" },
+                                    { name: "DNI", key: "dni" },
+                                    { name: "Fecha de nacimiento", key: "fecha_nacimiento" },
+                                    { name: "Peso", key: "peso" },
+                                    { name: "Altura", key: "altura" },
+                                    { name: "FTP", key: "ftp" },
+                                    { name: "Pulso", key: "pulso" },
+                                ]}
+                                data={filteredData}
+                                colWidths={[200, 150, 150, 125, 225, 150, 100, 100, 100]}
+                                onHistorial={() => { }}
+                                onEdit={handleEdit}
+                                onDelete={handleDelete}
+                                formatFecha={formatFecha}
+                            />
+                        </>
+                    )}
                 </div>
             </div>
 

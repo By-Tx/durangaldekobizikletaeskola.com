@@ -10,11 +10,6 @@ export async function GET() {
             name: true,
             role: true,
         },
-        where: {
-            role: {
-                not: "admin",
-            },
-        },
         orderBy: {
             name: "asc",
         },

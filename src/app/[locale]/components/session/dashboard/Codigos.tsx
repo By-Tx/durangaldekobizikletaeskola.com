@@ -13,6 +13,7 @@ interface Codigo {
 
 interface CodeClientProps {
     codigos: Codigo[];
+    rol: string;
 }
 
 const roles = [
@@ -43,7 +44,7 @@ function translateRole(role: string): string {
     }
 }
 
-export default function Codigos({ codigos }: CodeClientProps) {
+export default function Codigos({ codigos, rol }: CodeClientProps) {
     const [codes, setCodes] = useState<Codigo[]>(codigos);
     const [expiredCodes, setExpiredCodes] = useState<Codigo[]>([]);
     const [form, setForm] = useState<{ role: string; expires_at?: string }>({ role: roles[0].value });
@@ -114,6 +115,10 @@ export default function Codigos({ codigos }: CodeClientProps) {
         }
     };
 
+    const visibleCodes = rol === "admin"
+        ? codes
+        : codes.filter(code => code.role !== "admin");
+
     // Función para copiar el código y mostrar mensaje
     const handleCopy = async (code: string) => {
         try {
@@ -152,7 +157,13 @@ export default function Codigos({ codigos }: CodeClientProps) {
                     className="rounded-lg px-4 py-2 bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none w-full md:w-auto"
                 >
                     {roles.map(r => (
-                        <option key={r.value} value={r.value}>{r.label}</option>
+                        <option
+                            key={r.value}
+                            value={r.value}
+                            hidden={r.value === "admin" && rol !== "admin"}
+                        >
+                            {r.label}
+                        </option>
                     ))}
                 </select>
                 <button
@@ -195,35 +206,40 @@ export default function Codigos({ codigos }: CodeClientProps) {
                 </div>
             )}
 
-
-            <Table
-                columns={[
-                    {
-                        name: "Código",
-                        key: "code",
-                        renderCell: (row: any) => (
-                            <button
-                                type="button"
-                                className="text-blue-300 font-mono underline hover:text-blue-400 transition break-all"
-                                title="Copiar código"
-                                onClick={() => handleCopy(row.code)}
-                                style={{ cursor: "pointer" }}
-                            >
-                                {row.code}
-                            </button>
-                        ),
-                    },
-                    { name: "Rol", key: "role" },
-                    { name: "Expira", key: "expires_at" },
-                    { name: "Usos", key: "usos" },
-                ]}
-                data={codes}
-                colWidths={[110, 130, 120, 100, 120]}
-                onCopy={(row: any) => handleCopy(row.code)}
-                onDelete={handleDelete}
-                translateRole={translateRole}
-                formatFecha={formatFecha}
-            />
+            {visibleCodes.length === 0 ? (
+                <div className="text-center text-gray-400 text-lg">
+                    No existe ningún código de activación
+                </div>
+            ) : (
+                <Table
+                    columns={[
+                        {
+                            name: "Código",
+                            key: "code",
+                            renderCell: (row: any) => (
+                                <button
+                                    type="button"
+                                    className="text-blue-300 font-mono underline hover:text-blue-400 transition break-all"
+                                    title="Copiar código"
+                                    onClick={() => handleCopy(row.code)}
+                                    style={{ cursor: "pointer" }}
+                                >
+                                    {row.code}
+                                </button>
+                            ),
+                        },
+                        { name: "Rol", key: "role" },
+                        { name: "Expira", key: "expires_at" },
+                        { name: "Usos", key: "usos" },
+                    ]}
+                    data={visibleCodes}
+                    colWidths={[110, 130, 120, 100, 120]}
+                    onCopy={(row: any) => handleCopy(row.code)}
+                    onDelete={handleDelete}
+                    translateRole={translateRole}
+                    formatFecha={formatFecha}
+                />
+            )}
 
             {showExpired && (
                 <div className={`fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300 ${closingExpired ? "animate-fade-out" : "animate-fade-in"}`}>

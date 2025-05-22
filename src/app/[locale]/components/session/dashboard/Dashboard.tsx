@@ -84,12 +84,14 @@ export default function DashboardClient({ name, rol, links }: DashboardClientPro
                         >
                             <Image
                                 src={link.img}
-                                alt={link.text}
+                                alt={rol === "user" ? "Carreras" : link.text}
                                 width={64}
                                 height={64}
                                 className="w-16 h-16 mb-2 md:mb-0 md:mr-6"
                             />
-                            <span className="text-base font-bold text-center md:text-left md:text-lg">{link.text}</span>
+                            <span className="text-base font-bold text-center md:text-left md:text-lg">
+                                {rol === "user" ? "Carreras" : link.text}
+                            </span>
                         </Link>
                     ))}
                     <button
