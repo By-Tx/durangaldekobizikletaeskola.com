@@ -134,21 +134,19 @@ export default function SignUp() {
             });
 
             // 3. Guardar datos extra en la BD
-            if (role === "runner" || role === "coach") {
-                const res = await fetch("/api/signup", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        email,
-                        role,
-                        ...extraFields,
-                    }),
-                });
-                if (!res.ok) {
-                    const data = await res.json();
-                    setErrorMsg(data.error || "Error guardando los datos");
-                    return;
-                }
+            const res = await fetch("/api/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email,
+                    role,
+                    ...extraFields,
+                }),
+            });
+            if (!res.ok) {
+                const data = await res.json();
+                setErrorMsg(data.error || "Error guardando los datos");
+                return;
             }
 
             setSuccess("Registro completado. Redirigiendo...");

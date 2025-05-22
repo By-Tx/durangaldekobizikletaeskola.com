@@ -24,13 +24,13 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Usuario no encontrado" }, { status: 404 });
         }
 
-        // Actualiza el rol del usuario
+        // Actualiza el rol del usuario SIEMPRE
         await prisma.user.update({
             where: { email },
             data: { role },
         });
 
-        // Crea o actualiza el perfil según el rol
+        // Si es runner, crea el registro en deportistas
         if (role === "runner") {
             await prisma.deportistas.create({
                 data: {
@@ -47,7 +47,9 @@ export async function POST(req: NextRequest) {
                     user_id: user.id,
                 },
             });
-        } else if (role === "coach") {
+        }
+        // Si es coach, crea el registro en entrenadores
+        else if (role === "coach") {
             const maxIdObj = await prisma.entrenadores.aggregate({
                 _max: { id: true }
             });
@@ -64,8 +66,6 @@ export async function POST(req: NextRequest) {
                     user_id: user.id,
                 },
             });
-        } else {
-            return NextResponse.json({ error: "Rol no soportado" }, { status: 400 });
         }
 
         return NextResponse.json({ ok: true });

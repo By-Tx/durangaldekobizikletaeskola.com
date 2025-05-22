@@ -219,7 +219,7 @@ export default function Codigos({ codigos }: CodeClientProps) {
                 ]}
                 data={codes}
                 colWidths={[110, 130, 120, 100, 120]}
-                onCopy={handleCopy}
+                onCopy={(row: any) => handleCopy(row.code)}
                 onDelete={handleDelete}
                 translateRole={translateRole}
                 formatFecha={formatFecha}
