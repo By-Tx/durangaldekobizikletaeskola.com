@@ -1,6 +1,7 @@
 # Durangaldeko Bizikleta Eskola Official Website
 
-Special thanks to [@lordlichi2006](https://github.com/lordlichi2006) and [@JaimeDM6](https://github.com/JaimeDM6) — especially to JaimeDM6 for his contribution to the DurangoBZK website.
+Special thanks to [@lordlichi2006](https://github.com/lordlichi2006) and [@JaimeDM6](https://github.com/JaimeDM6) for their valuable contributions to the DurangoBZK website.
+
 
 
 ## Description
