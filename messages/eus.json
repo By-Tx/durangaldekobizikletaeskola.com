@@ -162,7 +162,11 @@
     "mailPlaceholder": "Zure.emaila@example.com",
     "message": "MEZUA",
     "messagePlaceholder": "Zure mezua hemen idatzi",
-    "button": "BIDALI"
+    "button": "BIDALI",
+    "terms": "Baldintza orokorrak onartzen ditut",
+    "termsError": "Baldintza orokorrak onartu behar dituzu"
+    
+
   },
   "contact": {
     "title": "KONTAKTUA",
