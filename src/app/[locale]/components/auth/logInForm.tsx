@@ -25,7 +25,7 @@ export default function LogInForm() {
     }
 
     return (
-        <div className="flex justify-center items-center min-h-[60vh] bg-black">
+        <div className="flex justify-center items-center min-h-[60vh]">
             <div className="w-full max-w-md p-8 rounded-2xl shadow-2xl bg-gray-900/90 border border-blue-700">
                 <h1 className="text-3xl font-bold text-center text-blue-200 mb-8 drop-shadow">Inicio de sesión</h1>
                 <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); login(); }}>
@@ -61,21 +61,10 @@ export default function LogInForm() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <div className="flex items-center justify-between">
-                        <label className="flex items-center text-sm text-blue-200">
-                            <input
-                                type="checkbox"
-                                id="remember"
-                                name="remember"
-                                className="h-4 w-4 text-blue-500 focus:ring-blue-400 border-blue-700 rounded bg-gray-800"
-                            />
-                            <span className="ml-2">Recordar contraseña</span>
-                        </label>
-                        <a
-                            href="#"
-                            className="text-sm font-medium text-blue-400 hover:underline"
-                        >
-                            ¿Has olvidado tu contraseña?
+                    <div className="flex items-center justify-start">
+                        <span className="ml-2">¿No tienes cuenta?&nbsp;</span>
+                        <a href="/es/sign-up" className="text-blue-500 hover:underline">
+                            Regístrate
                         </a>
                     </div>
                     <div>
