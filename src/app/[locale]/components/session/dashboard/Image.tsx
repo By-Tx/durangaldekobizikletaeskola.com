@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { API_URL } from "@/lib/config";
 import { useEffect } from 'react';
 import { useError } from "@/context/ErrorContext";
+import { useInfo } from "@/context/infoContext";
 
 
 export default function ClientForm() {
@@ -17,6 +18,7 @@ export default function ClientForm() {
         race: true,
     });
     const { setError } = useError();
+    const { setInfo } = useInfo();
 
 
     type FormFields = {
@@ -251,7 +253,7 @@ export default function ClientForm() {
             });
             const message = await response.text(); // <-- read plain text
             if (response.ok) {
-                alert(message); // Show success message
+                setInfo("Subida correcta",message); // Show success message
             } else {
                 setError(` ${message}`); // Show error message
             }

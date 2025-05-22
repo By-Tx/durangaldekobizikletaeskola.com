@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { API_URL } from "@/lib/config";
 import { useEffect } from 'react';
 import { useError } from "@/context/ErrorContext";
+import { useInfo } from "@/context/infoContext";
 
 
 export default function ClientForm() {
@@ -18,6 +19,7 @@ export default function ClientForm() {
         race: true,
     });
     const { setError } = useError();
+    const { setInfo } = useInfo();
 
     const [formData, setFormData] = useState({
         year: '',
@@ -354,7 +356,7 @@ export default function ClientForm() {
                 console.error("Error:", error);
             }
             if (imageUploadSuccess && folderCreationSuccess && folder2CreationSuccess) {
-                alert(`Álbum de ${type}: ${folderName} creado correctamente.`);
+                setInfo("Album Creado", `Álbum de ${type}: ${folderName} creado correctamente.`)
             } else {
                 setError("Error interno al crear el álbum.");
             }
