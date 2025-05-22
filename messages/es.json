@@ -127,7 +127,9 @@
     "mailPlaceholder": "Tu.email@example.com",
     "message": "MENSAJE",
     "messagePlaceholder": "Escribe tu mensaje aquí",
-    "button": "ENVIAR"
+    "button": "ENVIAR",
+    "terms": "Acepto losTérminos y condiciones",
+    "termsError": "Debes aceptar los términos y condiciones"
   },
   "contact": {
     "title": "CONTACTO",

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { API_URL } from "@/lib/config";
 import { useEffect } from 'react';
 import { useError } from "@/context/ErrorContext";
+import { useInfo } from "@/context/infoContext";
 
 
 export default function ClientForm() {
@@ -17,6 +18,7 @@ export default function ClientForm() {
         race: true,
     });
     const { setError } = useError();
+    const { setInfo } = useInfo();
 
 
     type FormFields = {
@@ -251,7 +253,7 @@ export default function ClientForm() {
             });
             const message = await response.text(); // <-- read plain text
             if (response.ok) {
-                alert(message); // Show success message
+                setInfo("Subida correcta",message); // Show success message
             } else {
                 setError(` ${message}`); // Show error message
             }
@@ -366,24 +368,26 @@ export default function ClientForm() {
 
 
                 <section className="flex my-3">
-                    <div className="w-full py-2  bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <input
-                            type="file"
-                            id="fileUpload"
-                            name="fileUpload"
-                            onChange={handleFileChange}
-                            multiple
-                            accept=".jpg,.jpeg,.png,.webp" // Only allow specific file types
+                    <input
+                        type="file"
+                        id="fileUpload"
+                        name="fileUpload"
+                        onChange={handleFileChange}
+                        multiple
+                        accept=".jpg,.jpeg,.png,.webp" // Only allow specific file types
 
-                            className="hidden"
-                        />
-                        <label htmlFor="fileUpload" className="cursor-pointer text-center block">
-                            Haz clic aquí para seleccionar imagenes
-                        </label>
-                        <section className='text-center '>
-                            <p className="text-orange-400 italic text-sm ">hay un limite de 30 imagenes de 5MB por cada subida</p>
-                        </section>
-                    </div>
+                        className="hidden"
+                    />
+                    <label htmlFor="fileUpload" className="w-full">
+
+                        <div className=" cursor-pointer w-full py-2  bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <p className=' text-center block'> Haz clic aquí para seleccionar imagenes</p>
+                            <section className='text-center '>
+                                <p className="text-orange-400 italic text-sm ">hay un limite de 30 imagenes de 5MB por cada subida</p>
+                            </section>
+                        </div>
+                    </label>
+
                 </section>
                 <section>
                     <p className="text-center text-gray-300 italic">Previsualización de imágenes seleccionadas:</p>

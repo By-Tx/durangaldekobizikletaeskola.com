@@ -41,26 +41,26 @@ export default function CafeDromedario() {
             url: 'https://photos.txuli.com/duranguesa/media/foto4.webp',
             title: t("sectionRoadTitle"),
             subtitle: t("sectionRoadP1"),
-            height: 350,
+            height: 450,
         },
         {
             url: 'https://photos.txuli.com/duranguesa/media/foto18.webp',
             title: "CX",
             subtitle: t("sectionCXP1"),
-            height: 350,
+            height: 450,
         },
         {
             url: 'https://photos.txuli.com/duranguesa/media/foto1_alt.webp',
             title: t("sectionMtbTitle"),
             subtitle: t("sectionMtbP1"),
-            height: 350,
+            height: 450,
         },
 
         {
             url: 'https://photos.txuli.com/duranguesa/media/foto17.webp',
             title: "PISTA",
             subtitle: t("sectionPistaP1"),
-            height: 350,
+            height: 450,
         },
     ];
 
@@ -96,7 +96,7 @@ export default function CafeDromedario() {
                 const isEven = idx % 2 === 0;
 
                 return (
-                    <div key={idx} className="relative w-full mb-7" style={{ height: `${section.height}px` }}>
+                    <div key={idx} className="relative w-full mb-7 sm:mb-3" style={{ height: `${section.height}px` }}>
                         <div >
 
                         </div>
@@ -108,27 +108,33 @@ export default function CafeDromedario() {
                             }}
                             className={`absolute inset-0 bg-cover bg-center filter brightness-50 flex
                             ${isEven
-                                    ? " ml-7 rounded-l-lg"
-                                    : " mr-7 rounded-r-lg"
+                                    ? " xl:ml-[40%] lg:ml-[20%] sm:ml-2 rounded-l-lg ml-7"
+                                    : " xl:mr-[40%] lg:mr-[20%] sm:mr-2 rounded-r-lg  mr-7"
                                 }
                         `}>
                         </div>
 
                         {/* esta con styles porque no lo puedo poner en el classname */}
-                        <div
-                            className="absolute inset-0 z-5"
-                            style={{
-                                background: isEven
-                                    ? "linear-gradient(to left, black 10%, transparent 70%)"
-                                    : "linear-gradient(to right, black 10%, transparent 70%)",
-                            }}
-                        ></div>
+                        {/*
+                            Only render the overlay div on md screens or larger.
+                            Uses Tailwind's 'hidden md:block' to hide on small screens.
+                        */}
+                        {(
+                            <div
+                                className="absolute inset-0 z-5 hidden md:block"
+                                style={{
+                                    background: isEven
+                                        ? "linear-gradient(to left, black 5%, transparent 30%)"
+                                        : "linear-gradient(to right, black 5%, transparent 30%)",
+                                }}
+                            ></div>
+                        )}
 
                         <div className="absolute z-10 inset-0 flex items-center font-fredoka">
                             <div className={`flex w-full p-10 ${isEven ? "justify-end ml-4 text-right" : "justify-start mr-4 text-left"}`}>
                                 <div className="w-full lg:w-2/4">
                                     <h2 className="text-4xl font-bold text-white">{section.title}</h2>
-                                    <p className="mt-2 text-xl text-white">{section.subtitle}</p>
+                                    <p className="mt-2 lg:text-xl text-white md:text-lg">{section.subtitle}</p>
                                 </div>
                             </div>
                         </div>
