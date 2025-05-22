@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-//function to get all users from the database
+
+// Function to get all users from the database
 export async function GET() {
     const users = (await prisma.user.findMany({
         select: {
@@ -23,7 +24,8 @@ export async function GET() {
     }));
     return NextResponse.json(users);
 }
-//function to modify a user
+
+// Function to modify a user
 export async function PUT(req: NextRequest) {
     const res= await req.json();
     const { id, ...rest } = res;
@@ -36,7 +38,8 @@ export async function PUT(req: NextRequest) {
     }
     return NextResponse.json({ message: 'Modificacion creada correctamente' }, { status: 200 });
 }
-//function to delete a user
+
+// Function to delete a user
 export async function DELETE(req: NextRequest) {
     const res = await req.json();
     const { id } = res;
@@ -44,6 +47,29 @@ export async function DELETE(req: NextRequest) {
     await prisma.account.deleteMany({
         where: { userId: id },
     });
+
+    const entrenador = await prisma.entrenadores.findFirst({
+        where: { user_id: id },
+        select: { id: true },
+    });
+
+    if (entrenador) {
+        await prisma.deportistas.updateMany({
+            where: { entrenador_id: entrenador.id },
+            data: { entrenador_id: null },
+        });
+    }
+
+    const deportistas = await prisma.deportistas.findMany({
+        where: { user_id: id },
+        select: { numero_licencia: true },
+    });
+
+    for (const deportista of deportistas) {
+        await prisma.events_resultado.deleteMany({
+            where: { deportista_id: deportista.numero_licencia },
+        });
+    }
 
     await prisma.deportistas.deleteMany({
         where: { user_id: id },

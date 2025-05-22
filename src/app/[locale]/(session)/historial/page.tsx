@@ -29,6 +29,12 @@ export default async function Page(props: any) {
         redirect("/");
     }
 
+    const rol = session?.user?.role || "";
+
+    if (rol !== "admin" && rol !== "staff" && rol !== "coach" && rol !== "runner") {
+        redirect("/es/dashboard");
+    }
+
     let jugadorId = searchParams?.numero_licencia;
 
     if (!jugadorId) {
@@ -37,11 +43,11 @@ export default async function Page(props: any) {
             where: { user_id: session.user.id },
             select: { numero_licencia: true }
         });
-    
+
         if (!deportista?.numero_licencia) {
             redirect("/es/dashboard");
         }
-    
+
         jugadorId = deportista.numero_licencia;
     }
 
@@ -73,7 +79,7 @@ export default async function Page(props: any) {
             const year = d.getFullYear();
             return `${day}/${month}/${year}`;
         };
-        
+
         const formatTime = (date: Date | string) => {
             let d: Date;
             if (date instanceof Date && !isNaN(date.getTime())) {

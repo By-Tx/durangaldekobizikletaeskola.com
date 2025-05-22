@@ -19,6 +19,7 @@ type TableProps = {
     onDelete?: (id: any) => void;
     onHistorial?: (row: any) => void;
     onState?: (row: any) => void;
+    onCopy?: (row: any) => void;
     formatFecha?: (fecha: any) => string;
     translateRole?: (role: string) => string;
 };
@@ -32,6 +33,7 @@ const Table: React.FC<TableProps> = ({
     onDelete,
     onHistorial,
     onState,
+    onCopy,
     formatFecha = f => f,
     translateRole = r => r,
 }) => {
@@ -39,6 +41,7 @@ const Table: React.FC<TableProps> = ({
     const showActions = !!onEdit || !!onDelete;
     const showHistorial = !!onHistorial;
     const showState = !!onState;
+    const showCopy = !!onCopy;
 
     return (
         <div className="rounded-2xl shadow-xl backdrop-blur-md bg-white/10 border border-blue-400 pb-2 overflow-hidden">
@@ -60,7 +63,7 @@ const Table: React.FC<TableProps> = ({
                                     {col.name}
                                 </th>
                             ))}
-                            {showActions || showHistorial ? (
+                            {showActions || showHistorial || showCopy ? (
                                 <>
                                     <th className="px-2 md:px-4 py-3 font-semibold">Acciones</th>
                                     <th className="w-3 rounded-tr-2xl font-semibold"></th>
@@ -124,6 +127,19 @@ const Table: React.FC<TableProps> = ({
                                                             onClick={e => {
                                                                 e.stopPropagation();
                                                                 window.location.href = `/es/historial?numero_licencia=${row.numero_licencia}`;
+                                                            }}
+                                                        />
+                                                    )}
+                                                    {onCopy && row.id && (
+                                                        <Image
+                                                            src="/media/dashboard/copiar.svg"
+                                                            alt="Copiar"
+                                                            width={30}
+                                                            height={30}
+                                                            className="cursor-pointer hover:scale-110 transition-transform duration-200"
+                                                            onClick={e => {
+                                                                e.stopPropagation();
+                                                                onCopy(row);
                                                             }}
                                                         />
                                                     )}

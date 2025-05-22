@@ -10,7 +10,7 @@ export const dashboardLinks = [
         href: "/perfil",
         text: "Mi perfil",
         img: "/media/dashboard/usuario.svg",
-        roles: ["coach", "runner", "user"],
+        roles: ["coach", "instructor", "runner", "user"],
         short: "Perfil",
     },
     {

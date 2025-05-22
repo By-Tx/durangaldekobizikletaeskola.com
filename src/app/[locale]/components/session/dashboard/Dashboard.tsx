@@ -19,6 +19,8 @@ function translateRole(role: string): string {
             return "Personal";
         case "coach":
             return "Entrenador";
+        case "instructor":
+            return "Monitor";
         case "runner":
             return "Deportista";
         case "user":

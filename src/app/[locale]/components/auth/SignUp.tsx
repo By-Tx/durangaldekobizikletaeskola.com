@@ -1,8 +1,9 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import alert from "@/app/media/error.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SignUp() {
     const [email, setEmail] = useState('');
@@ -15,6 +16,11 @@ export default function SignUp() {
     const [success, setSuccess] = useState('');
     const [closingError, setClosingError] = useState(false);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
+    const [requiredError, setRequiredError] = useState(false);
+    const [invalidFields, setInvalidFields] = useState<string[]>([]);
+    const [termsAccepted, setTermsAccepted] = useState(false);
+    const [termsError, setTermsError] = useState(false);
+    const termsRef = useRef<HTMLInputElement>(null);
 
     const [extraFields, setExtraFields] = useState({
         apellidos: '',
@@ -58,6 +64,53 @@ export default function SignUp() {
         setErrorMsg(null);
         setSuccess('');
         setLoading(true);
+
+        const requiredFields = [
+            { key: "name", value: name },
+            { key: "email", value: email },
+            { key: "password", value: password },
+            ...(role === "runner" || role === "coach"
+                ? [
+                    { key: "apellidos", value: extraFields.apellidos },
+                    { key: "dni", value: extraFields.dni },
+                    { key: "telefono", value: extraFields.telefono },
+                    { key: "nacimiento", value: extraFields.nacimiento },
+                ]
+                : []),
+            ...(role === "runner"
+                ? [
+                    { key: "licencia", value: extraFields.licencia },
+                    { key: "peso", value: extraFields.peso },
+                    { key: "altura", value: extraFields.altura },
+                    { key: "ftp", value: extraFields.ftp },
+                    { key: "pulso", value: extraFields.pulso },
+                ]
+                : []),
+        ];
+        const emptyFields = requiredFields.filter(f => !f.value.trim()).map(f => f.key);
+
+        if (emptyFields.length > 0) {
+            setInvalidFields(emptyFields);
+            setRequiredError(true);
+            setLoading(false);
+            return;
+        } else {
+            setInvalidFields([]);
+            setRequiredError(false);
+
+            // Validar términos y condiciones
+            if (!termsAccepted) {
+                setTermsError(true);
+                setLoading(false);
+                setTimeout(() => {
+                    termsRef.current?.focus();
+                }, 100);
+                return;
+            } else {
+                setTermsError(false);
+            }
+        }
+
         try {
             // 1. Registro de usuario
             await authClient.signUp.email({
@@ -81,21 +134,19 @@ export default function SignUp() {
             });
 
             // 3. Guardar datos extra en la BD
-            if (role === "runner" || role === "coach") {
-                const res = await fetch("/api/signup", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        email,
-                        role,
-                        ...extraFields,
-                    }),
-                });
-                if (!res.ok) {
-                    const data = await res.json();
-                    setErrorMsg(data.error || "Error guardando los datos");
-                    return;
-                }
+            const res = await fetch("/api/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email,
+                    role,
+                    ...extraFields,
+                }),
+            });
+            if (!res.ok) {
+                const data = await res.json();
+                setErrorMsg(data.error || "Error guardando los datos");
+                return;
             }
 
             setSuccess("Registro completado. Redirigiendo...");
@@ -129,7 +180,7 @@ export default function SignUp() {
         <>
             {/* Popup de error */}
             {errorMsg && (
-                <div className={`fixed inset-0 flex items-center justify-center z-[110] bg-black bg-opacity-60 ${closingError ? "animate-fade-out" : "animate-fade-in"}`}>
+                <div className={`fixed inset-0 flex items-center justify-center z-[110] ${closingError ? "animate-fade-out" : "animate-fade-in"}`}>
                     <div className={`bg-gray-900 rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center border-4 border-red-500 relative ${closingError ? "animate-slide-down" : "animate-slide-up"}`}>
                         <div className="flex items-center justify-center mb-4 gap-3">
                             <Image
@@ -153,7 +204,7 @@ export default function SignUp() {
                 </div>
             )}
 
-            <div className="flex items-center justify-center bg-black">
+            <div className="flex items-center justify-center">
                 <div className="w-full max-w-xl p-8 rounded-2xl shadow-2xl bg-gray-900/90 border border-blue-700 mb-5">
                     <h2 className="text-3xl font-bold text-center mb-8 text-blue-200 drop-shadow">Registro</h2>
 
@@ -188,56 +239,71 @@ export default function SignUp() {
                     {codeValidated && (
                         <form autoComplete="off" onSubmit={signUp} className="space-y-6">
                             {success && <div className="mb-4 text-green-400 text-center font-semibold">{success}</div>}
+                            {requiredError && (
+                                <div className="mb-4 text-red-400 text-left font-semibold">
+                                    Todos los campos son obligatorios
+                                </div>
+                            )}
+                            {termsError && (
+                                <div className="mb-4 text-red-400 text-left font-semibold">
+                                    Tienes que aceptar los términos y condiciones de uso
+                                </div>
+                            )}
                             <div>
-                                <label className="block text-blue-200 font-semibold mb-1">Nombre</label>
+                                <label className="block text-blue-200 font-semibold mb-1">
+                                    Nombre <span className="text-red-400">*</span>
+                                </label>
                                 <input
                                     type="text"
                                     value={name}
                                     onChange={e => setName(e.target.value)}
                                     autoComplete="off"
-                                    className="w-full p-3 rounded-lg bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow"
+                                    className={`w-full p-3 rounded-lg bg-gray-800 text-blue-100 border ${invalidFields.includes("name") ? "border-red-500" : "border-blue-700"} focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow`}
                                     placeholder="Introduce tu nombre"
-                                    required
                                     disabled={loading}
                                 />
                             </div>
                             {(role === "runner" || role === "coach") && (
                                 <div>
-                                    <label className="block text-blue-200 font-semibold mb-1">Apellidos</label>
+                                    <label className="block text-blue-200 font-semibold mb-1">
+                                        Apellidos <span className="text-red-400">*</span>
+                                    </label>
                                     <input
                                         type="text"
                                         value={extraFields.apellidos}
                                         onChange={e => setExtraFields({ ...extraFields, apellidos: e.target.value })}
                                         autoComplete="off"
-                                        className="w-full p-3 rounded-lg bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow"
+                                        className={`w-full p-3 rounded-lg bg-gray-800 text-blue-100 border ${invalidFields.includes("apellidos") ? "border-red-500" : "border-blue-700"} focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow`}
                                         placeholder="Introduce tus apellidos"
                                         disabled={loading}
                                     />
                                 </div>
                             )}
                             <div>
-                                <label className="block text-blue-200 font-semibold mb-1">Correo</label>
+                                <label className="block text-blue-200 font-semibold mb-1">
+                                    Correo electrónico <span className="text-red-400">*</span>
+                                </label>
                                 <input
                                     type="email"
                                     value={email}
                                     onChange={e => setEmail(e.target.value)}
                                     autoComplete="off"
-                                    className="w-full p-3 rounded-lg bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow"
+                                    className={`w-full p-3 rounded-lg bg-gray-800 text-blue-100 border ${invalidFields.includes("email") ? "border-red-500" : "border-blue-700"} focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow`}
                                     placeholder="Introduce tu correo"
-                                    required
                                     disabled={loading}
                                 />
                             </div>
                             <div>
-                                <label className="block text-blue-200 font-semibold mb-1">Contraseña</label>
+                                <label className="block text-blue-200 font-semibold mb-1">
+                                    Contraseña <span className="text-red-400">*</span>
+                                </label>
                                 <input
                                     type="password"
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
                                     autoComplete="new-password"
-                                    className="w-full p-3 rounded-lg bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow"
+                                    className={`w-full p-3 rounded-lg bg-gray-800 text-blue-100 border ${invalidFields.includes("password") ? "border-red-500" : "border-blue-700"} focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow`}
                                     placeholder="Introduce tu contraseña"
-                                    required
                                     disabled={loading}
                                 />
                             </div>
@@ -246,37 +312,43 @@ export default function SignUp() {
                             {(role === "runner" || role === "coach") && (
                                 <>
                                     <div>
-                                        <label className="block text-blue-200 font-semibold mb-1">DNI</label>
+                                        <label className="block text-blue-200 font-semibold mb-1">
+                                            DNI <span className="text-red-400">*</span>
+                                        </label>
                                         <input
                                             type="text"
                                             value={extraFields.dni}
                                             onChange={e => setExtraFields({ ...extraFields, dni: e.target.value })}
                                             autoComplete="off"
-                                            className="w-full p-3 rounded-lg bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow"
+                                            className={`w-full p-3 rounded-lg bg-gray-800 text-blue-100 border ${invalidFields.includes("dni") ? "border-red-500" : "border-blue-700"} focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow`}
                                             placeholder="Introduce tu DNI"
                                             disabled={loading}
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-blue-200 font-semibold mb-1">Teléfono</label>
+                                        <label className="block text-blue-200 font-semibold mb-1">
+                                            Teléfono <span className="text-red-400">*</span>
+                                        </label>
                                         <input
                                             type="text"
                                             value={formatTelefono(extraFields.telefono)}
                                             onChange={e => setExtraFields({ ...extraFields, telefono: e.target.value })}
                                             autoComplete="off"
-                                            className="w-full p-3 rounded-lg bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow"
+                                            className={`w-full p-3 rounded-lg bg-gray-800 text-blue-100 border ${invalidFields.includes("telefono") ? "border-red-500" : "border-blue-700"} focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow`}
                                             placeholder="Introduce tu teléfono"
                                             disabled={loading}
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-blue-200 font-semibold mb-1">Fecha de nacimiento</label>
+                                        <label className="block text-blue-200 font-semibold mb-1">
+                                            Fecha de nacimiento <span className="text-red-400">*</span>
+                                        </label>
                                         <input
                                             type="date"
                                             value={extraFields.nacimiento}
                                             onChange={e => setExtraFields({ ...extraFields, nacimiento: e.target.value })}
                                             autoComplete="off"
-                                            className="w-full p-3 rounded-lg bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow"
+                                            className={`w-full p-3 rounded-lg bg-gray-800 text-blue-100 border ${invalidFields.includes("nacimiento") ? "border-red-500" : "border-blue-700"} focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow`}
                                             disabled={loading}
                                         />
                                     </div>
@@ -286,67 +358,103 @@ export default function SignUp() {
                             {role === "runner" && (
                                 <>
                                     <div>
-                                        <label className="block text-blue-200 font-semibold mb-1">Número de licencia</label>
+                                        <label className="block text-blue-200 font-semibold mb-1">
+                                            Número de licencia <span className="text-red-400">*</span>
+                                        </label>
                                         <input
                                             type="text"
                                             value={extraFields.licencia}
                                             onChange={e => setExtraFields({ ...extraFields, licencia: e.target.value })}
                                             autoComplete="off"
-                                            className="w-full p-3 rounded-lg bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow"
+                                            className={`w-full p-3 rounded-lg bg-gray-800 text-blue-100 border ${invalidFields.includes("licencia") ? "border-red-500" : "border-blue-700"} focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow`}
                                             placeholder="Introduce tu número de licencia"
                                             disabled={loading}
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-blue-200 font-semibold mb-1">Peso (kg)</label>
+                                        <label className="block text-blue-200 font-semibold mb-1">
+                                            Peso (kg) <span className="text-red-400">*</span>
+                                        </label>
                                         <input
                                             type="number"
                                             value={extraFields.peso}
                                             onChange={e => setExtraFields({ ...extraFields, peso: e.target.value })}
                                             autoComplete="off"
-                                            className="w-full p-3 rounded-lg bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow"
+                                            className={`w-full p-3 rounded-lg bg-gray-800 text-blue-100 border ${invalidFields.includes("peso") ? "border-red-500" : "border-blue-700"} focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow`}
                                             placeholder="Introduce tu peso"
                                             disabled={loading}
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-blue-200 font-semibold mb-1">Altura (m)</label>
+                                        <label className="block text-blue-200 font-semibold mb-1">
+                                            Altura (m) <span className="text-red-400">*</span>
+                                        </label>
                                         <input
                                             type="number"
                                             value={extraFields.altura}
                                             onChange={e => setExtraFields({ ...extraFields, altura: e.target.value })}
                                             autoComplete="off"
-                                            className="w-full p-3 rounded-lg bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow"
+                                            className={`w-full p-3 rounded-lg bg-gray-800 text-blue-100 border ${invalidFields.includes("altura") ? "border-red-500" : "border-blue-700"} focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow`}
                                             placeholder="Introduce tu altura"
                                             disabled={loading}
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-blue-200 font-semibold mb-1">FTP</label>
+                                        <label className="block text-blue-200 font-semibold mb-1">
+                                            FTP <span className="text-red-400">*</span>
+                                        </label>
                                         <input
                                             type="number"
                                             value={extraFields.ftp}
                                             onChange={e => setExtraFields({ ...extraFields, ftp: e.target.value })}
                                             autoComplete="off"
-                                            className="w-full p-3 rounded-lg bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow"
+                                            className={`w-full p-3 rounded-lg bg-gray-800 text-blue-100 border ${invalidFields.includes("ftp") ? "border-red-500" : "border-blue-700"} focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow`}
                                             placeholder="Introduce tu FTP"
                                             disabled={loading}
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-blue-200 font-semibold mb-1">Pulso</label>
+                                        <label className="block text-blue-200 font-semibold mb-1">
+                                            Pulso <span className="text-red-400">*</span>
+                                        </label>
                                         <input
                                             type="number"
                                             value={extraFields.pulso}
                                             onChange={e => setExtraFields({ ...extraFields, pulso: e.target.value })}
                                             autoComplete="off"
-                                            className="w-full p-3 rounded-lg bg-gray-800 text-blue-100 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow"
+                                            className={`w-full p-3 rounded-lg bg-gray-800 text-blue-100 border ${invalidFields.includes("pulso") ? "border-red-500" : "border-blue-700"} focus:outline-none focus:ring-2 focus:ring-blue-400 transition placeholder-gray-400 shadow`}
                                             placeholder="Introduce tu pulso"
                                             disabled={loading}
                                         />
                                     </div>
                                 </>
                             )}
+
+                            {/* Términos y condiciones */}
+                            <div className="flex items-center mb-4">
+                                <input
+                                    type="checkbox"
+                                    id="terms"
+                                    className={`mr-2 rounded-lg border-gray-700 transition ${termsError ? "border-red-500 ring-2 ring-red-400" : ""}`}
+                                    required={false}
+                                    disabled={loading}
+                                    checked={termsAccepted}
+                                    onChange={e => {
+                                        setTermsAccepted(e.target.checked);
+                                        if (e.target.checked) setTermsError(false);
+                                    }}
+                                    ref={termsRef}
+                                />
+                                <label
+                                    htmlFor="terms"
+                                    className={`font-semibold ${termsError ? "text-red-400" : "text-blue-200"}`}
+                                >
+                                    Acepto los&nbsp;
+                                    <Link href="/es/terms&use" target="_blank" className={`${termsError ? "text-red-600" : "text-blue-500"} hover:underline`}>
+                                        Términos y condiciones de uso
+                                    </Link>
+                                </label>
+                            </div>
 
                             {/* Botón de enviar */}
                             <div>

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useError } from "@/context/ErrorContext";
 import Table from "@/app/[locale]/components/session/ui/Table";
 
@@ -19,6 +19,7 @@ const roles = [
     { value: "admin", label: "Administrador" },
     { value: "staff", label: "Personal" },
     { value: "coach", label: "Entrenador" },
+    { value: "instructor", label: "Monitor" },
     { value: "runner", label: "Deportista" },
     { value: "user", label: "Usuario" },
 ];
@@ -31,6 +32,8 @@ function translateRole(role: string): string {
             return "Personal";
         case "coach":
             return "Entrenador";
+        case "instructor":
+            return "Monitor";
         case "runner":
             return "Deportista";
         case "user":
@@ -50,6 +53,9 @@ export default function Codigos({ codigos }: CodeClientProps) {
     const [generatedCode, setGeneratedCode] = useState<string | null>(null);
     const [showExpired, setShowExpired] = useState(false);
     const [closingExpired, setClosingExpired] = useState(false);
+    const [copied, setCopied] = useState(false);
+    const [copiedLeaving, setCopiedLeaving] = useState(false);
+    const copiedTimeout = useRef<NodeJS.Timeout | null>(null);
 
     const fetchCodes = async () => {
         const res = await fetch("/api/codes");
@@ -108,6 +114,22 @@ export default function Codigos({ codigos }: CodeClientProps) {
         }
     };
 
+    // Función para copiar el código y mostrar mensaje
+    const handleCopy = async (code: string) => {
+        try {
+            await navigator.clipboard.writeText(code);
+            setCopied(true);
+            setCopiedLeaving(false);
+            if (copiedTimeout.current) clearTimeout(copiedTimeout.current);
+            copiedTimeout.current = setTimeout(() => {
+                setCopiedLeaving(true);
+                setTimeout(() => setCopied(false), 400);
+            }, 1500);
+        } catch {
+            setError("No se pudo copiar el código");
+        }
+    };
+
     // Función para formatear la fecha
     function formatFecha(fecha: string): string {
         if (!fecha) return "";
@@ -162,16 +184,42 @@ export default function Codigos({ codigos }: CodeClientProps) {
                     Código generado: <span className="font-bold">{generatedCode}</span>
                 </div>
             )}
+            {copied && (
+                <div className="fixed top-14 left-1/2 -translate-x-1/2 z-[200]">
+                    <div
+                        className={`bg-blue-700 text-white px-6 py-2 rounded-xl shadow-lg font-semibold text-lg transition-all
+                        ${copiedLeaving ? "animate-fade-out animate-slide-down" : "animate-fade-in animate-slide-up"}`}
+                    >
+                        Código copiado
+                    </div>
+                </div>
+            )}
+
 
             <Table
                 columns={[
-                    { name: "Código", key: "code" },
+                    {
+                        name: "Código",
+                        key: "code",
+                        renderCell: (row: any) => (
+                            <button
+                                type="button"
+                                className="text-blue-300 font-mono underline hover:text-blue-400 transition break-all"
+                                title="Copiar código"
+                                onClick={() => handleCopy(row.code)}
+                                style={{ cursor: "pointer" }}
+                            >
+                                {row.code}
+                            </button>
+                        ),
+                    },
                     { name: "Rol", key: "role" },
                     { name: "Expira", key: "expires_at" },
                     { name: "Usos", key: "usos" },
                 ]}
                 data={codes}
-                colWidths={[110, 130, 120, 80, 100]}
+                colWidths={[110, 130, 120, 100, 120]}
+                onCopy={(row: any) => handleCopy(row.code)}
                 onDelete={handleDelete}
                 translateRole={translateRole}
                 formatFecha={formatFecha}

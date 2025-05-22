@@ -17,6 +17,10 @@ export default async function Runners() {
     const rol = session?.user?.role || "";
     const userId = session?.user?.id;
 
+    if (rol !== "admin" && rol !== "staff" && rol !== "coach") {
+        redirect("/es/dashboard");
+    }
+
     type Deportista = {
         numero_licencia: string;
         nombre: string | null;

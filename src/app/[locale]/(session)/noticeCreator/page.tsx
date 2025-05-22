@@ -16,7 +16,13 @@ export default async function Page(props: any) {
         redirect("/");
     }
 
-    const selected = await  searchParams?.option;
+    const rol = session?.user?.role || "";
+
+    if (rol !== "admin" && rol !== "staff") {
+        redirect("/es/dashboard");
+    }
+
+    const selected = await searchParams?.option;
 
     const renderContent = () => {
         switch (selected) {
