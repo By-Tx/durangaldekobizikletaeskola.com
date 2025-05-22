@@ -10,6 +10,9 @@
     "subtitle4": "El trabajo en equipo, el esfuerzo, el compromiso y la amistad son nuestros pilares. A través de estos, logramos metas juntos y ganamos fuerza en el camino.",
     "componentSubtitle": "NOTICIAS"
   },
+  "footer":{
+    "terms": "Términos y condiciones"
+  },
   "noticePage": {
     "title": "TODAS LAS NOTICIAS",
     "button": "VER MÁS"
@@ -124,7 +127,9 @@
     "mailPlaceholder": "Tu.email@example.com",
     "message": "MENSAJE",
     "messagePlaceholder": "Escribe tu mensaje aquí",
-    "button": "ENVIAR"
+    "button": "ENVIAR",
+    "terms": "Acepto losTérminos y condiciones",
+    "termsError": "Debes aceptar los términos y condiciones"
   },
   "contact": {
     "title": "CONTACTO",
@@ -245,10 +250,10 @@
     "translation": [
       "cronica2025-05-12"
     ],
-    "altKeyNaN": "",
-    "noticeTitleNaN": "SEGUIMOS EN ESA DINÁMICA",
-    "noticeCategoryNaN": "JUNIOR  & CADETE & ESCUELAS",
-    "dateNaN": "2025-05-12"
+    "altKey14": "",
+    "noticeTitle14": "SEGUIMOS EN ESA DINÁMICA",
+    "noticeCategory14": "JUNIOR  & CADETE & ESCUELAS",
+    "date14": "2025-05-12"
   },
   "shopPage": {
     "title": "Ropa",

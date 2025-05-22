@@ -1,43 +1,40 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
+export async function PUT(req: NextRequest) {
   try {
-   
     const body = await req.json();
-    const { album } = body;
+    let { album, modalidad } = body;
 
-    
-    if (!album) {
-      return NextResponse.json({ message: "El álbum no está definido." }, { status: 400 });
+    if (!album || !modalidad) {
+      return NextResponse.json({ message: "Faltan datos: álbum o modalidad." }, { status: 400 });
     }
 
+    album = album.replace(/\/$/, '');
     console.log("Album:", album);
+    modalidad = modalidad.replace(/\/$/, '');
 
-    // fetch to get the data from the url
-    const response = await fetch(`https://photos.txuli.com/duranguesa/gallery/${album}`);
+    const url = `https://photos.txuli.com/duranguesa/gallery/${album}/${modalidad}`;
+    console.log("Fetch URL:", url);
+
+    const response = await fetch(url);
+
+    if (response.status === 404) {
+      return NextResponse.json({ message: "No se encontró la modalidad en el servidor." }, { status: 404 });
+    }
 
     if (!response.ok) {
-      throw new Error(`Error al obtener datos del álbum: ${response.status}`);
+      throw new Error(`Error al obtener datos: ${response.status}`);
     }
 
-
     const data = await response.text();
-    console.log("Response Data:", data);
-
-
-    const regex = /<a href="([^"]+)"/g;
+    const regex = /<a href="([^"\.]+)\/?"/g;
     const matches = [...data.matchAll(regex)];
+    const results = matches.map(match => match[1]).filter(name => name !== "../");
 
-   
-    const results = matches.map(match => match[1]);
-    console.log("Results:", results);
-
-    
     return NextResponse.json(results, { status: 200 });
 
   } catch (error) {
-    
-    console.error("Error:", error);
+    console.error("Error en categoría:", error);
     return NextResponse.json({ message: "Hubo un error en el servidor" }, { status: 500 });
   }
 }

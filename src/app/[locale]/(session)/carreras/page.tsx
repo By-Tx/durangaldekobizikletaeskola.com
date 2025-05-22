@@ -2,7 +2,8 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import prisma from "@/lib/prisma";
-import RaceClient from "@/app/[locale]/components/session/races/Carreras";
+import RaceClient from "@/app/[locale]/components/session/dashboard/Carreras";
+import { events_categoria } from "@/generated/prisma/client";
 
 export default async function Race() {
     const session = await auth.api.getSession({
@@ -13,8 +14,26 @@ export default async function Race() {
         redirect("/");
     }
 
+    const rol = session?.user?.role || "";
+
+    if (rol !== "admin" && rol !== "staff" && rol !== "coach" && rol !== "instructor" && rol !== "user") {
+        redirect("/es/dashboard");
+    }
+
+    // Filtro condicional por categoría y fecha
+    let where = {};
+    if (rol === "instructor") {
+        where = { categoria: { equals: events_categoria.Escuela } };
+    } else if (rol === "user") {
+        where = {
+            categoria: { equals: events_categoria.Escuela },
+            fecha: { gte: new Date() }
+        };
+    }
+
     // Consulta para obtener las carreras
     const data = await prisma.events.findMany({
+        where,
         select: {
             id: true,
             nombre: true,
@@ -63,6 +82,6 @@ export default async function Race() {
     }));
 
     return (
-        <RaceClient carreras={carreras} />
+        <RaceClient carreras={carreras} rol={rol} />
     );
 }

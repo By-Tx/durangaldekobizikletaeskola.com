@@ -5,15 +5,17 @@ import HistorialContent from "@/app/[locale]/components/session/dashboard/Histor
 import prisma from "@/lib/prisma";
 
 type CarreraRaw = {
-    f0: Date | string;
-    f1: string;
+    f0: string;
+    f1: Date | string;
     f2: string;
     f3: string;
-    f4: Date | string;
-    f5: number | string;
-    f6: string | null;
+    f4: string;
+    f5: Date | string;
+    f6: number | string;
     f7: string | null;
-    f8: number;
+    f8: string | null;
+    f9: number;
+    f10: number;
 };
 
 export default async function Page(props: any) {
@@ -86,15 +88,17 @@ export default async function Page(props: any) {
         };
 
         return {
-            fecha: formatDate(carrera.f0),
-            lugar: String(carrera.f1),
-            categoria: String(carrera.f2),
-            modalidad: String(carrera.f3),
-            tiempo: formatTime(carrera.f4),
-            posicion: Number(carrera.f5),
-            valoracion_deportista: carrera.f6 ?? "",
-            valoracion_entrenador: carrera.f7 ?? "",
-            evento_id: carrera.f8,
+            nombre: String(carrera.f0),
+            fecha: formatDate(carrera.f1),
+            lugar: String(carrera.f2),
+            categoria: String(carrera.f3),
+            modalidad: String(carrera.f4),
+            tiempo: formatTime(carrera.f5),
+            posicion: Number(carrera.f6),
+            valoracion_deportista: carrera.f7 ?? "",
+            valoracion_entrenador: carrera.f8 ?? "",
+            estado: Number(carrera.f9),
+            evento_id: carrera.f10,
             deportista_id: jugadorId
         };
     });

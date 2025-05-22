@@ -1,7 +1,14 @@
 "use client";
-import { useEffect, useRef, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import info from "@/app/media/info.svg";
 import Image from "next/image";
+import Table from "@/app/[locale]/components/session/ui/Table";
+import { useError } from "@/context/ErrorContext";
+import back from "@/app/media/session/back.svg";
+import download from "@/app/media/session/download.svg";
+import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import fontkit from '@pdf-lib/fontkit';
+import { saveAs } from 'file-saver';
 
 type Carrera = {
     id: number;
@@ -23,9 +30,10 @@ type Carrera = {
 
 interface RaceClientProps {
     carreras: Carrera[];
+    rol: string;
 }
 
-export default function RaceClient({ carreras }: RaceClientProps) {
+export default function RaceClient({ carreras, rol }: RaceClientProps) {
     const [data, setData] = useState(carreras);
     const [searchTerm, setSearchTerm] = useState("");
     const [form, setForm] = useState<Partial<Carrera>>({});
@@ -34,19 +42,17 @@ export default function RaceClient({ carreras }: RaceClientProps) {
     const [closing, setClosing] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const [deleteId, setDeleteId] = useState<number | null>(null);
-    const firstRowRefs = useRef<(HTMLTableCellElement | null)[]>([]);
-    const [colWidths, setColWidths] = useState<number[]>([]);
     const [selectedRace, setSelectedRace] = useState<Carrera | null>(null);
     const [athleteForm, setAthleteForm] = useState({ nombre: "", apellidos: "", tiempo: "", posicion: 0 });
     const [searchAthleteTerm, setSearchAthleteTerm] = useState("");
     const [filteredAthletes, setFilteredAthletes] = useState<any[]>([]);
     const [selectedAthlete, setSelectedAthlete] = useState<any | null>(null);
-
-    useLayoutEffect(() => {
-        if (firstRowRefs.current.length) {
-            setColWidths(firstRowRefs.current.map(td => td?.offsetWidth || 0));
-        }
-    }, [data]);
+    const [showSignUpForm, setShowSignUpForm] = useState(false);
+    const [signUpForm, setSignUpForm] = useState({ nombre_apellido: "", dorsal: "" });
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
+    const [inscritos, setInscritos] = useState<any[]>([]);
+    const { setError } = useError();
+    const scholarship = rol === "instructor" || rol === "user";
 
     // Filtrar los datos según el término de búsqueda
     const filteredData = data.filter(carrera =>
@@ -63,8 +69,60 @@ export default function RaceClient({ carreras }: RaceClientProps) {
     };
 
     // Manejar clic en una fila de la tabla
-    const handleRowClick = (carrera: Carrera) => {
+    const handleRowClick = async (carrera: Carrera) => {
         setSelectedRace(carrera);
+
+        if (carrera.categoria === "Escuela") {
+            const res = await fetch(`/api/inscritos?carrera_id=${carrera.id}`);
+            const data = await res.json();
+            setInscritos(data);
+        }
+    };
+
+    // Manejar clic en el botón de inscripción
+    const handleSignUp = (carrera: Carrera) => {
+        setSelectedRace(carrera);
+        setShowSignUpForm(true);
+    };
+
+    const handleSignUpFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setSignUpForm({ ...signUpForm, [name]: value });
+    };
+
+    // Cerrar formulario
+    const handleCloseSignUpForm = () => {
+        setClosing(true);
+        setTimeout(() => {
+            setShowSignUpForm(false);
+            setClosing(false);
+            setSignUpForm({ nombre_apellido: "", dorsal: "" });
+        }, 300);
+    };
+
+    // Agregar o editar carrera
+    const handleSubmitSignUp = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const response = await fetch("/api/race_signUp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                ...signUpForm,
+                carrera_id: selectedRace?.id
+            }),
+        });
+
+        if (response.ok) {
+            setSuccessMessage(
+                `El deportista ${signUpForm.nombre_apellido} se ha inscrito correctamente a la carrera ${selectedRace?.nombre}.`
+            );
+            setSignUpForm({ nombre_apellido: "", dorsal: "" });
+            setShowSignUpForm(false);
+        } else {
+            const data = await response.json();
+            setError(data.error || "Error desconocido");
+        }
     };
 
     // Manejar cambios en el formulario de deportistas
@@ -283,6 +341,155 @@ export default function RaceClient({ carreras }: RaceClientProps) {
         setDeleteId(null);
     };
 
+    const fetchImageAsUint8Array = async (url: string): Promise<Uint8Array> => {
+        const res = await fetch(url);
+        const blob = await res.blob();
+        return new Uint8Array(await blob.arrayBuffer());
+    };
+
+    // Descargar PDF
+    const handleDownloadPDF = async () => {
+        const pdfDoc = await PDFDocument.create();
+        const page = pdfDoc.addPage([595.28, 841.89]);
+        const { width, height } = page.getSize();
+        pdfDoc.registerFontkit(fontkit);
+
+        // Fuentes
+        const fredokaBoldBytes = await fetch('/fonts/Fredoka-Bold.ttf').then(res => res.arrayBuffer());
+        const fredokaBoldFont = await pdfDoc.embedFont(fredokaBoldBytes);
+        const fredokaBytes = await fetch('/fonts/Fredoka-Regular.ttf').then(res => res.arrayBuffer());
+        const fredokaFont = await pdfDoc.embedFont(fredokaBytes);
+        const varelaBytes = await fetch('/fonts/VarelaRound-Regular.otf').then(res => res.arrayBuffer());
+        const varelaFont = await pdfDoc.embedFont(varelaBytes);
+
+        // Header
+        const headerHeight = 100;
+        page.drawRectangle({
+            x: 0,
+            y: height - headerHeight,
+            width,
+            height: headerHeight,
+            color: rgb(57 / 255, 132 / 255, 200 / 255),
+        });
+
+        // Cargar imagen
+        const imageBytes = await fetchImageAsUint8Array('/media/big_logo_wh.png');
+        const logoImage = await pdfDoc.embedPng(imageBytes);
+        const logoWidth = 80;
+        const logoHeight = 80;
+        const logoX = 40;
+        const logoY = height - logoHeight - 10;
+
+        page.drawImage(logoImage, {
+            x: logoX,
+            y: logoY,
+            width: logoWidth,
+            height: logoHeight,
+        });
+
+        // Título
+        const title = (selectedRace?.nombre || '').toUpperCase();
+        const fontSizeTitle = 20;
+        const titleWidth = fredokaBoldFont.widthOfTextAtSize(title, fontSizeTitle);
+        page.drawText(title, {
+            x: width / 2 - titleWidth / 2,
+            y: height - 60,
+            size: fontSizeTitle,
+            font: fredokaBoldFont,
+            color: rgb(1, 1, 1),
+        });
+
+        // Subtítulo
+        const subtitle = 'DEPORTISTAS INSCRITOS';
+        const fontSizeSubtitle = 14;
+        const subtitleWidth = fredokaFont.widthOfTextAtSize(subtitle, fontSizeSubtitle);
+        page.drawText(subtitle, {
+            x: width / 2 - subtitleWidth / 2,
+            y: height - 140,
+            size: fontSizeSubtitle,
+            font: fredokaFont,
+            color: rgb(0, 0, 0),
+        });
+
+        // Tabla
+        const startY = height - 190;
+        const rowHeight = 24;
+        const colWidths = [85, 220];
+        const tableWidth = colWidths[0] + colWidths[1];
+        const tableX = (width - tableWidth) / 2;
+
+        const headers = ['Dorsal', 'Nombre y Apellido'];
+        const rows = inscritos
+            .filter((row) => row.confirmado === 1)
+            .map((row) => [row.dorsal.toString(), row.nombre_apellido]);
+
+        const headerBg = rgb(57 / 255, 132 / 255, 200 / 255);
+        const headerColor = rgb(1, 1, 1);
+        const rowText = rgb(30 / 255, 41 / 255, 59 / 255);
+        const altRowBg = rgb(241 / 255, 245 / 255, 249 / 255);
+        const borderColor = rgb(203 / 255, 213 / 255, 225 / 255);
+
+        let y = startY;
+
+        // Cabecera
+        page.drawRectangle({
+            x: tableX,
+            y: y,
+            width: tableWidth,
+            height: rowHeight,
+            color: headerBg,
+            borderColor: borderColor,
+            borderWidth: 0.8,
+        });
+
+        // Headers
+        headers.forEach((text, i) => {
+            page.drawText(text, {
+                x: tableX + 10 + colWidths.slice(0, i).reduce((a, b) => a + b, 0),
+                y: y + 7,
+                size: 12,
+                font: varelaFont,
+                color: headerColor,
+            });
+        });
+
+        y -= rowHeight;
+
+        // Filas
+        rows.forEach((row, rowIndex) => {
+            const isAlt = rowIndex % 2 === 0;
+            page.drawRectangle({
+                x: tableX,
+                y: y,
+                width: tableWidth,
+                height: rowHeight,
+                color: isAlt ? altRowBg : undefined,
+                borderColor: borderColor,
+                borderWidth: 0.5,
+            });
+
+            row.forEach((cell, colIndex) => {
+                page.drawText(cell, {
+                    x: tableX + 10 + colWidths.slice(0, colIndex).reduce((a, b) => a + b, 0),
+                    y: y + 7,
+                    size: 11,
+                    font: varelaFont,
+                    color: rowText,
+                });
+            });
+
+            y -= rowHeight;
+        });
+
+        const pdfBytes = await pdfDoc.save();
+        const formattedFecha = selectedRace?.fecha ? formatFecha(selectedRace.fecha).split(" - ")[0] : '';
+        const formattedNombre = (selectedRace?.nombre || 'carrera').replace(/\s+/g, "_");
+        saveAs(
+            new Blob([pdfBytes]),
+            `INSCRIPCIONES_${formattedNombre}_${formattedFecha}.pdf`
+        );
+    };
+
     // Función para formatear la fecha
     function formatFecha(fecha: string): string {
         if (!fecha) return "";
@@ -338,7 +545,7 @@ export default function RaceClient({ carreras }: RaceClientProps) {
     return (
         <div className="p-4 font-fredoka">
             {/* Popup de confirmación */}
-            {showConfirm && (
+            {showConfirm && !scholarship && (
                 <div className={`fixed inset-0 bg-black bg-opacity-60 flex items-start justify-center z-50 pt-10 transition-opacity duration-300 ${closing ? "animate-fade-out" : "animate-fade-in"}`}>
                     <div className={`bg-gray-900 rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center border-4 border-blue-500 transition-all duration-300 ${closing ? "animate-slide-down" : "animate-slide-up"}`}>
                         <h2 className="text-2xl font-extrabold mb-4 text-gray-200 drop-shadow">¿Estás seguro/a de que deseas eliminar esta carrera?</h2>
@@ -373,22 +580,48 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                 </div>
             )}
 
+            {successMessage && (
+                <div className={`fixed inset-0 bg-black bg-opacity-60 flex items-start justify-center z-50 pt-10 transition-opacity duration-300`}>
+                    <div className="bg-green-900 rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center border-4 border-green-500 transition-all duration-300 animate-slide-up">
+                        <h2 className="text-2xl font-extrabold mb-4 text-green-200 drop-shadow">
+                            ¡Inscripción realizada!
+                        </h2>
+                        <p className="text-green-100 mb-6">{successMessage}</p>
+                        <div className="flex justify-center mt-4">
+                            <button
+                                className="px-6 py-2 bg-gradient-to-r from-green-600 to-green-400 text-white rounded-xl font-bold shadow-lg hover:scale-105 hover:from-green-700 hover:to-green-500 transition-all duration-150"
+                                onClick={() => setSuccessMessage(null)}
+                            >
+                                Aceptar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Mostrar información de la carrera */}
-            {!selectedRace && (
+            {(!selectedRace || scholarship) && (
                 <>
                     {/* Título y botón responsive */}
                     <div className="mb-6">
-                        <h2 className="text-3xl font-semibold text-white drop-shadow text-center mb-4">CARRERAS</h2>
-                        <div className="flex justify-end">
-                            <button
-                                className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg
-                                    transition-all duration-200 ease-in-out
-                                    hover:shadow-xl hover:opacity-90
-                                    focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 uppercase"
-                                onClick={handleAdd}
-                            >
-                                Añadir carrera
-                            </button>
+                        <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between relative">
+                            <div className="flex-1 hidden md:block"></div>
+                            <h2 className="text-3xl font-semibold text-white drop-shadow text-center flex-1 md:absolute md:left-1/2 md:-translate-x-1/2">
+                                CARRERAS
+                            </h2>
+                            {!scholarship && (
+                                <div className="flex justify-end mt-4 md:mt-0 flex-1">
+                                    <button
+                                        className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg
+                                            transition-all duration-200 ease-in-out
+                                            hover:shadow-xl hover:opacity-90
+                                            focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 uppercase"
+                                        onClick={handleAdd}
+                                    >
+                                        Añadir carrera
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className="flex justify-center">
@@ -404,7 +637,7 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                                         }}
                                     />
                                     <p className="text-gray-300 text-base md:text-lg font-semibold italic">
-                                        Haz clic en una carrera para añadir los resultados.
+                                        {!scholarship ? "Haz clic en una carrera para añadir los resultados." : "Haz clic en una carrera para inscribir un deportista."}
                                     </p>
                                 </div>
                                 <input
@@ -415,158 +648,48 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                                     className="w-full md:w-1/5 border border-blue-400 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-500"
                                 />
                             </div>
-                            {/* Tabla responsive: en móvil todo junto, en desktop cabecera separada */}
-                            <div className="rounded-2xl shadow-xl backdrop-blur-md bg-white/10 border border-blue-400 pb-2 overflow-hidden">
-                                <div className="overflow-x-auto">
-                                    <table className="min-w-full table-auto border-collapse">
-                                        <colgroup>
-                                            {colWidths.map((w, i) => (
-                                                <col key={i} style={{ width: w ? `${w}px` : undefined }} />
-                                            ))}
-                                        </colgroup>
-                                        <thead className="bg-gray-700 text-blue-100 uppercase hidden md:table-header-group">
-                                            <tr>
-                                                <th className="px-2 md:px-4 py-3 rounded-tl-2xl font-semibold">Nombre</th>
-                                                <th className="px-2 md:px-4 py-3 font-semibold">Fecha</th>
-                                                <th className="px-2 md:px-4 py-3 font-semibold">Lugar</th>
-                                                <th className="px-2 md:px-4 py-3 font-semibold">Categoría</th>
-                                                <th className="px-2 md:px-4 py-3 font-semibold">Modalidad</th>
-                                                <th className="px-2 md:px-4 py-3 font-semibold">Descripción</th>
-                                                <th className="px-2 md:px-4 py-3 font-semibold">Acciones</th>
-                                                <th className="w-3 rounded-tr-2xl font-semibold"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {filteredData.map((c, rowIdx) => (
-                                                <tr
-                                                    key={c.id}
-                                                    className="hover:bg-blue-900/20 transition cursor-pointer border-t border-blue-900/30"
-                                                    onClick={() => handleRowClick(c)}
-                                                >
-                                                    {/* Vista móvil: una sola celda con toda la info */}
-                                                    <td
-                                                        colSpan={8}
-                                                        className="md:hidden px-4 py-4"
-                                                    >
-                                                        <div className="flex flex-col gap-2">
-                                                            <div>
-                                                                <span className="font-bold text-blue-300">Nombre: </span>
-                                                                <span>{c.nombre}</span>
-                                                            </div>
-                                                            <div>
-                                                                <span className="font-bold text-blue-300">Fecha: </span>
-                                                                <span>{formatFecha(c.fecha)}</span>
-                                                            </div>
-                                                            <div>
-                                                                <span className="font-bold text-blue-300">Lugar: </span>
-                                                                <span>{c.lugar}</span>
-                                                            </div>
-                                                            <div>
-                                                                <span className="font-bold text-blue-300">Categoría: </span>
-                                                                <span>{c.categoria}</span>
-                                                            </div>
-                                                            <div>
-                                                                <span className="font-bold text-blue-300">Modalidad: </span>
-                                                                <span>{c.modalidad.replace("_", "-")}</span>
-                                                            </div>
-                                                            <div>
-                                                                <span className="font-bold text-blue-300">Descripción: </span>
-                                                                <span>{c.descripcion}</span>
-                                                            </div>
-                                                            <div className="flex gap-2 mt-2">
-                                                                <button
-                                                                    className="px-2 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold w-full"
-                                                                    onClick={e => {
-                                                                        e.stopPropagation();
-                                                                        handleEdit(c);
-                                                                    }}
-                                                                >
-                                                                    Editar
-                                                                </button>
-                                                                <button
-                                                                    className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold w-full"
-                                                                    onClick={e => {
-                                                                        e.stopPropagation();
-                                                                        handleDelete(c.id);
-                                                                    }}
-                                                                >
-                                                                    Eliminar
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    {/* Vista escritorio: columnas normales */}
-                                                    <td className="px-2 md:px-4 py-2 hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[0] = el; }}>
-                                                        {c.nombre}
-                                                    </td>
-                                                    <td className="px-2 md:px-4 py-2 text-center hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[1] = el; }}>
-                                                        {formatFecha(c.fecha)}
-                                                    </td>
-                                                    <td className="px-2 md:px-4 py-2 text-center hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[2] = el; }}>
-                                                        {c.lugar}
-                                                    </td>
-                                                    <td className="px-2 md:px-4 py-2 text-center hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[3] = el; }}>
-                                                        {c.categoria}
-                                                    </td>
-                                                    <td className="px-2 md:px-4 py-2 text-center hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[4] = el; }}>
-                                                        {c.modalidad.replace("_", "-")}
-                                                    </td>
-                                                    <td className="px-2 md:px-4 py-2 hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[5] = el; }}>
-                                                        {c.descripcion}
-                                                    </td>
-                                                    <td className="px-2 md:px-4 py-2 hidden md:table-cell" ref={el => { if (rowIdx === 0) firstRowRefs.current[6] = el; }}>
-                                                        <div className="flex flex-col md:flex-row justify-center gap-2 items-center">
-                                                            <button
-                                                                className="px-2 py-1 bg-yellow-400 text-gray-900 rounded hover:bg-yellow-500 transition font-semibold w-full md:w-auto"
-                                                                onClick={e => {
-                                                                    e.stopPropagation();
-                                                                    handleEdit(c);
-                                                                }}
-                                                            >
-                                                                Editar
-                                                            </button>
-                                                            <button
-                                                                className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition font-semibold w-full md:w-auto"
-                                                                onClick={e => {
-                                                                    e.stopPropagation();
-                                                                    handleDelete(c.id);
-                                                                }}
-                                                            >
-                                                                Eliminar
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                            <Table
+                                columns={[
+                                    { name: "Nombre", key: "nombre" },
+                                    { name: "Fecha", key: "fecha" },
+                                    { name: "Lugar", key: "lugar" },
+                                    { name: "Categoría", key: "categoria" },
+                                    { name: "Modalidad", key: "modalidad" },
+                                    { name: "Descripción", key: "descripcion" },
+                                ]}
+                                data={filteredData}
+                                colWidths={[225, 250, 150, 150, 150, 300]}
+                                onRowClick={scholarship ? handleSignUp : handleRowClick}
+                                onEdit={scholarship ? undefined : handleEdit}
+                                onDelete={scholarship ? undefined : handleDelete}
+                                formatFecha={formatFecha}
+                            />
                         </div>
                     </div>
                 </>
             )}
 
             {/* Mostrar detalles de la carrera seleccionada */}
-            {selectedRace && (
+            {selectedRace && !scholarship && selectedRace.categoria !== "Escuela" && (
                 <div>
                     <button
-                        className="mb-4 px-6 py-2 bg-gradient-to-r from-gray-700 to-gray-600 text-gray-200 rounded-lg font-semibold shadow-lg
+                        className="mb-4 px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-600 text-gray-200 rounded-lg font-semibold shadow-lg
                             transition-all duration-200 ease-in-out
                             hover:shadow-xl hover:opacity-90
-                            focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
+                            focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 flex items-center gap-1"
                         onClick={() => {
                             setSelectedRace(null);
                             setSearchAthleteTerm("");
                             setFilteredAthletes([]);
                         }}
                     >
+                        <Image src={back} alt="Volver" className="h-5 w-5" />
                         Volver
                     </button>
-                    <h3 className="text-2xl font-extrabold mb-6 text-blue-400 text-center drop-shadow uppercase">
+                    <h3 className="text-3xl font-extrabold mb-6 text-blue-400 text-center drop-shadow uppercase">
                         {selectedRace.nombre}
                     </h3>
-            
+
                     {/* Contenedor responsive */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start w-full md:w-[70%] mx-auto">
                         {/* Columna izquierda: Lista de participantes */}
@@ -601,7 +724,7 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                                 <p className="text-gray-400 text-center">No hay participantes en esta carrera.</p>
                             )}
                         </div>
-            
+
                         {/* Columna derecha: Barra de búsqueda y formulario */}
                         <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
                             {!selectedAthlete && (
@@ -646,7 +769,7 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                                     </ul>
                                 </>
                             )}
-            
+
                             {selectedAthlete && (
                                 <form onSubmit={handleAddAthlete} className="space-y-4 mt-6 px-0 md:px-8">
                                     <h4 className="text-xl font-bold text-gray-300 mb-4 uppercase">Añadir resultado</h4>
@@ -713,8 +836,89 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                 </div>
             )}
 
+            {selectedRace?.categoria === "Escuela" && !scholarship && (
+                <div className="mt-8">
+                    <button
+                        className="mb-4 px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-600 text-gray-200 rounded-lg font-semibold shadow-lg
+                            transition-all duration-200 ease-in-out
+                            hover:shadow-xl hover:opacity-90
+                            focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 flex items-center gap-1"
+                        onClick={() => {
+                            setSelectedRace(null);
+                            setInscritos([]);
+                        }}
+                    >
+                        <Image src={back} alt="Volver" className="h-5 w-5" />
+                        Volver
+                    </button>
+                    <div className="mb-6 flex items-center">
+                        <div className="flex-1" />
+                        <div className="flex-1 flex justify-center">
+                            <h3 className="text-3xl font-bold text-blue-400 text-center drop-shadow uppercase">
+                                Deportistas inscritos
+                            </h3>
+                        </div>
+                        <div className="flex-1 flex justify-end">
+                            <button
+                                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-700 to-blue-500 text-white rounded-lg font-semibold shadow-lg hover:scale-105 transition-all"
+                                onClick={handleDownloadPDF}
+                                type="button"
+                            >
+                                <Image src={download} alt="Descargar" className="h-5 w-5" />
+                                Descargar lista
+                            </button>
+                        </div>
+                    </div>
+                    <div className="w-full md:w-1/2 mx-auto">
+                        {inscritos.length <= 0 ? (
+                            <p className="text-gray-400 text-center">
+                                No hay deportistas inscritos en esta carrera
+                            </p>
+                        ) : (
+                            <Table
+                                columns={[
+                                    { name: "Dorsal", key: "dorsal" },
+                                    { name: "Nombre y Apellidos", key: "nombre_apellido" },
+                                    {
+                                        name: "Confirmado",
+                                        key: "confirmado",
+                                        renderCell: (row: any) => (
+                                            <input
+                                                type="checkbox"
+                                                checked={row.confirmado === 1}
+                                                onChange={async (e) => {
+                                                    const nuevoValor = e.target.checked ? 1 : 0;
+                                                    await fetch("/api/inscritos", {
+                                                        method: "PUT",
+                                                        headers: { "Content-Type": "application/json" },
+                                                        body: JSON.stringify({
+                                                            carrera_id: selectedRace?.id,
+                                                            dorsal: row.dorsal,
+                                                            confirmado: nuevoValor,
+                                                        }),
+                                                    });
+                                                    setInscritos((prev) =>
+                                                        prev.map((i) =>
+                                                            i.dorsal === row.dorsal
+                                                                ? { ...i, confirmado: nuevoValor }
+                                                                : i
+                                                        )
+                                                    );
+                                                }}
+                                            />
+                                        ),
+                                    },
+                                ]}
+                                data={inscritos}
+                                colWidths={[150, 300, 150]}
+                            />
+                        )}
+                    </div>
+                </div>
+            )}
+
             {/* Formulario flotante con animación */}
-            {showForm && (
+            {showForm && !scholarship && (
                 <div className={`fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 transition-opacity ${closing ? "animate-fade-out" : "animate-fade-in"}`}>
                     <div className={`bg-gray-900 rounded-3xl shadow-2xl p-8 w-[95%] md:w-full max-w-xl relative border-2 border-blue-700 ${closing ? "animate-slide-down" : "animate-slide-up"}`}>
                         <button
@@ -807,6 +1011,69 @@ export default function RaceClient({ carreras }: RaceClientProps) {
                                                hover:shadow-xl hover:opacity-90
                                                focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
                                     onClick={handleCloseForm}
+                                >
+                                    Cancelar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+            {showSignUpForm && (
+                <div className={`fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 transition-opacity ${closing ? "animate-fade-out" : "animate-fade-in"}`}>
+                    <div className={`bg-gray-900 rounded-3xl shadow-2xl p-8 w-[95%] md:w-full max-w-xl relative border-2 border-blue-700 ${closing ? "animate-slide-down" : "animate-slide-up"}`}>
+                        <button
+                            className="absolute top-4 right-4 text-gray-400 hover:text-blue-400 text-2xl transition-colors duration-200 ease-in-out"
+                            onClick={handleCloseSignUpForm}
+                            aria-label="Cerrar"
+                        >
+                            ✕
+                        </button>
+                        <h3 className="text-2xl font-bold mb-6 text-blue-400 text-center drop-shadow uppercase">
+                            Inscripción carrera
+                        </h3>
+                        <form onSubmit={handleSubmitSignUp} className="space-y-4 text-white">
+                            <input
+                                type="hidden"
+                                name="carrera_id"
+                                value={selectedRace?.id ?? ""}
+                            />
+                            <input
+                                type="text"
+                                name="nombre_apellido"
+                                placeholder="Nombre y Apellidos"
+                                value={signUpForm.nombre_apellido || ""}
+                                onChange={handleSignUpFormChange}
+                                required
+                                className="w-full border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                            />
+                            <input
+                                type="text"
+                                name="dorsal"
+                                placeholder="Dorsal"
+                                value={signUpForm.dorsal || ""}
+                                maxLength={4}
+                                onChange={handleSignUpFormChange}
+                                required
+                                className="w-full border border-blue-700 bg-gray-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition placeholder-gray-400 shadow-lg hover:border-blue-400 hover:bg-gray-700"
+                            />
+                            <div className="flex gap-4 mt-6 justify-end">
+                                <button
+                                    type="submit"
+                                    className="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-semibold shadow-lg
+                                               transition-all duration-200 ease-in-out
+                                               hover:shadow-xl hover:opacity-90
+                                               focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                                >
+                                    Inscribir
+                                </button>
+                                <button
+                                    type="button"
+                                    className="px-6 py-2 bg-gradient-to-r from-gray-700 to-gray-600 text-gray-200 rounded-lg font-semibold shadow-lg
+                                               transition-all duration-200 ease-in-out
+                                               hover:shadow-xl hover:opacity-90
+                                               focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
+                                    onClick={handleCloseSignUpForm}
                                 >
                                     Cancelar
                                 </button>

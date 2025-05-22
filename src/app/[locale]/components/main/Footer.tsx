@@ -7,13 +7,18 @@ import twitter from "@/app/media/RSS/twitter.svg";
 import mail from "@/app/media/footer/correo.png";
 import telf from "@/app/media/footer/telf.png";
 import ubi from "@/app/media/footer/marcador.png";
+import { Link } from '@/i18n/routing';
+
+
+
 interface fProps {
   
     color?: string;
     color2?: string;    
     color3?: string;
   }
-const Footer: React.FC<fProps>= ({ color = "", color2="", color3=""}) => {
+const Footer = async ({ color = "", color2 = "", color3 = "" }) => {
+
     return (
         <footer className={`${color ? color : 'bg-customBlue'} `}>
 
@@ -69,6 +74,7 @@ const Footer: React.FC<fProps>= ({ color = "", color2="", color3=""}) => {
 
                 
                 <div className={`flex flex-col lg:flex-row items-center justify-center lg:justify-end ${color2 ? color2 : 'bg-customDarkBlue'} h-auto lg:h-10 mt-4 lg:mt-0  py-2 pr-3`}>
+                    <div className="text-left w-[75%]"><Link href="/terms&use" className="cursor-pointer underline ">terms of use </Link></div>
                     <div className="flex items-center justify-center lg:justify-end text-center lg:text-right">
                         <span className="lg:pl-1">Designed by</span>
                         <a href="https://github.com/txuli" className={`flex items-center pl-1 ${color3 ? color3 : 'bg-customDarkerBlue'} rounded-lg justify-center px-2 mx-2 group`}>

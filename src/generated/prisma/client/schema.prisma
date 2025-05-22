@@ -4,9 +4,8 @@ generator client {
 }
 
 datasource db {
-  provider          = "mysql"
-  url               = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model account {
@@ -69,8 +68,7 @@ model events {
   modalidad        events_modalidad?
   descripcion      String?            @db.Text
   events_resultado events_resultado[]
-
-  ListadoEscuelas ListadoEscuelas[] @relation(map: "ListadoEscuelas_ibfk_1")
+  listado_escuelas listado_escuelas[] @relation(map: "listado_escuelas_ibfk_1")
 }
 
 model events_resultado {
@@ -87,6 +85,17 @@ model events_resultado {
 
   @@index([deportista_id], map: "deportista_id")
   @@index([evento_id], map: "evento_id")
+}
+
+model listado_escuelas {
+  carrera_id      Int
+  dorsal          Int
+  nombre_apellido String? @db.VarChar(100)
+  confirmado      Int?    @db.TinyInt
+  events          events  @relation(fields: [carrera_id], references: [id], onDelete: Cascade, onUpdate: Cascade, map: "listado_escuelas_ibfk_1")
+
+  @@id([carrera_id, dorsal])
+  @@map("listado_escuelas")
 }
 
 model session {
@@ -134,16 +143,6 @@ model activation_codes {
   usos       Int                    @default(0)
 }
 
-model ListadoEscuelas {
-  idCarrera Int
-  dorsal    String @db.Char(4)
-  nombre    String @db.VarChar(100)
-
-  events events @relation(fields: [idCarrera], references: [id], onDelete: Cascade, onUpdate: Cascade, map: "ListadoEscuelas_ibfk_1")
-
-  @@id([idCarrera, dorsal]) // clave primaria compuesta
-}
-
 enum events_categoria {
   Cadetes
   Juveniles
@@ -161,16 +160,16 @@ enum user_role {
   admin
   staff
   coach
+  instructor
   runner
   user
-  instructor
 }
 
 enum activation_codes_role {
   admin
   staff
   coach
+  instructor
   runner
   user
-  instructor
 }

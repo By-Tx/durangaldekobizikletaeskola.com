@@ -14,6 +14,9 @@
     "title": "ALBISTE GUZTIAK",
     "button": "ALBISTE GEHIAGO"
   },
+   "footer":{
+    "terms": "Erabilera Baldintzak"
+  },
   "noticeComponent": {
     "noticeTitle": "Markel, 13º Espainiako Txapelketan",
     "altImage": "Markelen argazkia descenso baten",
@@ -55,10 +58,10 @@
     "translation": [
       "cronica2025-05-12"
     ],
-    "altKeyNaN": "",
-    "noticeTitleNaN": "BERE HORRETAN JARRAITZEN DUGU ",
-    "noticeCategoryNaN": "JUNIOR  & KADETE & ESKOLAK",
-    "dateNaN": "2025-05-12"
+    "altKey14": "",
+    "noticeTitle14": "BERE HORRETAN JARRAITZEN DUGU ",
+    "noticeCategory14": "JUNIOR  & KADETE & ESKOLAK",
+    "date14": "2025-05-12"
   },
   "bttTxapeldunaPage": {
     "altImage": "Anderren argazkia",
@@ -159,7 +162,11 @@
     "mailPlaceholder": "Zure.emaila@example.com",
     "message": "MEZUA",
     "messagePlaceholder": "Zure mezua hemen idatzi",
-    "button": "BIDALI"
+    "button": "BIDALI",
+    "terms": "Baldintza orokorrak onartzen ditut",
+    "termsError": "Baldintza orokorrak onartu behar dituzu"
+    
+
   },
   "contact": {
     "title": "KONTAKTUA",

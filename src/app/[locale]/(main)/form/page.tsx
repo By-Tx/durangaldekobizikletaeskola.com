@@ -2,9 +2,10 @@
 import { useState } from "react";
 import Title from "@/app/[locale]/components/mainPage/Titles/Title";
 import { useTranslations } from "next-intl";
+
 export default function Page() {
     const t = useTranslations("formPage");
-    // Estado para los campos del formulario
+
     const [formData, setFormData] = useState({
         name: "",
         birthDate: "",
@@ -17,20 +18,25 @@ export default function Page() {
         message: "",
     });
 
-
+    const [acceptedTerms, setAcceptedTerms] = useState(false);
+    const [termsError, setTermsError] = useState(false);
     const [responseMessage, setResponseMessage] = useState("");
-
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    // Función para manejar el envío del formulario
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Enviar los datos al endpoint de la API
+        if (!acceptedTerms) {
+            setTermsError(true);
+            return;
+        }
+
+        setTermsError(false);
+
         const response = await fetch("/api/mails/sendEmail", {
             method: "POST",
             headers: {
@@ -38,9 +44,6 @@ export default function Page() {
             },
             body: JSON.stringify(formData),
         });
-
-        // const result = await response.json();
-
 
         if (response.ok) {
             setResponseMessage("Correo enviado correctamente.");
@@ -50,19 +53,22 @@ export default function Page() {
     };
 
     return (
-        <section className=" mb-20">
+        <section className="mb-20 font-fredoka">
             <Title title={t("title")} />
 
-           
-            <form onSubmit={handleSubmit} className="mt-10 max-w-3xl mx-auto bg-gradient-to-br bg-customblue shadow-2xl rounded-lg p-8 text-black">
-            <p className="my-4 text-center  text-white  font-fredoka text-xl ">
-                {t("P")}
-            </p>
+            <form
+                onSubmit={handleSubmit}
+                className="mt-10 max-w-3xl mx-auto bg-gradient-to-br bg-customblue shadow-2xl rounded-lg p-8 text-black"
+            >
+                <p className="my-4 text-center text-white font-fredoka text-xl">
+                    {t("P")}
+                </p>
+
                 <div className="grid gap-6 md:grid-cols-2">
                     <div>
                         <label className="block text-lg font-medium text-white">{t("name")}</label>
                         <input
-                            className="border-2 border-gray-300   rounded-lg p-3 w-full focus:outline-none  "
+                            className="border-2 border-gray-300 rounded-lg p-3 w-full focus:outline-none"
                             type="text"
                             name="name"
                             value={formData.name}
@@ -73,7 +79,7 @@ export default function Page() {
                     <div>
                         <label className="block text-lg font-medium text-white">{t("birth")}</label>
                         <input
-                            className="border-2 border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 "
+                            className="border-2 border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                             type="date"
                             name="birthDate"
                             value={formData.birthDate}
@@ -81,6 +87,7 @@ export default function Page() {
                         />
                     </div>
                 </div>
+
                 <div className="mt-6">
                     <label className="block text-lg font-medium text-white">{t("direction")}</label>
                     <input
@@ -92,6 +99,7 @@ export default function Page() {
                         placeholder={t("directionPlaceholder")}
                     />
                 </div>
+
                 <div className="grid gap-6 mt-6 md:grid-cols-2">
                     <div>
                         <label className="block text-lg font-medium text-white">{t("city")}</label>
@@ -116,6 +124,7 @@ export default function Page() {
                         />
                     </div>
                 </div>
+
                 <div className="grid gap-6 mt-6 md:grid-cols-2">
                     <div>
                         <label className="block text-lg font-medium text-white">{t("parents")}</label>
@@ -140,6 +149,7 @@ export default function Page() {
                         />
                     </div>
                 </div>
+
                 <div className="mt-6">
                     <label className="block text-lg font-medium text-white">{t("mail")}</label>
                     <input
@@ -151,6 +161,7 @@ export default function Page() {
                         placeholder={t("mailPlaceholder")}
                     />
                 </div>
+
                 <div className="mt-6">
                     <label className="block text-lg font-medium text-white">{t("message")}</label>
                     <textarea
@@ -161,6 +172,26 @@ export default function Page() {
                         placeholder={t("messagePlaceholder")}
                     ></textarea>
                 </div>
+
+                <div className="mt-6 flex items-center">
+                    <input
+                        type="checkbox"
+                        className="mr-3"
+                        checked={acceptedTerms}
+                        onChange={(e) => setAcceptedTerms(e.target.checked)}
+                    />
+                    <a href="http://" target="_blank" rel="noopener noreferrer"></a>
+                    <a href="https://durangaldekobizikletaeskola.com/es/terms&use" target="_blank" className="text-white underline">
+                        {t("terms")}
+                    </a>
+                </div>
+
+                {termsError && (
+                    <p className="text-red-500 text-sm mt-2">
+                       {t("termsError")}
+                    </p>
+                )}
+
                 <div className="text-center mt-8">
                     <button
                         type="submit"
@@ -170,6 +201,7 @@ export default function Page() {
                     </button>
                 </div>
             </form>
+
             {responseMessage && (
                 <div className="mt-6 text-center text-lg text-gray-600">
                     {responseMessage}
