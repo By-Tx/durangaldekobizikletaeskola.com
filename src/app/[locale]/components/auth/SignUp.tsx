@@ -112,8 +112,24 @@ export default function SignUp() {
         }
 
         try {
-            // 1. Registro de usuario
-            await authClient.signUp.email({
+            // 1. Inserta los datos extra SIN user_id
+            const res = await fetch("/api/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    role,
+                    ...extraFields,
+                }),
+            });
+            if (!res.ok) {
+                const data = await res.json();
+                setErrorMsg(data.error || "Error guardando los datos");
+                setLoading(false);
+                return;
+            }
+
+            // 2. Crea el usuario
+            const signUpRes = await authClient.signUp.email({
                 email,
                 password,
                 name,
@@ -123,7 +139,22 @@ export default function SignUp() {
                 onError: (ctx) => { throw new Error(ctx.error.message); },
             });
 
-            // 2. Login automático
+            const userId = signUpRes.data?.user?.id;
+            if (!userId) throw new Error("No se pudo obtener el ID del usuario");
+
+            // 3. Actualiza la fila de entrenador/deportista con el user_id
+            await fetch("/api/signup", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    role,
+                    name,
+                    dni: extraFields.dni,
+                    userId,
+                }),
+            });
+
+            // 4. Login automático
             await authClient.signIn.email({
                 email,
                 password,
@@ -132,22 +163,6 @@ export default function SignUp() {
                 onSuccess: () => { },
                 onError: (ctx) => { throw new Error(ctx.error.message); },
             });
-
-            // 3. Guardar datos extra en la BD
-            const res = await fetch("/api/signup", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    email,
-                    role,
-                    ...extraFields,
-                }),
-            });
-            if (!res.ok) {
-                const data = await res.json();
-                setErrorMsg(data.error || "Error guardando los datos");
-                return;
-            }
 
             setSuccess("Registro completado. Redirigiendo...");
             window.scrollTo({ top: 0, behavior: "smooth" });

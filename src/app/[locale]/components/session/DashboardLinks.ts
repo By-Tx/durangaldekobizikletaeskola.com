@@ -10,8 +10,15 @@ export const dashboardLinks = [
         href: "/perfil",
         text: "Mi perfil",
         img: "/media/dashboard/usuario.svg",
-        roles: ["coach", "instructor", "runner", "user"],
+        roles: ["coach", "runner"],
         short: "Perfil",
+    },
+    {
+        href: "/entrenadores",
+        text: "Gestión de entrenadores",
+        img: "/media/dashboard/entrenador.svg",
+        roles: ["admin", "staff"],
+        short: "Entrenadores",
     },
     {
         href: "/deportistas",

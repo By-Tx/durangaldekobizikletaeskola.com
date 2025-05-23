@@ -292,7 +292,14 @@ export default function RaceClient({ carreras, rol }: RaceClientProps) {
         e.preventDefault();
         let newForm = { ...form };
 
-        newForm.fecha = new Date(newForm.fecha as string).toISOString();
+        if ('participantes' in newForm) {
+            delete (newForm as any).participantes;
+        }
+
+        if (typeof newForm.fecha === "string" && newForm.fecha.length === 16) {
+            newForm.fecha = newForm.fecha + ":00.000Z";
+        }
+        console.log(newForm.fecha);
 
         if (editId) {
             await fetch("/api/races", {
@@ -996,7 +1003,7 @@ export default function RaceClient({ carreras, rol }: RaceClientProps) {
                             >
                                 <option value="" disabled hidden className="text-gray-400">Selecciona la modalidad</option>
                                 <option value="Carretera">Carretera</option>
-                                <option value="Mountain-Bike">Mountain-Bike</option>
+                                <option value="Mountain_Bike">Mountain-Bike</option>
                                 <option value="Ciclocross">Ciclocross</option>
                                 <option value="Pista">Pista</option>
                             </select>

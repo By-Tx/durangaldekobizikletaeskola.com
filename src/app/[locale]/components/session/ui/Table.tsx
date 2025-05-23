@@ -90,7 +90,7 @@ const Table: React.FC<TableProps> = ({
                         <tbody>
                             {data.map((row, rowIdx) => (
                                 <tr
-                                    key={row.id ?? row.numero_licencia ?? row.evento_id ?? row.dorsal}
+                                    key={row.id ?? row.numero_licencia ?? row.evento_id ?? row.dorsal ?? row.user_id}
                                     className="hover:bg-blue-900/20 transition cursor-pointer border-t border-blue-900/30"
                                     onClick={() => onRowClick?.(row)}
                                 >
@@ -228,7 +228,7 @@ const Table: React.FC<TableProps> = ({
                     <tbody>
                         {data.map((row) => (
                             <tr
-                                key={row.id ?? row.numero_licencia ?? row.evento_id ?? row.dorsal}
+                                key={row.id ?? row.numero_licencia ?? row.evento_id ?? row.dorsal ?? row.user_id}
                                 className="hover:bg-blue-900/20 transition cursor-pointer border-t border-blue-900/30"
                                 onClick={() => onRowClick?.(row)}
                             >

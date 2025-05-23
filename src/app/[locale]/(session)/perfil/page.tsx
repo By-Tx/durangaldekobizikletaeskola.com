@@ -15,7 +15,7 @@ export default async function PerfilPage() {
 
     const rol = session?.user?.role || "";
 
-    if (rol !== "coach" && rol !== "instructor" && rol !== "runner" && rol !== "user") {
+    if (rol !== "coach" && rol !== "runner") {
         redirect("/es/dashboard");
     }
 
@@ -24,8 +24,6 @@ export default async function PerfilPage() {
         where: { id: session.user.id },
         select: {
             id: true,
-            name: true,
-            email: true,
             role: true,
         }
     });
@@ -34,7 +32,50 @@ export default async function PerfilPage() {
         redirect("/es/dashboard");
     }
 
+    let extraData = {};
+
+    if (rol === "coach") {
+        const entrenador = await prisma.entrenadores.findFirst({
+            where: { user_id: user.id },
+            select: {
+                nombre: true,
+                apellidos: true,
+                dni: true,
+                telefono: true,
+                fecha_nacimiento: true,
+            }
+        });
+        if (entrenador) {
+            extraData = entrenador;
+        }
+    }
+
+    if (rol === "runner") {
+        const deportista = await prisma.deportistas.findFirst({
+            where: { user_id: user.id },
+            select: {
+                nombre: true,
+                apellidos: true,
+                dni: true,
+                telefono: true,
+                fecha_nacimiento: true,
+                numero_licencia: true,
+                peso: true,
+                altura: true,
+                ftp: true,
+                pulso: true,
+            }
+        });
+        if (deportista) {
+            extraData = {
+                ...deportista,
+                licencia: deportista.numero_licencia,
+            };
+            delete (extraData as any).numero_licencia;
+        }
+    }
+
     return (
-        <Perfil user={user} />
+        <Perfil user={{ ...user, ...extraData }} />
     );
 }
