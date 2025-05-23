@@ -78,7 +78,6 @@ export default function RaceClient({ carreras, rol }: RaceClientProps) {
             const res = await fetch(`/api/inscritos?carrera_id=${carrera.id}`);
             const data = await res.json();
             setInscritos(data);
-            console.log(data);
         }
     };
 
@@ -291,16 +290,16 @@ export default function RaceClient({ carreras, rol }: RaceClientProps) {
     // Agregar o editar carrera
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
         let newForm = { ...form };
 
-        
-        newForm.fecha = new Date(newForm.fecha as string).toISOString();
-
-        
-        if (newForm.categoria === "Escuela") {
-            delete newForm.participantes;
+        if ('participantes' in newForm) {
+            delete (newForm as any).participantes;
         }
+
+        if (typeof newForm.fecha === "string" && newForm.fecha.length === 16) {
+            newForm.fecha = newForm.fecha + ":00.000Z";
+        }
+        console.log(newForm.fecha);
 
         if (editId) {
             await fetch("/api/races", {
@@ -320,15 +319,12 @@ export default function RaceClient({ carreras, rol }: RaceClientProps) {
                 body: JSON.stringify(newForm),
             });
         }
-
         setForm({});
         setEditId(null);
         setShowForm(false);
-
         const updated = await fetch("/api/races").then(res => res.json());
         setData(updated);
     };
-
 
     // Eliminar carrera
     const handleDelete = (id: number) => {
@@ -996,7 +992,6 @@ export default function RaceClient({ carreras, rol }: RaceClientProps) {
                                 <option value="" disabled hidden className="text-gray-400">Selecciona la categoría</option>
                                 <option value="Cadetes">Cadetes</option>
                                 <option value="Juveniles">Juveniles</option>
-                                <option value="Escuela">Escuelas</option>
                             </select>
                             <select
                                 name="modalidad"

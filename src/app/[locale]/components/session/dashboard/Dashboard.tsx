@@ -48,14 +48,10 @@ export default function DashboardClient({ name, rol, links }: DashboardClientPro
             });
         });
     };
-    const getLinkLabel = (link: { href: string; text: string; img: string; roles: string[] }) => {
-        if (rol === "user" && link.href === "/es/carreras") return "Carreras";
-        return link.text;
-    };
 
     // Filtra los links según el rol del usuario
     const filteredLinks = links.filter(link => link.roles.includes(rol));
-    
+
     return (
         <div className="p-4 font-fredoka">
             <h1 className="text-4xl font-extrabold text-blue-300 drop-shadow-md ml-4 mb-4 sm:mb-2 uppercase tracking-wide text-center">
@@ -88,13 +84,13 @@ export default function DashboardClient({ name, rol, links }: DashboardClientPro
                         >
                             <Image
                                 src={link.img}
-                                alt={rol === "user" ? link.text : "Carreras"}
+                                alt={rol === "user" && link.text === "Gestión de carreras" ? "Carreras" : link.text}
                                 width={64}
                                 height={64}
                                 className="w-16 h-16 mb-2 md:mb-0 md:mr-6"
                             />
                             <span className="text-base font-bold text-center md:text-left md:text-lg">
-                                {getLinkLabel(link)}
+                                {rol === "user" && link.text === "Gestión de carreras" ? "Carreras" : link.text}
                             </span>
                         </Link>
                     ))}
