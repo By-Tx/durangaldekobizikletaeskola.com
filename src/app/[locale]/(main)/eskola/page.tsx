@@ -55,30 +55,7 @@ export default function Page() {
                 <SubTitle subTitle={t("section2SubTitle")} />
                 <Planning planning={planning} />
             </section>
-            <section >
-                <SubTitle subTitle="ORDUTEGIA" />
-
-                <div className=" font-fredoka text-2xl lg:flex mb-20 px-4">
-                    <div className="mx-auto
-                    ">
-                        Astean zehar:
-                        <ul className="list-disc list-inside">
-                            <li>Ostegunetan 17:30-tan</li>
-                            <li>Ordu aldaketa ostean, martitzenak ere</li>
-                        </ul>
-
-                    </div>
-                    <div className="mx-auto">
-                    Asteburuetan:
-                        <ul className="list-disc list-inside">
-                            <li>Irteerak, exkursioak,
-                            federazioko egutegiko probak</li>
-                            
-                        </ul>
-                    </div>
-                </div>
-
-            </section>
+            
         </main>
     )
 }

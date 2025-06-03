@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Title from "@/app/[locale]/components/mainPage/Titles/Title";
 import { useTranslations } from "next-intl";
-
+import { API_URL } from "@/lib/config";
 export default function Page() {
     const t = useTranslations("formPage");
 
@@ -29,7 +29,7 @@ export default function Page() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
+        
         if (!acceptedTerms) {
             setTermsError(true);
             return;
@@ -43,12 +43,22 @@ export default function Page() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(formData),
+            
         });
 
         if (response.ok) {
             setResponseMessage("Correo enviado correctamente.");
         } else {
-            setResponseMessage("Hubo un error enviando el correo.");
+            let errorMsg = "Error al enviar el correo.";
+            try {
+                const data = await response.json();
+                if (data && data.message) {
+                    errorMsg = data.message;
+                }
+            } catch {
+                errorMsg = "Error al enviar el correo."
+            }
+            setResponseMessage(errorMsg);
         }
     };
 
