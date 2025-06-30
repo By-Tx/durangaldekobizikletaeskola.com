@@ -3,8 +3,26 @@ import { useState } from "react";
 import Title from "@/app/[locale]/components/mainPage/Titles/Title";
 import { useTranslations } from "next-intl";
 import { API_URL } from "@/lib/config";
+import { useInfo } from "@/context/infoContext";
 export default function Page() {
     const t = useTranslations("formPage");
+    const initialFormData = Object.freeze({
+        name: "",
+        birthDate: "",
+        address: "",
+        city: "",
+        school: "",
+        guardianName: "",
+        phone: "",
+        email: "",
+        message: "",
+    });
+
+    const resetForm = () => {
+        setFormData(initialFormData);
+        setAcceptedTerms(false);
+        setResponseMessage(""); // opcional: borra mensajes antiguos
+    };
 
     const [formData, setFormData] = useState({
         name: "",
@@ -17,7 +35,7 @@ export default function Page() {
         email: "",
         message: "",
     });
-
+    const { setInfo } = useInfo();
     const [acceptedTerms, setAcceptedTerms] = useState(false);
     const [termsError, setTermsError] = useState(false);
     const [responseMessage, setResponseMessage] = useState("");
@@ -29,7 +47,7 @@ export default function Page() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         if (!acceptedTerms) {
             setTermsError(true);
             return;
@@ -37,17 +55,18 @@ export default function Page() {
 
         setTermsError(false);
 
-        const response = await fetch("/api/mails/sendEmail", {
+        const response = await fetch(`${API_URL}/api/mails/sendEmail`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(formData),
-            
+
         });
 
         if (response.ok) {
-            setResponseMessage("Correo enviado correctamente.");
+            setInfo("Correo enviado correctamente"); // Show success message
+            resetForm();
         } else {
             let errorMsg = "Error al enviar el correo.";
             try {
@@ -198,7 +217,7 @@ export default function Page() {
 
                 {termsError && (
                     <p className="text-red-500 text-sm mt-2">
-                       {t("termsError")}
+                        {t("termsError")}
                     </p>
                 )}
 
