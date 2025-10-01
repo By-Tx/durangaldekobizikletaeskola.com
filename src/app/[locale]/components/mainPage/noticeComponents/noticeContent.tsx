@@ -1,4 +1,4 @@
-export default function NoticeContent(props: { p1:string, p2:string, p3:string, p4:string | undefined, p5:string | undefined }) {
+export default function NoticeContent(props: { p1:string, p2:string, p3:string, p4:string | undefined, p5:string | undefined,p6:string | undefined,p7:string | undefined }) {
     return(
         
         <section className="w-5/6 text-2xl font-fredoka font-slim text-justify p-4 mx-auto ">
@@ -17,6 +17,13 @@ export default function NoticeContent(props: { p1:string, p2:string, p3:string, 
             <p>
             {props.p5}
             </p>
+             <p>
+            {props.p6}
+            </p>
+             <p>
+            {props.p7}
+            </p>
+
         </section>
         
     )

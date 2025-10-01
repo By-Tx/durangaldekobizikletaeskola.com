@@ -32,8 +32,8 @@ export async function PUT(req: NextRequest) {
     const results = matches.map(match => match[1]).filter(name => name !== "../");
 
     return NextResponse.json(results, { status: 200 });
-
   } catch (error) {
+    
     console.error("Error en categoría:", error);
     return NextResponse.json({ message: "Hubo un error en el servidor" }, { status: 500 });
   }

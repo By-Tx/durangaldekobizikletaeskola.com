@@ -15,6 +15,7 @@ export async function GET(req: NextRequest) {
     const session = await auth.api.getSession({
         headers: await headers()
     });
+
     const userId = session?.user?.id;
     const rol = session?.user?.role;
 
@@ -53,6 +54,7 @@ export async function PUT(req: NextRequest) {
     const session = await auth.api.getSession({
         headers: await headers()
     });
+
     const userId = session?.user?.id;
 
     const data = await req.json();
@@ -74,6 +76,7 @@ export async function PUT(req: NextRequest) {
             where: { numero_licencia: { in: data.assignRunners } },
             data: { entrenador_id: entrenador.id }
         });
+        
         return new NextResponse(
             JSON.stringify({ ok: true }),
             { status: 200, headers: { "Content-Type": "application/json" } }
